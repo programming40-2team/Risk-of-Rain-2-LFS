@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 플레이어와 몬스터가 공유할 클래스,
+/// 변수 : MaxHealth, Damage, MoveSpeed, Armor, MaxHealthAscent, DamageAscent, HealthRegen, HealthRegenAscent
+/// </summary>
 public class Entity : MonoBehaviour
 {
     // 최대체력 o
@@ -25,18 +28,19 @@ public class Entity : MonoBehaviour
     // DamageAscent
 
     // --------------------------------------
+    [HideInInspector]
     public float MaxHealth; // 레벨에 따라 늘어남
     public float Health { get; protected set; }
     public bool IsDeath { get; protected set; }
     public event Action OnDeath;
 
-    protected float _damage; // 공격력
-    protected float _speed; // 속도
-    protected float _defense; // 방어력
-    protected float _maxHealthAscent; // 레벨당 체력 상승치
-    protected float _damageAscent; // 레벨당 공격력 상승치
-    protected float _healthRecovery;// 체력 회복량
-    protected float _recoveryAscent;// 레벨당 체력 회복량
+    public float Damage { get; protected set; } // 공격력
+    public float MoveSpeed { get; protected set; } // 속도
+    public float Armor { get; protected set; } // 방어력
+    public float MaxHealthAscent { get; protected set; } // 레벨당 체력 상승치
+    public float DamageAscent { get; protected set; } // 레벨당 공격력 상승치
+    public float HealthRegen { get; protected set; }// 체력 회복량
+    public float HealthRegenAscent { get; protected set; }// 레벨당 체력 회복량
 
     protected virtual void OnEnable()
     {
@@ -51,7 +55,7 @@ public class Entity : MonoBehaviour
     /// <param name="damage"></param>
     public virtual void OnDamage(float damage)
     {
-        float damageMultiplier = 1 - _defense / (100 + Mathf.Abs(_defense));
+        float damageMultiplier = 1 - Armor / (100 + Mathf.Abs(Armor));
         damage += damageMultiplier;
 
         Health -= damage;

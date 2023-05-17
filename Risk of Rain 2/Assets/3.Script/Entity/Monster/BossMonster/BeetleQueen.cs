@@ -22,13 +22,13 @@ public class BeetleQueen : Entity
 
     private void SetUp(MonsterData data)
     {
-        _damage = data.Damage;
-        _speed = data.Speed;
-        _defense = data.Defense;
-        _maxHealthAscent = data.MaxHealthAscent;
-        _damageAscent = data.DamageAscent;
-        _healthRecovery = data.HealthRecovery;
-        _recoveryAscent = data.RecoveryAscent;
+        Damage = data.Damage;
+        MoveSpeed = data.MoveSpeed;
+        Armor = data.Amor;
+        MaxHealthAscent = data.MaxHealthAscent;
+        DamageAscent = data.DamageAscent;
+        HealthRegen = data.HealthRegen;
+        HealthRegenAscent = data.RegenAscent;
     }
 
 

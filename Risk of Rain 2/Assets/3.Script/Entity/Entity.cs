@@ -26,11 +26,17 @@ public class Entity : MonoBehaviour
 
     // --------------------------------------
     public float MaxHealth; // 레벨에 따라 늘어남
-    [SerializeField]
     public float Health { get; protected set; }
-    [SerializeField]
     public bool IsDeath { get; protected set; }
     public event Action OnDeath;
+
+    protected float _damage; // 공격력
+    protected float _speed; // 속도
+    protected float _defense; // 방어력
+    protected float _maxHealthAscent; // 레벨당 체력 상승치
+    protected float _damageAscent; // 레벨당 공격력 상승치
+    protected float _healthRecovery;// 체력 회복량
+    protected float _recoveryAscent;// 레벨당 체력 회복량
 
     protected virtual void OnEnable()
     {
@@ -45,6 +51,9 @@ public class Entity : MonoBehaviour
     /// <param name="damage"></param>
     public virtual void OnDamage(float damage)
     {
+        float damageMultiplier = 1 - _defense / (100 + Mathf.Abs(_defense));
+        damage += damageMultiplier;
+
         Health -= damage;
 
         if (Health <= 0 && !IsDeath)

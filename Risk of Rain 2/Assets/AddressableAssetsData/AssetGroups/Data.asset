@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 72b260c5efcffa440972ad0fa6d309c6
   m_SerializeEntries:
   - m_GUID: 3b97c4d0aa1252343a0b85b22c267513
-    m_Address: Assets/11.Data/itemData.json
+    m_Address: ItemData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load

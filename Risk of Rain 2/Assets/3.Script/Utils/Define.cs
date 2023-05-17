@@ -2,9 +2,9 @@
 {
     public enum Scene
     {
-        Unknown,
-        Title,
-        Game,
+        None,
+        MainMenu,
+       
 
     }
     public enum UIEvent
@@ -20,17 +20,9 @@
     }
     public enum ItemType
     {
-        Weapon,
-        Hat,
-        Cloth,
-        Boot,
-        Earring,
-        Necklace,
-        Accessory,
-        Ring,
-        Consume,
-        ETC,
-        Max,
+       Passive,
+       Active,
+
     }
     public enum EVENT_TYPE
     {
@@ -39,5 +31,9 @@
         PlayerHp,
         EnemyHp,
         
+    }
+    public enum WhenItemActivates
+    {
+
     }
 }

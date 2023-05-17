@@ -1,4 +1,5 @@
 ﻿using Data;
+using System;
 using static Define;
 
 public class Item
@@ -12,11 +13,12 @@ public class Item
     public ItemData Info { get; } = new ItemData();
 
     public int ItemCode { get { return Info.itemcode; } set { Info.itemcode = value; } }
-    public string ItemName { get { return Info.name; } set { Info.name = value; } }
-    public string ItemTooltip { get { return Info.itemtooltip; } set { Info.itemtooltip = value; } }
-    public string ItemIconPath { get { return Info.iconpath; } set { Info.iconpath = value; } }
+    public string ItemName { get { return Info.itemname; } set { Info.itemname = value; } }
+    public string ItemExplanation { get { return Info.explanation; } set { Info.explanation = value; } }
+    public string ItemIconKey { get { return Info.iconkey; } set { Info.iconkey = value; } }
     public int Count { get { return Info.count; } set { Info.count = value; } }
     public ItemType ItemType { get; private set; }
+
 
     public Item(ItemType itemType)
     {
@@ -25,335 +27,69 @@ public class Item
     public static Item MakeItem(ItemData itemInfo)
     {
         Item item = null;
-
         ItemData itemData = null;
         Managers.Data.ItemDataDict.TryGetValue(itemInfo.itemcode, out itemData);
-
         if (itemData == null)
             return null;
-
         switch (itemData.itemType)
         {
-            case ItemType.Weapon:
-                item = new Weapon(itemInfo.itemcode);
+            case ItemType.Passive:
+                item = new PassiveItem(itemInfo.itemcode);
                 break;
-            case ItemType.Hat:
-                item = new Hat(itemInfo.itemcode);
-                break;
-            case ItemType.Cloth:
-                item = new Cloth(itemInfo.itemcode);
-                break;
-            case ItemType.Boot:
-                item = new Boot(itemInfo.itemcode);
-                break;
-            case ItemType.Earring:
-                item = new Earring(itemInfo.itemcode);
-                break;
-            case ItemType.Necklace:
-                item = new Necklace(itemInfo.itemcode);
-                break;
-            case ItemType.Accessory:
-                item = new Accessory(itemInfo.itemcode);
-                break;
-            case ItemType.Ring:
-                item = new Ring(itemInfo.itemcode);
-                break;
-            case ItemType.Consume:
-                item = new Consume(itemInfo.itemcode);
-                break;
-            case ItemType.ETC:
-                item = new ETC(itemInfo.itemcode);
+            case ItemType.Active:
+                item = new ActiveItem(itemInfo.itemcode);
                 break;
         }
-
         if (item != null)
         {
             item.ItemCode = itemInfo.itemcode;
-            item.ItemName = itemInfo.name;
-            item.ItemIconPath = itemInfo.iconpath;
-            item.ItemTooltip = itemInfo.itemtooltip;
-            
-
+            item.ItemName = itemInfo.itemname;
+            item.ItemIconKey = itemInfo.iconkey;
+            item.ItemExplanation = itemInfo.explanation;
+            item.Count = itemInfo.count;
         }
-
         return item;
     }
 
-    public class Weapon : Item
+    public class ActiveItem : Item
     {
-        public int Attack { get; private set; }
-        public int MagicAttack { get; private set; }
-        public int AttackRange { get; private set; }
-        public int Available_code { get; private set; }
-        public Weapon(int templateId) : base(ItemType.Weapon)
+        public int Cooltime { get; private set; }
+        public ActiveItem(int templateId) : base(ItemType.Active)
         {
             Init(templateId);
         }
-
         void Init(int templateId)
         {
             ItemData itemData = null;
             Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Weapon)
+            if (itemData.itemType != ItemType.Active)
                 return;
-
-            WeaponData data = (WeaponData)itemData;
+            ActivaData data = (ActivaData)itemData;
             {
-                ItemCode = data.itemcode;
-                Count = 1;
-                Attack = data.attack;
-                MagicAttack = data.magicattack;
-                AttackRange = data.range;
-                Available_code = data.available_code;
-
+                Cooltime = data.cooltime;
             }
         }
     }
-    public class Boot : Item
+    public class PassiveItem : Item
     {
-        public int Def { get; private set; }
-        public int MaxHp { get; private set; }
-        public string JobType { get; private set; }
-        public Boot(int templateId) : base(ItemType.Boot)
+        public int Tier { get; private set; }
+        public WhenItemActivates WhenItemActive { get; private set; }
+        public PassiveItem(int templateId) : base(ItemType.Passive)
         {
             Init(templateId);
         }
-
         void Init(int templateId)
         {
             ItemData itemData = null;
             Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Boot)
+            if (itemData.itemType != ItemType.Active)
                 return;
-
-            BootData data = (BootData)itemData;
+            PassiveData data = (PassiveData)itemData;
             {
-                ItemCode = data.itemcode;
-                Count = 1;
-                Def = data.def;
-                MaxHp = data.hp;
-                JobType = data.jobtype;
-
+                Tier = data.tier;
+                WhenItemActive= (WhenItemActivates)Enum.Parse(typeof(WhenItemActivates), data.itemwhenactivates);
             }
         }
     }
-
-    public class Hat : Item
-    {
-        public int MaxMp { get; private set; }
-        public int MagicDef { get; private set; }
-        public string JobType { get; private set; }
-        public Hat(int templateId) : base(ItemType.Hat)
-        {
-            Init(templateId);
-        }
-
-        void Init(int templateId)
-        {
-            ItemData itemData = null;
-            Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Hat)
-                return;
-
-            HatData data = (HatData)itemData;
-            {
-                ItemCode = data.itemcode;
-                Count = 1;
-                MaxMp = data.mp;
-                MagicDef = data.magicdef;
-                JobType = data.jobtype;
-
-            }
-        }
-    }
-    public class Cloth : Item
-    {
-        public int MaxHp { get; private set; }
-        public int Def { get; private set; }
-        public string JobType { get; private set; }
-        public Cloth(int templateId) : base(ItemType.Cloth)
-        {
-            Init(templateId);
-        }
-
-        void Init(int templateId)
-        {
-            ItemData itemData = null;
-            Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Cloth)
-                return;
-
-            ClothData data = (ClothData)itemData;
-            {
-                ItemCode = data.itemcode;
-                Count = 1;
-                MaxHp = data.hp;
-                Def = data.def;
-                JobType = data.jobtype;
-
-            }
-        }
-    }
-    public class Earring : Item
-    {
-        public int Attack { get; private set; }
-        public int HpRecovery { get; private set; }
-        public int MpRecovery { get; private set; }
-        public Earring(int templateId) : base(ItemType.Earring)
-        {
-            Init(templateId);
-        }
-
-        void Init(int templateId)
-        {
-            ItemData itemData = null;
-            Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Earring)
-                return;
-
-            EarringData data = (EarringData)itemData;
-            {
-                ItemCode = data.itemcode;
-                Count = 1;
-                HpRecovery = data.hprecovery;
-                MpRecovery = data.mprecovery;
-
-
-            }
-        }
-    }
-
-    public class Necklace : Item
-    {
-        public int MaxMp { get; private set; }
-        public int Attack { get; private set; }
-        public int MpRecovery { get; private set; }
-        public Necklace(int templateId) : base(ItemType.Necklace)
-        {
-            Init(templateId);
-        }
-
-        void Init(int templateId)
-        {
-            ItemData itemData = null;
-            Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Necklace)
-                return;
-
-            NecklaceData data = (NecklaceData)itemData;
-            {
-                ItemCode = data.itemcode;
-                Count = 1;
-                Attack = data.attack;
-                MaxMp = data.mp;
-                MpRecovery = data.mprecovery;
-
-
-            }
-        }
-    }
-    public class Accessory : Item
-    {
-        public int MaxMp { get; private set; }
-        public int HpRecovery { get; private set; }
-        public int Def { get; private set; }
-        public int AttackRange { get; private set; }
-        public Accessory(int templateId) : base(ItemType.Accessory)
-        {
-            Init(templateId);
-        }
-
-        void Init(int templateId)
-        {
-            ItemData itemData = null;
-            Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Accessory)
-                return;
-
-            AccessoryData data = (AccessoryData)itemData;
-            {
-                ItemCode = data.itemcode;
-                Count = 1;
-                HpRecovery = data.hprecovery;
-                MaxMp = data.mp;
-                Def = data.def;
-                AttackRange = data.range;
-
-            }
-        }
-    }
-    public class Ring : Item
-    {
-        public int HpRecovery { get; private set; }
-        public int MpRecovery { get; private set; }
-        public Ring(int templateId) : base(ItemType.Ring)
-        {
-            Init(templateId);
-        }
-
-        void Init(int templateId)
-        {
-            ItemData itemData = null;
-            Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Ring)
-                return;
-
-            RingData data = (RingData)itemData;
-            {
-                ItemCode = data.itemcode;
-                Count = 1;
-                HpRecovery = data.hprecovery;
-                MpRecovery = data.mprecovery;
-
-
-            }
-        }
-    }
-    public class Consume: Item
-    {
-        public int Value { get; private set; }
-        public Consume(int templateId) : base(ItemType.Consume)
-        {
-            Init(templateId);
-        }
-
-        void Init(int templateId)
-        {
-            ItemData itemData = null;
-            Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Consume)
-                return;
-
-            ConsumeData data = (ConsumeData)itemData;
-            {
-                ItemCode = data.itemcode;
-                Count = 1;
-                Value = data.value;
-            }
-        }
-    }
-    public class ETC : Item
-    {
-        public int Value { get; private set; }
-        public ETC(int templateId) : base(ItemType.ETC)
-        {
-            Init(templateId);
-        }
-
-        void Init(int templateId)
-        {
-            ItemData itemData = null;
-            Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.ETC)
-                return;
-
-            ETCData data = (ETCData)itemData;
-            {
-                ItemCode = data.itemcode;
-                Count = 1;
-            }
-        }
-    }
-
 
 }

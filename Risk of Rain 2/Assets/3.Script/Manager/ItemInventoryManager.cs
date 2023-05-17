@@ -9,13 +9,13 @@ public class ItemInventoryManager
     public void init()
     {
         //데이터를 불러와 개수가 1개 이상인 아이템들만 인벤에 넣어줍니다.
-        foreach (Data.ItemData itemdata in Managers.Data.ItemDataDict.Values)
-        {
-            if (itemdata.count >= 1)
-            {
-                Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
-            }
-        }
+        //foreach (Data.ItemData itemdata in Managers.Data.ItemDataDict.Values)
+        //{
+        //    if (itemdata.count >= 1)
+        //    {
+        //        Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
+        //    }
+        //}
     }
     public bool FindItem(int itemcode)
     {

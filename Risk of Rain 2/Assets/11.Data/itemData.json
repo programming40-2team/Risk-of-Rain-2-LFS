@@ -1,0 +1,256 @@
+{
+  "Passive": [
+    {
+      "itemcode": 1001,
+      "itemname": "군인의 주사기",
+      "explanation": "캐릭터 공격속도15%증가",
+      "tier": 1,
+      "iconkey": "item1001icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1002,
+      "itemname": "힘들었던 시절",
+      "explanation": "15% 확률로 피해 차단",
+      "tier": 1,
+      "iconkey": "item1002icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1003,
+      "itemname": "몬스터 이빨",
+      "explanation": "적 처치 시 체력8 + 최대체력 2% 회복하는 구체 생성",
+      "tier": 1,
+      "iconkey": "item1003icon",
+      "whenitemactivates": "AfterBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1004,
+      "itemname": "렌즈 제작자의 안경",
+      "explanation": "10%확률로 치명타",
+      "tier": 1,
+      "iconkey": "item1004icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1005,
+      "itemname": "폴의 염소밭",
+      "explanation": "이동속도 14%증가",
+      "tier": 1,
+      "iconkey": "item1005icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1006,
+      "itemname": "황옥 브로치",
+      "explanation": "적 처치 시 15의 실드 획득",
+      "tier": 1,
+      "iconkey": "item1006icon",
+      "whenitemactivates": "AfterBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1007,
+      "itemname": "Atg 미사일 Mk.1",
+      "explanation": "10%확률로 미사일 발사하여 300%피해",
+      "tier": 2,
+      "iconkey": "item1007icon",
+      "whenitemactivates": "InBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1008,
+      "itemname": "도깨비불",
+      "explanation": "적을 처치할 경우 12m 반경에 용암기둥이 생성 되어 350% 피해",
+      "tier": 2,
+      "iconkey": "item1008icon",
+      "whenitemactivates": "AfterBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1009,
+      "itemname": "Hopoo깃털",
+      "explanation": "최대 점프 횟수가 1회 증가",
+      "tier": 2,
+      "iconkey": "item1009icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1010,
+      "itemname": "흡혈 씨앗",
+      "explanation": "피해를 입히면 1의 체력이 치유",
+      "tier": 2,
+      "iconkey": "item1010icon",
+      "whenitemactivates": "InBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1011,
+      "itemname": "빨간 채찍",
+      "explanation": "전투중이 아닐 때 이동속도가 30% 증가",
+      "tier": 2,
+      "iconkey": "item1011icon",
+      "whenitemactivates": "NotBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1012,
+      "itemname": "수확꾼의 낫",
+      "explanation": "치명타 확률 증가 5% 치명타가 터질 경우 체력이 8 치유",
+      "tier": 2,
+      "iconkey": "item1012icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1013,
+      "itemname": "영혼이 속박된 촉매",
+      "explanation": "적을 처치하면 장비의 쿨타임이 4초 감소합니다.",
+      "tier": 3,
+      "iconkey": "item1013icon",
+      "whenitemactivates": "AfterBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1014,
+      "itemname": "의식용 단검",
+      "explanation": "적을 처치하면 3개의 유도 단검을 발사합니다. ",
+      "tier": 3,
+      "iconkey": "item1014icon",
+      "whenitemactivates": "AfterBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1015,
+      "itemname": "서리유물",
+      "explanation": "적을 처치하면 얼음 폭풍이 발생하여 1.5초동안 적들의 속도 80% 감소 미치 1200% 피해를 입힘",
+      "tier": 3,
+      "iconkey": "item1015icon",
+      "whenitemactivates": "AfterBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1016,
+      "itemname": "H3AD-5T v2",
+      "explanation": "점프 높이가 증가하며, 착지할 떄 5~100m 반경의 운동애니저 폭발 낙하 거리에 비례하여 피해 증가",
+      "tier": 3,
+      "iconkey": "item1016icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1017,
+      "itemname": "지능 있는 고기 갈고리",
+      "explanation": "적에게 공격이 명중하면 20% 확률로 유도 갈고리를 발사하여 최대 10마리의 적에게 총 100%피해를 입힘",
+      "tier": 3,
+      "iconkey": "item1017icon",
+      "whenitemactivates": "InBattle",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1018,
+      "itemname": "거인의 혹",
+      "explanation": "최대 체력이 40 증가 및 기본 체력 회복량이 초당 +1.6 증가",
+      "tier": 4,
+      "iconkey": "item1018icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1019,
+      "itemname": "여왕의 분비샘",
+      "explanation": "30초마다, 딱정벌레 근위병을 소환하여 공격력에 300%,체력에 100% 보너스를 줍니다.",
+      "tier": 4,
+      "iconkey": "item1019icon",
+      "whenitemactivates": "Always",
+      "isHaveHad": false,
+      "count": 0
+    }
+  ],
+  "Active": [
+    {
+      "itemcode": 1020,
+      "itemname": "일회용 미사일 발사기",
+      "explanation": "미사일 12발을 일제히 발사하여 12 x 300%의 피해를 입힙니다.",
+      "iconkey": "item1020icon",
+      "cooltime": 45,
+      "whenitemactivates": "MyTime",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1021,
+      "itemname": "이계의 과일",
+      "explanation": "최대 체력의 50%가 즉시 치유됩니다.",
+      "iconkey": "item1021icon",
+      "cooltime": 45,
+      "whenitemactivates": "MyTime",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1022,
+      "itemname": "태고의 큐브",
+      "explanation": "30m 이내의 적들을 끌어당기는 블랙홀을 발사합니다 10초간 유지됩니다.",
+      "iconkey": "item1022icon",
+      "cooltime": 60,
+      "whenitemactivates": "MyTime",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1023,
+      "itemname": "지원 요청",
+      "explanation": "타격 드론 4개를 불러 같이 싸웁니다. 25초 동안 지속됩니다.",
+      "iconkey": "item1023icon",
+      "cooltime": 100,
+      "whenitemactivates": "MyTime",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1024,
+      "itemname": "우윳빛깔 번데기",
+      "explanation": "날개가 돋아나 15초 동안 비행합니다. 이 동안 이동 속도가 20% 증가합니다.",
+      "iconkey": "item1024icon",
+      "cooltime": 60,
+      "whenitemactivates": "MyTime",
+      "isHaveHad": false,
+      "count": 0
+    },
+    {
+      "itemcode": 1025,
+      "itemname": "기묘한 꽃병",
+      "explanation": "최대 1000m 길이의 양자터널을 생성합니다 30초 동안 지속됩니다.",
+      "iconkey": "item1025icon",
+      "cooltime": 45,
+      "whenitemactivates": "MyTime",
+      "isHaveHad": false,
+      "count": 0
+    }
+  ]
+}

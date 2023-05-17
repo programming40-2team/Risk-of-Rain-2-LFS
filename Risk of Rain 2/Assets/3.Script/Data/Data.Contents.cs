@@ -26,7 +26,7 @@ namespace Data
     [Serializable]
     public class PassiveData : ItemData
     {
-        public string itemwhenactivates;
+        public string whenitemactivates;
         public int tier;
     }
     [Serializable]

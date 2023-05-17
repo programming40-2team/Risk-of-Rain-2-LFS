@@ -82,12 +82,12 @@ public class Item
         {
             ItemData itemData = null;
             Managers.Data.ItemDataDict.TryGetValue(templateId, out itemData);
-            if (itemData.itemType != ItemType.Active)
+            if (itemData.itemType != ItemType.Passive)
                 return;
             PassiveData data = (PassiveData)itemData;
             {
                 Tier = data.tier;
-                WhenItemActive= (WhenItemActivates)Enum.Parse(typeof(WhenItemActivates), data.itemwhenactivates);
+                WhenItemActive= (WhenItemActivates)Enum.Parse(typeof(WhenItemActivates), data.whenitemactivates);
             }
         }
     }

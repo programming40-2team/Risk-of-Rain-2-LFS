@@ -8,14 +8,12 @@ public class ItemInventoryManager
 
     public void init()
     {
-        //데이터를 불러와 개수가 1개 이상인 아이템들만 인벤에 넣어줍니다.
-        //foreach (Data.ItemData itemdata in Managers.Data.ItemDataDict.Values)
-        //{
-        //    if (itemdata.count >= 1)
-        //    {
-        //        Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
-        //    }
-        //}
+        //아이템 종류가 많지 않으니, 그냥 인벤토리에 넣고 시작
+        //아이템 count의 개수에 따라서 활성 비활성화 처리 예정
+        foreach (Data.ItemData itemdata in Managers.Data.ItemDataDict.Values)
+        {
+            Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
+        }
     }
     public bool FindItem(int itemcode)
     {
@@ -43,7 +41,7 @@ public class ItemInventoryManager
         }
         return true;
     }
-    public void Add(Item item, int count = 1)
+    private void Add(Item item, int count = 1)
     {
         if (Items.ContainsKey(item.ItemCode))
         {

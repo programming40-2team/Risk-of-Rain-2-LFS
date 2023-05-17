@@ -22,7 +22,7 @@ public class MainMenu : BaseScene
     void StartLoaded()
     {
         Managers.Data.Init();
-
+        Managers.ItemInventory.init();
     }
 
 

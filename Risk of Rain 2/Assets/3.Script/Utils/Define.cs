@@ -34,6 +34,10 @@
     }
     public enum WhenItemActivates
     {
+        Always,
+        AfterBattle,
+        InBattle,
+        NotBattle,
 
     }
 }

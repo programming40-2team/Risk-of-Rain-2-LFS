@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //캐릭터가 카메라방향을 바라보기 위함
     private CinemachineFreeLook _virtualCamera;
+
     //플레이어 컴포넌트
     private Animator _playerAnimator;
     private Rigidbody _playerRigidbody;
@@ -21,10 +23,16 @@ public class PlayerMovement : MonoBehaviour
     private readonly float _massCoefficient = 0.01f;
     private int _jumpCount;
     private bool _isJumping;
-    private WaitForSeconds _jumpCheckTime = new WaitForSeconds(0.02f);
+    private readonly WaitForSeconds _jumpCheckTime = new WaitForSeconds(0.02f);
+    public bool IsSprinting;
+
     //Ground Check
     private readonly float _groundCheckDistance = 0.11f;
     private readonly float _yOffset = 0.1f;
+
+    //이동에 영향을 주는 아이템 관련
+    private int _bonusJumpCount = 0;
+    private float _bonusMoveSpeed = 1f;
 
     private void Awake()
     {
@@ -34,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
         TryGetComponent(out _playerInput);
         TryGetComponent(out _playerStatus);
     }
-
     private void Start()
     {
         _jumpForce *= _playerStatus.Mass * _massCoefficient;
@@ -46,16 +53,22 @@ public class PlayerMovement : MonoBehaviour
         {
             _playerAnimator.SetBool("BonusJump", false);
             _playerAnimator.SetBool("Jump", false);
-            _jumpCount = _playerStatus.MaxJumpCount;
+            _jumpCount = _playerStatus.MaxJumpCount + _bonusJumpCount;
             _isJumping = false;
         }
     }
-
     private void FixedUpdate()
     {
         Move();
         Rotate();
-        _playerAnimator.SetFloat("Move", _playerInput.Move);
+        if(IsSprinting)
+        {
+            _playerAnimator.SetFloat("Move", 1.5f * _playerInput.Move);
+        }
+        else
+        {
+            _playerAnimator.SetFloat("Move", _playerInput.Move);
+        }
         _playerAnimator.SetFloat("HorizontalDirection", _playerInput.HorizontalDirection);
     }
     private void Move()
@@ -63,16 +76,22 @@ public class PlayerMovement : MonoBehaviour
         Vector3 _moveDirection;
         Vector3 _distance;
         _moveDirection = transform.right * _playerInput.HorizontalDirection + transform.forward * _playerInput.Move;
-        _distance = _playerStatus.MoveSpeed * Time.deltaTime * _moveDirection.normalized;
+        
+        if (IsSprinting)
+        {
+            _distance = 1.5f * _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
+        }
+        else
+        {
+            _distance = _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
+        }
         _playerRigidbody.MovePosition(_playerRigidbody.position + _distance);
     }
-
     private void Rotate()
     {
         Vector3 _dir = transform.position - _virtualCamera.transform.position;
         transform.rotation = Quaternion.LookRotation(new Vector3(_dir.x, 0, _dir.z));
     }
-
     /// <summary>
     /// 플레이어 점프 메서드
     /// </summary>
@@ -81,8 +100,9 @@ public class PlayerMovement : MonoBehaviour
         if (_jumpCount > 0)
         {
             StartCoroutine(CheckJump_co());
+            _playerRigidbody.velocity = Vector3.zero;
             _playerRigidbody.AddForce(Vector3.up * _jumpForce);
-            if (_jumpCount == _playerStatus.MaxJumpCount)
+            if (_jumpCount == _playerStatus.MaxJumpCount + _bonusJumpCount)
             {
                 _playerAnimator.SetBool("Jump", true);
             }
@@ -93,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
             _jumpCount--;
         }
     }
-
     private IEnumerator CheckJump_co()
     {
         yield return _jumpCheckTime;

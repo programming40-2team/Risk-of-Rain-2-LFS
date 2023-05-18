@@ -56,7 +56,7 @@ public class Entity : MonoBehaviour
     public virtual void OnDamage(float damage)
     {
         float damageMultiplier = 1 - Armor / (100 + Mathf.Abs(Armor));
-        damage += damageMultiplier;
+        damage *= damageMultiplier;
 
         Health -= damage;
 

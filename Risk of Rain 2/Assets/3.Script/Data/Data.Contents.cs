@@ -57,5 +57,36 @@ namespace Data
         }
     }
     #endregion
+    
+    #region Character
+    [Serializable]
+    public class CharacterData
+    {
+        public string Name;
+        public int charatercode;
+        public string script1;
+        public string script2;
+        public string script3;
+        public string script4;
+        public string unlockscript1;
+        public string unlockscript2;
+        public string iconkey;
+        public bool isActive;
 
+    }
+    [Serializable]
+    public class CharacterLoader : ILoader<int, CharacterData>
+    {
+        public List<CharacterData> characters = new List<CharacterData>();
+
+        public Dictionary<int, CharacterData> MakeDict()
+        {
+            Dictionary<int, CharacterData> dict = new Dictionary<int, CharacterData>();
+            foreach (CharacterData character in characters)
+                dict.Add(character.charatercode, character);
+            return dict;
+        }
+    }
+
+    #endregion
 }

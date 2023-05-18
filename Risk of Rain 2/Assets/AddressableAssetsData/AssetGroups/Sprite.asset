@@ -192,6 +192,76 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
+  - m_GUID: 53f44292aadbf9a4cade75de1bfa4182
+    m_Address: charicon014
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 1b5c4b5627555be49a1a0edbc47db86a
+    m_Address: charicon003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 8180ce31861ce2b4a9deeb465a448f3b
+    m_Address: charicon010
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 50792987133eb964d92eeddccd7fa707
+    m_Address: charicon002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 881c30462e8ad624fa78b9ff70d254b6
+    m_Address: charicon001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 1157fad2ddaea9a4b9f451841950ba42
+    m_Address: charicon008
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 9554f730fbde608429253fbf40556e0c
+    m_Address: charicon013
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 592cc933f8db60445b42cd4312839529
+    m_Address: charicon006
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 9cc961afe0083e24fadfc72bb80a5200
+    m_Address: charicon005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 3a3e0b4ae79939b4989844b85d07f1f0
+    m_Address: charicon004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: a526c4654c56e014fac4c2e09a87663e
+    m_Address: charicon007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: cd61fd97fb0c0c144ac6874795f0ef18
+    m_Address: charicon015
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 76e145ad7a4e22344be99dd872e7aca2
+    m_Address: charicon009
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: adc169816ab92324997dc487ceca3218
+    m_Address: charicon012
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

@@ -27,6 +27,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
+  - m_GUID: 2973fde746b6fe94a9864b73838f4b0f
+    m_Address: CharacterSelectButton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 606b0b5f0613f2e4b8cc3c43a3d9c0b8
+    m_Address: GameStartUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

@@ -9,11 +9,12 @@ public interface ILoader<Key, Value>
 public class DataManager
 {
     public Dictionary<int, Data.ItemData> ItemDataDict { get; private set; } = new Dictionary<int, Data.ItemData>();
- 
+    public Dictionary<int, Data.CharacterData> CharacterDataDict { get; private set; } = new Dictionary<int, Data.CharacterData>();
     public void Init()
     {
        ItemDataDict = LoadJson<Data.ItemLoader, int, Data.ItemData>("ItemData").MakeDict();
-       // SkillDataDict = LoadJson<Data.SKillDataLoader, int, Data.Skill>("SkillData").MakeDict();
+       CharacterDataDict = LoadJson<Data.CharacterLoader, int, Data.CharacterData>("CharacterData").MakeDict();
+        // SkillDataDict = LoadJson<Data.SKillDataLoader, int, Data.Skill>("SkillData").MakeDict();
     }
 
 

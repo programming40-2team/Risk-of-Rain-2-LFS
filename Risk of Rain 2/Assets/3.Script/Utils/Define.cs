@@ -1,10 +1,17 @@
 ﻿public class Define
 {
+
+    public static readonly int MaxCharacterCount = 15;
     public enum Scene
     {
         None,
         MainMenu,
        
+
+    }
+    public enum SortingOrder
+    {
+        CharacterSelectButton=15,
 
     }
     public enum UIEvent

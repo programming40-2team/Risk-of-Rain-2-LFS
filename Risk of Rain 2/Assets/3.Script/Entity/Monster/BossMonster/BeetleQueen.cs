@@ -9,7 +9,7 @@ public class BeetleQueen : Entity
     private Entity targetEntity;
 
     [Header("È¿°ú")]
-    public Animator _beetleQueenAnimator;
+    private Animator _beetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
@@ -26,24 +26,24 @@ public class BeetleQueen : Entity
             return false;
         }
     }
-
     private void Awake()
     {
-        TryGetComponent<Animator>(out _beetleQueenAnimator);
+        TryGetComponent(out _beetleQueenAnimator);
     }
-
+    
     protected override void OnEnable()
     {
         SetUp(_beetleQueenData);
         base.OnEnable();
-
-        Debug.Log(Damage);
-        Debug.Log(MoveSpeed);
-        Debug.Log(Armor);
-        Debug.Log(MaxHealthAscent);
-        Debug.Log(DamageAscent);
-        Debug.Log(HealthRegen);
-        Debug.Log(HealthRegenAscent);
+        Debug.Log("Health : " + Health);
+        Debug.Log("IsDeath : " + IsDeath);
+        Debug.Log("Damage : " + Damage);
+        Debug.Log("MoveSpeed : " + MoveSpeed);
+        Debug.Log("Armor : " + Armor);
+        Debug.Log("MaxHealthAscent : " + MaxHealthAscent);
+        Debug.Log("DamageAscent : " + DamageAscent);
+        Debug.Log("HealthRegen : " + HealthRegen);
+        Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
     }
 
     public override void OnDamage(float damage)
@@ -60,12 +60,13 @@ public class BeetleQueen : Entity
 
     public override void Die()
     {
-        _beetleQueenAnimator.SetTrigger("Die");
         base.Die();
+        //_beetleQueenAnimator.SetTrigger("Die");
     }
 
     private void SetUp(MonsterData data)
     {
+        MaxHealth = data.MaxHealth;
         Damage = data.Damage;
         MoveSpeed = data.MoveSpeed;
         Armor = data.Amor;
@@ -74,6 +75,5 @@ public class BeetleQueen : Entity
         HealthRegen = data.HealthRegen;
         HealthRegenAscent = data.RegenAscent;
     }
-
 
 }

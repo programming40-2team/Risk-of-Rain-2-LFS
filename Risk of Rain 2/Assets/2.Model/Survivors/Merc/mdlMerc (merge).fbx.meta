@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ce8c5d31ef2ec24ca596260f868da1e
+guid: 3f815117456fb2549a74f42ae86a16cf
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -226,14 +226,14 @@ ModelImporter:
       takeName: MercArmature|RunLeft
       internalID: 0
       firstFrame: 0
-      lastFrame: 65
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -342,7 +342,7 @@ ModelImporter:
       takeName: MercArmature|RunForward
       internalID: 0
       firstFrame: 0
-      lastFrame: 89
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -632,7 +632,7 @@ ModelImporter:
       takeName: MercArmature|RunBackward
       internalID: 0
       firstFrame: 0
-      lastFrame: 89
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -690,14 +690,14 @@ ModelImporter:
       takeName: MercArmature|RunRight
       internalID: 0
       firstFrame: 0
-      lastFrame: 89
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

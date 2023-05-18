@@ -11,7 +11,7 @@ public class PlayerStatus : Entity
     [HideInInspector]
     public float CriticalChance;
     [HideInInspector]
-    public float MaxJumpCount;
+    public int MaxJumpCount;
     [SerializeField] private SurvivorsData _survivorsData;
 
     protected override void OnEnable()
@@ -19,7 +19,6 @@ public class PlayerStatus : Entity
         InitStatus();
         base.OnEnable();
     }
-
 
     private void InitStatus()
     {
@@ -32,5 +31,6 @@ public class PlayerStatus : Entity
         Mass = _survivorsData.Mass;
         CriticalChance = _survivorsData.CriticalChance;
         MaxJumpCount = _survivorsData.MaxJumpCount;
+        Debug.Log(_survivorsData.MaxJumpCount);
     }
 }

@@ -13,7 +13,7 @@ public class SurvivorsData : ScriptableObject
     public float MoveSpeed;
     public float Mass;
     public float CriticalChance;
-    public float MaxJumpCount;
+    public int MaxJumpCount;
 
     //레벨에 따른 증가량들
 

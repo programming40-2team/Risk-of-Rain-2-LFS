@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mercenary
   m_EditorClassIdentifier: 
   Name: Mercenary
-  Health: 110
+  MaxHealth: 0
   Damage: 12
   HealthRegen: 1
   Armor: 20

@@ -9,7 +9,7 @@ public class BeetleQueen : Entity
     private Entity targetEntity;
 
     [Header("È¿°ú")]
-    private Animator _beetleQueenAnimator;
+    public Animator _beetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
@@ -60,8 +60,8 @@ public class BeetleQueen : Entity
 
     public override void Die()
     {
-        base.Die();
         _beetleQueenAnimator.SetTrigger("Die");
+        base.Die();
     }
 
     private void SetUp(MonsterData data)

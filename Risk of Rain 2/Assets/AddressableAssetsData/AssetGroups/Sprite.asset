@@ -248,7 +248,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - Asynchronous_Load
   - m_GUID: cd61fd97fb0c0c144ac6874795f0ef18
-    m_Address: charicon015
+    m_Address: charicon011
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
@@ -259,6 +259,46 @@ MonoBehaviour:
     - Asynchronous_Load
   - m_GUID: adc169816ab92324997dc487ceca3218
     m_Address: charicon012
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 5596cd94b4b9b6247ba1b326af86e8be
+    m_Address: 007Passive
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 36c5645d593b5d247b94da69d50ee63d
+    m_Address: 007Shift2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: c7e9e74af4e541949bd44aa64ae3b5aa
+    m_Address: 007Shift1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: c262aec8136c9a54596f77559b9a7287
+    m_Address: 007R1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 6c7b981b0ab1cad40a3eb7845e2453b6
+    m_Address: 007M21
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 9d73838ed89e5334aad37b603ba03ef0
+    m_Address: 007R2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 02e9467731dc0b945888c98960d0754f
+    m_Address: 007M1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 9a8a34c043846224bafebc405d20f5ef
+    m_Address: 007M22
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load

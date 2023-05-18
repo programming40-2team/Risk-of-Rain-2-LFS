@@ -6,7 +6,7 @@ public class MainMenu : BaseScene
 {
     void Start()
     {
-        base.Init();
+    
 
         Managers.Resource.LoadAllAsync<Object>("Asynchronous_Load", (key, count, totalCount) =>
         {
@@ -17,10 +17,12 @@ public class MainMenu : BaseScene
                StartLoaded();
             }
         });
+       
     }
 
     void StartLoaded()
     {
+        Init();
         Managers.Data.Init();
         Managers.ItemInventory.init();
         Managers.UI.ShowSceneUI<MainUI>();

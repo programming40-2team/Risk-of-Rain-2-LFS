@@ -10,11 +10,13 @@ public class Managers : MonoBehaviour
     SceneManagerEx _scene = new SceneManagerEx();
     UIManager _ui = new UIManager();
     ItemInventoryManager _iteminven = new ItemInventoryManager();
+    EventManager _event = new EventManager();
     public static DataManager Data { get { return Instance._data; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static UIManager UI { get { return Instance._ui; } }
     public static ItemInventoryManager ItemInventory { get { return Instance._iteminven; } }
+    public static EventManager Event { get { return Instance._event; } }
 
     void Start()
     {

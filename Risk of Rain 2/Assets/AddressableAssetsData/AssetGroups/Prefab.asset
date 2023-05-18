@@ -32,7 +32,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
-  - m_GUID: 606b0b5f0613f2e4b8cc3c43a3d9c0b8
+  - m_GUID: 12efca65e038e4e41866758b16fe6408
     m_Address: GameStartUI
     m_ReadOnly: 0
     m_SerializedLabels:

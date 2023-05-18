@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MainUI : UI_Scene
 {
@@ -56,16 +57,15 @@ public class MainUI : UI_Scene
         GetText((int)Texts.MusicText).text = $"음악";
         GetText((int)Texts.SettingText).text = $"설정";
         GetText((int)Texts.QuitText).text = $"데스크톱으로 나가기";
+
+        GetButton((int)Buttons.GameStartButton).gameObject
+            .BindEvent((PointerEventData data) => Managers.UI.ShowSceneUI<GameStartUI>());
     }
     private void Start()
     {
         Init();
     }
-    private void Update()
-    {
-       
 
-    }
 
 
 }

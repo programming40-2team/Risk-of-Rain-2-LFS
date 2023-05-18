@@ -72,7 +72,32 @@ namespace Data
         public string unlockscript2;
         public string iconkey;
         public bool isActive;
-
+        public string passiveskill;
+        public string m1skill;
+        public string m2skill_1;
+        public string m2skill_2;
+        public string shiftskill_1;
+        public string shiftskill_2;
+        public string rskill_1;
+        public string r_skill2;
+        public string passiveskilliconpath;
+        public string m1skilliconpath;
+        public string m2skill_1iconpath;
+        public string m2skill_2iconpath;
+        public string shiftskill_1iconpath;
+        public string shiftskill_2iconpath;
+        public string rskill_1iconpath;
+        public string r_skill2iconpath;
+        public string skin1;
+        public string skin2;
+        public string passiveskillscript;
+        public string m1skillscript;
+        public string m2skill_1script;
+        public string m2skill_2script;
+        public string shiftskill_1script;
+        public string shiftskill_2script;
+        public string rskill_1script;
+        public string r_skill2script;
     }
     [Serializable]
     public class CharacterLoader : ILoader<int, CharacterData>

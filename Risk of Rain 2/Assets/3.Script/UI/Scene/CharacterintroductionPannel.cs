@@ -15,7 +15,7 @@ public class CharacterintroductionPannel : MonoBehaviour
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-        for(int i = 0; i < Define.MaxCharacterCount; i++)
+        for(int i = 0; i < Managers.Data.CharacterDataDict.Keys.Count; i++)
         {
             CharacterSelectButton Character = Managers.UI.ShowSceneUI<CharacterSelectButton>();
             Character.transform.SetParent(gameObject.transform);

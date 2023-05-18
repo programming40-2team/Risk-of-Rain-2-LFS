@@ -12,6 +12,7 @@
     public enum SortingOrder
     {
         CharacterSelectButton=15,
+        GameStartUI=5,
 
     }
     public enum UIEvent
@@ -33,6 +34,7 @@
     }
     public enum EVENT_TYPE
     {
+        SelectCharacter,
         StartBattle,
         EndBattle,
         PlayerHp,

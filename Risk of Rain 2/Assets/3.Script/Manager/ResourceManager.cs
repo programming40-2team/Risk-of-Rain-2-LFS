@@ -15,7 +15,13 @@ public class ResourceManager
 
 		return null;
 	}
+	public Sprite LoadSprte(string key)
+    {
+		Texture2D texture = Load<Texture2D>(key);
+		Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
+		return sprite;
+	}
 	public GameObject Instantiate(string key, Transform parent = null, bool pooling = false)
 	{
 		GameObject prefab = Load<GameObject>($"{key}");
@@ -47,7 +53,7 @@ public class ResourceManager
 			return;
 		}
 
-		//string loadKey = key;
+	    // string loadKey = key;
 		//if (key.Contains(".sprite"))
 		//	loadKey = $"{key}[{key.Replace(".sprite", "")}]";
 

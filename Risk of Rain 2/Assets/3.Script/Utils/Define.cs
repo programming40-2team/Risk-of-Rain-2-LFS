@@ -1,11 +1,19 @@
 ﻿public class Define
 {
+
+    public static readonly int MaxCharacterCount = 15;
     public enum Scene
     {
         None,
         MainMenu,
        
 
+    }
+    public enum SortingOrder
+    {
+        CharacterSelectButton=15,
+        GameStartUI=5,
+        LogBookUI = 6,
     }
     public enum UIEvent
     {
@@ -26,6 +34,8 @@
     }
     public enum EVENT_TYPE
     {
+        SelectCharacter,
+        LogBookItem,
         StartBattle,
         EndBattle,
         PlayerHp,
@@ -40,4 +50,5 @@
         NotBattle,
 
     }
+
 }

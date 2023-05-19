@@ -22,6 +22,36 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
+  - m_GUID: f4192284e540e6f4aa625d51333e3126
+    m_Address: MainUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2973fde746b6fe94a9864b73838f4b0f
+    m_Address: CharacterSelectButton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: ef687ae7b4fcd1a488a382a198504c47
+    m_Address: GameStartUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 24a1093ebf4e91a449b240454c62476e
+    m_Address: RelicExtendPopupUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: e1b78b35b04332f4888648effa47dc9c
+    m_Address: ItemButton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 9aa5fb40d90ce16498f0309b8427a6a0
+    m_Address: LogBook
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

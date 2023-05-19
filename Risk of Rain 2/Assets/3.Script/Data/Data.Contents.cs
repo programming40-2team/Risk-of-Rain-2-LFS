@@ -57,5 +57,68 @@ namespace Data
         }
     }
     #endregion
+    
+    #region Character
+    [Serializable]
+    public class CharacterData
+    {
+        public string Name;
+        public int charatercode;
+        public string script1;
+        public string script2;
+        public string script3;
+        public string script4;
+        public string unlockscript1;
+        public string unlockscript2;
+        public string iconkey;
+        public bool isActive;
+        public string passiveskill;
+        public string m1skill;
+        public string m2skill_1;
+        public string m2skill_2;
+        public string shiftskill_1;
+        public string shiftskill_2;
+        public string rskill_1;
+        public string r_skill2;
+        public string passiveskilliconpath;
+        public string m1skilliconpath;
+        public string m2skill_1iconpath;
+        public string m2skill_2iconpath;
+        public string shiftskill_1iconpath;
+        public string shiftskill_2iconpath;
+        public string rskill_1iconpath;
+        public string r_skill2iconpath;
+        public string skin1;
+        public string skin2;
+        public string passiveskillscript;
+        public string m1skillscript;
+        public string m2skill_1script;
+        public string m2skill_2script;
+        public string shiftskill_1script;
+        public string shiftskill_2script;
+        public string rskill_1script;
+        public string r_skill2script;
+        public bool ism2_1skilllearn;
+        public bool ism2_2skilllearn;
+        public bool isshiftskill_1learn;
+        public bool isshiftskill_2learn;
+        public bool isrskill_1learn;
+        public bool isr_skill2learn;
 
+    }
+    [Serializable]
+    public class CharacterLoader : ILoader<int, CharacterData>
+    {
+        public List<CharacterData> characters = new List<CharacterData>();
+
+        public Dictionary<int, CharacterData> MakeDict()
+        {
+            Dictionary<int, CharacterData> dict = new Dictionary<int, CharacterData>();
+            foreach (CharacterData character in characters)
+                dict.Add(character.charatercode, character);
+            return dict;
+        }
+    }
+
+    #endregion
 }

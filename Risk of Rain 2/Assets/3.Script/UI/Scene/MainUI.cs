@@ -58,14 +58,21 @@ public class MainUI : UI_Scene
         GetText((int)Texts.SettingText).text = $"설정";
         GetText((int)Texts.QuitText).text = $"데스크톱으로 나가기";
 
+        Debug.Log("게임 실행 하면 나오는 배경음 나오는 곳!");
         GetButton((int)Buttons.GameStartButton).gameObject
-            .BindEvent((PointerEventData data) => Managers.UI.ShowSceneUI<GameStartUI>());
+            .BindEvent((PointerEventData data) => GameStartEvent());
     }
     private void Start()
     {
         Init();
     }
+    private void GameStartEvent()
+    {
+        Debug.Log("게임 시작 버튼 누르면 나올 소리 여기다!");
 
+        Managers.UI.ShowSceneUI<GameStartUI>();
+
+    }
 
 
 }

@@ -10,10 +10,11 @@ public class MainMenu : BaseScene
 
         Managers.Resource.LoadAllAsync<Object>("Asynchronous_Load", (key, count, totalCount) =>
         {
-            Debug.Log($"{key} {count}/{totalCount}");
+          //  Debug.Log($"{key} {count}/{totalCount}");
 
             if (count == totalCount)
             {
+                Debug.Log("데이터 로딩 완료!");
                StartLoaded();
             }
         });

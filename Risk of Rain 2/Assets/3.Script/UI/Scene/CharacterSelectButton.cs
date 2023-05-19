@@ -67,6 +67,7 @@ public class CharacterSelectButton : UI_Scene
     {
         ExchangeEffectOfCharacterSelectButton();
         Debug.Log($"{Charactercode}가 난 선택돼써 이벤트 발송!");
+        Debug.Log("캐릭터가 선택되었습니다. 캐릭터 설정 소리는 여기다가.!");
         Managers.Event.PostNotification(Define.EVENT_TYPE.SelectCharacter, this);
     }
 

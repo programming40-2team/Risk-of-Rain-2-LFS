@@ -1,5 +1,6 @@
 {
   "characters": [
+
     {
       "Name": "코만도",
       "charatercode": "1",
@@ -239,14 +240,14 @@
       "unlockscript2": "락되어있음",
       "iconkey": "charicon007",
       "isActive": "TRUE",
-      "passiveskill": "사이버네틱 개조",
-      "m1skill": "레이저 검",
-      "m2skill_1": "돌개바람",
-      "m2skill_2": "천둥오름",
-      "shiftskill_1": "눈부신 돌격",
-      "shiftskill_2": "집중 돌격",
-      "rskill_1": "내장 제거",
-      "r_skill2": "칼바람",
+      "passiveskill": "<color=#4682B4>사이버네틱 개조</color>",
+      "m1skill": "<color=#4682B4>레이저 검</color>",
+      "m2skill_1": "<color=#4682B4>돌개바람</color>",
+      "m2skill_2": "<color=#4682B4>천둥오름</color>",
+      "shiftskill_1": "<color=#4682B4>눈부신 돌격</color>",
+      "shiftskill_2": "<color=#4682B4>집중 돌격</color>",
+      "rskill_1": "<color=#4682B4>내장 제거</color>",
+      "r_skill2": "<color=#4682B4>칼바람</color>",
       "passiveskilliconpath": "007Passive",
       "m1skilliconpath": "007M1",
       "m2skill_1iconpath": "007M21",
@@ -257,14 +258,14 @@
       "r_skill2iconpath": "007R2",
       "skin1": "007skin1",
       "skin2": "007skin2",
-      "passiveskillscript": "머셔너리는 2단 점프를 할 수 있습니다.",
-      "m1skillscript": "전방을 베어 130% 피해를 줍니다. 세 번 벨 때마다 더 넓은 범위를 공격하고, 적을 노출[노출]시킵니다.",
-      "m2skill_1script": "빠르게 좌우로 두 번 베어 2x200% 피해를 입힙니다. 공중에서는 수평 대신 상하로 벱니다.",
-      "m2skill_2script": "베어내는 어퍼컷을 날려, 550%의 피해를 입히고 공중에 띄웁니다.",
-      "shiftskill_1script": "앞으로 돌진하여 300% 피해를 줍니다. 적을 맞히면 한 번 더 돌진할 수 있으며, 최대 3번 돌진할 수 있습니다.",
-      "shiftskill_2script": " 앞으로 질주하여 700% 피해를 입히고 1초 후에 적들을 노출시킵니다.",
-      "rskill_1script": "가장 가까운 적을 공격하여 반복해서 110% 피해를 입힙니다. 이 동안에 받는 공격은 무효화됩니다.",
-      "r_skill2script": "최대 3명의 적을 공격해서 8x100% 피해를 주는 칼날 바람을 발사합니다. 마지막 공격은 적을 노출시킵니다."
+      "passiveskillscript": "머셔너리는 <color=#B22222>2단 점프</color>를 할 수 있습니다.",
+      "m1skillscript": "전방을 베어 <color=#FFFF00>130%</color> 피해를 줍니다. 세 번 벨 때마다 더 넓은 범위를 공격하고, 적을 노출시킵니다.",
+      "m2skill_1script": "빠르게 좌우로 두 번 베어 <color=#FFFF00>2x220%</color> 피해를 입힙니다. 공중에서는 수평 대신 상하로 벱니다.",
+      "m2skill_2script": "베어내는 어퍼컷을 날려, <color=#FFFF00>550%</color>의 피해를 입히고 공중에 띄웁니다.",
+      "shiftskill_1script": "앞으로 돌진하여 <color=#FFFF00>300%</color> 피해를 줍니다. 적을 맞히면 한 번 더 돌진할 수 있으며, <color=#B22222>최대 3번</color> 돌진할 수 있습니다.",
+      "shiftskill_2script": " 앞으로 질주하여 <color=#FFFF00>700%</color> 피해를 입히고 <color=#B22222>1초</color> 후에 적들을 노출시킵니다.",
+      "rskill_1script": "<color=#B22222>가장 가까운 적을</color>공격하여 반복해서 <color=#FFFF00>110%</color> 피해를 입힙니다. 이 동안에 받는 공격은 무효화됩니다.",
+      "r_skill2script": "최대 <color=#B22222>3명</color>의 적을 공격해서 <color=#FFFF00>8x100%</color> 피해를 주는 칼날 바람을 발사합니다. 마지막 공격은 적을 <color=#B22222>노출</color>시킵니다."
     },
     {
       "Name": "렉스",

@@ -32,8 +32,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
-  - m_GUID: 12efca65e038e4e41866758b16fe6408
+  - m_GUID: ef687ae7b4fcd1a488a382a198504c47
     m_Address: GameStartUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 24a1093ebf4e91a449b240454c62476e
+    m_Address: RelicExtendPopupUI
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load

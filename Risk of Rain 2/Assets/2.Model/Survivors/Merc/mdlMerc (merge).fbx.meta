@@ -150,7 +150,16 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: Event AnimationEnd has a time (0.638991) outside the
+      clip's valid range (0.000000..0.500000). It will never be firedEvent EndAttack
+      has a time (0.971470) outside the clip's valid range (0.000000..0.833333).
+      It will never be firedEvent AnimationEnd has a time (0.575391) outside the
+      clip's valid range (0.000000..0.500000). It will never be firedEvent AnimationEnd
+      has a time (0.631719) outside the clip's valid range (0.000000..0.500000).
+      It will never be firedEvent AnimationEnd has a time (0.674158) outside the
+      clip's valid range (0.000000..0.500000). It will never be firedEvent EndAttack
+      has a time (1.023818) outside the clip's valid range (0.000000..0.833333).
+      It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -622,7 +631,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.49935618
+        functionName: AnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5c982291ddb3ad84b8a5c627f515e69c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -883,7 +899,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.4307804
+        functionName: AnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5c982291ddb3ad84b8a5c627f515e69c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -941,7 +964,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.6549233
+        functionName: EndAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5c982291ddb3ad84b8a5c627f515e69c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -970,7 +1000,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.38790417
+        functionName: AnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5c982291ddb3ad84b8a5c627f515e69c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -1086,7 +1123,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.4258777
+        functionName: AnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5c982291ddb3ad84b8a5c627f515e69c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -1231,7 +1275,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.45448884
+        functionName: AnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5c982291ddb3ad84b8a5c627f515e69c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -1376,7 +1427,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.6902146
+        functionName: EndAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5c982291ddb3ad84b8a5c627f515e69c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

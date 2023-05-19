@@ -6,11 +6,11 @@ public class PlayerAttack : MonoBehaviour
 {
     private Animator _playerAnimator;
 
-    private WaitForSeconds _attackSavingTime = new WaitForSeconds(2f);
-    private WaitForSeconds _attackTime = new WaitForSeconds(0.4f);
+    private WaitForSeconds _attackSavingTime = new WaitForSeconds(0.32f);
+    public Coroutine RunningCoroutine;
     public bool IsAttacking;
-    private Coroutine _runningCoroutine;
-    public int AttackCount = 0;
+    public int AttackCount = 1;
+
     private void Awake()
     {
         TryGetComponent(out _playerAnimator);
@@ -18,41 +18,46 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack1()
     {
-        StartCoroutine(AttackCheck_co());
-        _runningCoroutine = StartCoroutine(AttackTimeCheck_co());
+        IsAttacking = true;
         _playerAnimator.SetBool("Attack1", true);
         AttackCount++;
     }
-
     public void Attack2() 
     {
-        StartCoroutine(AttackCheck_co());
-        StopCoroutine(_runningCoroutine);
-        _runningCoroutine = StartCoroutine(AttackTimeCheck_co());
+        IsAttacking = true;
         _playerAnimator.SetBool("Attack2", true);
         AttackCount++;
+        StopCoroutine(RunningCoroutine);
     }
     public void Attack3()
     {
-        StartCoroutine(AttackCheck_co());
-        StopCoroutine(_runningCoroutine);
-        _runningCoroutine = StartCoroutine(AttackTimeCheck_co());
+        IsAttacking = true;
         _playerAnimator.SetBool("Attack3", true);
         AttackCount++;
+        StopCoroutine(RunningCoroutine);
+        
     }
-    private IEnumerator AttackTimeCheck_co()
+    public IEnumerator AttackTimeCheck_co()
     {
         yield return _attackSavingTime;
         _playerAnimator.SetBool("Attack3", false);
         _playerAnimator.SetBool("Attack2", false);
         _playerAnimator.SetBool("Attack1", false);
         AttackCount = 0;
-        StopCoroutine(_runningCoroutine);
     }
-    private IEnumerator AttackCheck_co()
+
+    private void AnimationEnd()
     {
-        IsAttacking = true;
-        yield return _attackTime;
+        IsAttacking = false;
+        RunningCoroutine = StartCoroutine(AttackTimeCheck_co());
+       
+    }
+    private void EndAttack()
+    {
+        _playerAnimator.SetBool("Attack3", false);
+        _playerAnimator.SetBool("Attack2", false);
+        _playerAnimator.SetBool("Attack1", false);
+        AttackCount = 0;
         IsAttacking = false;
     }
 }

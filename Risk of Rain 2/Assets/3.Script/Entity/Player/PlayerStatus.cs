@@ -31,6 +31,5 @@ public class PlayerStatus : Entity
         Mass = _survivorsData.Mass;
         CriticalChance = _survivorsData.CriticalChance;
         MaxJumpCount = _survivorsData.MaxJumpCount;
-        Debug.Log(_survivorsData.MaxJumpCount);
     }
 }

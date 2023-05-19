@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _playerRigidbody;
     private PlayerInput _playerInput;
     private PlayerStatus _playerStatus;
-
+    private PlayerAttack _playerAttack;
     //플레이어 스테이터스
     private float _jumpForce = 200;
     private readonly float _massCoefficient = 0.01f;
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private readonly WaitForSeconds _jumpCheckTime = new WaitForSeconds(0.02f);
     private float _rotateSpeed = 550f;
     [HideInInspector] public bool IsSprinting;
+
     //Ground Check
     private readonly float _groundCheckDistance = 0.11f;
     private readonly float _yOffset = 0.1f;
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         TryGetComponent(out _playerRigidbody);
         TryGetComponent(out _playerInput);
         TryGetComponent(out _playerStatus);
+        TryGetComponent(out _playerAttack);
+
     }
     private void Start()
     {
@@ -50,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        Rotate();
         if (Physics.Raycast(transform.position + new Vector3(0, _yOffset, 0), Vector3.down, out _, _groundCheckDistance) && _isJumping)
         {
             _playerAnimator.SetBool("BonusJump", false);
@@ -62,7 +64,9 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        if(IsSprinting)
+        Rotate();
+
+        if (IsSprinting)
         {
             _playerAnimator.SetFloat("Move", 1.5f * _playerInput.Move);
         }
@@ -77,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 _moveDirection;
         Vector3 _distance;
         _moveDirection = transform.right * _playerInput.HorizontalDirection + transform.forward * _playerInput.Move;
-        
+
         if (IsSprinting)
         {
             _distance = 1.5f * _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
@@ -107,7 +111,17 @@ public class PlayerMovement : MonoBehaviour
             _playerRigidbody.AddForce(Vector3.up * _jumpForce);
             if (_jumpCount == _playerStatus.MaxJumpCount + _bonusJumpCount)
             {
-                _playerAnimator.SetBool("Jump", true);
+                if (_playerAttack.IsAttacking)
+                {
+                    _playerAnimator.SetTrigger("JumpT");
+                    _playerAnimator.SetBool("Jump", true);
+                    _playerAttack.IsAttacking = false;
+                    _playerAttack.RunningCoroutine = StartCoroutine(_playerAttack.AttackTimeCheck_co());
+                }
+                else
+                {
+                    _playerAnimator.SetBool("Jump", true);
+                }
             }
             else
             {

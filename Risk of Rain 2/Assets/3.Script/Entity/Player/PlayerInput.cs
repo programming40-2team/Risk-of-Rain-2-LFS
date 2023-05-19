@@ -18,7 +18,6 @@ public class PlayerInput : MonoBehaviour
         Cursor.visible = false;
         TryGetComponent(out _playerMovement);
         TryGetComponent(out _playerAttack);
-        
     }
     private void Update()
     {
@@ -38,7 +37,7 @@ public class PlayerInput : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(0) && _playerAttack.AttackCount <= 2 && !_playerAttack.IsAttacking)
         {
-            if(_playerAttack.AttackCount == 0)
+            if (_playerAttack.AttackCount == 0)
             {
                 _playerAttack.Attack1();
             }
@@ -51,6 +50,5 @@ public class PlayerInput : MonoBehaviour
                 _playerAttack.Attack3();
             }
         }
-        
     }
 }

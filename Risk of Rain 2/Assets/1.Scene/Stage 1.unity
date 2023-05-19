@@ -2753,7 +2753,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsSprinting: 0
-  _rotateSpeed: 500
 --- !u!114 &919132147710366108
 MonoBehaviour:
   m_ObjectHideFlags: 0

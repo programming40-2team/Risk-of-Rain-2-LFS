@@ -38,7 +38,8 @@ public class AcidSkill : MonoBehaviour
     private void OnParticleCollision(GameObject col)
     {
         if (col.gameObject != _beetleQueenObject)
-        {
+        {   
+            // TODO : 터져서 사라지는 효과 코루틴으로 넣기
             _beetleQueen.objectPool.ReturnObject(gameObject);
             _beetleQueen._acidList.Remove(gameObject);
         }

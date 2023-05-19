@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 1
     m_SpeedMode: 0
-    m_MaxSpeed: 10
+    m_MaxSpeed: 15
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -1714,7 +1714,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 1
     m_SpeedMode: 0
-    m_MaxSpeed: 500
+    m_MaxSpeed: 750
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -2753,6 +2753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsSprinting: 0
+  _rotateSpeed: 500
 --- !u!114 &919132147710366108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2779,6 +2780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c982291ddb3ad84b8a5c627f515e69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAttacking: 0
+  AttackCount: 0
 --- !u!1 &989426910119841575
 GameObject:
   m_ObjectHideFlags: 0

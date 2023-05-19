@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
     {
         StartCoroutine(AttackCheck_co());
         StopCoroutine(_runningCoroutine);
-        StartCoroutine(AttackTimeCheck_co());
+        _runningCoroutine = StartCoroutine(AttackTimeCheck_co());
         _playerAnimator.SetBool("Attack2", true);
         AttackCount++;
     }
@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
     {
         StartCoroutine(AttackCheck_co());
         StopCoroutine(_runningCoroutine);
-        StartCoroutine(AttackTimeCheck_co());
+        _runningCoroutine = StartCoroutine(AttackTimeCheck_co());
         _playerAnimator.SetBool("Attack3", true);
         AttackCount++;
     }
@@ -47,6 +47,7 @@ public class PlayerAttack : MonoBehaviour
         _playerAnimator.SetBool("Attack2", false);
         _playerAnimator.SetBool("Attack1", false);
         AttackCount = 0;
+        StopCoroutine(_runningCoroutine);
     }
     private IEnumerator AttackCheck_co()
     {

@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private int _jumpCount;
     private bool _isJumping;
     private readonly WaitForSeconds _jumpCheckTime = new WaitForSeconds(0.02f);
-    public bool IsSprinting;
-
+    private float _rotateSpeed = 550f;
+    [HideInInspector] public bool IsSprinting;
     //Ground Check
     private readonly float _groundCheckDistance = 0.11f;
     private readonly float _yOffset = 0.1f;
@@ -46,9 +46,11 @@ public class PlayerMovement : MonoBehaviour
     {
         _jumpForce *= _playerStatus.Mass * _massCoefficient;
         _jumpCount = _playerStatus.MaxJumpCount;
+        //StartCoroutine(Rotate_co());
     }
     private void Update()
     {
+        Rotate();
         if (Physics.Raycast(transform.position + new Vector3(0, _yOffset, 0), Vector3.down, out _, _groundCheckDistance) && _isJumping)
         {
             _playerAnimator.SetBool("BonusJump", false);
@@ -60,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        Rotate();
         if(IsSprinting)
         {
             _playerAnimator.SetFloat("Move", 1.5f * _playerInput.Move);
@@ -89,8 +90,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Rotate()
     {
+        Quaternion _rotation;
         Vector3 _dir = transform.position - _virtualCamera.transform.position;
-        transform.rotation = Quaternion.LookRotation(new Vector3(_dir.x, 0, _dir.z));
+        _rotation = Quaternion.LookRotation(new Vector3(_dir.x, 0, _dir.z));
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, _rotation, Time.deltaTime * _rotateSpeed);
     }
     /// <summary>
     /// 플레이어 점프 메서드

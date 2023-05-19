@@ -8,12 +8,15 @@ public class BeetleQueen : Entity
 
     private Entity targetEntity;
 
-    [Header("효과")]
+    public ObjectPool objectPool;
+    public List<GameObject> _acidList;
+
     private Animator _beetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
-    private Transform _playerTransform; // 플레이어 향해 공격하기 때문에 필요
+    [Header("Transforms")]
+    [SerializeField] private Transform _beetleQueenMouth;
     private bool hasTarget
     {
         get
@@ -29,6 +32,8 @@ public class BeetleQueen : Entity
     private void Awake()
     {
         TryGetComponent(out _beetleQueenAnimator);
+        objectPool = FindObjectOfType<ObjectPool>();
+        _acidList = new List<GameObject>();
     }
     
     protected override void OnEnable()
@@ -76,4 +81,26 @@ public class BeetleQueen : Entity
         HealthRegenAscent = data.RegenAscent;
     }
 
+    // 산성담즙 생성
+    public void CreateAcidBile()
+    {
+        for(int i = 0; i < 6; i++)
+        {
+            GameObject obj = objectPool.GetObject();
+            obj.transform.position = _beetleQueenMouth.position;
+            _acidList.Add(obj);
+        }
+    }
+
+    public void DeleteAcidBile()
+    {
+        for(int i = 0; i < 6; i++)
+        {
+            if (_acidList.Count > 0)
+            {
+                objectPool.ReturnObject(_acidList[0]);
+                _acidList.RemoveAt(0);
+            }
+        }
+    }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BeetleQueen : Entity
 {
+    // TODO : 난이도에 따라 MaxHealth 증가시키기
     [SerializeField] private MonsterData _beetleQueenData;
 
     private Entity targetEntity;
@@ -16,7 +17,12 @@ public class BeetleQueen : Entity
     private AudioClip _hitSound;
 
     [Header("Transforms")]
-    [SerializeField] private Transform _beetleQueenMouth;
+    [SerializeField] private Transform _playerTransform;
+    [SerializeField] private Transform _beetleQueenMouthTransform;
+
+    public Vector3 _dir;
+    public Vector3[] _dirArr = new Vector3[6];
+
     private bool hasTarget
     {
         get
@@ -81,26 +87,39 @@ public class BeetleQueen : Entity
         HealthRegenAscent = data.RegenAscent;
     }
 
+    private void SetDirection()
+    {
+        _dir = new Vector3(_playerTransform.position.x - _beetleQueenMouthTransform.position.x, // 기준이 될 방향 벡터
+            _playerTransform.position.y - _beetleQueenMouthTransform.position.y,
+            _playerTransform.position.z - _beetleQueenMouthTransform.position.z).normalized;
+
+        for(int i = 0; i < _dirArr.Length; i++)
+        {
+            _dirArr[i] = new Vector3(0, 0, 0);
+        }
+    }
     // 산성담즙 생성
-    public void CreateAcidBile()
+    private void CreateAcidBile()
     {
         for(int i = 0; i < 6; i++)
         {
             GameObject obj = objectPool.GetObject();
-            obj.transform.position = _beetleQueenMouth.position;
             _acidList.Add(obj);
+            obj.transform.position = _beetleQueenMouthTransform.position;
+
         }
     }
 
-    public void DeleteAcidBile()
+    //private IEnumerator AcidBile_co()
+    //{
+    //    CreateAcidBile();
+    //    yield return new WaitForSeconds(4f); // 나중에 수정
+    //    DeleteAcidBile();
+    //}
+
+    public void StartAcidBileSkill()
     {
-        for(int i = 0; i < 6; i++)
-        {
-            if (_acidList.Count > 0)
-            {
-                objectPool.ReturnObject(_acidList[0]);
-                _acidList.RemoveAt(0);
-            }
-        }
+        SetDirection();
+        CreateAcidBile();
     }
 }

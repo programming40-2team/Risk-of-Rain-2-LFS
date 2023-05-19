@@ -55,11 +55,19 @@ public class Entity : MonoBehaviour
     /// <param name="damage"></param>
     public virtual void OnDamage(float damage)
     {
+<<<<<<< HEAD
+        Debug.Log("Health1111 : " + Health);
+        float damageMultiplier = 1f - Armor / (100f + Mathf.Abs(Armor));
+=======
         float damageMultiplier = 1 - Armor / (100 + Mathf.Abs(Armor));
+>>>>>>> feature/player
         damage *= damageMultiplier;
 
         Health -= damage;
-
+        Debug.Log("damageMultiplier : " + damageMultiplier);
+        Debug.Log("damage : " + damage);
+        Debug.Log("Health222 : " + Health);
+        Debug.Log("IsDeath : " + IsDeath);
         if (Health <= 0 && !IsDeath)
         {
             Die();

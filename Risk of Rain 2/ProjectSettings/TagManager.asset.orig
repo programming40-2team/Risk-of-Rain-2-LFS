@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+<<<<<<< HEAD
+  - ObjectPool
+=======
+  - VirtualCamera
+>>>>>>> feature/player
   layers:
   - Default
   - TransparentFX

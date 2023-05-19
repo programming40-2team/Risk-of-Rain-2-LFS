@@ -150,7 +150,7 @@ public class GameStartUI : UI_Scene,IListener
     public override void Init()
     {
         base.Init();
-        GetComponent<Canvas>().sortingOrder = 5;
+        GetComponent<Canvas>().sortingOrder = (int)Define.SortingOrder.GameStartUI;
         Bind<GameObject>(typeof(EGameObjects));
         Bind<Button>(typeof(EButtons));
         Bind<TextMeshProUGUI>(typeof(ETexts));
@@ -162,12 +162,6 @@ public class GameStartUI : UI_Scene,IListener
         InitGameObect();
         //버튼 오브젝트 관련 초기화
         InitButton();
-
-
-
-
-
-
 
 
 
@@ -354,21 +348,52 @@ public class GameStartUI : UI_Scene,IListener
 
 
     }
-    private void ChangeImage(int charcode)
+    //편하게 하려면 스킬 데이터 를 체계적으로 만들어야 하는데 귀찮아서ㅓㅓㅓㅓ...''
+    private void ChangeSkillImage(int charcode)
     {
-        GetImage((int)EImages.PassiveSkillImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].passiveskilliconpath);
+
+        GetImage((int)EImages.PassiveSkillImage).sprite =Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].passiveskilliconpath);
        GetImage((int)EImages. M1SkilIImage          ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m1skilliconpath);
        GetImage((int)EImages. M2SkilIImage          ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m2skill_1iconpath);
        GetImage((int)EImages. RSkilIImage           ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].rskill_1iconpath);
        GetImage((int)EImages.ShiftSkillImage).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].shiftskill_1iconpath);
-       GetImage((int)EImages. LoadPassiveSkillImage ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].passiveskilliconpath);
-       GetImage((int)EImages. LoadShiftSkillImage_1 ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].shiftskill_1iconpath);
-       GetImage((int)EImages. LoadShiftSkillImage_2 ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].shiftskill_2iconpath);
-       GetImage((int)EImages. LoadM2SkillImage_1    ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m2skill_1iconpath);
-       GetImage((int)EImages. LoadM2SkillImage_2    ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m2skill_2iconpath);
-       GetImage((int)EImages. LoadRSkillImage_1     ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].rskill_1iconpath);
-       GetImage((int)EImages. LoadRSkillImage_2     ).sprite= Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].r_skill2iconpath);
+
+
+
+        SetSkillImage(charcode);
     }
+    private void SetSkillImage(int charcode)
+    {
+        GetImage((int)EImages.LoadPassiveSkillImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].passiveskilliconpath);
+
+        if (Managers.Data.CharacterDataDict[charcode].isshiftskill_1learn)
+        {
+            GetImage((int)EImages.LoadShiftSkillImage_1).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m1skilliconpath);
+        }
+        if (Managers.Data.CharacterDataDict[charcode].isshiftskill_2learn)
+        {
+            GetImage((int)EImages.LoadShiftSkillImage_2).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].shiftskill_2iconpath);
+        }
+        if (Managers.Data.CharacterDataDict[charcode].ism2_1skilllearn)
+        {
+            GetImage((int)EImages.LoadM2SkillImage_1).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m2skill_1iconpath);
+        }
+        if (Managers.Data.CharacterDataDict[charcode].ism2_2skilllearn)
+        {
+            GetImage((int)EImages.LoadM2SkillImage_2).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m2skill_2iconpath);
+        }
+        if (Managers.Data.CharacterDataDict[charcode].isrskill_1learn)
+        {
+            GetImage((int)EImages.LoadRSkillImage_1).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].rskill_1iconpath);
+        }
+        if (Managers.Data.CharacterDataDict[characterCode].isr_skill2learn)
+        {
+            GetImage((int)EImages.LoadRSkillImage_2).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].r_skill2iconpath);
+        }
+
+
+    }
+
 
     private void SkillScriptButtonEvent()
     {
@@ -407,8 +432,8 @@ public class GameStartUI : UI_Scene,IListener
         DetaillCharacterScriptChange(ECharacterDetail.AboutScript);
         characterCode =Sender.GetComponent<CharacterSelectButton>().Charactercode;
         DesCribeChange(characterCode);
-        ChangeImage(characterCode);
+        ChangeSkillImage(characterCode);
 
-     
+ 
     }
 }

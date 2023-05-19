@@ -8,15 +8,17 @@ public class CharacterSelectButton : UI_Scene
 {
 
     public int Charactercode = -1;
-    Color prevcolor;
-    enum Images
+    Color selectImageprevcolor;
+    Color rectImageprevcolor;
+    enum EImages
     {
         CharacterImage,
         SelectChangeColorImage,
 
+        Character_RectImage,
 
     }
-    enum GameObjects
+    enum EGameObjects
     {
         Character_RectImage_Image,
 
@@ -29,37 +31,51 @@ public class CharacterSelectButton : UI_Scene
     public override void Init()
     {
         base.Init();
-        GetComponent<Canvas>().sortingOrder = 15;
-        Bind<Image>(typeof(Images));
-        Bind<GameObject>(typeof(GameObjects));
+        GetComponent<Canvas>().sortingOrder = (int)Define.SortingOrder.CharacterSelectButton;
+        Bind<Image>(typeof(EImages));
+        Bind<GameObject>(typeof(EGameObjects));
+     
 
-        GetImage((int)Images.CharacterImage).sprite= Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[Charactercode].iconkey);
+        GetImage((int)EImages.CharacterImage).sprite= Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[Charactercode].iconkey);
         gameObject.GetComponent<Button>().enabled = false;
         if (Charactercode.Equals(7))
         {
             Color color = Color.white;
             color.a = 1;    
-            GetImage((int)Images.CharacterImage).color = color;
+            GetImage((int)EImages.CharacterImage).color = color;
             gameObject.GetComponent<Button>().enabled = true;
 
             gameObject.BindEvent((PointerEventData data) => EventExcute());
         }
-      
-        prevcolor = GetImage((int)Images.SelectChangeColorImage).color;
+
+        selectImageprevcolor = GetImage((int)EImages.SelectChangeColorImage).color;
+        rectImageprevcolor = GetImage((int)EImages.Character_RectImage).color;
+        gameObject.BindEvent((PointerEventData data) => CharacterPointerEnterEvent(), Define.UIEvent.PointerEnter);
+        gameObject.BindEvent((PointerEventData data) => CharacterPointerExitEvent(), Define.UIEvent.PointerExit);
+    }
+    private void CharacterPointerEnterEvent()
+    {
+        GetImage((int)EImages.Character_RectImage).color = Color.white;
+        Debug.Log("캐릭터 화면 선택 하는 과정에서 효과음 넣으실껀가요?1");
+    }
+    private void CharacterPointerExitEvent()
+    {
+        GetImage((int)EImages.Character_RectImage).color = rectImageprevcolor;
+        Debug.Log("캐릭터 화면 선택 하는 과정에서 효과음 넣으실껀가요?2");
     }
     private void ExchangeEffectOfCharacterSelectButton()
     {
-        if (Get<GameObject>((int)GameObjects.Character_RectImage_Image).activeSelf)
+        if (Get<GameObject>((int)EGameObjects.Character_RectImage_Image).activeSelf)
         {
-            GetImage((int)Images.SelectChangeColorImage).color =
+            GetImage((int)EImages.SelectChangeColorImage).color =
                 Color.red;
 
-            Get<GameObject>((int)GameObjects.Character_RectImage_Image).SetActive(false);
+            Get<GameObject>((int)EGameObjects.Character_RectImage_Image).SetActive(false);
         }
         else
         {
-            GetImage((int)Images.SelectChangeColorImage).color = prevcolor;
-            Get<GameObject>((int)GameObjects.Character_RectImage_Image).SetActive(true);
+            GetImage((int)EImages.SelectChangeColorImage).color = selectImageprevcolor;
+            Get<GameObject>((int)EGameObjects.Character_RectImage_Image).SetActive(true);
         }
        
     }

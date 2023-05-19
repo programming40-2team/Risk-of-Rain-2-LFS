@@ -61,6 +61,8 @@ public class MainUI : UI_Scene
         Debug.Log("게임 실행 하면 나오는 배경음 나오는 곳!");
         GetButton((int)Buttons.GameStartButton).gameObject
             .BindEvent((PointerEventData data) => GameStartEvent());
+        GetButton((int)Buttons.DicitonaryButton).gameObject
+            .BindEvent((PointerEventData data) => ShowLogBook());
     }
     private void Start()
     {
@@ -72,6 +74,11 @@ public class MainUI : UI_Scene
 
         Managers.UI.ShowSceneUI<GameStartUI>();
 
+    }
+    private void ShowLogBook()
+    {
+        Debug.Log("로그북 버튼 누르면 나올 소리 여기다!");
+        Managers.UI.ShowSceneUI<LogBook>();
     }
 
 

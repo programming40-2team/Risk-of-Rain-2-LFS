@@ -13,7 +13,7 @@
     {
         CharacterSelectButton=15,
         GameStartUI=5,
-
+        LogBookUI = 6,
     }
     public enum UIEvent
     {
@@ -35,6 +35,7 @@
     public enum EVENT_TYPE
     {
         SelectCharacter,
+        LogBookItem,
         StartBattle,
         EndBattle,
         PlayerHp,
@@ -49,6 +50,5 @@
         NotBattle,
 
     }
-
 
 }

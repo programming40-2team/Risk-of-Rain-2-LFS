@@ -98,6 +98,13 @@ namespace Data
         public string shiftskill_2script;
         public string rskill_1script;
         public string r_skill2script;
+        public bool ism2_1skilllearn;
+        public bool ism2_2skilllearn;
+        public bool isshiftskill_1learn;
+        public bool isshiftskill_2learn;
+        public bool isrskill_1learn;
+        public bool isr_skill2learn;
+
     }
     [Serializable]
     public class CharacterLoader : ILoader<int, CharacterData>

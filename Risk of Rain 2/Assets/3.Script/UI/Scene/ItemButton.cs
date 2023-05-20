@@ -49,6 +49,7 @@ public class ItemButton : UI_Scene
     private void ItemButtonClick()
     {
         Debug.Log("아이템 상세 정보 창 출력!");
+        Managers.Event.PostNotification(Define.EVENT_TYPE.ClickLogBookDetail, this);
     }
 
 

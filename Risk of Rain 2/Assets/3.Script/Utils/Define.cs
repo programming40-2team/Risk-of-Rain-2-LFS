@@ -14,6 +14,8 @@
         CharacterSelectButton=15,
         GameStartUI=5,
         LogBookUI = 6,
+        DetailInLogBook=20,
+
     }
     public enum UIEvent
     {
@@ -36,6 +38,7 @@
     {
         SelectCharacter,
         LogBookItem,
+        ClickLogBookDetail,
         StartBattle,
         EndBattle,
         PlayerHp,
@@ -50,5 +53,13 @@
         NotBattle,
 
     }
+    public enum ECurrentClickType
+    {
+        ItemAndEquip,
+        Monster,
+        Character,
+        Enviroment,
+        None,
 
+    }
 }

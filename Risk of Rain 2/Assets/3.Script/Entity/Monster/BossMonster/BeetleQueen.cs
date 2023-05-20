@@ -77,10 +77,8 @@ public class BeetleQueen : Entity
 
     private void SetUp(MonsterData data)
     {
-<<<<<<< HEAD
+
         MaxHealth = data.MaxHealth;
-=======
->>>>>>> feature/player
         Damage = data.Damage;
         MoveSpeed = data.MoveSpeed;
         Armor = data.Amor;

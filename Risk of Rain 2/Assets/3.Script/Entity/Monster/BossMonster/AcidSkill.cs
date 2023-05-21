@@ -41,14 +41,7 @@ public class AcidSkill : MonoBehaviour
     // 산성담즙 풀에 반환
     private void DeleteAcidBile()
     {
-        for (int i = 0; i < _beetleQueen._acidList.Count; i++)
-        {
-            if (_beetleQueen._acidList.Count > 0)
-            {
-                _beetleQueen.objectPool.ReturnObject(_beetleQueen._acidList[0]);
-                _beetleQueen._acidList.RemoveAt(0);
-            }
-        }
+        _beetleQueen.objectPool.ReturnObject(gameObject);
     }
 
     private void OnParticleCollision(GameObject col)
@@ -61,7 +54,6 @@ public class AcidSkill : MonoBehaviour
             }
             // TODO : 터져서 사라지는 효과 코루틴으로 넣기
             _beetleQueen.objectPool.ReturnObject(gameObject);
-            _beetleQueen._acidList.Remove(gameObject);
         }
     }
 }

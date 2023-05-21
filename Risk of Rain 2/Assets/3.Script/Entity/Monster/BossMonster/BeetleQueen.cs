@@ -10,7 +10,6 @@ public class BeetleQueen : Entity
     private Entity targetEntity;
 
     public ObjectPool objectPool;
-    public List<GameObject> _acidList;
 
     private Animator _beetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
@@ -39,7 +38,6 @@ public class BeetleQueen : Entity
     {
         TryGetComponent(out _beetleQueenAnimator);
         objectPool = FindObjectOfType<ObjectPool>();
-        _acidList = new List<GameObject>();
     }
     
     protected override void OnEnable()
@@ -104,7 +102,6 @@ public class BeetleQueen : Entity
         for(int i = 0; i < 6; i++)
         {
             GameObject obj = objectPool.GetObject();
-            _acidList.Add(obj);
             obj.transform.position = _beetleQueenMouthTransform.position;
 
         }

@@ -66,7 +66,7 @@ public class LogBook : UI_Scene,IListener
         GetButton((int)EButtons.Monster).gameObject
             .BindEvent((PointerEventData data) => MonsterClickEvent());
         GetButton((int)EButtons.BackButton).gameObject
-            .BindEvent((PointerEventData data) => Managers.Resource.Destroy(gameObject));
+            .BindEvent((PointerEventData data) => BackButtonEvent());
 
         UIInit();
 
@@ -78,6 +78,12 @@ public class LogBook : UI_Scene,IListener
         }
         #endregion
 
+    }
+    private void BackButtonEvent()
+    {
+        Managers.UI.ClosePopupUI(detailInLogBook);
+        Managers.Resource.Destroy(gameObject);
+        ClickType = Define.ECurrentClickType.None;
     }
     private void UIInit()
     {
@@ -208,13 +214,13 @@ public class LogBook : UI_Scene,IListener
                 detailInLogBook.gameObject.SetActive(true);
                 if (Sender.TryGetComponent(out ItemButton itemButtons))
                 {
-                    detailInLogBook.specialCode = itemButtons.Itemcode;
+                    detailInLogBook.SpecialCode = itemButtons.Itemcode;
                 }
                 else if (Sender.TryGetComponent(out InvenCharacterButton CharButton))
                 {
-                    detailInLogBook.specialCode = CharButton.Charactercode;
+                    detailInLogBook.SpecialCode = CharButton.Charactercode;
                 }
-
+       
                 break;
         }
    

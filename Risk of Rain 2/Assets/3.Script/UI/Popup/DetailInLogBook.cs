@@ -7,9 +7,21 @@ using UnityEngine.UI;
 
 public class DetailInLogBook : UI_Popup
 {
-  
-    public int specialCode = -1;
-    private void Start()
+
+    private int _specialCode;
+    public int SpecialCode
+    {
+        get
+        {
+            return _specialCode;
+        }
+        set
+        {
+            _specialCode = value;
+            Setting();
+        }
+    }
+    private void Awake()
     {
         Init();
     }
@@ -47,18 +59,18 @@ public class DetailInLogBook : UI_Popup
     {
         BackButton
     }
-    private void OnEnable()
-    {
-        
-        Setting();
-    }
     private void Setting()
     {
        
-        if (specialCode.Equals(-1))
+        if (SpecialCode.Equals(-1))
         {
             return;
         }
+        if (LogBook.ClickType.Equals(Define.ECurrentClickType.None))
+        {
+            return;
+        }
+
         foreach (Transform transforom in Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).GetComponentInChildren<Transform>())
         {
             Managers.Resource.Destroy(transforom.gameObject);
@@ -75,10 +87,10 @@ public class DetailInLogBook : UI_Popup
         switch (LogBook.ClickType)
         {
             case Define.ECurrentClickType.ItemAndEquip:
-                GetText((int)ETexts.TItileTitleText).text = $"{Managers.Data.ItemDataDict[specialCode].itemname}";
+                GetText((int)ETexts.TItileTitleText).text = $"{Managers.Data.ItemDataDict[SpecialCode].itemname}";
                 GetText((int)ETexts.TitlieContentsText).text = "아이템과 장비";
                 GetText((int)ETexts.ScriptTitleText).text = $"설명 : ";
-                GetText((int)ETexts.ScriptContentsText).text = $" {Managers.Data.ItemDataDict[specialCode].explanation}";
+                GetText((int)ETexts.ScriptContentsText).text = $" {Managers.Data.ItemDataDict[SpecialCode].explanation}";
                 GetText((int)ETexts.FindCountText).text = $"발견함 : {1}";
                 GetText((int)ETexts.FindMaxCountTitleText).text = $"최고중첩 : {1}";
                 GetText((int)ETexts.InformationTitleText).text = "정보";
@@ -88,17 +100,16 @@ public class DetailInLogBook : UI_Popup
 
                 break;
             case Define.ECurrentClickType.Character:
-                GetText((int)ETexts.TItileTitleText).text = $"{Managers.Data.CharacterDataDict[specialCode].Name}";
+                GetText((int)ETexts.TItileTitleText).text = $"{Managers.Data.CharacterDataDict[SpecialCode].Name}";
                 GetText((int)ETexts.TitlieContentsText).text = "생존자";
                 GetText((int)ETexts.ScriptTitleText).text = $"설명 : ";
-                GetText((int)ETexts.ScriptContentsText).text = $" {Managers.Data.CharacterDataDict[specialCode].script1}";
+                GetText((int)ETexts.ScriptContentsText).text = $" {Managers.Data.CharacterDataDict[SpecialCode].script1}";
                 GetText((int)ETexts.FindCountText).text = $"몬스터 처치 : {1}";
                 GetText((int)ETexts.FindMaxCountTitleText).text = $"최대 몬스터 처치 : {1}";
                 GetText((int)ETexts.InformationTitleText).text = "정보";
                 GetText((int)ETexts.InformationContentsText).text = "캐릭터에 대한 디테일한 설명!";
                 break;
             case Define.ECurrentClickType.Enviroment:
-
                 break;
         }
     }
@@ -107,9 +118,8 @@ public class DetailInLogBook : UI_Popup
         switch (LogBook.ClickType)
         {
             case Define.ECurrentClickType.ItemAndEquip:
-               GameObject go= Managers.Resource.Instantiate($"item{Managers.Data.ItemDataDict[specialCode].itemcode}", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
-                go.transform.localScale = Vector3.one * 22000f;
-                go.transform.localPosition = new Vector3(0, 0 ,- 100);
+               GameObject go= Managers.Resource.Instantiate($"item{Managers.Data.ItemDataDict[SpecialCode].itemcode}", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
+                go.GetOrAddComponent<UIItemController>().tagertObject = Get<GameObject>((int)EGameObjects.ObjectSpawnPosition);
                 break;
             case Define.ECurrentClickType.Monster:
                 break;

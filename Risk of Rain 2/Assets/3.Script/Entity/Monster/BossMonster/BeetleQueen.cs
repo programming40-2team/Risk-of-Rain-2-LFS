@@ -19,7 +19,6 @@ public class BeetleQueen : Entity
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private Transform _beetleQueenMouthTransform;
 
-    private Quaternion rot;
 
     private bool hasTarget
     {
@@ -84,23 +83,20 @@ public class BeetleQueen : Entity
         HealthRegenAscent = data.RegenAscent;
     }
 
-    private void SetDirection()
-    {
-        rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
-    }
     // 산성담즙 생성
     private void CreateAcidBile()
     {
-        for(int i = 0; i < 6; i++)
+        Quaternion rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
+        Debug.Log(rot);
+        for (int i = 0; i < 6; i++)
         {
             GameObject obj = objectPool.GetObject();
-            obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(rot.x, rot.y - 20f + 8 * i, rot.z));
+            obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, - 20f + 8 * i, 0) * rot);
         }
     }
 
     public void StartAcidBileSkill()
     {
-        SetDirection();
         CreateAcidBile();
     }
 }

@@ -13,15 +13,10 @@ public class AcidSkill : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private Transform _beetleQueenMouthTransform;
 
-    private Vector3 _dir;
-
     private void OnEnable()
     {
         _beetleQueen = FindObjectOfType<BeetleQueen>();
         _beetleQueenObject = _beetleQueen.gameObject;
-        _dir = new Vector3(_playerTransform.position.x - _beetleQueenMouthTransform.position.x, // 기준이 될 방향 벡터
-            _playerTransform.position.y - _beetleQueenMouthTransform.position.y,
-            _playerTransform.position.z - _beetleQueenMouthTransform.position.z).normalized;
         StartCoroutine(Shoot_co());
 
     }
@@ -31,7 +26,7 @@ public class AcidSkill : MonoBehaviour
         float time = 0;
         while(time < 5f)
         {
-            transform.position += _beetleQueen._dir * _shootingSpeed * Time.deltaTime;
+            transform.position += transform.forward * _shootingSpeed * Time.deltaTime;
             time += Time.deltaTime;
             yield return null;
         }

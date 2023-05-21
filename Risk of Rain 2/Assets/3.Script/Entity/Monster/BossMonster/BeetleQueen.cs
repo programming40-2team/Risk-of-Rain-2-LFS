@@ -19,8 +19,7 @@ public class BeetleQueen : Entity
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private Transform _beetleQueenMouthTransform;
 
-    public Vector3 _dir;
-    public Vector3[] _dirArr = new Vector3[6];
+    private Quaternion rot;
 
     private bool hasTarget
     {
@@ -87,14 +86,7 @@ public class BeetleQueen : Entity
 
     private void SetDirection()
     {
-        _dir = new Vector3(_playerTransform.position.x - _beetleQueenMouthTransform.position.x, // 기준이 될 방향 벡터
-            _playerTransform.position.y - _beetleQueenMouthTransform.position.y,
-            _playerTransform.position.z - _beetleQueenMouthTransform.position.z).normalized;
-
-        for(int i = 0; i < _dirArr.Length; i++)
-        {
-            _dirArr[i] = new Vector3(0, 0, 0);
-        }
+        rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
     }
     // 산성담즙 생성
     private void CreateAcidBile()
@@ -102,17 +94,9 @@ public class BeetleQueen : Entity
         for(int i = 0; i < 6; i++)
         {
             GameObject obj = objectPool.GetObject();
-            obj.transform.position = _beetleQueenMouthTransform.position;
-
+            obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(rot.x, rot.y - 20f + 8 * i, rot.z));
         }
     }
-
-    //private IEnumerator AcidBile_co()
-    //{
-    //    CreateAcidBile();
-    //    yield return new WaitForSeconds(4f); // 나중에 수정
-    //    DeleteAcidBile();
-    //}
 
     public void StartAcidBileSkill()
     {

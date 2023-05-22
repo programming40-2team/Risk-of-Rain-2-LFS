@@ -86,8 +86,7 @@ public class BeetleQueen : Entity
     // 산성담즙 생성
     private IEnumerator CreateAcidBile()
     {
-        yield return new WaitUntil(() => _beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("BeetleQueenArmature|fireSpit") &&
-        _beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.4f);
+        yield return new WaitUntil(() => _beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("BeetleQueenArmature|fireSpit"));
         Quaternion rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {

@@ -35,7 +35,7 @@ public class BeetleQueen : Entity
     private void Awake()
     {
         TryGetComponent(out _beetleQueenAnimator);
-        objectPool = FindObjectOfType<ObjectPool>();
+        objectPool = GameObject.FindGameObjectWithTag("AcidBallPool").GetComponent<ObjectPool>();
     }
     
     protected override void OnEnable()
@@ -68,7 +68,7 @@ public class BeetleQueen : Entity
     public override void Die()
     {
         base.Die();
-        //_beetleQueenAnimator.SetTrigger("Die");
+        _beetleQueenAnimator.SetTrigger("Die");
     }
 
     private void SetUp(MonsterData data)
@@ -84,19 +84,21 @@ public class BeetleQueen : Entity
     }
 
     // 산성담즙 생성
-    private void CreateAcidBile()
+    private IEnumerator CreateAcidBile()
     {
+        yield return new WaitUntil(() => _beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("BeetleQueenArmature|fireSpit") &&
+        _beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.4f);
         Quaternion rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
-        Debug.Log(rot);
         for (int i = 0; i < 6; i++)
         {
             GameObject obj = objectPool.GetObject();
-            obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, - 20f + 8 * i, 0) * rot);
+            obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
         }
     }
 
     public void StartAcidBileSkill()
     {
-        CreateAcidBile();
+        _beetleQueenAnimator.SetTrigger("FireSpit");
+        StartCoroutine(CreateAcidBile());
     }
 }

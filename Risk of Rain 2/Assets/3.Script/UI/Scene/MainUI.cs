@@ -22,10 +22,6 @@ public class MainUI : UI_Scene
         UserProfileButton,
 
     }
-    enum GameObjects
-    {
-        MouseCursor
-    }
     enum Images
     {
         BackGround,
@@ -46,10 +42,8 @@ public class MainUI : UI_Scene
     {
         base.Init();
         Bind<Button>(typeof(Buttons));
-        Bind<GameObject>(typeof(GameObjects));
         Bind<TextMeshProUGUI>(typeof(Texts));
 
-        MouseCursor = Get<GameObject>((int)GameObjects.MouseCursor);
 
         GetText((int)Texts.UserProfileText).text = $"프로필 :{_username}";
         GetText((int)Texts.GameStartText).text = $"게임시작";

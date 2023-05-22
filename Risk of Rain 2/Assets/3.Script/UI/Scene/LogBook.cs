@@ -16,7 +16,8 @@ public class LogBook : UI_Scene,IListener
     private bool iseverclicked ;
     private DetailInLogBook detailInLogBook;
     public  static Define.ECurrentClickType ClickType { get; private set; }=Define.ECurrentClickType.None;
-   
+    private Color subMenuImagePrevColor;
+    private Color subMenuButtonPrevColor;
     enum ETexts
     {
         ItemAndEquipText,
@@ -48,15 +49,30 @@ public class LogBook : UI_Scene,IListener
         CharacterIneventoryPannel,
 
     }
+    enum EImages
+    {
+        ItemAndEquipColor,
+        MonsterColor,
+        EnvironmentColor,
+        CharacterColor,
+
+    }
     public override void Init()
     {
         base.Init();
+      
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Define.SortingOrder.LogBookUI;
         Bind<TextMeshProUGUI>(typeof(ETexts));
         Bind<Button>(typeof(EButtons));
         Bind<GameObject>(typeof(EGameObjects));
+        Bind<Image>(typeof(EImages));
+
+        subMenuImagePrevColor = GetImage((int)EImages.CharacterColor).color;
+        subMenuButtonPrevColor = GetButton((int)EButtons.ItemAndEquip).GetComponent<Image>().color;
         Managers.Event.AddListener(Define.EVENT_TYPE.LogBookItem, this);
         Managers.Event.AddListener(Define.EVENT_TYPE.ClickLogBookDetail, this);
+
+        //각 버튼 별 클릭 이벤트
         GetButton((int)EButtons.ItemAndEquip).gameObject
             .BindEvent((PointerEventData data) => ItemAndEquipClickEvent());
         GetButton((int)EButtons.Character).gameObject
@@ -67,6 +83,26 @@ public class LogBook : UI_Scene,IListener
             .BindEvent((PointerEventData data) => MonsterClickEvent());
         GetButton((int)EButtons.BackButton).gameObject
             .BindEvent((PointerEventData data) => BackButtonEvent());
+        //각 버튼들 포인터 In Out 칼라 변경 이벤트
+        GetButton((int)EButtons.ItemAndEquip).gameObject
+            .BindEvent((PointerEventData data) => GetImage((int)EImages.ItemAndEquipColor).color=Color.yellow,Define.UIEvent.PointerEnter);
+        GetButton((int)EButtons.ItemAndEquip).gameObject
+           .BindEvent((PointerEventData data) => GetImage((int)EImages.ItemAndEquipColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
+        GetButton((int)EButtons.Monster).gameObject
+         .BindEvent((PointerEventData data) => GetImage((int)EImages.MonsterColor).color = Color.yellow, Define.UIEvent.PointerEnter);
+        GetButton((int)EButtons.Monster).gameObject
+           .BindEvent((PointerEventData data) => GetImage((int)EImages.MonsterColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
+        GetButton((int)EButtons.Environment).gameObject
+                 .BindEvent((PointerEventData data) => GetImage((int)EImages.EnvironmentColor).color = Color.yellow, Define.UIEvent.PointerEnter);
+        GetButton((int)EButtons.Environment).gameObject
+           .BindEvent((PointerEventData data) => GetImage((int)EImages.EnvironmentColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
+        GetButton((int)EButtons.Character).gameObject
+                 .BindEvent((PointerEventData data) => GetImage((int)EImages.CharacterColor).color = Color.yellow, Define.UIEvent.PointerEnter);
+        GetButton((int)EButtons.Character).gameObject
+           .BindEvent((PointerEventData data) => GetImage((int)EImages.CharacterColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
+
+
+
 
         UIInit();
 
@@ -110,6 +146,7 @@ public class LogBook : UI_Scene,IListener
     {
         SelectMenu(Define.ECurrentClickType.ItemAndEquip);
         GetText((int)ETexts.LogBookSubText).text = "아이템과 장비";
+
     }
     private void MonsterClickEvent()
     {
@@ -120,11 +157,13 @@ public class LogBook : UI_Scene,IListener
     {
         SelectMenu(Define.ECurrentClickType.Enviroment);
         GetText((int)ETexts.LogBookSubText).text = "환경";
+
     }
     private void CharacterClickEvent()
     {
         SelectMenu(Define.ECurrentClickType.Character);
         GetText((int)ETexts.LogBookSubText).text = "생존자";
+
     }
 
 
@@ -170,23 +209,32 @@ public class LogBook : UI_Scene,IListener
         Get<GameObject>((int)EGameObjects.EnvionmentIneventoryPannel).SetActive(false);
         Get<GameObject>((int)EGameObjects.CharacterIneventoryPannel).SetActive(false);
         Get<GameObject>((int)EGameObjects.MonsterIneventoryPannel).SetActive(false);
+        GetButton((int)EButtons.ItemAndEquip).GetComponent<Image>().color = subMenuButtonPrevColor;
+        GetButton((int)EButtons.Environment).GetComponent<Image>().color = subMenuButtonPrevColor;
+        GetButton((int)EButtons.Character).GetComponent<Image>().color = subMenuButtonPrevColor;
+        GetButton((int)EButtons.Monster).GetComponent<Image>().color = subMenuButtonPrevColor;
+
         switch (_clickType)
         {
             case Define.ECurrentClickType.ItemAndEquip:
                 ClickType= Define.ECurrentClickType.ItemAndEquip;
                 Get<GameObject>((int)EGameObjects.ItemIneventoryPannel).SetActive(true);
+                GetButton((int)EButtons.ItemAndEquip).GetComponent<Image>().color = Color.yellow;
                 break;
             case Define.ECurrentClickType.Monster:
                 ClickType= Define.ECurrentClickType.Monster;
                 Get<GameObject>((int)EGameObjects.MonsterIneventoryPannel).SetActive(true);
+                GetButton((int)EButtons.Monster).GetComponent<Image>().color = Color.yellow;
                 break;
             case Define.ECurrentClickType.Character:
                 ClickType= Define.ECurrentClickType.Character;
                 Get<GameObject>((int)EGameObjects.CharacterIneventoryPannel).SetActive(true);
+                GetButton((int)EButtons.Character).GetComponent<Image>().color = Color.yellow;
                 break;
             case Define.ECurrentClickType.Enviroment:
                 ClickType= Define.ECurrentClickType.Enviroment;
                 Get<GameObject>((int)EGameObjects.EnvionmentIneventoryPannel).SetActive(true);
+                GetButton((int)EButtons.Environment).GetComponent<Image>().color = Color.yellow;
                 break;
         }
     }

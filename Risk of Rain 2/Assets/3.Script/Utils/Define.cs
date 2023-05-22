@@ -15,7 +15,7 @@
         GameStartUI=5,
         LogBookUI = 6,
         DetailInLogBook=20,
-
+        MouseInteraction=100,
     }
     public enum UIEvent
     {
@@ -39,6 +39,11 @@
         SelectCharacter,
         LogBookItem,
         ClickLogBookDetail,
+
+        MousePointerEnter,
+        MousePointerExit,
+        DifficultyChange,
+
         StartBattle,
         EndBattle,
         PlayerHp,
@@ -61,5 +66,12 @@
         Enviroment,
         None,
 
+    }
+    public enum EDifficulty
+    {
+        Easy,
+        Normal,
+        Hard,
+        Max,
     }
 }

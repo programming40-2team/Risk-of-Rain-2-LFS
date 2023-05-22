@@ -4,18 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using static Define;
 
 public class GameStartUI : UI_Scene,IListener
 {
     private bool isCharacterSelected;
     private int characterCode;
- 
     #region UI오브젝트 관리
     enum EGameObjects
     {
-        DifficultyEasySelectEffect,
-        DifficultyNormalSelectEffect,
-        DifficultyHardSelectEffect,
+        SelectDifficulty,
 
         ShowScriptButtonIsClickEffect,
         SkillScriptIsClickEffect,
@@ -128,12 +126,7 @@ public class GameStartUI : UI_Scene,IListener
     }
     #endregion
     #region 난이도,캐릭터 설명 변경을 위한 Enum값
-    enum EDifficulty
-    {
-        Easy,
-        Normal,
-        Hard,
-    }
+
     enum ECharacterDetail
     {
         AboutScript,
@@ -156,6 +149,7 @@ public class GameStartUI : UI_Scene,IListener
         Bind<TextMeshProUGUI>(typeof(ETexts));
         Bind<Image>(typeof(EImages));
         Managers.Event.AddListener(Define.EVENT_TYPE.SelectCharacter, this);
+
         //글자 관련 초기화
         InitText();
         //게임 오브젝트 관련 초기화, 효과 off
@@ -163,10 +157,18 @@ public class GameStartUI : UI_Scene,IListener
         //버튼 오브젝트 관련 초기화
         InitButton();
 
-
-
+        foreach (Transform transforom in Get<GameObject>((int)EGameObjects.SelectDifficulty).GetComponentInChildren<Transform>())
+        {
+            Managers.Resource.Destroy(transforom.gameObject);
+        }
+        for(int i = 0; i < (int)Define.EDifficulty.Max; i++)
+        {
+            Diffidculty diff = Managers.UI.ShowSceneUI<Diffidculty>();
+            diff.myDifficulty = (EDifficulty)i;
+            diff.transform.SetParent(Get<GameObject>((int)EGameObjects.SelectDifficulty).transform);
+        }
         //디폴트 이미지 효과 Easy
-        DifficultyEffectChange(EDifficulty.Easy);
+        // DifficultySelect(EDifficulty.Easy);
 
     }
 
@@ -205,15 +207,16 @@ public class GameStartUI : UI_Scene,IListener
 
     private void InitGameObect()
     {
-        Get<GameObject>((int)EGameObjects. DifficultyEasySelectEffect).SetActive(false);
-        Get<GameObject>((int)EGameObjects. DifficultyNormalSelectEffect).SetActive(false);
-        Get<GameObject>((int)EGameObjects. DifficultyHardSelectEffect).SetActive(false);
+        //Get<GameObject>((int)EGameObjects. DifficultyEasySelectEffect).SetActive(false);
+        //Get<GameObject>((int)EGameObjects. DifficultyNormalSelectEffect).SetActive(false);
+        //Get<GameObject>((int)EGameObjects. DifficultyHardSelectEffect).SetActive(false);
         Get<GameObject>((int)EGameObjects. ShowScriptButtonIsClickEffect).SetActive(false);
         Get<GameObject>((int)EGameObjects. SkillScriptIsClickEffect).SetActive(false);
         Get<GameObject>((int)EGameObjects. LoadIsClickEffect).SetActive(false);
         Get<GameObject>((int)EGameObjects. AboutScript).SetActive(false);
         Get<GameObject>((int)EGameObjects. AboutSkill).SetActive(false);
         Get<GameObject>((int)EGameObjects.AboutLoad).SetActive(false);
+
         #region 스킬창 포인터 엔터 아웃시 나타나는 색상 이벤트
         Get<GameObject>((int)EGameObjects.PassiveReactPannel)
             .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.PassiveReactPannel), Color.white),Define.UIEvent.PointerEnter);
@@ -261,12 +264,18 @@ public class GameStartUI : UI_Scene,IListener
             .BindEvent((PointerEventData data) => ReturnToMain());
         GetButton((int)EButtons.GameReadyButton).gameObject
             .BindEvent((PointerEventData data) => GameStart());
+        /*
         GetButton((int)EButtons.DifficultyEasy).gameObject
-           .BindEvent((PointerEventData data) => DifficultyEffectChange(EDifficulty.Easy));
+           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Easy));
         GetButton((int)EButtons.DifficultyNormal).gameObject
-           .BindEvent((PointerEventData data) => DifficultyEffectChange(EDifficulty.Normal));
+           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Normal));
         GetButton((int)EButtons.DifficultyHard).gameObject
-           .BindEvent((PointerEventData data) => DifficultyEffectChange(EDifficulty.Hard));
+           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Hard));
+        */
+
+
+
+
         GetButton((int)EButtons.ShowScriptButton).gameObject
             .BindEvent((PointerEventData data) => DetaillCharacterScriptChange(ECharacterDetail.AboutScript));
         GetButton((int)EButtons.SkillScriptButton).gameObject
@@ -279,9 +288,6 @@ public class GameStartUI : UI_Scene,IListener
         GetButton((int)EButtons.RelicsSubButton).gameObject
           .BindEvent((PointerEventData data) => Managers.UI.ShowPopupUI<RelicExtendPopupUI>().MyType = RelicExtendPopupUI.EClickType.Relic);
         
-
-        //   GetButton((int)Buttons.ShowScriptButton).gameObject
-        //       .BindEvent((PointerEventData data) => )
     }
 
 
@@ -325,7 +331,8 @@ public class GameStartUI : UI_Scene,IListener
                 break;
         }
     }
-    private void DifficultyEffectChange(EDifficulty difficulty)
+    /*
+    private void DifficultySelect(EDifficulty difficulty)
     {
         Get<GameObject>((int)EGameObjects.DifficultyEasySelectEffect).gameObject.SetActive(false);
         Get<GameObject>((int)EGameObjects.DifficultyNormalSelectEffect).gameObject.SetActive(false);
@@ -335,12 +342,15 @@ public class GameStartUI : UI_Scene,IListener
         {
             case EDifficulty.Easy:
                 Get<GameObject>((int)EGameObjects.DifficultyEasySelectEffect).gameObject.SetActive(true);
+                myDifficulty = EDifficulty.Easy;
                 break;
             case EDifficulty.Normal:
                 Get<GameObject>((int)EGameObjects.DifficultyNormalSelectEffect).gameObject.SetActive(true);
+                myDifficulty = EDifficulty.Normal;
                 break;
             case EDifficulty.Hard:
                 Get<GameObject>((int)EGameObjects.DifficultyHardSelectEffect).gameObject.SetActive(true);
+                myDifficulty = EDifficulty.Hard;
                 break;
         }
         Debug.Log("게임 난이도 소리 설정 시 여기다!");
@@ -348,6 +358,10 @@ public class GameStartUI : UI_Scene,IListener
 
 
     }
+    */
+
+
+
     //편하게 하려면 스킬 데이터 를 체계적으로 만들어야 하는데 귀찮아서ㅓㅓㅓㅓ...''
     private void ChangeSkillImage(int charcode)
     {
@@ -369,6 +383,7 @@ public class GameStartUI : UI_Scene,IListener
         if (Managers.Data.CharacterDataDict[charcode].isshiftskill_1learn)
         {
             GetImage((int)EImages.LoadShiftSkillImage_1).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m1skilliconpath);
+            
         }
         if (Managers.Data.CharacterDataDict[charcode].isshiftskill_2learn)
         {
@@ -427,12 +442,18 @@ public class GameStartUI : UI_Scene,IListener
     }
     
     public void OnEvent(Define.EVENT_TYPE Event_Type, Component Sender, object Param = null)
-    {   
-        isCharacterSelected=true;
-        DetaillCharacterScriptChange(ECharacterDetail.AboutScript);
-        characterCode =Sender.GetComponent<CharacterSelectButton>().Charactercode;
-        DesCribeChange(characterCode);
-        ChangeSkillImage(characterCode);
+    {
+        switch (Event_Type)
+        {
+            case Define.EVENT_TYPE.SelectCharacter:
+                isCharacterSelected = true;
+                DetaillCharacterScriptChange(ECharacterDetail.AboutScript);
+                characterCode = Sender.GetComponent<CharacterSelectButton>().Charactercode;
+                DesCribeChange(characterCode);
+                ChangeSkillImage(characterCode);
+                break;
+        }
+
 
  
     }

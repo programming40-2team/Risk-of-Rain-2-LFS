@@ -35,7 +35,7 @@ public class InvenCharacterButton : UI_Scene
 
         gameObject.BindEvent((PointerEventData data) => CharcterButtonPointerEnter(), Define.UIEvent.PointerEnter);
         gameObject.BindEvent((PointerEventData data) => CharcterButtonPointerExit(), Define.UIEvent.PointerExit);
-
+        gameObject.BindEvent((PointerEventData data) => CharcterButtonClcik());
         prevColor = GetImage((int)EImages.IsHaveCharacter).GetComponent<Image>().color;
         SetImage();
     }
@@ -48,6 +48,11 @@ public class InvenCharacterButton : UI_Scene
         {
             GetImage((int)EImages.CharacterImage).color= Color.white;
         }
+    }
+   private void CharcterButtonClcik()
+    {
+        Managers.Event.PostNotification(Define.EVENT_TYPE.ClickLogBookDetail, this);
+
     }
     private void CharcterButtonPointerEnter()
     {

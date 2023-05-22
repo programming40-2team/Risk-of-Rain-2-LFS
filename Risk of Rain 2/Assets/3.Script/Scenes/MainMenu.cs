@@ -27,6 +27,7 @@ public class MainMenu : BaseScene
         Managers.Data.Init();
         Managers.ItemInventory.init();
         Managers.UI.ShowSceneUI<MainUI>();
+        Managers.UI.ShowSceneUI<MouseInteraction>();
     }
 
 

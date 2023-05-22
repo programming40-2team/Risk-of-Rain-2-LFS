@@ -10,8 +10,8 @@ public class LogBook : UI_Scene,IListener
     //ㅈㅅ 고민중 프로퍼티 public으로 만들지.. 아직 설계가 ..좀!
     //LogBook과 DetailLogBook의 의존성?.. 최소화 노력중
     private int Iteminfocode { get; set; } = -1;
-    private int enivinfocode { get; set; } = -1;
-    private int monsterinfocode { get; set; } = -1;
+    private int Envinfocode { get; set; } = -1;
+    private int Monsterinfocode { get; set; } = -1;
     private int Characterinfocode { get; set; } = -1;
     private bool iseverclicked ;
     private DetailInLogBook detailInLogBook;
@@ -171,6 +171,8 @@ public class LogBook : UI_Scene,IListener
 
     private void SetText()
     {
+        GetText((int)ETexts.IneventoryDescirbeText).fontSize = 36;
+        GetText((int)ETexts.IneventoryIsAquireText).fontSize = 36;
         switch (ClickType)
         {
             case Define.ECurrentClickType.ItemAndEquip:
@@ -198,11 +200,20 @@ public class LogBook : UI_Scene,IListener
                 //각 도감별 코드에 따른 데이터 확인
                 break;
             case Define.ECurrentClickType.Enviroment:
-
+                GetText((int)ETexts.IneventoryDescirbeTitleBackGroundText).text
+                  = $"<mark =#8A2BE2>[{Managers.Data.EnvDataDict[Envinfocode].enviromentname}]</mark>";
+                GetText((int)ETexts.IneventoryDescirbeTitleText).text
+                    = $"[{Managers.Data.EnvDataDict[Envinfocode].enviromentname}]";
+                GetText((int)ETexts.IneventoryDescirbeText).text
+                    = $"출현 몬스터 \n[{Managers.Data.EnvDataDict[Envinfocode].monster.Replace(",", "\n")}]";
+                GetText((int)ETexts.IneventoryDescirbeText).fontSize = 28;
+                GetText((int)ETexts.IneventoryIsAquireText).text = $"맵 개요 : { Managers.Data.EnvDataDict[Envinfocode].explanation}";
+                GetText((int)ETexts.IneventoryIsAquireText).fontSize = 20;
                 //각 도감별 코드에 따른 데이터 확인
                 break;
         }
     }
+    //메뉴 선택에 따른 효과
     private void SelectMenu(Define.ECurrentClickType _clickType)
     {
         Get<GameObject>((int)EGameObjects.ItemIneventoryPannel).SetActive(false);
@@ -250,11 +261,14 @@ public class LogBook : UI_Scene,IListener
                 {
                     Iteminfocode = itemButton.Itemcode;
                 }
-                else if (Sender.TryGetComponent(out InvenCharacterButton CharButton))
+                else if (Sender.TryGetComponent(out InvenCharacterButton charButton))
                 {
-                    Characterinfocode = CharButton.Charactercode;
+                    Characterinfocode = charButton.Charactercode;
                 }
-
+                else if(Sender.TryGetComponent(out EnvButton envButton))
+                {
+                    Envinfocode = envButton.EnvCode;
+                }
                 SetText();
                 break;
             case Define.EVENT_TYPE.ClickLogBookDetail:

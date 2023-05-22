@@ -4,7 +4,7 @@
         "enviromentname": "먼 곳의 횃대",
         "explanation": "푸르스름한 안개와 시원하게 뚫린 절벽이 특징인 바다 위의 산악 지역이다. 의외로 좁은 길목이 많은 편이지만, 절벽의 특징을 잘 살린 지형 덕분에 답답하게 느껴지지는 않는다. 맵 바깥에는 정체불명의 조류 크리처가 날아다닌다. 기록 정보에 따르면, UES 안전 기원호의 생존자들이 처음으로 페트리코르 V 행성에 착륙한 곳으로 추정된다.",
         "imagekey": "env100",
-        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Stone Golem(돌 골렘),Greater Wisp(초대형 위습),Jellyfish(해파리),Beetle Queen(여왕 딱정벌레),Stone Titan(돌 거인,),Wandering Vagrant(떠도는 유랑자)"
+        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Stone Golem(돌 골렘),Greater Wisp(초대형 위습),Jellyfish(해파리),Beetle Queen(여왕 딱정벌레),Stone Titan(돌 거인),Wandering Vagrant(떠도는 유랑자)"
     },
     {
         "enviromentcode": "101",

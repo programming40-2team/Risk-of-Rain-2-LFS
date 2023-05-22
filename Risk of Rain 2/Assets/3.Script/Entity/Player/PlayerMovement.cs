@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             _jumpCount = _playerStatus.MaxJumpCount + _bonusJumpCount;
             _isJumping = false;
         }
+
     }
     private void FixedUpdate()
     {

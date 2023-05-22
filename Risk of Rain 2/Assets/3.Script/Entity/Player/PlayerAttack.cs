@@ -1,5 +1,7 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.iOS;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -11,22 +13,20 @@ public class PlayerAttack : MonoBehaviour
     public bool IsAttacking;
     public int AttackCount = 1;
 
+    //유틸리티 스킬 관련
     [SerializeField] private float _dashDistance;
-
+    [SerializeField] private float _dashSpeed;
     private Rigidbody _playerRigidbody;
+    private CinemachineFreeLook _virtualCamera;
+    private Transform _cameraTransform;
     private void Awake()
     {
         TryGetComponent(out _playerAnimator);
         TryGetComponent(out _playerRigidbody);
+        _virtualCamera = FindObjectOfType<CinemachineFreeLook>();
+        _cameraTransform = Camera.main.transform;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            StartCoroutine(Dash_co());
-        }
-    }
     public void Attack1()
     {
         IsAttacking = true;
@@ -61,7 +61,6 @@ public class PlayerAttack : MonoBehaviour
     {
         IsAttacking = false;
         RunningCoroutine = StartCoroutine(AttackTimeCheck_co());
-
     }
     private void EndAttack()
     {
@@ -83,16 +82,14 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator Dash_co()
     {
-        yield return null;
-        Vector3 _dir = transform.forward;
-        _playerRigidbody.MovePosition(transform.position + _dir * _dashDistance);
+        Vector3 _destPos = transform.position + (transform.position - _virtualCamera.transform.position) * _dashDistance;
+        while(Vector3.SqrMagnitude(transform.position - _destPos) >= 0.001f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _destPos, _dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = _destPos;  
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("충돌2");
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Monster"))

@@ -7,8 +7,8 @@ public class PlayerInput : MonoBehaviour
 {
     private PlayerMovement _playerMovement;
     private PlayerAttack _playerAttack;
-    public string MoveAxisName = "Vertical";
-    public string HorizontalAxisName = "Horizontal";
+    private string _verticalAxis = "Vertical";
+    private string _HorizontalAxis = "Horizontal";
 
     public float Move { get; private set; }
     public float HorizontalDirection { get; private set; }
@@ -21,8 +21,8 @@ public class PlayerInput : MonoBehaviour
     }
     private void Update()
     {
-        Move = Input.GetAxis(MoveAxisName);
-        HorizontalDirection = Input.GetAxis(HorizontalAxisName);
+        Move = Input.GetAxis(_verticalAxis);
+        HorizontalDirection = Input.GetAxis(_HorizontalAxis);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _playerMovement.Jump();

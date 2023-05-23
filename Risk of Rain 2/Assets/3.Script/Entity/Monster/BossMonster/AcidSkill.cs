@@ -5,14 +5,13 @@ using UnityEngine;
 public class AcidSkill : MonoBehaviour
 {
     private BeetleQueen _beetleQueen;
-    private GameObject _beetleQueenObject;
+    [SerializeField] private GameObject _beetleQueenObject;
     private float _shootingSpeed = 20f;
     private float _damage = 0f; // 공격력의 130%
 
     private void OnEnable()
     {
         _beetleQueen = FindObjectOfType<BeetleQueen>();
-        _beetleQueenObject = _beetleQueen.gameObject;
         StartCoroutine(Shoot_co());
     }
 

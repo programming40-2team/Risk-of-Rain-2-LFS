@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     //플레이어 스테이터스
     private readonly WaitForSeconds _jumpCheckTime = new WaitForSeconds(0.02f);
     private readonly float _massCoefficient = 150f;
-    private float _jumpForce;
+    private float _jumpForce = 200f;
     private int _jumpCount;
     private bool _isJumping;
     private float _rotateSpeed = 550f;
@@ -101,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_jumpCount > 0)
         {
+            Debug.Log("점프");
             StartCoroutine(CheckJump_co());
             if (_isJumping)
             {

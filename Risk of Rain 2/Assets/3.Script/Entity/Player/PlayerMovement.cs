@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
     private void FixedUpdate()
     {
         Move();
@@ -70,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 _distance;
         Vector2 _move = new Vector2(_playerInput.HorizontalDirection, _playerInput.Move);
         _moveDirection = _move.x * transform.right + _move.y * transform.forward;
+        _moveDirection = _move.x * _cameraTransform.right + _move.y * _cameraTransform.forward;
         if (_isSprinting)
         {
             _distance = 1.5f * _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
@@ -88,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _playerAnimator.SetFloat("Move", _playerInput.Move);
         }
-        _playerAnimator.SetFloat("HorizontalDirection", _playerInput.HorizontalDirection);
+        _playerAnimator.SetFloat("Horizon", _playerInput.HorizontalDirection);
     }
 
     private void Rotate()

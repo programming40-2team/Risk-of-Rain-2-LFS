@@ -13,6 +13,7 @@ public class LoadSkillTempo : MonoBehaviour
     {
         gameObject.BindEvent((PointerEventData data) => MousePointerEnterEvent(), Define.UIEvent.PointerEnter);
         gameObject.BindEvent((PointerEventData data) => MousePointerExitEvent(), Define.UIEvent.PointerExit);
+      
     }
 
     private void MousePointerEnterEvent()

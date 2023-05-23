@@ -43,6 +43,7 @@
         MousePointerEnter,
         MousePointerExit,
         DifficultyChange,
+        AddItem,
 
         StartBattle,
         EndBattle,
@@ -72,6 +73,12 @@
         Easy,
         Normal,
         Hard,
-        Max,
+        VeryHard,
+        VeryHard2,
+        VeryHard3,
+        VeryHard4,
+        VeryHard5,
+ 
+
     }
 }

@@ -28,6 +28,7 @@ public class MainMenu : BaseScene
         Managers.ItemInventory.init();
         Managers.UI.ShowSceneUI<MainUI>();
         Managers.UI.ShowSceneUI<MouseInteraction>();
+        Managers.Resource.Instantiate("ItemContainer001");
     }
 
 

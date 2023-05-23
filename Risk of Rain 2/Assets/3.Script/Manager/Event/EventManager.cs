@@ -9,7 +9,7 @@ public class EventManager
 {
     // 이벤트 타입과 해당 이벤트에 대한 리스너 목록을 저장하는 딕셔너리
     private Dictionary<EVENT_TYPE, List<IListener>> Listeners = new Dictionary<EVENT_TYPE, List<IListener>>();
-
+    public Action<int> AddItem;
 
     // 이벤트 리스너를 추가하는 메서드
     public void AddListener(EVENT_TYPE Event_Type, IListener Listener)

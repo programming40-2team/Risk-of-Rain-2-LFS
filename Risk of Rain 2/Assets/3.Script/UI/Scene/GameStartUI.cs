@@ -161,7 +161,7 @@ public class GameStartUI : UI_Scene,IListener
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-        for(int i = 0; i < (int)Define.EDifficulty.Max; i++)
+        for(int i = 0; i < 3; i++)
         {
             Diffidculty diff = Managers.UI.ShowSceneUI<Diffidculty>();
             diff.myDifficulty = (EDifficulty)i;

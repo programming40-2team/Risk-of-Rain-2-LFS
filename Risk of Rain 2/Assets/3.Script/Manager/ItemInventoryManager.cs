@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel;
+using UnityEditor.Build.Pipeline;
 
 public class ItemInventoryManager
 {
@@ -14,6 +15,7 @@ public class ItemInventoryManager
         {
             Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
         }
+        
     }
     public bool FindItem(int itemcode)
     {
@@ -28,7 +30,7 @@ public class ItemInventoryManager
     }
     public bool Add(int itemcode, int count = 1)
     {
-        //아이템을 획득할 경우 Add함수를 이용해 쉽게 아이템을 추가할 수 있습니다.
+        //아이템을 획득할 경우 Add함수를 이용해 쉽게 아이템s 을 추가할 수 있습니다.
         if (Items.ContainsKey(itemcode))
         {
             Items[itemcode].Count += count;
@@ -39,8 +41,10 @@ public class ItemInventoryManager
             Add(item, count);
 
         }
+        Managers.Event.AddItem?.Invoke(itemcode);
         return true;
     }
+
     private void Add(Item item, int count = 1)
     {
         if (Items.ContainsKey(item.ItemCode))

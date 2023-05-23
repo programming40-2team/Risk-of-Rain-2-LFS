@@ -10,22 +10,22 @@ using UnityEngine.Rendering;
 public class PlayerMovement : MonoBehaviour
 {
     //캐릭터가 카메라방향을 바라보기 위함
-    private CinemachineFreeLook _virtualCamera;
+    private Transform _cameraTransform;
 
     //플레이어 컴포넌트
     private Animator _playerAnimator;
     private Rigidbody _playerRigidbody;
     private PlayerInput _playerInput;
     private PlayerStatus _playerStatus;
-    private PlayerAttack _playerAttack;
+
     //플레이어 스테이터스
-    private float _jumpForce = 200;
-    private readonly float _massCoefficient = 0.01f;
+    private readonly WaitForSeconds _jumpCheckTime = new WaitForSeconds(0.02f);
+    private readonly float _massCoefficient = 150f;
+    private float _jumpForce;
     private int _jumpCount;
     private bool _isJumping;
-    private readonly WaitForSeconds _jumpCheckTime = new WaitForSeconds(0.02f);
     private float _rotateSpeed = 550f;
-    [HideInInspector] public bool IsSprinting;
+    private bool _isSprinting;
 
     //Ground Check
     private readonly float _groundCheckDistance = 0.11f;
@@ -37,37 +37,50 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        _virtualCamera = FindObjectOfType<CinemachineFreeLook>();
         TryGetComponent(out _playerAnimator);
         TryGetComponent(out _playerRigidbody);
         TryGetComponent(out _playerInput);
         TryGetComponent(out _playerStatus);
-        TryGetComponent(out _playerAttack);
-
     }
     private void Start()
     {
-        _jumpForce *= _playerStatus.Mass * _massCoefficient;
+        _cameraTransform = Camera.main.transform;
+        _jumpForce *= _massCoefficient / _playerStatus.Mass;
         _jumpCount = _playerStatus.MaxJumpCount;
-        //StartCoroutine(Rotate_co());
     }
     private void Update()
     {
-        if (Physics.Raycast(transform.position + new Vector3(0, _yOffset, 0), Vector3.down, out _, _groundCheckDistance) && _isJumping)
+        CheckGround();
+        CheckSprint();
+        Rotate();
+       
+        if (_playerInput.Jump)
         {
-            _playerAnimator.SetBool("BonusJump", false);
-            _playerAnimator.SetBool("Jump", false);
-            _jumpCount = _playerStatus.MaxJumpCount + _bonusJumpCount;
-            _isJumping = false;
+            Jump();
         }
 
     }
     private void FixedUpdate()
     {
         Move();
-        Rotate();
+    }
+    private void Move()
+    {
+        Vector3 _moveDirection;
+        Vector3 _distance;
+        Vector2 _move = new Vector2(_playerInput.HorizontalDirection, _playerInput.Move);
+        _moveDirection = _move.x * transform.right + _move.y * transform.forward;
+        if (_isSprinting)
+        {
+            _distance = 1.5f * _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
+        }
+        else
+        {
+            _distance = _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
+        }
+        _playerRigidbody.MovePosition(_playerRigidbody.position + _distance);
 
-        if (IsSprinting)
+        if (_isSprinting)
         {
             _playerAnimator.SetFloat("Move", 1.5f * _playerInput.Move);
         }
@@ -77,63 +90,54 @@ public class PlayerMovement : MonoBehaviour
         }
         _playerAnimator.SetFloat("HorizontalDirection", _playerInput.HorizontalDirection);
     }
-    private void Move()
-    {
-        Vector3 _moveDirection;
-        Vector3 _distance;
-        _moveDirection = transform.right * _playerInput.HorizontalDirection + transform.forward * _playerInput.Move;
 
-        if (IsSprinting)
-        {
-            _distance = 1.5f * _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
-        }
-        else
-        {
-            _distance = _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
-        }
-        _playerRigidbody.MovePosition(_playerRigidbody.position + _distance);
-    }
     private void Rotate()
     {
-        Quaternion _rotation;
-        Vector3 _dir = transform.position - _virtualCamera.transform.position;
-        _rotation = Quaternion.LookRotation(new Vector3(_dir.x, 0, _dir.z));
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _rotation, Time.deltaTime * _rotateSpeed);
+        Quaternion _targetRotaition = Quaternion.Euler(0, _cameraTransform.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _targetRotaition, _rotateSpeed * Time.deltaTime);
     }
-    /// <summary>
-    /// 플레이어 점프 메서드
-    /// </summary>
-    public void Jump()
+
+    private void Jump()
     {
         if (_jumpCount > 0)
         {
             StartCoroutine(CheckJump_co());
-            _playerRigidbody.velocity = Vector3.zero;
+            if (_isJumping)
+            {
+                _playerRigidbody.velocity = Vector3.zero;
+            }
+            _playerAnimator.SetBool("Jump", true);
             _playerRigidbody.AddForce(Vector3.up * _jumpForce);
-            if (_jumpCount == _playerStatus.MaxJumpCount + _bonusJumpCount)
-            {
-                if (_playerAttack.IsAttacking)
-                {
-                    _playerAnimator.SetTrigger("JumpT");
-                    _playerAnimator.SetBool("Jump", true);
-                    _playerAttack.IsAttacking = false;
-                    _playerAttack.RunningCoroutine = StartCoroutine(_playerAttack.AttackTimeCheck_co());
-                }
-                else
-                {
-                    _playerAnimator.SetBool("Jump", true);
-                }
-            }
-            else
-            {
-                _playerAnimator.SetBool("BonusJump", true);
-            }
             _jumpCount--;
         }
     }
+
     private IEnumerator CheckJump_co()
     {
         yield return _jumpCheckTime;
         _isJumping = true;
+    }
+
+    private void CheckGround()
+    {
+        if (Physics.Raycast(transform.position + new Vector3(0, _yOffset, 0), Vector3.down, out _, _groundCheckDistance) && _isJumping)
+        {
+            _playerAnimator.SetBool("Jump", false);
+            _jumpCount = _playerStatus.MaxJumpCount + _bonusJumpCount;
+            _isJumping = false;
+        }
+    }
+
+    private void CheckSprint()
+    {
+        if (_playerInput.Sprint && _playerInput.Move > 0)
+        {
+            _isSprinting = !_isSprinting;
+        }
+
+        if (_playerInput.Move <= 0)
+        {
+            _isSprinting = false;
+        }
     }
 }

@@ -93,7 +93,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: Event Rotate has a time (3.883333) outside the clip's
+      valid range (0.000000..3.683334). It will never be firedEvent Rotate has a
+      time (2.166667) outside the clip's valid range (0.000000..2.016667). It will
+      never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -246,7 +249,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: Rotate
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
+        floatParameter: 45
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -449,7 +459,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: Rotate
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
+        floatParameter: -135
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -517,7 +534,7 @@ ModelImporter:
       takeName: BeetleQueenArmature|TurnLeft90
       internalID: 0
       firstFrame: 0
-      lastFrame: 639
+      lastFrame: 233
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -536,7 +553,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: Rotate
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
+        floatParameter: -90
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -633,7 +657,7 @@ ModelImporter:
       takeName: BeetleQueenArmature|TurnRight135
       internalID: 0
       firstFrame: 0
-      lastFrame: 639
+      lastFrame: 218
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -652,7 +676,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: Rotate
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
+        floatParameter: 135
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -662,7 +693,7 @@ ModelImporter:
       takeName: BeetleQueenArmature|TurnRight90
       internalID: 0
       firstFrame: 0
-      lastFrame: 639
+      lastFrame: 219
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -681,7 +712,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: Rotate
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
+        floatParameter: 90
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -710,7 +748,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: StartAcidBileSkill
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -807,7 +852,7 @@ ModelImporter:
       takeName: BeetleQueenArmature|TurnLeft45
       internalID: 0
       firstFrame: 0
-      lastFrame: 639
+      lastFrame: 130
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -826,7 +871,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: Rotate
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
+        floatParameter: -45
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

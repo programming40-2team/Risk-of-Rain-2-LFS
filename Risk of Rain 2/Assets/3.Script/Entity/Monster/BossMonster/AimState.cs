@@ -2,27 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : StateMachineBehaviour
+public class AimState : StateMachineBehaviour
 {
-    private BeetleQueen _beetleQueen;
     private Transform _beetleQueenTransForm;
+    private BeetleQueen _beetleQueen;
+    private string _angle;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _beetleQueen = animator.GetComponent<BeetleQueen>();
         _beetleQueenTransForm = animator.GetComponent<Transform>();
+        _beetleQueen = animator.GetComponent<BeetleQueen>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    //  OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

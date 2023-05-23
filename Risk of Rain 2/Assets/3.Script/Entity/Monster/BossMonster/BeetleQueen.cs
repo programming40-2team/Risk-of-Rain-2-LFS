@@ -11,7 +11,7 @@ public class BeetleQueen : Entity
 
     public ObjectPool objectPool;
 
-    private Animator _beetleQueenAnimator;
+    public Animator BeetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
@@ -34,7 +34,8 @@ public class BeetleQueen : Entity
     }
     private void Awake()
     {
-        TryGetComponent(out _beetleQueenAnimator);
+        TryGetComponent(out BeetleQueenAnimator);
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         objectPool = GameObject.FindGameObjectWithTag("AcidBallPool").GetComponent<ObjectPool>();
     }
     
@@ -68,7 +69,7 @@ public class BeetleQueen : Entity
     public override void Die()
     {
         base.Die();
-        _beetleQueenAnimator.SetTrigger("Die");
+        BeetleQueenAnimator.SetTrigger("Die");
     }
 
     private void SetUp(MonsterData data)
@@ -83,10 +84,8 @@ public class BeetleQueen : Entity
         HealthRegenAscent = data.RegenAscent;
     }
 
-    // 산성담즙 생성
-    private IEnumerator CreateAcidBile()
+    public void StartAcidBileSkill()
     {
-        yield return new WaitUntil(() => _beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("BeetleQueenArmature|fireSpit"));
         Quaternion rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {
@@ -95,9 +94,12 @@ public class BeetleQueen : Entity
         }
     }
 
-    public void StartAcidBileSkill()
+    /// <summary>
+    /// 애니메이션 끝나고 회전시킬때 사용하는 메소드
+    /// </summary>
+    /// <param name="angle"></param>
+    public void Rotate(float angle)
     {
-        _beetleQueenAnimator.SetTrigger("FireSpit");
-        StartCoroutine(CreateAcidBile());
+        transform.Rotate(new Vector3(0, angle, 0));
     }
 }

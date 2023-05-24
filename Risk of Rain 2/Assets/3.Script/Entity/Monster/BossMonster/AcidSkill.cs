@@ -30,24 +30,26 @@ public class AcidSkill : MonoBehaviour
     // 산성담즙 풀에 반환
     private void DeleteAcidBile()
     {
-        _beetleQueen.objectPool.ReturnObject(gameObject);
+        _beetleQueen.AcidBallPool.ReturnObject(gameObject);
     }
 
-    private void OnParticleCollision(GameObject col)
+    private void OnParticleCollision(GameObject collObj)
     {
-        if (col.gameObject != _beetleQueenObject)
+        if (collObj != _beetleQueenObject)
         {   
-            if(col.gameObject.CompareTag("Player"))
+            if(collObj.CompareTag("Player"))
             {
                 Debug.Log("플레이어 아야");
-                col.gameObject.GetComponent<Entity>().OnDamage(_damage);
+                collObj.GetComponent<Entity>().OnDamage(_damage);
             }
             else
             {
-                // TODO : 산성웅덩이 등장 / 17초 지속
+                GameObject obj = _beetleQueen.AcidPoolPool.GetObject();
+                obj.transform.position = collObj.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                // TODO : 산성웅덩이 등장 / 15초 지속
             }
             // TODO : 터져서 사라지는 효과 코루틴으로 넣기
-            _beetleQueen.objectPool.ReturnObject(gameObject);
+            _beetleQueen.AcidBallPool.ReturnObject(gameObject);
         }
     }
 }

@@ -9,7 +9,8 @@ public class BeetleQueen : Entity
 
     private Entity targetEntity;
 
-    public ObjectPool objectPool;
+    public ObjectPool AcidBallPool;
+    public ObjectPool AcidPoolPool;
 
     public Animator BeetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
@@ -36,7 +37,8 @@ public class BeetleQueen : Entity
     {
         TryGetComponent(out BeetleQueenAnimator);
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        objectPool = GameObject.FindGameObjectWithTag("AcidBallPool").GetComponent<ObjectPool>();
+        AcidBallPool = GameObject.FindGameObjectWithTag("AcidBallPool").GetComponent<ObjectPool>();
+        AcidPoolPool = GameObject.FindGameObjectWithTag("AcidPoolPool").GetComponent<ObjectPool>();
     }
     
     protected override void OnEnable()
@@ -89,9 +91,14 @@ public class BeetleQueen : Entity
         Quaternion rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {
-            GameObject obj = objectPool.GetObject();
+            GameObject obj = AcidBallPool.GetObject();
             obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
         }
+    }
+
+    public void StartBombSkill()
+    {
+
     }
 
     /// <summary>

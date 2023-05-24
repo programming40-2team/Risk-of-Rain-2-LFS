@@ -119,7 +119,7 @@ public class DetailInLogBook : UI_Popup
         {
             case Define.ECurrentClickType.ItemAndEquip:
                GameObject item= Managers.Resource.Instantiate($"item{Managers.Data.ItemDataDict[SpecialCode].itemcode}", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
-                item.GetOrAddComponent<UIItemController>().tagertObject = Get<GameObject>((int)EGameObjects.ObjectSpawnPosition);
+                item.GetOrAddComponent<UIItemController>();
                 break;
             case Define.ECurrentClickType.Monster:
                 break;
@@ -130,7 +130,7 @@ public class DetailInLogBook : UI_Popup
                     return;
                 }
                 GameObject character = Managers.Resource.Instantiate($"Merc", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
-                character.GetOrAddComponent<UIItemController>().tagertObject = Get<GameObject>((int)EGameObjects.ObjectSpawnPosition);
+                character.GetOrAddComponent<UIItemController>();
                 break;
             case Define.ECurrentClickType.Enviroment:
                 break;

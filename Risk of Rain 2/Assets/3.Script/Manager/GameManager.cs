@@ -40,8 +40,8 @@ public class GameManager
         set
         {
             _isTelePortActive = value;
-           // 보스 소환시 나타날 이벤트들 로 일단 나혼자 생각하고 있지만
-           // 추후 상의 후 어디다가 보스 생성 이벤트들을 연동시켜줄지 고려
+           // 보스 소환시 나타날 이벤트들 로 일단 임시
+           // 추후 상의 후 어디다가 보스 생성 이벤트들을 어디서 어떻게 연동시켜줄지 고려
         }
     }
     public float PlayingTIme { get; set; } = 0;

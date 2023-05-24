@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class UIItemController : MonoBehaviour
 {
-    public GameObject tagertObject; // 큐브
+    private GameObject tagertObject; // 큐브
     [SerializeField] private float rotateSpeed;
 
     private void Start()
     {
+        tagertObject = gameObject.transform.parent.gameObject;
         // 큐브의 크기 측정
         Vector3 cubeSize = GetObjectSize(tagertObject);
 
@@ -43,5 +44,27 @@ public class UIItemController : MonoBehaviour
         scale.z *= size.z / originalSize.z;
 
         obj.transform.localScale = scale;
+
+        // Collider 컴포넌트 가져오기
+        Collider collider = obj.GetComponent<Collider>();
+        if (collider != null)
+        {
+            // Collider의 크기 조정
+            if (collider is BoxCollider boxCollider)
+            {
+                boxCollider.size = size;
+            }
+            // 다른 유형의 Collider도 추가적인 처리 필요
+            else if (collider is SphereCollider sphereCollider)
+            {
+                // SphereCollider의 크기 조정
+            }
+            else if (collider is CapsuleCollider capsuleCollider)
+            {
+                // CapsuleCollider의 크기 조정
+            }
+            // ...
+        }
     }
+
 }

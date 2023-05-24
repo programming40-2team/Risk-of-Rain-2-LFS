@@ -77,6 +77,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
+  - m_GUID: 2b30ededbeed87d49b0790d9550af2f4
+    m_Address: GameUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: b13598ed3767b6047ae7d32b4086248d
+    m_Address: GameItemImage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: de0a59128ea37194da339b3839359f8a
+    m_Address: InteractionWithItemContainer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 59480e176bdcbca43b4b4f210647c726
+    m_Address: ItemContainer001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

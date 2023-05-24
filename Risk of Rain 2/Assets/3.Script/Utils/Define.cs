@@ -50,6 +50,8 @@
         EnemyHpChange,
         BossHpChange,
         PlayerExpChange,
+        PlayerInteractionIn,
+        PlayerInteractionOut,
 
         StartBattle,
         EndBattle,

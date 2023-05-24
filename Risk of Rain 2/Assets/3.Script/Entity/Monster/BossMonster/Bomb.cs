@@ -29,7 +29,6 @@ public class Bomb : MonoBehaviour
         _playerTransform = GameObject.FindGameObjectWithTag("Player").gameObject.transform;
         _beetleQueen = FindObjectOfType<BeetleQueen>();
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
-        Set();
         StartCoroutine(Shoot_co());
     }
 
@@ -37,7 +36,7 @@ public class Bomb : MonoBehaviour
     {
         _startPos = _beetleQueenButtTransform.position;
         _endPos = _playerTransform.position;
-        _maxHeight = transform.position.y + 20f;
+        _maxHeight = transform.position.y + 10f;
         
         float dh = _endPos.y - _startPos.y;
         float mh = _maxHeight - _startPos.y;
@@ -58,6 +57,8 @@ public class Bomb : MonoBehaviour
 
     private IEnumerator Shoot_co()
     {
+        yield return null;
+        Set();
         while(true)
         {
             _elapsedTime += Time.deltaTime * 2;
@@ -83,6 +84,7 @@ public class Bomb : MonoBehaviour
                 Debug.Log("플레이어 아야");
                 col.gameObject.GetComponent<Entity>().OnDamage(_damage);
             }
+            // TODO :  터져서 사라지는 효과 코루틴으로 넣기
             _beetleQueen.BombPool.ReturnObject(gameObject);
         }
     }

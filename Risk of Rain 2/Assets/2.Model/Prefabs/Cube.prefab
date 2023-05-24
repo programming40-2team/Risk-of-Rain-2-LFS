@@ -108,3 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014318cf756d88c46b6ace188213d4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _beetleQueenObject: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}

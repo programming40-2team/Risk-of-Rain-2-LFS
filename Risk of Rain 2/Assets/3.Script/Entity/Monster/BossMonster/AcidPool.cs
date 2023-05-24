@@ -5,6 +5,11 @@ using UnityEngine;
 public class AcidPool : MonoBehaviour
 {
     private BeetleQueen _beetleQueen;
+    [SerializeField] private GameObject _beetleQueenObject;
+
+    private float _damage = 0f;
+
+    private bool isRun = false;
 
     private void OnEnable()
     {
@@ -21,5 +26,28 @@ public class AcidPool : MonoBehaviour
     private void DeleteAcidPool()
     {
         _beetleQueen.AcidPoolPool.ReturnObject(gameObject);
+    }
+
+    private IEnumerator OnDamage_co(Collider col)
+    {
+        if (col.gameObject != _beetleQueenObject)
+        {
+            if (col.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("플레이어 아야");
+                col.gameObject.GetComponent<Entity>().OnDamage(_damage);
+                yield return new WaitForSeconds(0.5f);
+                isRun = false;
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider col)
+    {
+        if(!isRun)
+        {
+            isRun = true;
+            StartCoroutine(OnDamage_co(col));
+        }
     }
 }

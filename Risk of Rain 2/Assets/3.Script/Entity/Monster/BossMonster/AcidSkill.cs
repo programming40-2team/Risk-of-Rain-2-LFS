@@ -47,7 +47,6 @@ public class AcidSkill : MonoBehaviour
             {
                 GameObject obj = _beetleQueen.AcidPoolPool.GetObject();
                 obj.transform.position = collObj.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-                // TODO : 산성웅덩이 등장 / 15초 지속
             }
             // TODO : 터져서 사라지는 효과 코루틴으로 넣기
             _beetleQueen.AcidBallPool.ReturnObject(gameObject);

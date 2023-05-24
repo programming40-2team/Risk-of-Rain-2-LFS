@@ -22,6 +22,9 @@ public class CommandoSkill : MonoBehaviour
     private bool _isRight;
     private WaitForSeconds _doubleTapDelay = new WaitForSeconds(0.167f);
     private bool _isShooting;
+    [SerializeField] private GameObject _leftMuzzleEffect;
+    [SerializeField] private GameObject _rightMuzzleEffect;
+
 
     private void Awake()
     {
@@ -74,11 +77,13 @@ public class CommandoSkill : MonoBehaviour
         {
             bulletDirection = _aimHit.point - _leftMuzzle.transform.position;
             bullet.transform.position = _leftMuzzle.transform.position;
+            _leftMuzzleEffect.SetActive(true);
         }
         else
         {
             bulletDirection = _aimHit.point - _rightMuzzle.transform.position;
             bullet.transform.position = _rightMuzzle.transform.position;
+            _rightMuzzleEffect.SetActive(true);
         }
         bullet.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);
         bullet.GetComponent<BulletProjectile>().Shoot();

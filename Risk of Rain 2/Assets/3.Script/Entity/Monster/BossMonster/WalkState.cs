@@ -17,7 +17,7 @@ public class WalkState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _beetleQueenTransForm.position += _beetleQueenTransForm.forward * _beetleQueen.MoveSpeed * Time.deltaTime;
+        _beetleQueenTransForm.position += _beetleQueen.MoveSpeed * Time.deltaTime * _beetleQueenTransForm.forward;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

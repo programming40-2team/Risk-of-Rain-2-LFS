@@ -37,7 +37,8 @@ public class CommandoSkill : MonoBehaviour
     private void Update()
     {
 
-        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity))
+        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity,
+            (-1) - (1 << LayerMask.NameToLayer("Player"))))
         {
 
         }

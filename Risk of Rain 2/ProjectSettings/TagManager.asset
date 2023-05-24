@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - AcidBallPool
   - AcidPoolPool
+  - BombPool
+  - BeetleQueenMouth
+  - BeetleQueenButt
   layers:
   - Default
   - TransparentFX

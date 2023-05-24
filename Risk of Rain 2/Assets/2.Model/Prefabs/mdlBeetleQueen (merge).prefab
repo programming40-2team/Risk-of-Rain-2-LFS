@@ -355,10 +355,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   _beetleQueenData: {fileID: 11400000, guid: 623fe4d3c8f8d6e438fb2ac0618948fe, type: 2}
-  objectPool: {fileID: 0}
+  AcidBallPool: {fileID: 0}
+  AcidPoolPool: {fileID: 0}
+  BombPool: {fileID: 0}
   BeetleQueenAnimator: {fileID: 0}
   _playerTransform: {fileID: 0}
   _beetleQueenMouthTransform: {fileID: 430505227350585667}
+  _beetleQueenButtTransform: {fileID: 0}
 --- !u!54 &3947812199606246929
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1521,7 +1524,7 @@ GameObject:
   - component: {fileID: 430505227350585667}
   m_Layer: 0
   m_Name: Mouth
-  m_TagString: Untagged
+  m_TagString: BeetleQueenMouth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3346,7 +3349,7 @@ GameObject:
   - component: {fileID: 2783861055350526055}
   m_Layer: 0
   m_Name: Butt
-  m_TagString: Untagged
+  m_TagString: BeetleQueenButt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

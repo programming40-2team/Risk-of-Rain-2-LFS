@@ -11,6 +11,7 @@ public class BeetleQueen : Entity
 
     public ObjectPool AcidBallPool;
     public ObjectPool AcidPoolPool;
+    public ObjectPool BombPool;
 
     public Animator BeetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
@@ -19,6 +20,7 @@ public class BeetleQueen : Entity
     [Header("Transforms")]
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private Transform _beetleQueenMouthTransform;
+    [SerializeField] private Transform _beetleQueenButtTransform;
 
 
     private bool hasTarget
@@ -37,8 +39,11 @@ public class BeetleQueen : Entity
     {
         TryGetComponent(out BeetleQueenAnimator);
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        _beetleQueenMouthTransform = GameObject.FindGameObjectWithTag("BeetleQueenMouth").transform;
+        _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
         AcidBallPool = GameObject.FindGameObjectWithTag("AcidBallPool").GetComponent<ObjectPool>();
         AcidPoolPool = GameObject.FindGameObjectWithTag("AcidPoolPool").GetComponent<ObjectPool>();
+        BombPool = GameObject.FindGameObjectWithTag("BombPool").GetComponent<ObjectPool>();
     }
     
     protected override void OnEnable()
@@ -86,6 +91,10 @@ public class BeetleQueen : Entity
         HealthRegenAscent = data.RegenAscent;
     }
 
+    /// <summary>
+    /// 
+    /// 
+    /// </summary>
     public void StartAcidBileSkill()
     {
         Quaternion rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
@@ -96,9 +105,25 @@ public class BeetleQueen : Entity
         }
     }
 
+    /// <summary>
+    /// 
+    /// 
+    /// </summary>
     public void StartBombSkill()
     {
+        StartCoroutine(CreateBomb_co());
+    }
 
+    private IEnumerator CreateBomb_co()
+    {
+        Quaternion rot = Quaternion.LookRotation(_playerTransform.position - _beetleQueenMouthTransform.position);
+        WaitForSeconds wfs = new WaitForSeconds (0.3f);
+        for(int i = 0; i < 3; i++)
+        {
+            GameObject obj = BombPool.GetObject();
+            obj.transform.position = _beetleQueenButtTransform.position;
+            yield return wfs;
+        }
     }
 
     /// <summary>

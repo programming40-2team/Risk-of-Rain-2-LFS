@@ -6,9 +6,10 @@ public class AcidSkill : MonoBehaviour
 {
     private BeetleQueen _beetleQueen;
     [SerializeField] private GameObject _beetleQueenObject;
-    private float _shootingSpeed = 20f;
-    private float _damage = 0f; // 공격력의 130%
+    private float _shootingSpeed = 50f;
+    private float _damage = 0;
 
+    
     private void OnEnable()
     {
         _beetleQueen = FindObjectOfType<BeetleQueen>();

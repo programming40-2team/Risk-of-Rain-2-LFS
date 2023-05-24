@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Ward : MonoBehaviour
 {
     private Transform _playerTransform;
     private Transform _beetleQueenButtTransform;
@@ -85,7 +85,7 @@ public class Bomb : MonoBehaviour
                 col.gameObject.GetComponent<Entity>().OnDamage(_damage);
             }
             // TODO :  터져서 사라지는 효과 코루틴으로 넣기
-            _beetleQueen.BombPool.ReturnObject(gameObject);
+            _beetleQueen.WardPool.ReturnObject(gameObject);
         }
     }
 }

@@ -495,9 +495,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8760726072401883364, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
         m_TargetAssemblyTypeName: BeetleQueen, Assembly-CSharp
-        m_MethodName: StartAcidBileSkill
+        m_MethodName: StartRangeBombSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1407,8 +1407,8 @@ GameObject:
   - component: {fileID: 1434385205}
   - component: {fileID: 1434385206}
   m_Layer: 0
-  m_Name: BombPool
-  m_TagString: BombPool
+  m_Name: WardPool
+  m_TagString: WardPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1927,7 +1927,7 @@ GameObject:
   - component: {fileID: 1901075146}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

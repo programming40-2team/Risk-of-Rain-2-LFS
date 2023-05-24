@@ -95,7 +95,7 @@ ModelImporter:
     animationImportErrors: 
     animationImportWarnings: Event Rotate has a time (3.870927) outside the clip's
       valid range (0.000000..3.683334). It will never be firedEvent Rotate has a
-      time (3.633333) outside the clip's valid range (0.000000..3.550000). It will
+      time (3.621725) outside the clip's valid range (0.000000..3.550000). It will
       never be firedEvent Rotate has a time (2.159745) outside the clip's valid range
       (0.000000..2.016667). It will never be fired
     animationRetargetingWarnings: 
@@ -496,7 +496,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.019146586
+        functionName: StartRangeBombSkill
+        data: 
+        objectReferenceParameter: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -650,7 +657,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.36421725
-        functionName: StartBombSkill
+        functionName: StartWardSkill
         data: 
         objectReferenceParameter: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
         floatParameter: 0

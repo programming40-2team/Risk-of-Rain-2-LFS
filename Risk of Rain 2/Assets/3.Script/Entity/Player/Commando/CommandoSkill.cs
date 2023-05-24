@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class CommandoSkill : MonoBehaviour
@@ -35,34 +36,21 @@ public class CommandoSkill : MonoBehaviour
 
     private void Update()
     {
-        //if (_playerInput.Mouse1)
-        //{
-        //    if (!_isShooting)
-        //    {
-        //        if (_attackCoroutine != null)
-        //        {
-        //            StopCoroutine(DoubleTap_co());
-        //        }
-        //        _attackCoroutine = StartCoroutine(DoubleTap_co());
-        //    }
-        //}
-        //if (_playerInput.Mouse1 && !_isShooting)
-        //{
-        //    DoubleTap();
-        //}
-        //else
-        //{
-        //    StopDoubleTap();
-        //}
-        if(Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity))
-        {
-            _aimY = _aimHit.point.y - transform.position.y;
-            _playerAnimator.SetFloat("Aim", _aimY);
-        }
 
-        if (Input.GetKey(KeyCode.T))
+        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity))
         {
-            _attackCoroutine ??= StartCoroutine(test_co());
+
+        }
+        //에임 애니메이션
+        //if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity))
+        //{
+        //    _aimY = _aimHit.point.y - transform.position.y;
+        //    _playerAnimator.SetFloat("Aim", _aimY);
+        //}
+
+        if (_playerInput.Mouse1)
+        {
+            _attackCoroutine ??= StartCoroutine(DoubleTap_co());
         }
         else
         {
@@ -72,70 +60,29 @@ public class CommandoSkill : MonoBehaviour
                 _attackCoroutine = null;
             }
             _playerAnimator.SetBool("DoubleTap", false);
+            _isRight = false;
         }
-        _playerAnimator.SetBool("DoubleTap", true);
-    }
-
-    private IEnumerator test_co()
-    {
-        _playerAnimator.SetBool("DoubleTap", true);
-        yield return _doubleTapDelay;
-        _attackCoroutine = StartCoroutine(test_co());
     }
 
     private IEnumerator DoubleTap_co()
     {
-        _isShooting = true;
-        _isRight = !_isRight;
         _playerAnimator.SetBool("DoubleTap", true);
-        Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit _hit, Mathf.Infinity);
-        GameObject _bullet = _bulletObjectPool.GetObject();
+        GameObject bullet = _bulletObjectPool.GetObject();
+        Vector3 bulletDirection;
         if (!_isRight)
         {
-            _bullet.transform.position = _leftMuzzle.transform.position;
+            bulletDirection = _aimHit.point - _leftMuzzle.transform.position;
+            bullet.transform.position = _leftMuzzle.transform.position;
         }
         else
         {
-            _bullet.transform.position = _rightMuzzle.transform.position;
+            bulletDirection = _aimHit.point - _rightMuzzle.transform.position;
+            bullet.transform.position = _rightMuzzle.transform.position;
         }
-        StartCoroutine(Shoot_co(_bullet, _hit));
-        yield return _doubleTapDelay;
-        _isShooting = false;
-        _playerAnimator.SetBool("DoubleTap", false);
-    }
-    private void DoubleTap()
-    {
-        Debug.Log("더블 탭");
-        StartCoroutine(CheckShooting_co());
+        bullet.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);
+        bullet.GetComponent<BulletProjectile>().Shoot();
         _isRight = !_isRight;
-        _playerAnimator.SetBool("DoubleTap", true);
-        Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit _hit, Mathf.Infinity);
-        GameObject _bullet = _bulletObjectPool.GetObject();
-        if (!_isRight)
-        {
-            _bullet.transform.position = _leftMuzzle.transform.position;
-        }
-        else
-        {
-            _bullet.transform.position = _rightMuzzle.transform.position;
-        }
-        StartCoroutine(Shoot_co(_bullet, _hit));
-
-    }
-    private void StopDoubleTap()
-    {
-        _playerAnimator.SetBool("DoubleTap", false);
-        _isRight = false;
-    }
-    private IEnumerator CheckShooting_co()
-    {
-        _isShooting = true;
         yield return _doubleTapDelay;
-        _isShooting = false;
-    }
-    private IEnumerator Shoot_co(GameObject bullet, RaycastHit hit)
-    {
-        bullet.GetComponent<Rigidbody>().MovePosition(hit.point);
-        yield return null;
+        _attackCoroutine = StartCoroutine(DoubleTap_co());
     }
 }

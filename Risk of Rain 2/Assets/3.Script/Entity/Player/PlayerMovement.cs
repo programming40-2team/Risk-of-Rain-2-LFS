@@ -102,7 +102,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_jumpCount > 0)
         {
-            Debug.Log("มกวม");
             StartCoroutine(CheckJump_co());
             if (_isJumping)
             {

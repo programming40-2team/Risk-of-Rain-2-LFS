@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6863857337172796870}
   - component: {fileID: 6863857337172796864}
   - component: {fileID: 6863857337172796871}
-  - component: {fileID: 810733913983134852}
+  - component: {fileID: 1303397327775406874}
   m_Layer: 0
   m_Name: pfBulletProjectile
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6863857337172796869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2798676, y: 2.2780728, z: 1.0198002}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6863857337905034705}
@@ -48,7 +48,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!65 &6863857337172796871
 BoxCollider:
@@ -63,7 +63,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &810733913983134852
+--- !u!114 &1303397327775406874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,13 +72,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6863857337172796869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b1021318b5c8b240bed91ed02613d0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 996bc46b014192441abb84bf41b3052b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxHitGreen: {fileID: 613433886817584985, guid: 6e845b0e80fad2d4c93ff505a0750129,
-    type: 3}
-  vfxHitRed: {fileID: 613433886817584985, guid: 9f5fbcfb6299c2b4c912f3ff44f14463,
-    type: 3}
 --- !u!1 &6863857337905034704
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 6863857337905034704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.2}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.3}
   m_Children: []
   m_Father: {fileID: 6863857337172796870}
   m_RootOrder: 0
@@ -169,7 +165,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6863857337905034704}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

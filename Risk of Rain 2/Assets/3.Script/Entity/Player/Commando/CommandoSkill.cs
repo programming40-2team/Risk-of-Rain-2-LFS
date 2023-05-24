@@ -6,19 +6,22 @@ public class CommandoSkill : MonoBehaviour
 {
     private PlayerInput _playerInput;
     private Animator _playerAnimator;
-
     private Transform _cameraTransform;
 
     [SerializeField] private GameObject _leftMuzzle;
     [SerializeField] private GameObject _rightMuzzle;
+    private Coroutine _attackCoroutine;
+
+    //aiming
+    private float _aimY;
+    private RaycastHit _aimHit;
+
+    //DoubleTap
     private ObjectPool _bulletObjectPool;
     private bool _isRight;
-
-    //private float _doubleTapDelay = 0.167f;
     private WaitForSeconds _doubleTapDelay = new WaitForSeconds(0.167f);
     private bool _isShooting;
 
-    private Coroutine _attackCoroutine;
     private void Awake()
     {
         TryGetComponent(out _playerInput);
@@ -32,19 +35,17 @@ public class CommandoSkill : MonoBehaviour
 
     private void Update()
     {
-        
-        if(_playerInput.Mouse1)
-        {
-            if(!_isShooting)
-            {
-                if (_attackCoroutine != null)
-                {
-                    StopCoroutine(DoubleTap_co());
-                }
-                _attackCoroutine = StartCoroutine(DoubleTap_co());
-            }
-        }
-
+        //if (_playerInput.Mouse1)
+        //{
+        //    if (!_isShooting)
+        //    {
+        //        if (_attackCoroutine != null)
+        //        {
+        //            StopCoroutine(DoubleTap_co());
+        //        }
+        //        _attackCoroutine = StartCoroutine(DoubleTap_co());
+        //    }
+        //}
         //if (_playerInput.Mouse1 && !_isShooting)
         //{
         //    DoubleTap();
@@ -53,9 +54,36 @@ public class CommandoSkill : MonoBehaviour
         //{
         //    StopDoubleTap();
         //}
+        if(Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity))
+        {
+            _aimY = _aimHit.point.y - transform.position.y;
+            _playerAnimator.SetFloat("Aim", _aimY);
+        }
+
+        if (Input.GetKey(KeyCode.T))
+        {
+            _attackCoroutine ??= StartCoroutine(test_co());
+        }
+        else
+        {
+            if (_attackCoroutine != null)
+            {
+                StopCoroutine(_attackCoroutine);
+                _attackCoroutine = null;
+            }
+            _playerAnimator.SetBool("DoubleTap", false);
+        }
+        _playerAnimator.SetBool("DoubleTap", true);
     }
 
-   private IEnumerator DoubleTap_co()
+    private IEnumerator test_co()
+    {
+        _playerAnimator.SetBool("DoubleTap", true);
+        yield return _doubleTapDelay;
+        _attackCoroutine = StartCoroutine(test_co());
+    }
+
+    private IEnumerator DoubleTap_co()
     {
         _isShooting = true;
         _isRight = !_isRight;
@@ -92,7 +120,7 @@ public class CommandoSkill : MonoBehaviour
             _bullet.transform.position = _rightMuzzle.transform.position;
         }
         StartCoroutine(Shoot_co(_bullet, _hit));
-        
+
     }
     private void StopDoubleTap()
     {

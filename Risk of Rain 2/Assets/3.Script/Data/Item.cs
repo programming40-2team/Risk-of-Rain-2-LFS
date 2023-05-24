@@ -1,5 +1,6 @@
 ﻿using Data;
 using System;
+using UnityEngine;
 using static Define;
 
 public class Item
@@ -48,6 +49,14 @@ public class Item
             item.ItemExplanation = itemInfo.explanation;
             item.Count = itemInfo.count;
         }
+        return item;
+    }
+    public static Item SpawnItem(ItemData itemInfo,Transform position)
+    {
+       Item item= MakeItem(itemInfo);
+
+       
+
         return item;
     }
 

@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionWithItemContainer : UI_Base
+public class InteractionWithItemContainer : UI_Scene
 {
 
-    public override void Init()
-    {
-      
-    }
     private void Start()
     {
         gameObject.transform.GetChild(0).localPosition= Vector3.zero;

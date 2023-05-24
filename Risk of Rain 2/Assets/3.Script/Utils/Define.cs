@@ -45,10 +45,15 @@
         DifficultyChange,
         AddItem,
 
+        PlayerUseSkill,
+        PlayerHpChange,
+        EnemyHpChange,
+        BossHpChange,
+        PlayerExpChange,
+
         StartBattle,
         EndBattle,
-        PlayerHp,
-        EnemyHp,
+
         
     }
     public enum WhenItemActivates
@@ -70,6 +75,7 @@
     }
     public enum EDifficulty
     {
+       
         Easy,
         Normal,
         Hard,

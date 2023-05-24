@@ -18,7 +18,7 @@ public class GameItemPannel : MonoBehaviour
             Managers.Resource.Destroy(transforom.gameObject);
         }
 
-        foreach (var key in Managers.ItemInventory.Items.Keys)
+        foreach (var key in Managers.ItemInventory.PassiveItem.Keys)
         {
             GameItemImage ItemImage = Managers.UI.ShowSceneUI<GameItemImage>();
             ItemImage.transform.SetParent(gameObject.transform);

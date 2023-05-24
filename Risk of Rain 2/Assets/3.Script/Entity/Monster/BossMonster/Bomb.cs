@@ -6,6 +6,10 @@ public class Bomb : MonoBehaviour
 {
     private Transform _playerTransform;
     private Transform _beetleQueenButtTransform;
+    private BeetleQueen _beetleQueen;
+    [SerializeField] private GameObject _beetleQueenObject;
+
+    private float _damage = 0f;
 
     private Vector3 _startPos;
     private Vector3 _endPos;
@@ -23,6 +27,7 @@ public class Bomb : MonoBehaviour
     private void OnEnable()
     {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").gameObject.transform;
+        _beetleQueen = FindObjectOfType<BeetleQueen>();
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
         Set();
         StartCoroutine(Shoot_co());
@@ -51,7 +56,7 @@ public class Bomb : MonoBehaviour
         _elapsedTime = 0;
     }
 
-    IEnumerator Shoot_co()
+    private IEnumerator Shoot_co()
     {
         while(true)
         {
@@ -65,12 +70,20 @@ public class Bomb : MonoBehaviour
 
             transform.LookAt(tpos);
             transform.position = tpos;
-
-            if (_elapsedTime >= _dat)
-            {
-                break;
-            }
             yield return null;
+        }
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject != _beetleQueenObject)
+        {
+            if (col.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("플레이어 아야");
+                col.gameObject.GetComponent<Entity>().OnDamage(_damage);
+            }
+            _beetleQueen.BombPool.ReturnObject(gameObject);
         }
     }
 }

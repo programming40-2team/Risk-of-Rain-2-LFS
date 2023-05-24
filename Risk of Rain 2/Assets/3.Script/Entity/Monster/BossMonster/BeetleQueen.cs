@@ -92,8 +92,7 @@ public class BeetleQueen : Entity
     }
 
     /// <summary>
-    /// 
-    /// 
+    /// 산성담즙 6개 부채꼴로 발사하는 스킬
     /// </summary>
     public void StartAcidBileSkill()
     {
@@ -106,8 +105,7 @@ public class BeetleQueen : Entity
     }
 
     /// <summary>
-    /// 
-    /// 
+    /// 뒤꽁무니에서 3개 뿅뿅뿅 발사하는 스킬
     /// </summary>
     public void StartBombSkill()
     {

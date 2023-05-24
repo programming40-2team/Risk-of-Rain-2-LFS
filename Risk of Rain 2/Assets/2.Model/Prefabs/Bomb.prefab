@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8184011984389787120}
   - component: {fileID: 8186187134618849613}
   - component: {fileID: 8444660541016263966}
-  - component: {fileID: 2041551172861853447}
+  - component: {fileID: 6546552572448078359}
   - component: {fileID: -230665686466797498}
   m_Layer: 0
   m_Name: Bomb
@@ -83,7 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2041551172861853447
+--- !u!135 &6546552572448078359
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6263131851393213310}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -108,3 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a159b10110109419d91e81d56ec405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _beetleQueenObject: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}

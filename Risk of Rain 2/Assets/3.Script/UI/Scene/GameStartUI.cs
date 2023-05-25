@@ -28,7 +28,7 @@ public class GameStartUI : UI_Scene,IListener
         M2SkillReactPannel,
         ShiftSkillReactPannel,
         RSkillReactPannel,
-
+        LoadPassiveSkill,
     }
     enum ETexts
     {
@@ -207,9 +207,7 @@ public class GameStartUI : UI_Scene,IListener
 
     private void InitGameObect()
     {
-        //Get<GameObject>((int)EGameObjects. DifficultyEasySelectEffect).SetActive(false);
-        //Get<GameObject>((int)EGameObjects. DifficultyNormalSelectEffect).SetActive(false);
-        //Get<GameObject>((int)EGameObjects. DifficultyHardSelectEffect).SetActive(false);
+
         Get<GameObject>((int)EGameObjects. ShowScriptButtonIsClickEffect).SetActive(false);
         Get<GameObject>((int)EGameObjects. SkillScriptIsClickEffect).SetActive(false);
         Get<GameObject>((int)EGameObjects. LoadIsClickEffect).SetActive(false);
@@ -264,17 +262,6 @@ public class GameStartUI : UI_Scene,IListener
             .BindEvent((PointerEventData data) => ReturnToMain());
         GetButton((int)EButtons.GameReadyButton).gameObject
             .BindEvent((PointerEventData data) => GameStart());
-        /*
-        GetButton((int)EButtons.DifficultyEasy).gameObject
-           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Easy));
-        GetButton((int)EButtons.DifficultyNormal).gameObject
-           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Normal));
-        GetButton((int)EButtons.DifficultyHard).gameObject
-           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Hard));
-        */
-
-
-
 
         GetButton((int)EButtons.ShowScriptButton).gameObject
             .BindEvent((PointerEventData data) => DetaillCharacterScriptChange(ECharacterDetail.AboutScript));
@@ -331,40 +318,24 @@ public class GameStartUI : UI_Scene,IListener
                 break;
         }
     }
-    /*
-    private void DifficultySelect(EDifficulty difficulty)
-    {
-        Get<GameObject>((int)EGameObjects.DifficultyEasySelectEffect).gameObject.SetActive(false);
-        Get<GameObject>((int)EGameObjects.DifficultyNormalSelectEffect).gameObject.SetActive(false);
-        Get<GameObject>((int)EGameObjects.DifficultyHardSelectEffect).gameObject.SetActive(false);
-
-        switch (difficulty)
-        {
-            case EDifficulty.Easy:
-                Get<GameObject>((int)EGameObjects.DifficultyEasySelectEffect).gameObject.SetActive(true);
-                myDifficulty = EDifficulty.Easy;
-                break;
-            case EDifficulty.Normal:
-                Get<GameObject>((int)EGameObjects.DifficultyNormalSelectEffect).gameObject.SetActive(true);
-                myDifficulty = EDifficulty.Normal;
-                break;
-            case EDifficulty.Hard:
-                Get<GameObject>((int)EGameObjects.DifficultyHardSelectEffect).gameObject.SetActive(true);
-                myDifficulty = EDifficulty.Hard;
-                break;
-        }
-        Debug.Log("게임 난이도 소리 설정 시 여기다!");
-        Debug.Log("게임 시작 난이도 관련 설정은 여기서! (ex.난이도 클릭 시 소리 변경하고 싶으면 여기!)");
-
-
-    }
-    */
-
+   
 
 
     //편하게 하려면 스킬 데이터 를 체계적으로 만들어야 하는데 귀찮아서ㅓㅓㅓㅓ...''
     private void ChangeSkillImage(int charcode)
     {
+        //일부 캐릭터는 패시브가 있고 일부 캐릭터는 없네요 ---.. 미리 알았으면 편했는데;
+        if (!charcode.Equals(7))
+        {
+            
+            Get<GameObject>((int)EGameObjects.PassiveReactPannel).SetActive(false);
+            Get<GameObject>((int)EGameObjects.LoadPassiveSkill).SetActive(false);
+        }
+        else
+        {
+            Get<GameObject>((int)EGameObjects.PassiveReactPannel).SetActive(true);
+            Get<GameObject>((int)EGameObjects.LoadPassiveSkill).SetActive(true);
+        }
 
         GetImage((int)EImages.PassiveSkillImage).sprite =Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].passiveskilliconpath);
        GetImage((int)EImages. M1SkilIImage          ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m1skilliconpath);
@@ -421,7 +392,7 @@ public class GameStartUI : UI_Scene,IListener
 
     private void DesCribeChange(int charcode)
     {
-        Debug.Log("나중에 마우스 캔버스 한테도 이벤트 발송해 줘야합니다. => 미니 UI 생성 ");
+      
         GetText((int)ETexts.CharacterNameText).text = $"{Managers.Data.CharacterDataDict[charcode].Name}";
         GetText((int)ETexts.MoreDetailText1).text = $"{Managers.Data.CharacterDataDict[charcode].script1}";
         GetText((int)ETexts.MoreDetailText2).text = $"{Managers.Data.CharacterDataDict[charcode].script2}";
@@ -448,9 +419,12 @@ public class GameStartUI : UI_Scene,IListener
             case Define.EVENT_TYPE.SelectCharacter:
                 isCharacterSelected = true;
                 DetaillCharacterScriptChange(ECharacterDetail.AboutScript);
-                characterCode = Sender.GetComponent<CharacterSelectButton>().Charactercode;
-                DesCribeChange(characterCode);
-                ChangeSkillImage(characterCode);
+                if(Sender.TryGetComponent(out CharacterSelectButton CharBtn))
+                {
+                    characterCode = CharBtn.Charactercode;
+                    DesCribeChange(characterCode);
+                    ChangeSkillImage(characterCode);
+                }
                 break;
         }
 

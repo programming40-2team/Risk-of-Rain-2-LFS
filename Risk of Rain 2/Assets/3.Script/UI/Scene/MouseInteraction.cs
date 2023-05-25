@@ -124,7 +124,16 @@ public class MouseInteraction : UI_Scene,IListener
                 {
                     ActivePannel(EInteractionType.Character);
                     GetText((int)ETexts.RightTitleText).text = Managers.Data.CharacterDataDict[characterSelect.Charactercode].Name;
-                    GetText((int)ETexts.RightContentsTitleText).text = Managers.Data.CharacterDataDict[characterSelect.Charactercode].unlockscript2;
+                    //캐릭터 보유 미보유 여부에 따라 달르게 출력
+                    if (Managers.Data.CharacterDataDict[characterSelect.Charactercode].isActive)
+                    {
+                        GetText((int)ETexts.RightContentsTitleText).text = Managers.Data.CharacterDataDict[characterSelect.Charactercode].script1;
+                    }
+                    else
+                    {
+                        GetText((int)ETexts.RightContentsTitleText).text = Managers.Data.CharacterDataDict[characterSelect.Charactercode].unlockscript2;
+                    }
+
                 }
                 else if(Sender.TryGetComponent(out LoadSkillTempo Tempo))
                 {

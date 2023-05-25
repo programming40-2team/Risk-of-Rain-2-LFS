@@ -89,4 +89,16 @@
  
 
     }
+    public enum ESkillType
+    {
+        Passive,
+        M1,
+        M21,
+        M22,
+        Shift1,
+        Shift2,
+        R1,
+        R2
+        
+    }
 }

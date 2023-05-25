@@ -10,8 +10,7 @@ public class Altar : MonoBehaviour
 
     [SerializeField] GameObject bossPrefab;
     [SerializeField] Transform spawnPoint;
-    //[SerializeField] ParticleSystem bossRazer;
-    private bool isbossRazer = false;
+    [SerializeField] ParticleSystem bossRazer;
 
     private void Awake()
     {
@@ -21,7 +20,10 @@ public class Altar : MonoBehaviour
     }
     private void Start()
     {
-        //bossRazer.Stop();
+        if (bossRazer.isPlaying)
+        {
+            bossRazer.Stop();
+        }
     }
     
     private void OnTriggerStay(Collider other)
@@ -37,7 +39,7 @@ public class Altar : MonoBehaviour
             {
                 Debug.Log("입력");
                 Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);  //제단에서 e키를 누르면 보스가 소환될 지점
-                //BossRazer();
+                BossRazer();
             }
         }
     }
@@ -50,11 +52,13 @@ public class Altar : MonoBehaviour
         }
     }
 
-    //private void BossRazer()
-    //{
-    //    isbossRazer = true;
-    //    bossRazer.Play();
-    //}
+    private void BossRazer()
+    {
+        if(!bossRazer.isPlaying)
+        {
+            bossRazer.Play();
+        }
+    }
 
     private void Highlight()
     {

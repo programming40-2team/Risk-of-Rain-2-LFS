@@ -146,7 +146,7 @@ public class BeetleQueen : Entity
             if (obj.transform.gameObject.CompareTag("Ground"))
             {
                 pos = obj.point;
-                pos = new Vector3(pos.x, pos.y + 0.1f, pos.z);
+                pos = new Vector3(pos.x, pos.y + 0.2f, pos.z);
                 Instantiate(BombRange, pos, Quaternion.identity);
             }
         }

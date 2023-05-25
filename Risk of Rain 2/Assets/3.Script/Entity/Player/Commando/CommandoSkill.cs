@@ -39,7 +39,6 @@ public class CommandoSkill : MonoBehaviour
 
     private void Update()
     {
-
         if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity,
             (-1) - (1 << LayerMask.NameToLayer("Player"))))
         {
@@ -53,6 +52,7 @@ public class CommandoSkill : MonoBehaviour
         }
         else
         {
+            //이 방식 지금 모든 코루틴을 꺼버려서 문제가 있음
             if (_attackCoroutine != null)
             {
                 StopCoroutine(_attackCoroutine);
@@ -60,6 +60,10 @@ public class CommandoSkill : MonoBehaviour
             }
             _playerAnimator.SetBool("DoubleTap", false);
             _isRight = false;
+        }
+        if (_playerInput.Mouse2Down)
+        {
+            _attackCoroutine ??= StartCoroutine(PhaseRound_co());
         }
     }
 
@@ -85,5 +89,11 @@ public class CommandoSkill : MonoBehaviour
         _isRight = !_isRight;
         yield return _doubleTapDelay;
         _attackCoroutine = StartCoroutine(DoubleTap_co());
+    }
+
+    private IEnumerator PhaseRound_co()
+    {
+        _playerAnimator.SetTrigger("PhaseRound");
+        yield return null;
     }
 }

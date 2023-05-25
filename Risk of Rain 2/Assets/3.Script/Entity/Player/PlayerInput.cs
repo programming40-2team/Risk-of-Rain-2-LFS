@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
     public bool Sprint { get; private set; }
     public bool Mouse1 { get; private set; }
     public bool Mouse2 { get; private set; }
+    public bool Mouse1Down { get; private set; }
+    public bool Mouse2Down { get; private set; }
     public bool Shift { get; private set; }
     public bool Special { get; private set; }
     public bool ActiveItem { get; private set; }
@@ -30,6 +32,8 @@ public class PlayerInput : MonoBehaviour
         Sprint = Input.GetKeyDown(KeyCode.LeftControl);
         Mouse1 = Input.GetMouseButton(0);
         Mouse2 = Input.GetMouseButton(1);
+        Mouse1Down = Input.GetMouseButtonDown(0);
+        Mouse2Down = Input.GetMouseButtonDown(1);
         Shift = Input.GetKeyDown(KeyCode.LeftShift);
         Special = Input.GetKeyDown(KeyCode.R);
         ActiveItem = Input.GetKeyDown(KeyCode.Q);

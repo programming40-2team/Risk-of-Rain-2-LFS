@@ -4,11 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
 <<<<<<< HEAD
-  - ObjectPool
+  - Ground
+  - AcidBallPool
+  - AcidPoolPool
+  - BeetleQueenMouth
+  - BeetleQueenButt
+  - WardPool
 =======
-  - VirtualCamera
+  - Monster
 >>>>>>> feature/player
   layers:
   - Default
@@ -17,8 +21,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Environment
+  - Player
   - 
   - 
   - 

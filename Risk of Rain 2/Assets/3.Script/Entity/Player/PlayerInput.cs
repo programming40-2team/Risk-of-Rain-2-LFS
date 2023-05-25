@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
     public bool Mouse2 { get; private set; }
     public bool Mouse1Down { get; private set; }
     public bool Mouse2Down { get; private set; }
+    public bool Mouse1Up { get; private set; }
+    public bool Mouse2Up { get; private set; }
     public bool Shift { get; private set; }
     public bool Special { get; private set; }
     public bool ActiveItem { get; private set; }
@@ -34,6 +36,8 @@ public class PlayerInput : MonoBehaviour
         Mouse2 = Input.GetMouseButton(1);
         Mouse1Down = Input.GetMouseButtonDown(0);
         Mouse2Down = Input.GetMouseButtonDown(1);
+        Mouse1Up = Input.GetMouseButtonUp(0);
+        Mouse2Up = Input.GetMouseButtonUp(1);
         Shift = Input.GetKeyDown(KeyCode.LeftShift);
         Special = Input.GetKeyDown(KeyCode.R);
         ActiveItem = Input.GetKeyDown(KeyCode.Q);

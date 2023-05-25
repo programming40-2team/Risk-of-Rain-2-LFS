@@ -121,4 +121,33 @@ namespace Data
     }
 
     #endregion
+
+    #region Enviroment
+    [Serializable]
+    public class EnvData
+    {
+        public int enviromentcode;
+        public string enviromentname;
+        public string explanation;
+        public string imagekey;
+        public string monster;
+
+    }
+    [Serializable]
+    public class EnvLoader : ILoader<int, EnvData>
+    {
+        public List<EnvData> enviroment = new List<EnvData>();
+        public Dictionary<int, EnvData> MakeDict()
+        {
+            Dictionary<int, EnvData> dict = new Dictionary<int, EnvData>();
+            foreach (EnvData item in enviroment)
+            {
+              
+                dict.Add(item.enviromentcode, item);
+            }
+
+            return dict;
+        }
+    }
+    #endregion
 }

@@ -14,6 +14,8 @@
         CharacterSelectButton=15,
         GameStartUI=5,
         LogBookUI = 6,
+        DetailInLogBook=20,
+        MouseInteraction=100,
     }
     public enum UIEvent
     {
@@ -36,10 +38,24 @@
     {
         SelectCharacter,
         LogBookItem,
+        ClickLogBookDetail,
+
+        MousePointerEnter,
+        MousePointerExit,
+        DifficultyChange,
+        AddItem,
+
+        PlayerUseSkill,
+        PlayerHpChange,
+        EnemyHpChange,
+        BossHpChange,
+        PlayerExpChange,
+        PlayerInteractionIn,
+        PlayerInteractionOut,
+
         StartBattle,
         EndBattle,
-        PlayerHp,
-        EnemyHp,
+
         
     }
     public enum WhenItemActivates
@@ -50,5 +66,27 @@
         NotBattle,
 
     }
+    public enum ECurrentClickType
+    {
+        ItemAndEquip,
+        Monster,
+        Character,
+        Enviroment,
+        None,
 
+    }
+    public enum EDifficulty
+    {
+       
+        Easy,
+        Normal,
+        Hard,
+        VeryHard,
+        VeryHard2,
+        VeryHard3,
+        VeryHard4,
+        VeryHard5,
+ 
+
+    }
 }

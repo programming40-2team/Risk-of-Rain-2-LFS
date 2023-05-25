@@ -1,0 +1,59 @@
+{ "enviroment":[
+    {
+        "enviromentcode": "100",
+        "enviromentname": "먼 곳의 횃대",
+        "explanation": "푸르스름한 안개와 시원하게 뚫린 절벽이 특징인 바다 위의 산악 지역이다. 의외로 좁은 길목이 많은 편이지만, 절벽의 특징을 잘 살린 지형 덕분에 답답하게 느껴지지는 않는다. 맵 바깥에는 정체불명의 조류 크리처가 날아다닌다. 기록 정보에 따르면, UES 안전 기원호의 생존자들이 처음으로 페트리코르 V 행성에 착륙한 곳으로 추정된다.",
+        "imagekey": "env100",
+        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Stone Golem(돌 골렘),Greater Wisp(초대형 위습),Jellyfish(해파리),Beetle Queen(여왕 딱정벌레),Stone Titan(돌 거인),Wandering Vagrant(떠도는 유랑자)"
+    },
+    {
+        "enviromentcode": "101",
+        "enviromentname": "거인의 평원",
+        "explanation": "돌로 된 거대한 고리와 잔디가 깔려있는 평평하고 넓은 고원 지역이다. 먼 곳의 횃대에 비해 전체적으로 밝은 분위기의 환경이었으나, 정식 발매되면서 게임의 분위기와 어울리도록 안개가 조금 짙어지고 채도가 낮아져 차분한 분위기가 되었다.",
+        "imagekey": "env101",
+        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Stone Golem(돌 골렘),Greater Wisp(초대형 위습),Jellyfish(해파리),Hermit Crab(소라게),Beetle Queen(여왕 딱정벌레),Stone Titan(돌 거인),Wandering Vagrant(떠도는 유랑자)"
+    },
+    {
+        "enviromentcode": "102",
+        "enviromentname": "사이폰 숲",
+        "explanation": "공허의 생존자 DLC로 추가된 환경.시작 지점 치고는 볼륨이 상당히 큰 편이다. 심연의 깊은 곳이나 선더드 그로브보다 넓어보일 정도.발매 전 최초로 공개되었을 때의 명칭은 '눈 내리는 숲(Snowy Forest),'이었다. 발매 직전에 급하게 변경된 것인지 업데이트 이후에도 인게임에서 해당 명칭을 환경 기록 등으로 확인할 수 있었다.",
+        "imagekey": "env102",
+        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Stone Golem(돌 골렘),Greater Wisp(초대형 위습),Blind Pest(눈먼 해충),Blind Vermin(눈먼 벌레),Void Reaver(공허 약탈자),Beetle Queen(여왕 딱정벌레),Stone Titan(돌 거인),Wandering Vagrant(떠도는 유랑자)"
+    },
+    {
+        "enviromentcode": "103",
+        "enviromentname": "버려진 수도교",
+        "explanation": "사막 한가운데에 버려진 타르가 흐르는 수도교. 맵 곳곳에 공격하면 폭발하는 항아리가 존재한다. 맵 밖으로 걸어 나가면 타르 촉수가 쫓아와 피해를 주며 느려지게 만든다.",
+        "imagekey": "env103",
+        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Beetle Guard(딱정벌레 근위병),Greater Wisp(초대형 위습),Clay Templar(항아리 기사단원),Beetle Queen(여왕 딱정벌레),Clay Dunestrider(항아리 모래걸이),Stone Titan(돌 거인)"
+    },
+    {
+        "enviromentcode": "104",
+        "enviromentname": "습지의 풍경",
+        "explanation": "바닥에 고여있는 물과 부서진 석조 구조물들, 무성한 나무뿌리들이 시야를 방해하는 늪 지역이다. 얼리 액세스 초기에 텔레포터를 찾는 유저들을 한참 동안 혼란에 빠뜨린 것으로 악명이 높은 스테이지.",
+        "imagekey": "env104",
+        "monster": "Lesser Wisp(소형 위습),Jellyfish(해파리),Beetle(딱정벌레),Lemurian(레무리안),Brass Contraption(황동 기계장치),Stone Golem(돌 골렘),Beetle Queen(여왕 딱정벌레),Stone Titan(돌 거인),Wandering Vagrant(떠도는 유랑자)"
+    },
+    {
+        "enviromentcode": "105",
+        "enviromentname": "델타 집결지",
+        "explanation": "오랫동안 방치되어 눈에 뒤덮인 컨테이너들이 가득한 황량한 지역. UES 컨택트 라이트가 추락한 후, 고립된 생존자들이 세운 기지들 중 하나이다.",
+        "imagekey": "env105",
+        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Beetle Guard(딱정벌레 근위병),Greater Wisp(초대형 위습),Clay Templar(항아리 기사단원),Beetle Queen(여왕 딱정벌레),Clay Dunestrider(항아리 모래걸이),Stone Titan(돌 거인)"
+    },
+    {
+        "enviromentcode": "106",
+        "enviromentname": "심연의 깊은 곳",
+        "explanation": "붉은 광석들이 즐비하고 곳곳에 식물이 자라난 지하 동굴 지역이다. 스테이지가 전체적으로 어두워서 소라게, 황동 기계장치 등의 적이 잘 안보이므로 주의가 필요하다.",
+        "imagekey": "env106",
+        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Stone Golem(돌 골렘),Greater Wisp(초대형 위습),Blind Pest(눈먼 해충),Blind Vermin(눈먼 벌레),Void Reaver(공허 약탈자),Beetle Queen(여왕 딱정벌레),Stone Titan(돌 거인),Wandering Vagrant(떠도는 유랑자)"
+    },
+    {
+        "enviromentcode": "107",
+        "enviromentname": "스카이 메도우",
+        "explanation": "하늘에 떠다니는 바위와 부드러운 보라빛 잔디가 신비로운 분위기를 뿜어내는 고원 지역이다. 전작의 스카이 메도우 스테이지를 그대로 3D로 옮겨놓은 비주얼을 보여준다.",
+        "imagekey": "env107",
+        "monster": "Lesser Wisp(소형 위습),Beetle(딱정벌레),Lemurian(레무리안),Stone Golem(돌 골렘),Greater Wisp(초대형 위습),Jellyfish(해파리),Hermit Crab(소라게),Beetle Queen(여왕 딱정벌레),Stone Titan(돌 거인),Wandering Vagrant(떠도는 유랑자)"
+    }
+]
+}

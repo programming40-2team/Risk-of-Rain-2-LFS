@@ -11,15 +11,15 @@ public class CharacterintroductionPannel : MonoBehaviour
     }
     public void Init()
     {
-        foreach (Transform transforom in gameObject.GetComponentInChildren<Transform>())
+       foreach (Transform transforom in gameObject.GetComponentInChildren<Transform>())
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-        for(int i = 0; i < Managers.Data.CharacterDataDict.Keys.Count; i++)
+        foreach(var i in Managers.Data.CharacterDataDict.Keys)
         {
             CharacterSelectButton Character = Managers.UI.ShowSceneUI<CharacterSelectButton>();
             Character.transform.SetParent(gameObject.transform);
-            Character.Charactercode = Managers.Data.CharacterDataDict[i+1].charatercode;
+            Character.Charactercode = i;
         }
     }
 

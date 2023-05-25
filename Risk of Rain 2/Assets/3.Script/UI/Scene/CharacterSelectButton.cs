@@ -55,13 +55,14 @@ public class CharacterSelectButton : UI_Scene
     }
     private void CharacterPointerEnterEvent()
     {
+        Managers.Event.PostNotification(Define.EVENT_TYPE.MousePointerEnter, this);
         GetImage((int)EImages.Character_RectImage).color = Color.white;
         Debug.Log("캐릭터 화면 선택 하는 과정에서 효과음 넣으실껀가요?1");
     }
     private void CharacterPointerExitEvent()
     {
+        Managers.Event.PostNotification(Define.EVENT_TYPE.MousePointerExit, this);
         GetImage((int)EImages.Character_RectImage).color = rectImageprevcolor;
-        Debug.Log("캐릭터 화면 선택 하는 과정에서 효과음 넣으실껀가요?2");
     }
     private void ExchangeEffectOfCharacterSelectButton()
     {

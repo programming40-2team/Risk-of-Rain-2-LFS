@@ -38,17 +38,6 @@ public class UIManager
         }
     }
 
-    public T ShowWorldUI<T>(Transform parent = null, string name = null) where T : UI_Scene
-    {
-        if (string.IsNullOrEmpty(name))
-            name = typeof(T).Name;
-
-        GameObject go = Managers.Resource.Instantiate($"{name}");
-        if (parent != null)
-            go.transform.SetParent(parent);
-
-        return Util.GetOrAddComponent<T>(go);
-    }
 
     public T ShowSceneUI<T>(string name = null) where T : UI_Scene
     {
@@ -79,8 +68,18 @@ public class UIManager
 
         return popup;
     }
+    public T MakeWorldSpaceUI<T>(string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
 
+        GameObject go = Managers.Resource.Instantiate($"{name}");
+         Canvas canvas = go.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.WorldSpace;
+        canvas.worldCamera = Camera.main;
 
+        return Util.GetOrAddComponent<T>(go);
+    }
     public void ClosePopupUI(UI_Popup popup)
     {
         if (_popupStack.Count == 0)

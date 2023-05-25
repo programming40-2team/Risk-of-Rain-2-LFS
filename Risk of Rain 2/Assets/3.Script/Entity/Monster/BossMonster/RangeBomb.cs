@@ -22,8 +22,8 @@ public class RangeBomb : MonoBehaviour
             // Æø¹ß ÀÌÆåÆ®
             _player.GetComponent<Rigidbody>().AddForce(Vector3.up * _force);
             _player.GetComponent<Entity>().OnDamage(_damage);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 
     private void OnTriggerStay(Collider col)

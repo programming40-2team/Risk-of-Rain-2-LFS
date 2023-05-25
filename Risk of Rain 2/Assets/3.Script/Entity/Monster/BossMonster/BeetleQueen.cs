@@ -105,7 +105,7 @@ public class BeetleQueen : Entity
     }
 
     /// <summary>
-    /// 뒤꽁무니에서 3개 뿅뿅뿅 발사하는 스킬
+    /// 뒤꽁무니에서 구체 3개 뿅뿅뿅 발사하는 스킬
     /// </summary>
     public void StartWardSkill()
     {
@@ -133,6 +133,9 @@ public class BeetleQueen : Entity
         transform.Rotate(new Vector3(0, angle, 0));
     }
 
+    /// <summary>
+    /// 플레이어 위치에 시간차 범위 공격 하는 스킬
+    /// </summary>
     public void StartRangeBombSkill()
     {
         Vector3 pos = Vector3.zero;

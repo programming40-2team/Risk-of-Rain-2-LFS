@@ -43,14 +43,11 @@ public class CommandoSkill : MonoBehaviour
         if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity,
             (-1) - (1 << LayerMask.NameToLayer("Player"))))
         {
+            _aimY = _aimHit.point.y - transform.position.y;
+            _playerAnimator.SetFloat("Aim", _aimY / 249.5f);
+            Debug.Log(_aimY);
 
         }
-        //에임 애니메이션
-        //if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity))
-        //{
-        //    _aimY = _aimHit.point.y - transform.position.y;
-        //    _playerAnimator.SetFloat("Aim", _aimY);
-        //}
 
         if (_playerInput.Mouse1)
         {

@@ -94,7 +94,7 @@ public class BeetleQueen : Entity
     /// <summary>
     /// 산성담즙 6개 부채꼴로 발사하는 스킬
     /// </summary>
-    public void StartAcidBileSkill()
+    public IEnumerator StartAcidBileSkill()
     {
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
@@ -102,16 +102,40 @@ public class BeetleQueen : Entity
             GameObject obj = AcidBallPool.GetObject();
             obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
         }
+        yield return new WaitForSeconds(10f);
     }
 
     /// <summary>
     /// 뒤꽁무니에서 구체 3개 뿅뿅뿅 발사하는 스킬
     /// </summary>
-    public void StartWardSkill()
+    public IEnumerator StartWardSkill() // 체력 50% 미만
     {
         StartCoroutine(CreateWard_co());
+        yield return new WaitForSeconds(16f);
     }
 
+    /// <summary>
+    /// 플레이어 위치에 시간차 범위 공격 하는 스킬
+    /// </summary>
+    public IEnumerator StartRangeBombSkill() // 체력 25% 미만
+    {
+        Vector3 pos = Vector3.zero;
+        RaycastHit[] hits;
+        Ray ray = new Ray(_player.transform.position, Vector3.down);
+
+        hits = Physics.RaycastAll(ray);
+
+        foreach (RaycastHit obj in hits)
+        {
+            if (obj.transform.gameObject.CompareTag("Ground"))
+            {
+                pos = obj.point;
+                pos = new Vector3(pos.x, pos.y + 0.2f, pos.z);
+                Instantiate(BombRange, pos, Quaternion.identity);
+            }
+        }
+        yield return null;
+    }
     private IEnumerator CreateWard_co()
     {
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
@@ -133,25 +157,4 @@ public class BeetleQueen : Entity
         transform.Rotate(new Vector3(0, angle, 0));
     }
 
-    /// <summary>
-    /// 플레이어 위치에 시간차 범위 공격 하는 스킬
-    /// </summary>
-    public void StartRangeBombSkill()
-    {
-        Vector3 pos = Vector3.zero;
-        RaycastHit[] hits;
-        Ray ray = new Ray(_player.transform.position, Vector3.down);
-
-        hits = Physics.RaycastAll(ray);
-
-        foreach (RaycastHit obj in hits)
-        {
-            if (obj.transform.gameObject.CompareTag("Ground"))
-            {
-                pos = obj.point;
-                pos = new Vector3(pos.x, pos.y + 0.2f, pos.z);
-                Instantiate(BombRange, pos, Quaternion.identity);
-            }
-        }
-    }
 }

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSpawner : MonoBehaviour
+public class Altar : MonoBehaviour
 {
-    
     private MeshRenderer objectMesh;
     private Material mat;
     [SerializeField] Material highlightMaterial;
@@ -24,8 +23,6 @@ public class BossSpawner : MonoBehaviour
     {
         //bossRazer.Stop();
     }
-    
-
     
     private void OnTriggerStay(Collider other)
     {
@@ -68,11 +65,6 @@ public class BossSpawner : MonoBehaviour
     {
         objectMesh.material = mat;
     }
-
-
-
-
-
 }
 
 

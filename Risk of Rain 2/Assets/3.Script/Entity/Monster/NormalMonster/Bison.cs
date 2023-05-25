@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Bison : MonoBehaviour
@@ -9,12 +10,19 @@ public class Bison : MonoBehaviour
     float enemyMoveSpeed = 10f;
 
     private Rigidbody _enemyRigidbody;
+    private Vector3 previousPosition;
+
+    private void Awake()
+    {
+        TryGetComponent(out _enemyRigidbody);
+        TryGetComponent(out animator);
+    }
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
         StartCoroutine(UpdatetargetCoroutine());
-        TryGetComponent(out _enemyRigidbody);
+        previousPosition = transform.position;
+
     }
     private IEnumerator UpdatetargetCoroutine()
     {
@@ -24,7 +32,7 @@ public class Bison : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
     }
-
+    
     private void UpdateTarget()
     {
         Collider[] Cols = Physics.OverlapSphere(transform.position, 10f);
@@ -78,21 +86,21 @@ public class Bison : MonoBehaviour
 
             // SmoothDamp를 사용한 위치 보간
             Vector3 targetPosition = previousPosition + dir.normalized * enemyMoveSpeed * Time.deltaTime;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
+            //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
 
             _enemyRigidbody.MovePosition(transform.position);
 
             // 보간된 회전
             Quaternion targetRotation = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime);
 
             // 위치 보간을 위해 이전 위치 업데이트
             previousPosition = transform.position;
 
-
-
         }
-        private void OnTriggerStay(Collider other)
+       
+    }
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -100,5 +108,5 @@ public class Bison : MonoBehaviour
             transform.LookAt(targets.position);
         }
     }
-}
 
+}

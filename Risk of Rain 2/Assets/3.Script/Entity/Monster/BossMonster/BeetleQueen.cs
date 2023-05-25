@@ -7,41 +7,45 @@ public class BeetleQueen : Entity
     // TODO : 난이도에 따라 MaxHealth 증가시키기
     [SerializeField] private MonsterData _beetleQueenData;
 
-    private Entity targetEntity;
+    private GameObject _player;
 
-    public ObjectPool objectPool;
-    public List<GameObject> _acidList;
+    public ObjectPool AcidBallPool;
+    public ObjectPool AcidPoolPool;
+    public ObjectPool WardPool;
+    public GameObject BombRange;
 
-    private Animator _beetleQueenAnimator;
+    public Animator BeetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
     [Header("Transforms")]
-    [SerializeField] private Transform _playerTransform;
     [SerializeField] private Transform _beetleQueenMouthTransform;
+    [SerializeField] private Transform _beetleQueenButtTransform;
 
-    public Vector3 _dir;
-    public Vector3[] _dirArr = new Vector3[6];
 
-    private bool hasTarget
-    {
-        get
-        {
-            if (targetEntity != null && !targetEntity.IsDeath)
-            {
-                return true;
-            }
+    //private bool hasTarget
+    //{
+    //    get
+    //    {
+    //        if (targetEntity != null && !targetEntity.IsDeath)
+    //        {
+    //            return true;
+    //        }
 
-            return false;
-        }
-    }
+    //        return false;
+    //    }
+    //}
     private void Awake()
     {
-        TryGetComponent(out _beetleQueenAnimator);
-        objectPool = FindObjectOfType<ObjectPool>();
-        _acidList = new List<GameObject>();
+        TryGetComponent(out BeetleQueenAnimator);
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _beetleQueenMouthTransform = GameObject.FindGameObjectWithTag("BeetleQueenMouth").transform;
+        _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
+        AcidBallPool = GameObject.FindGameObjectWithTag("AcidBallPool").GetComponent<ObjectPool>();
+        AcidPoolPool = GameObject.FindGameObjectWithTag("AcidPoolPool").GetComponent<ObjectPool>();
+        WardPool = GameObject.FindGameObjectWithTag("WardPool").GetComponent<ObjectPool>();
     }
-    
+
     protected override void OnEnable()
     {
         SetUp(_beetleQueenData);
@@ -72,7 +76,7 @@ public class BeetleQueen : Entity
     public override void Die()
     {
         base.Die();
-        //_beetleQueenAnimator.SetTrigger("Die");
+        BeetleQueenAnimator.SetTrigger("Die");
     }
 
     private void SetUp(MonsterData data)
@@ -87,39 +91,64 @@ public class BeetleQueen : Entity
         HealthRegenAscent = data.RegenAscent;
     }
 
-    private void SetDirection()
-    {
-        _dir = new Vector3(_playerTransform.position.x - _beetleQueenMouthTransform.position.x, // 기준이 될 방향 벡터
-            _playerTransform.position.y - _beetleQueenMouthTransform.position.y,
-            _playerTransform.position.z - _beetleQueenMouthTransform.position.z).normalized;
-
-        for(int i = 0; i < _dirArr.Length; i++)
-        {
-            _dirArr[i] = new Vector3(0, 0, 0);
-        }
-    }
-    // 산성담즙 생성
-    private void CreateAcidBile()
-    {
-        for(int i = 0; i < 6; i++)
-        {
-            GameObject obj = objectPool.GetObject();
-            _acidList.Add(obj);
-            obj.transform.position = _beetleQueenMouthTransform.position;
-
-        }
-    }
-
-    //private IEnumerator AcidBile_co()
-    //{
-    //    CreateAcidBile();
-    //    yield return new WaitForSeconds(4f); // 나중에 수정
-    //    DeleteAcidBile();
-    //}
-
+    /// <summary>
+    /// 산성담즙 6개 부채꼴로 발사하는 스킬
+    /// </summary>
     public void StartAcidBileSkill()
     {
-        SetDirection();
-        CreateAcidBile();
+        Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
+        for (int i = 0; i < 6; i++)
+        {
+            GameObject obj = AcidBallPool.GetObject();
+            obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
+        }
+    }
+
+    /// <summary>
+    /// 뒤꽁무니에서 3개 뿅뿅뿅 발사하는 스킬
+    /// </summary>
+    public void StartWardSkill()
+    {
+        StartCoroutine(CreateWard_co());
+    }
+
+    private IEnumerator CreateWard_co()
+    {
+        Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
+        WaitForSeconds wfs = new WaitForSeconds(0.3f);
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject obj = WardPool.GetObject();
+            obj.transform.position = _beetleQueenButtTransform.position;
+            yield return wfs;
+        }
+    }
+
+    /// <summary>
+    /// 애니메이션 끝나고 회전시킬때 사용하는 메소드
+    /// </summary>
+    /// <param name="angle"></param>
+    public void Rotate(float angle)
+    {
+        transform.Rotate(new Vector3(0, angle, 0));
+    }
+
+    public void StartRangeBombSkill()
+    {
+        Vector3 pos = Vector3.zero;
+        RaycastHit[] hits;
+        Ray ray = new Ray(_player.transform.position, Vector3.down);
+
+        hits = Physics.RaycastAll(ray);
+
+        foreach (RaycastHit obj in hits)
+        {
+            if (obj.transform.gameObject.CompareTag("Ground"))
+            {
+                pos = obj.point;
+                pos = new Vector3(pos.x, pos.y + 0.1f, pos.z);
+                Instantiate(BombRange, pos, Quaternion.identity);
+            }
+        }
     }
 }

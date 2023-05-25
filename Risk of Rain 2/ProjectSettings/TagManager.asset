@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monster
+  - BeetleQueenMouth
+  - BeetleQueenButt
+  - GoalPoint
+  - JumpGear
+  - AcidBallPool
+  - AcidPoolPool
+  - WardPool
+  - Ground
+  - Test
   layers:
   - Default
   - TransparentFX

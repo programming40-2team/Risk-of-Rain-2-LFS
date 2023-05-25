@@ -28,7 +28,10 @@ public class Ward : MonoBehaviour
     {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").gameObject.transform;
         _beetleQueen = FindObjectOfType<BeetleQueen>();
-        _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform; // 여기 수정 해야함
+        if(_beetleQueen != null)
+        {
+            _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
+        }
         StartCoroutine(Shoot_co());
     }
 

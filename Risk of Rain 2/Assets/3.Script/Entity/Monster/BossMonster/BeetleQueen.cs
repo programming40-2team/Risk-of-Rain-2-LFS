@@ -111,7 +111,7 @@ public class BeetleQueen : Entity
     public IEnumerator StartWardSkill() // 체력 50% 미만
     {
         StartCoroutine(CreateWard_co());
-        yield return new WaitForSeconds(16f);
+        yield return new WaitForSeconds(18f);
     }
 
     /// <summary>
@@ -134,8 +134,9 @@ public class BeetleQueen : Entity
                 Instantiate(BombRange, pos, Quaternion.identity);
             }
         }
-        yield return null;
+        yield return new WaitForSeconds(25f);
     }
+
     private IEnumerator CreateWard_co()
     {
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);

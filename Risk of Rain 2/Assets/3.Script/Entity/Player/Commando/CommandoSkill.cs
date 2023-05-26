@@ -43,6 +43,8 @@ public class CommandoSkill : MonoBehaviour
     //Suppressive Fire (4번째 스킬)
     private float _suppressiveFireCooldown = 9f;
     private float _suppressiveFireCooldownRemain = 0f;
+    private WaitForSeconds _suppressiveFireInterval = new WaitForSeconds(0.16667f);
+    private WaitForSeconds _suppressiveFireDelay = new WaitForSeconds(1f);
 
     private void Awake()
     {
@@ -127,7 +129,9 @@ public class CommandoSkill : MonoBehaviour
     {
         if (_playerInput.Special && _suppressiveFireCooldownRemain <= 0f)
         {
+            _attackCoroutine ??= StartCoroutine(SuppressiveFire_co());
             _suppressiveFireCooldownRemain = _suppressiveFireCooldown;
+            
         }
     }
     private IEnumerator DoubleTap_co()
@@ -175,6 +179,19 @@ public class CommandoSkill : MonoBehaviour
         _attackCoroutine = null;
     }
 
+    private IEnumerator SuppressiveFire_co()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+
+            Debug.Log("실행");
+            _playerAnimator.SetTrigger("SuppressiveFire");
+            yield return _suppressiveFireInterval;
+        }
+        Debug.Log("코루틴 끝");
+        _attackCoroutine = null;
+
+    }
     private void CheckCooldown(ref float skillCooldownRemain)
     {
         if (skillCooldownRemain > 0)

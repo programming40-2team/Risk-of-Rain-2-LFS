@@ -6,15 +6,17 @@ using UnityEngine;
 /// </summary>
 public class PlayerStatus : Entity
 {
-    [HideInInspector]
-    public string Name;
-    [HideInInspector]
-    public float Mass;
-    [HideInInspector]
-    public float CriticalChance;
-    [HideInInspector]
-    public int MaxJumpCount;
     [SerializeField] private SurvivorsData _survivorsData;
+    //Survivors DAta에서 가져올 변수
+    [HideInInspector] public string Name;
+    [HideInInspector] public float Mass;
+    [HideInInspector] public float CriticalChance;
+    [HideInInspector] public int MaxJumpCount;
+    //Survivors Data와 상관없는 고정 변수
+    [HideInInspector] public int Level;
+    [HideInInspector] public float Exp;
+    [HideInInspector] public float Gold;
+
     protected override void OnEnable()
     {
         InitStatus();

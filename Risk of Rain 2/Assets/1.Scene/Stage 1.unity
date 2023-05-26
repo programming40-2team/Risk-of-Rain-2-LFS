@@ -1699,7 +1699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolingObject: {fileID: 100010, guid: 87698b9d467306440a17655d9c528f3a, type: 3}
-  count: 8
+  count: 6
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -5226,11 +5226,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
+  _survivorsData: {fileID: 11400000, guid: e61f5d4810dcf704098938cd91aa6170, type: 2}
   Name: 
   Mass: 0
   CriticalChance: 0
   MaxJumpCount: 0
-  _survivorsData: {fileID: 11400000, guid: e61f5d4810dcf704098938cd91aa6170, type: 2}
+  Level: 0
+  Exp: 0
+  Gold: 0
 --- !u!114 &919132147710366107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5360,11 +5363,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
+  _survivorsData: {fileID: 11400000, guid: 4329a249ed319564b99f2cf1b5eb28e5, type: 2}
   Name: 
   Mass: 0
   CriticalChance: 0
   MaxJumpCount: 0
-  _survivorsData: {fileID: 11400000, guid: 4329a249ed319564b99f2cf1b5eb28e5, type: 2}
+  Level: 0
+  Exp: 0
+  Gold: 0
 --- !u!114 &919132148430746634
 MonoBehaviour:
   m_ObjectHideFlags: 0

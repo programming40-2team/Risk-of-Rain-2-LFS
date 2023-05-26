@@ -16,39 +16,39 @@ public class NearCamera : MonoBehaviour
         _playerMaterialList = new List<Material>();
         _translucentMaterial = new List<Material>();
     }
-    //private void Start()
-    //{
-    //    _childrenArr = _player.GetComponentsInChildren<Transform>();
-    //    foreach (Transform child in _childrenArr)
-    //    {
-    //        if (child.TryGetComponent(out Renderer childRenderer))
-    //        {
-    //            _playerRendererList.Add(childRenderer);
-    //            _playerMaterialList.Add(childRenderer.material);
-    //        }
-    //    }
-    //    foreach (Material material in _playerMaterialList)
-    //    {
-    //        Material temp = material;
-    //        temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 0.5f);
-    //        _translucentMaterial.Add(temp);
-    //    }
-    //}
+    private void Start()
+    {
+        _childrenArr = _player.GetComponentsInChildren<Transform>();
+        foreach (Transform child in _childrenArr)
+        {
+            if (child.TryGetComponent(out Renderer childRenderer))
+            {
+                _playerRendererList.Add(childRenderer);
+                _playerMaterialList.Add(childRenderer.material);
+            }
+        }
+        foreach (Material material in _playerMaterialList)
+        {
+            Material temp = material;
+            temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 0.5f);
+            _translucentMaterial.Add(temp);
+        }
+    }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.U))
-    //    {
-    //        TranslucentMaterial();
-    //        Debug.Log("투명");
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.I))
-    //    {
-    //        ResetMaterial();
-    //        Debug.Log("복구");
-    //    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            TranslucentMaterial();
+            Debug.Log("투명");
+        }
+        else if (Input.GetKeyDown(KeyCode.I))
+        {
+            ResetMaterial();
+            Debug.Log("복구");
+        }
 
-    //}
+    }
     private void TranslucentMaterial()
     {
         for (int i = 0; i < _playerRendererList.Count; i++)

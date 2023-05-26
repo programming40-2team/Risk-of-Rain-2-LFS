@@ -12,14 +12,6 @@ public class BulletProjectile : MonoBehaviour
         _bulletPool = FindObjectOfType<ObjectPool>();
     }
 
-    
-    private void OnEnable()
-    {
-        //_bulletRigidbody.rotation = Quaternion.identity;
-        //float _speed = 40f;
-        //_bulletRigidbody.velocity = transform.forward * _speed;
-    }
-
     public void Shoot()
     {
         float _speed = 100f;

@@ -11,7 +11,6 @@ public class BulletProjectile : Projectile
         base.InitializeProjectile();
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Monster"))

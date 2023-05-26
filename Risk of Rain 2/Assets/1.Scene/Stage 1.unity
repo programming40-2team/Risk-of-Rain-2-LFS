@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolingObject: {fileID: 100014, guid: fcb5c083659d20643a5041a3ffa7b584, type: 3}
-  count: 8
+  count: 1
 --- !u!1 &23355535
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 56077ce3eac32d8408223bc51d1b5716, type: 2}
+  - {fileID: 2100000, guid: eb5fa0965b535d54c9b39c381ce5e42f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1999,7 +1999,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 56077ce3eac32d8408223bc51d1b5716, type: 2}
+  - {fileID: 2100000, guid: 4eb3805fcd7d373458d44e6c9c314b7a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

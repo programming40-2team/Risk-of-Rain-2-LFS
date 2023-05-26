@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 //스킬은 데이터 구조를 짜고 들어가지 않아서 많이 난잡합니다...
-public class LoadSkillTempo : MonoBehaviour,IListener
+public class LoadSkillTempo : MonoBehaviour, IListener
 {
     [SerializeField] Define.ESkillType SkillType;
     public string skillTitle;
@@ -28,12 +26,12 @@ public class LoadSkillTempo : MonoBehaviour,IListener
 
     public void OnEvent(Define.EVENT_TYPE Event_Type, Component Sender, object Param = null)
     {
-        if(Sender.TryGetComponent(out CharacterSelectButton Char))
+        if (Sender.TryGetComponent(out CharacterSelectButton Char))
         {
             // characterCode = Char.Charactercode;
             ChangeTitle(Char.Charactercode);
         }
-     
+
     }
     private void ChangeTitle(int charcode)
     {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
@@ -12,7 +10,7 @@ public class BulletProjectile : MonoBehaviour
         _bulletPool = FindObjectOfType<ObjectPool>();
     }
 
-    
+
     private void OnEnable()
     {
         //_bulletRigidbody.rotation = Quaternion.identity;
@@ -28,11 +26,11 @@ public class BulletProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Cube")
+        if (other.name == "Cube")
         {
             Debug.Log("맞기는 함");
         }
-        if(other.CompareTag("Monster"))
+        if (other.CompareTag("Monster"))
         {
             other.GetComponent<Entity>().OnDamage(10);
         }

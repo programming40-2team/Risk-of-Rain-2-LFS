@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AcidSkill : MonoBehaviour
@@ -9,7 +8,7 @@ public class AcidSkill : MonoBehaviour
     private float _shootingSpeed = 50f;
     private float _damage = 0;
 
-    
+
     private void OnEnable()
     {
         _beetleQueen = FindObjectOfType<BeetleQueen>();
@@ -19,7 +18,7 @@ public class AcidSkill : MonoBehaviour
     private IEnumerator Shoot_co() // 발사
     {
         float time = 0;
-        while(time < 5f)
+        while (time < 5f)
         {
             transform.position += transform.forward * _shootingSpeed * Time.deltaTime;
             time += Time.deltaTime;
@@ -37,8 +36,8 @@ public class AcidSkill : MonoBehaviour
     private void OnParticleCollision(GameObject collObj)
     {
         if (collObj != _beetleQueenObject)
-        {   
-            if(collObj.CompareTag("Player"))
+        {
+            if (collObj.CompareTag("Player"))
             {
                 Debug.Log("플레이어 아야");
                 collObj.GetComponent<Entity>().OnDamage(_damage);

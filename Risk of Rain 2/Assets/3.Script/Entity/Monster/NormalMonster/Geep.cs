@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Geep : MonoBehaviour
@@ -60,50 +59,50 @@ public class Geep : MonoBehaviour
 
     private void Update()
     {
-      
-            if (targets != null)
+
+        if (targets != null)
+        {
+            targets.position = new Vector3(targets.position.x, transform.position.y, targets.position.z);
+            Vector3 dir = targets.position - transform.position;
+
+            // 적과 대상 사이의 거리 계산
+            float distanceToTarget = Vector3.Distance(transform.position, targets.position);
+
+            if (distanceToTarget <= 2f) // 플레이어가 공격 범위 내에 있는지 확인
             {
-                targets.position = new Vector3(targets.position.x, transform.position.y, targets.position.z);
-                Vector3 dir = targets.position - transform.position;
-
-                // 적과 대상 사이의 거리 계산
-                float distanceToTarget = Vector3.Distance(transform.position, targets.position);
-
-                if (distanceToTarget <= 2f) // 플레이어가 공격 범위 내에 있는지 확인
-                {
-                    animator.SetBool("Run", false);
-                    animator.SetBool("Attack", true);
-                }
-                else if (distanceToTarget <= 10f) // 플레이어가 인식 범위 내에 있는지 확인
-                {
-                    animator.SetBool("Run", true);
-                    animator.SetBool("Attack", false);
-                }
-                else
-                {
-                    animator.SetBool("Run", false);
-                    animator.SetBool("Attack", false);
-                }
-
-
-                animator.SetBool("Run", true);
-
-                // SmoothDamp를 사용한 위치 보간
-                Vector3 targetPosition = previousPosition + dir.normalized * enemyMoveSpeed * Time.deltaTime;
-                transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
-
-                _enemyRigidbody.MovePosition(transform.position);
-
-                // 보간된 회전
-                Quaternion targetRotation = Quaternion.LookRotation(dir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime);
-
-                // 위치 보간을 위해 이전 위치 업데이트
-                previousPosition = transform.position;
-
-
-
+                animator.SetBool("Run", false);
+                animator.SetBool("Attack", true);
             }
+            else if (distanceToTarget <= 10f) // 플레이어가 인식 범위 내에 있는지 확인
+            {
+                animator.SetBool("Run", true);
+                animator.SetBool("Attack", false);
+            }
+            else
+            {
+                animator.SetBool("Run", false);
+                animator.SetBool("Attack", false);
+            }
+
+
+            animator.SetBool("Run", true);
+
+            // SmoothDamp를 사용한 위치 보간
+            Vector3 targetPosition = previousPosition + dir.normalized * enemyMoveSpeed * Time.deltaTime;
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
+
+            _enemyRigidbody.MovePosition(transform.position);
+
+            // 보간된 회전
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime);
+
+            // 위치 보간을 위해 이전 위치 업데이트
+            previousPosition = transform.position;
+
+
+
+        }
     }
 
     private void OnTriggerStay(Collider other)

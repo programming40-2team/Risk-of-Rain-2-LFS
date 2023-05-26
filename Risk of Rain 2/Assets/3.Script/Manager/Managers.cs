@@ -41,7 +41,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
             //초기화가 필요한 멤버들의 초기화를 진행해 줍니다.
-           //데이터 관련은 첫 씬인 MenMenu에서
+            //데이터 관련은 첫 씬인 MenMenu에서
         }
     }
 

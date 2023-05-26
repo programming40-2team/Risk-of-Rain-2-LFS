@@ -2130,7 +2130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1288952566161016173
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2147,7 +2147,7 @@ RectTransform:
   - {fileID: 6210240370539626014}
   - {fileID: 1680010082251649040}
   m_Father: {fileID: 6274045601885921169}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3839,7 +3839,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6274045600790306637}
   m_FillRect: {fileID: 6274045601366576900}
   m_HandleRect: {fileID: 0}
@@ -3879,7 +3879,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5efdbd8d07d68c8499f62e73d34b4269, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04023cc7456c37b43af348955c8c2b21, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6971,7 +6971,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6274045601331625679}
   m_FillRect: {fileID: 6274045600694791322}
   m_HandleRect: {fileID: 0}
@@ -7011,7 +7011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c262aec8136c9a54596f77559b9a7287, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86f34a91f88f53a42baf408224b3570e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7809,7 +7809,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6274045601557866448}
   m_FillRect: {fileID: 6274045600776065031}
   m_HandleRect: {fileID: 0}
@@ -7849,7 +7849,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6c7b981b0ab1cad40a3eb7845e2453b6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a104bddbabfdbf41a665e433f8e52b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8674,7 +8674,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6274045601843046061}
   m_FillRect: {fileID: 6274045601807419149}
   m_HandleRect: {fileID: 0}
@@ -8714,7 +8714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02e9467731dc0b945888c98960d0754f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2dd814415041ca04bb2073c90e54ac26, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8972,8 +8972,8 @@ RectTransform:
   - {fileID: 6274045602342992417}
   - {fileID: 6274045600877297501}
   - {fileID: 6274045601367324543}
-  - {fileID: 5553143718173337490}
   - {fileID: 1288952566161016173}
+  - {fileID: 5553143718173337490}
   - {fileID: 7386152065410572253}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -9000,7 +9000,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: -1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -13444,7 +13444,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6657842704621847125}
   m_FillRect: {fileID: 6657842704486724142}
   m_HandleRect: {fileID: 0}
@@ -13484,7 +13484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02e9467731dc0b945888c98960d0754f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8d3f25e30a42224c8fae7a227e68b0c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13934,7 +13934,7 @@ RectTransform:
   - {fileID: 7563148160239860253}
   - {fileID: 3004421629295427364}
   m_Father: {fileID: 6274045601885921169}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14576,7 +14576,7 @@ GameObject:
   - component: {fileID: 3657701110288956277}
   - component: {fileID: 2374301783366297996}
   - component: {fileID: 4921740833234087643}
-  - component: {fileID: 6111979525487321876}
+  - component: {fileID: 5765531461922517680}
   m_Layer: 5
   m_Name: BagItemPannel
   m_TagString: Untagged
@@ -14676,7 +14676,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &6111979525487321876
+--- !u!114 &5765531461922517680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

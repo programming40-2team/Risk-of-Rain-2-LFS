@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,7 +9,7 @@ public class Player : MonoBehaviour
                                // 코드상에서 변수명을 바꿀 시 유니티에서 입력한 값이 초기화됨
                                // c#은 m_ 전역벽수가 없으므로 멤버변수 구분이 필요 없음
 
- 
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.W))

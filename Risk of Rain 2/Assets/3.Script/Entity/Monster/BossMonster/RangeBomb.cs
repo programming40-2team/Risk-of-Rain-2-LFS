@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeBomb : MonoBehaviour
@@ -11,7 +10,7 @@ public class RangeBomb : MonoBehaviour
 
     private IEnumerator DeleteRangeBomb_co()
     {
-        yield return new WaitForSeconds (5f);
+        yield return new WaitForSeconds(5f);
         // 폭발
         // 띄우기 / 데미지는 400%
         // 마지막에 Destroy(gameObject);

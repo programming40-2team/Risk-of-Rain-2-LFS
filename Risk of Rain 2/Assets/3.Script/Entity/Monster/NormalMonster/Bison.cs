@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class Bison : MonoBehaviour
@@ -32,7 +30,7 @@ public class Bison : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
     }
-    
+
     private void UpdateTarget()
     {
         Collider[] Cols = Physics.OverlapSphere(transform.position, 10f);
@@ -98,7 +96,7 @@ public class Bison : MonoBehaviour
             previousPosition = transform.position;
 
         }
-       
+
     }
     private void OnTriggerStay(Collider other)
     {

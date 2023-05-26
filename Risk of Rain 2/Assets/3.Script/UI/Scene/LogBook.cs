@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class LogBook : UI_Scene,IListener
+public class LogBook : UI_Scene, IListener
 {
     //ㅈㅅ 고민중 프로퍼티 public으로 만들지.. 아직 설계가 ..좀!
     //LogBook과 DetailLogBook의 의존성?.. 최소화 노력중
@@ -13,9 +11,9 @@ public class LogBook : UI_Scene,IListener
     private int Envinfocode { get; set; } = -1;
     private int Monsterinfocode { get; set; } = -1;
     private int Characterinfocode { get; set; } = -1;
-    private bool iseverclicked ;
+    private bool iseverclicked;
     private DetailInLogBook detailInLogBook;
-    public  static Define.ECurrentClickType ClickType { get; private set; }=Define.ECurrentClickType.None;
+    public static Define.ECurrentClickType ClickType { get; private set; } = Define.ECurrentClickType.None;
     private Color subMenuImagePrevColor;
     private Color subMenuButtonPrevColor;
     enum ETexts
@@ -60,7 +58,7 @@ public class LogBook : UI_Scene,IListener
     public override void Init()
     {
         base.Init();
-      
+
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Define.SortingOrder.LogBookUI;
         Bind<TextMeshProUGUI>(typeof(ETexts));
         Bind<Button>(typeof(EButtons));
@@ -85,7 +83,7 @@ public class LogBook : UI_Scene,IListener
             .BindEvent((PointerEventData data) => BackButtonEvent());
         //각 버튼들 포인터 In Out 칼라 변경 이벤트
         GetButton((int)EButtons.ItemAndEquip).gameObject
-            .BindEvent((PointerEventData data) => GetImage((int)EImages.ItemAndEquipColor).color=Color.yellow,Define.UIEvent.PointerEnter);
+            .BindEvent((PointerEventData data) => GetImage((int)EImages.ItemAndEquipColor).color = Color.yellow, Define.UIEvent.PointerEnter);
         GetButton((int)EButtons.ItemAndEquip).gameObject
            .BindEvent((PointerEventData data) => GetImage((int)EImages.ItemAndEquipColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
         GetButton((int)EButtons.Monster).gameObject
@@ -182,12 +180,12 @@ public class LogBook : UI_Scene,IListener
                     = $"[{Managers.Data.ItemDataDict[Iteminfocode].itemname}]";
                 GetText((int)ETexts.IneventoryDescirbeText).text
                     = $"{Managers.Data.ItemDataDict[Iteminfocode].explanation}";
-             
+
                 GetText((int)ETexts.IneventoryIsAquireText).text = $"획득 여부 : {ConvertToSTring(Managers.Data.ItemDataDict[Iteminfocode].isHaveHad)}";
                 break;
             case Define.ECurrentClickType.Monster:
 
-               //각 도감별 코드에 따른 데이터 확인
+                //각 도감별 코드에 따른 데이터 확인
                 break;
             case Define.ECurrentClickType.Character:
                 GetText((int)ETexts.IneventoryDescirbeTitleBackGroundText).text
@@ -207,7 +205,7 @@ public class LogBook : UI_Scene,IListener
                 GetText((int)ETexts.IneventoryDescirbeText).text
                     = $"출현 몬스터 \n[{Managers.Data.EnvDataDict[Envinfocode].monster.Replace(",", "\n")}]";
                 GetText((int)ETexts.IneventoryDescirbeText).fontSize = 28;
-                GetText((int)ETexts.IneventoryIsAquireText).text = $"맵 개요 : { Managers.Data.EnvDataDict[Envinfocode].explanation}";
+                GetText((int)ETexts.IneventoryIsAquireText).text = $"맵 개요 : {Managers.Data.EnvDataDict[Envinfocode].explanation}";
                 GetText((int)ETexts.IneventoryIsAquireText).fontSize = 20;
                 //각 도감별 코드에 따른 데이터 확인
                 break;
@@ -228,22 +226,22 @@ public class LogBook : UI_Scene,IListener
         switch (_clickType)
         {
             case Define.ECurrentClickType.ItemAndEquip:
-                ClickType= Define.ECurrentClickType.ItemAndEquip;
+                ClickType = Define.ECurrentClickType.ItemAndEquip;
                 Get<GameObject>((int)EGameObjects.ItemIneventoryPannel).SetActive(true);
                 GetButton((int)EButtons.ItemAndEquip).GetComponent<Image>().color = Color.yellow;
                 break;
             case Define.ECurrentClickType.Monster:
-                ClickType= Define.ECurrentClickType.Monster;
+                ClickType = Define.ECurrentClickType.Monster;
                 Get<GameObject>((int)EGameObjects.MonsterIneventoryPannel).SetActive(true);
                 GetButton((int)EButtons.Monster).GetComponent<Image>().color = Color.yellow;
                 break;
             case Define.ECurrentClickType.Character:
-                ClickType= Define.ECurrentClickType.Character;
+                ClickType = Define.ECurrentClickType.Character;
                 Get<GameObject>((int)EGameObjects.CharacterIneventoryPannel).SetActive(true);
                 GetButton((int)EButtons.Character).GetComponent<Image>().color = Color.yellow;
                 break;
             case Define.ECurrentClickType.Enviroment:
-                ClickType= Define.ECurrentClickType.Enviroment;
+                ClickType = Define.ECurrentClickType.Enviroment;
                 Get<GameObject>((int)EGameObjects.EnvionmentIneventoryPannel).SetActive(true);
                 GetButton((int)EButtons.Environment).GetComponent<Image>().color = Color.yellow;
                 break;
@@ -265,7 +263,7 @@ public class LogBook : UI_Scene,IListener
                 {
                     Characterinfocode = charButton.Charactercode;
                 }
-                else if(Sender.TryGetComponent(out EnvButton envButton))
+                else if (Sender.TryGetComponent(out EnvButton envButton))
                 {
                     Envinfocode = envButton.EnvCode;
                 }
@@ -282,10 +280,10 @@ public class LogBook : UI_Scene,IListener
                 {
                     detailInLogBook.SpecialCode = CharButton.Charactercode;
                 }
-       
+
                 break;
         }
-   
+
     }
 
     private string ConvertToSTring(bool result)

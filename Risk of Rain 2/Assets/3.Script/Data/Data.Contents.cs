@@ -48,7 +48,7 @@ namespace Data
                 item.itemType = ItemType.Passive;
                 dict.Add(item.itemcode, item);
             }
-            foreach(ItemData item in Active)
+            foreach (ItemData item in Active)
             {
                 item.itemType = ItemType.Active;
                 dict.Add(item.itemcode, item);
@@ -57,7 +57,7 @@ namespace Data
         }
     }
     #endregion
-    
+
     #region Character
     [Serializable]
     public class CharacterData
@@ -142,7 +142,7 @@ namespace Data
             Dictionary<int, EnvData> dict = new Dictionary<int, EnvData>();
             foreach (EnvData item in enviroment)
             {
-              
+
                 dict.Add(item.enviromentcode, item);
             }
 

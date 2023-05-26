@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Altar : MonoBehaviour
@@ -23,7 +21,7 @@ public class Altar : MonoBehaviour
     {
         //bossRazer.Stop();
     }
-    
+
     private void OnTriggerStay(Collider other)
     {
         Transform bossSpawnPoint = spawnPoint;

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GameManager 
+public class GameManager
 {
     private Define.EDifficulty _difficulty = Define.EDifficulty.Easy;
     private bool _isTelePortActive = false;
@@ -16,7 +12,7 @@ public class GameManager
     {
         get { return _difficulty; }
         set
-        { 
+        {
             _difficulty = value;
             Managers.Event.DifficultyChange?.Invoke();
         }
@@ -36,12 +32,12 @@ public class GameManager
     public int PlayerLevel { get; set; } = 1;
     public bool IsTelePortActive
     {
-        get { return _isTelePortActive;}
+        get { return _isTelePortActive; }
         set
         {
             _isTelePortActive = value;
-           // 보스 소환시 나타날 이벤트들 로 일단 임시
-           // 추후 상의 후 어디다가 보스 생성 이벤트들을 어디서 어떻게 연동시켜줄지 고려
+            // 보스 소환시 나타날 이벤트들 로 일단 임시
+            // 추후 상의 후 어디다가 보스 생성 이벤트들을 어디서 어떻게 연동시켜줄지 고려
         }
     }
     public float PlayingTIme { get; set; } = 0;

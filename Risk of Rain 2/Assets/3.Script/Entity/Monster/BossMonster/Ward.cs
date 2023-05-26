@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ward : MonoBehaviour
@@ -37,7 +35,7 @@ public class Ward : MonoBehaviour
     //    _startPos = _beetleQueenButtTransform.position;
     //    _endPos = _playerTransform.position;
     //    _maxHeight = transform.position.y + 10f;
-        
+
     //    float dh = _endPos.y - _startPos.y;
     //    float mh = _maxHeight - _startPos.y;
 

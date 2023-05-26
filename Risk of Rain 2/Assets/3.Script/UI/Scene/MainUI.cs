@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainUI : UI_Scene
 {
@@ -57,6 +55,7 @@ public class MainUI : UI_Scene
             .BindEvent((PointerEventData data) => GameStartEvent());
         GetButton((int)Buttons.DicitonaryButton).gameObject
             .BindEvent((PointerEventData data) => ShowLogBook());
+
     }
     private void Start()
     {

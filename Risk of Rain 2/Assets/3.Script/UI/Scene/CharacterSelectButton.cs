@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CharacterSelectButton : UI_Scene,IListener
+public class CharacterSelectButton : UI_Scene, IListener
 {
 
     public int Charactercode = -1;
@@ -34,9 +32,9 @@ public class CharacterSelectButton : UI_Scene,IListener
         GetComponent<Canvas>().sortingOrder = (int)Define.SortingOrder.CharacterSelectButton;
         Bind<Image>(typeof(EImages));
         Bind<GameObject>(typeof(EGameObjects));
-     
 
-        GetImage((int)EImages.CharacterImage).sprite= Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[Charactercode].iconkey);
+
+        GetImage((int)EImages.CharacterImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[Charactercode].iconkey);
         gameObject.GetComponent<Button>().enabled = false;
         if (Charactercode.Equals(7))
         {
@@ -87,7 +85,7 @@ public class CharacterSelectButton : UI_Scene,IListener
             GetImage((int)EImages.SelectChangeColorImage).color = selectImageprevcolor;
             Get<GameObject>((int)EGameObjects.Character_RectImage_Image).SetActive(true);
         }
-       
+
     }
     private void EventExcute()
     {
@@ -99,7 +97,7 @@ public class CharacterSelectButton : UI_Scene,IListener
 
     public void OnEvent(Define.EVENT_TYPE Event_Type, Component Sender, object Param = null)
     {
-        if(Sender.TryGetComponent(out CharacterSelectButton button))
+        if (Sender.TryGetComponent(out CharacterSelectButton button))
         {
             if (!button.Charactercode.Equals(Charactercode))
             {

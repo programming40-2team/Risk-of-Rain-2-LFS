@@ -1,8 +1,5 @@
-using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
@@ -53,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         CheckGround();
         CheckSprint();
         Rotate();
-       
+
         if (_playerInput.Jump)
         {
             Jump();

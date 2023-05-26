@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterIneventoryPannel : MonoBehaviour
@@ -15,7 +13,7 @@ public class CharacterIneventoryPannel : MonoBehaviour
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-        foreach(var i in Managers.Data.CharacterDataDict.Keys)
+        foreach (var i in Managers.Data.CharacterDataDict.Keys)
         {
             InvenCharacterButton Character = Managers.UI.ShowSceneUI<InvenCharacterButton>();
             Character.transform.SetParent(gameObject.transform);

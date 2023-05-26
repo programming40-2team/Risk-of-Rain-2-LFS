@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIItemController : MonoBehaviour
@@ -16,12 +14,12 @@ public class UIItemController : MonoBehaviour
         // 작은 물체의 크기 조정
         SetObjectSize(gameObject, cubeSize);
         rotateSpeed = 50.0f;
-        Debug.DrawRay(gameObject.transform.position, 15000*Vector3.forward, Color.red);
+        Debug.DrawRay(gameObject.transform.position, 15000 * Vector3.forward, Color.red);
         gameObject.transform.GetChild(0).transform.localPosition = Vector3.zero;
     }
     private void Update()
     {
-     
+
         transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
         // gameObject.transform.Rotate(Vector3.up,Time.deltaTime*rotateSpeed); 
     }

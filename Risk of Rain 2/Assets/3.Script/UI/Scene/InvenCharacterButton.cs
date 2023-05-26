@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -46,10 +44,10 @@ public class InvenCharacterButton : UI_Scene
 
         if (Managers.Data.CharacterDataDict[Charactercode].isActive)
         {
-            GetImage((int)EImages.CharacterImage).color= Color.white;
+            GetImage((int)EImages.CharacterImage).color = Color.white;
         }
     }
-   private void CharcterButtonClcik()
+    private void CharcterButtonClcik()
     {
         Managers.Event.PostNotification(Define.EVENT_TYPE.ClickLogBookDetail, this);
 

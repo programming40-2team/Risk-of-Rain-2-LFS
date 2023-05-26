@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Diffidculty : UI_Scene,IListener
+public class Diffidculty : UI_Scene, IListener
 {
     public Define.EDifficulty myDifficulty;
     enum EButtons
@@ -25,9 +23,9 @@ public class Diffidculty : UI_Scene,IListener
         Managers.Event.AddListener(Define.EVENT_TYPE.DifficultyChange, this);
         gameObject.transform.localScale = Vector3.one;
         gameObject.transform.localPosition = Vector3.zero;
-        gameObject.transform.localRotation= Quaternion.identity;
+        gameObject.transform.localRotation = Quaternion.identity;
         GetImage((int)EImages.DifficultySelectEffect).color = Color.white;
-        
+
         switch (myDifficulty)
         {
             case Define.EDifficulty.Easy:
@@ -62,11 +60,11 @@ public class Diffidculty : UI_Scene,IListener
     {
         Managers.Game.Difficulty = myDifficulty;
         Managers.Event.PostNotification(Define.EVENT_TYPE.DifficultyChange, this);
-   
+
     }
     private void DifficultyButtonPointerEnter()
     {
-       
+
         Managers.Event.PostNotification(Define.EVENT_TYPE.MousePointerEnter, this);
     }
     private void DifficultyButtonPointerExit()
@@ -82,7 +80,7 @@ public class Diffidculty : UI_Scene,IListener
                 SetDifficultyImage();
                 break;
         }
-        
+
     }
     private void SetDifficultyImage()
     {

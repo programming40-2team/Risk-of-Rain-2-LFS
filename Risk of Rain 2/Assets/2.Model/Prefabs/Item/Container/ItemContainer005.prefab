@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 537302942962130579}
+  - component: {fileID: 4637935197656799661}
+  - component: {fileID: 5535584957603857800}
   m_Layer: 0
   m_Name: mdlShippingDroneSlotL (merge) (2)
   m_TagString: Untagged
@@ -32,6 +34,35 @@ Transform:
   m_Father: {fileID: 71595058149195641}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -66.565}
+--- !u!114 &4637935197656799661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537302942962130578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb400292bad0d4fabf1f85b9105702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Itemprice: 0
+  ContainItemCode: 0
+  itemmodeltrans: {fileID: 4649241534196396792}
+--- !u!136 &5535584957603857800
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537302942962130578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.025469134
+  m_Height: 0.13656473
+  m_Direction: 2
+  m_Center: {x: -0.031182297, y: 0.014286755, z: 0.015198868}
 --- !u!1 &537302943550077720
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +74,7 @@ GameObject:
   - component: {fileID: 537302943550077721}
   - component: {fileID: 537302943550077723}
   - component: {fileID: 537302943550077722}
+  - component: {fileID: 2538603237102411693}
   m_Layer: 0
   m_Name: mdlShippingDroneSlotL
   m_TagString: Untagged
@@ -113,6 +145,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2538603237102411693
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537302943550077720}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019260854, y: 0.077336155, z: 0.017088102}
+  m_Center: {x: -0.015920939, y: -0.021823408, z: 0.0005909073}
 --- !u!1 &537302943786677001
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +169,7 @@ GameObject:
   - component: {fileID: 537302943786677002}
   - component: {fileID: 537302943786677012}
   - component: {fileID: 537302943786677003}
+  - component: {fileID: 768903634595333376}
   m_Layer: 0
   m_Name: mdlShippingDroneSlotL
   m_TagString: Untagged
@@ -194,6 +240,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &768903634595333376
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537302943786677001}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019260826, y: 0.070389576, z: 0.017088104}
+  m_Center: {x: -0.015920995, y: -0.018350149, z: 0.00059091323}
 --- !u!1 &537302944882900794
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +262,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 537302944882900795}
+  - component: {fileID: 1645432450851089708}
+  - component: {fileID: 4243826889619438098}
   m_Layer: 0
   m_Name: mdlShippingDroneSlotL (merge) (1)
   m_TagString: Untagged
@@ -226,6 +287,35 @@ Transform:
   m_Father: {fileID: 71595058149195641}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 116.063}
+--- !u!114 &1645432450851089708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537302944882900794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb400292bad0d4fabf1f85b9105702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Itemprice: 0
+  ContainItemCode: 0
+  itemmodeltrans: {fileID: 3827906018639923542}
+--- !u!136 &4243826889619438098
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537302944882900794}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.027058115
+  m_Height: 0.1575387
+  m_Direction: 2
+  m_Center: {x: -0.038521606, y: -0.002123857, z: 0.028769245}
 --- !u!1 &734509149252492646
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +328,7 @@ GameObject:
   - component: {fileID: 8370916015181518605}
   - component: {fileID: 7888363903152917215}
   m_Layer: 0
-  m_Name: ItemSpawnPosition1
+  m_Name: ItemSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,6 +406,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 71595057037548731}
+  - component: {fileID: 7930399378183123357}
+  - component: {fileID: 6598497162496752296}
   m_Layer: 0
   m_Name: mdlShippingDroneSlotL (merge)
   m_TagString: Untagged
@@ -339,6 +431,35 @@ Transform:
   m_Father: {fileID: 71595058149195641}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40.215}
+--- !u!114 &7930399378183123357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843734435434448385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb400292bad0d4fabf1f85b9105702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Itemprice: 0
+  ContainItemCode: 0
+  itemmodeltrans: {fileID: 550705372950536533}
+--- !u!136 &6598497162496752296
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843734435434448385}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.03250784
+  m_Height: 0.15289499
+  m_Direction: 2
+  m_Center: {x: -0.049400434, y: 0.009649085, z: 0.022518111}
 --- !u!1 &843734436327957955
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +506,7 @@ GameObject:
   - component: {fileID: 1415069646328098028}
   - component: {fileID: 6891286350444126391}
   m_Layer: 0
-  m_Name: ItemSpawnPosition2
+  m_Name: ItemSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -578,7 +699,7 @@ GameObject:
   - component: {fileID: 5170222989962010867}
   - component: {fileID: 9058057724237615550}
   m_Layer: 0
-  m_Name: ItemSpawnPosition3
+  m_Name: ItemSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,6 +779,7 @@ GameObject:
   - component: {fileID: 2150621313572124583}
   - component: {fileID: 4976408683187426125}
   - component: {fileID: 6414377446272160314}
+  - component: {fileID: 6004826606872298983}
   m_Layer: 0
   m_Name: mdlShippingDroneSlotL
   m_TagString: Untagged
@@ -728,3 +850,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6004826606872298983
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8658088051668452326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019260855, y: 0.055073053, z: 0.017088108}
+  m_Center: {x: -0.015920933, y: -0.010691757, z: 0.00059091364}

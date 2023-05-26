@@ -14,6 +14,7 @@ public class CommandoSkill : MonoBehaviour
 
     [SerializeField] private GameObject _leftMuzzle;
     [SerializeField] private GameObject _rightMuzzle;
+    [SerializeField] private GameObject _centerMuzzle;
     private Coroutine _attackCoroutine;
 
     //aiming
@@ -33,6 +34,7 @@ public class CommandoSkill : MonoBehaviour
     private float _phaseRoundCooldown = 3f;
     private float _phaseRoundCooldownRemain = 0f;
     private WaitForSeconds _phaseRoundDelay = new WaitForSeconds(1f);
+    private ObjectPool _phaseRoundObjectPool;
 
     //Tactical Dive (3번째 스킬)
     private float _tacticalDiveCooldown = 4f;
@@ -51,7 +53,9 @@ public class CommandoSkill : MonoBehaviour
         TryGetComponent(out _playerInput);
         TryGetComponent(out _playerAnimator);
         TryGetComponent(out _playerRigidbody);
-        _bulletObjectPool = FindObjectOfType<ObjectPool>();
+        
+        _bulletObjectPool = GameObject.Find("BulletPool").GetComponent<ObjectPool>();
+        _phaseRoundObjectPool = GameObject.Find("PhaseRoundPool").GetComponent<ObjectPool>();
     }
     private void Start()
     {
@@ -152,7 +156,7 @@ public class CommandoSkill : MonoBehaviour
             _rightMuzzleEffect.SetActive(true);
         }
         bullet.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);
-        bullet.GetComponent<BulletProjectile>().Shoot();
+        bullet.GetComponent<Projectile>().ShootForward();
         _isRight = !_isRight;
         yield return _doubleTapDelay;
         _isCanShooting = true;
@@ -161,6 +165,12 @@ public class CommandoSkill : MonoBehaviour
     private IEnumerator PhaseRound_co()
     {
         _playerAnimator.SetTrigger("PhaseRound");
+        GameObject PhaseRound = _phaseRoundObjectPool.GetObject();
+        Vector3 bulletDirection;
+        bulletDirection = _aimHit.point - _centerMuzzle.transform.position;
+        PhaseRound.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);
+        PhaseRound.transform.position = _centerMuzzle.transform.position;
+        PhaseRound.GetComponent<Projectile>().ShootForward();
         yield return _phaseRoundDelay;
         _attackCoroutine = null;
     }

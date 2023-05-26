@@ -2,21 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletProjectile : MonoBehaviour
+public class BulletProjectile : Projectile
 {
-    private Rigidbody _bulletRigidbody;
-    private ObjectPool _bulletPool;
-    private void Awake()
+    protected override void InitializeProjectile()
     {
-        TryGetComponent(out _bulletRigidbody);
-        _bulletPool = FindObjectOfType<ObjectPool>();
+        _projectilePoolName = "BulletPool";
+        _projectileSpeed = 120f;
+        base.InitializeProjectile();
     }
 
-    public void Shoot()
-    {
-        float _speed = 130f;
-        _bulletRigidbody.velocity = transform.forward * _speed;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +18,6 @@ public class BulletProjectile : MonoBehaviour
         {
             other.GetComponent<Entity>().OnDamage(10);
         }
-        _bulletPool.ReturnObject(this.gameObject);
+        _projectileObjectPool.ReturnObject(this.gameObject);
     }
 }

@@ -18,6 +18,8 @@ public class BeetleQueen : Entity
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
+    public bool IsRun = false;
+
     [Header("Transforms")]
     [SerializeField] private Transform _beetleQueenMouthTransform;
     [SerializeField] private Transform _beetleQueenButtTransform;
@@ -94,31 +96,36 @@ public class BeetleQueen : Entity
     /// <summary>
     /// 산성담즙 6개 부채꼴로 발사하는 스킬
     /// </summary>
-    public IEnumerator StartAcidBileSkill()
+    public void StartAcidBileSkill()
     {
+        IsRun = true;
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {
             GameObject obj = AcidBallPool.GetObject();
             obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
         }
-        yield return new WaitForSeconds(10f);
+        //yield return new WaitForSeconds(10f);
+        IsRun = false;
     }
 
     /// <summary>
     /// 뒤꽁무니에서 구체 3개 뿅뿅뿅 발사하는 스킬
     /// </summary>
-    public IEnumerator StartWardSkill() // 체력 50% 미만
+    public void StartWardSkill() // 체력 50% 미만
     {
+        IsRun = true;
         StartCoroutine(CreateWard_co());
-        yield return new WaitForSeconds(18f);
+        //yield return new WaitForSeconds(18f);
+        IsRun = false;
     }
 
     /// <summary>
     /// 플레이어 위치에 시간차 범위 공격 하는 스킬
     /// </summary>
-    public IEnumerator StartRangeBombSkill() // 체력 25% 미만
+    public void StartRangeBombSkill() // 체력 25% 미만
     {
+        IsRun = true;
         Vector3 pos = Vector3.zero;
         RaycastHit[] hits;
         Ray ray = new Ray(_player.transform.position, Vector3.down);
@@ -134,7 +141,8 @@ public class BeetleQueen : Entity
                 Instantiate(BombRange, pos, Quaternion.identity);
             }
         }
-        yield return new WaitForSeconds(25f);
+        //yield return new WaitForSeconds(20f);
+        IsRun = false;
     }
 
     private IEnumerator CreateWard_co()

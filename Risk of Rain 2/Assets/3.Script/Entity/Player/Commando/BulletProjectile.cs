@@ -14,16 +14,12 @@ public class BulletProjectile : MonoBehaviour
 
     public void Shoot()
     {
-        float _speed = 100f;
+        float _speed = 130f;
         _bulletRigidbody.velocity = transform.forward * _speed;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Cube")
-        {
-            Debug.Log("맞기는 함");
-        }
         if(other.CompareTag("Monster"))
         {
             other.GetComponent<Entity>().OnDamage(10);

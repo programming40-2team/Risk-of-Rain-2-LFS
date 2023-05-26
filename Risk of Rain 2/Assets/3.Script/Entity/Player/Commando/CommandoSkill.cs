@@ -85,7 +85,6 @@ public class CommandoSkill : MonoBehaviour
         {
             if (_attackCoroutine == null)
             {
-                Debug.Log(string.Format("여기가 안돼야 함 : {0}", _attackCoroutine == null));
                 if (_isCanShooting)
                 {
                     StartCoroutine(nameof(DoubleTap_co));
@@ -183,12 +182,10 @@ public class CommandoSkill : MonoBehaviour
     {
         for (int i = 0; i < 6; i++)
         {
-
-            Debug.Log("실행");
             _playerAnimator.SetTrigger("SuppressiveFire");
+            _rightMuzzleEffect.SetActive(true);
             yield return _suppressiveFireInterval;
         }
-        Debug.Log("코루틴 끝");
         _attackCoroutine = null;
 
     }

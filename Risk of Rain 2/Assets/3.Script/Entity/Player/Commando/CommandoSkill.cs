@@ -47,6 +47,7 @@ public class CommandoSkill : MonoBehaviour
     private float _suppressiveFireCooldownRemain = 0f;
     private WaitForSeconds _suppressiveFireInterval = new WaitForSeconds(0.16667f);
     private WaitForSeconds _suppressiveFireDelay = new WaitForSeconds(1f);
+    private ObjectPool _spFirePool;
 
     private void Awake()
     {
@@ -56,6 +57,7 @@ public class CommandoSkill : MonoBehaviour
         
         _bulletObjectPool = GameObject.Find("BulletPool").GetComponent<ObjectPool>();
         _phaseRoundObjectPool = GameObject.Find("PhaseRoundPool").GetComponent<ObjectPool>();
+        _spFirePool = GameObject.Find("SpFirePool").GetComponent<ObjectPool>();
     }
     private void Start()
     {
@@ -194,6 +196,7 @@ public class CommandoSkill : MonoBehaviour
         {
             _playerAnimator.SetTrigger("SuppressiveFire");
             _rightMuzzleEffect.SetActive(true);
+            _spFirePool.GetObject().transform.position = _aimHit.point;
             yield return _suppressiveFireInterval;
         }
         _attackCoroutine = null;

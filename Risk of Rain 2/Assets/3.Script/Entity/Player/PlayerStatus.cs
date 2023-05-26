@@ -15,7 +15,6 @@ public class PlayerStatus : Entity
     [HideInInspector]
     public int MaxJumpCount;
     [SerializeField] private SurvivorsData _survivorsData;
-
     protected override void OnEnable()
     {
         InitStatus();

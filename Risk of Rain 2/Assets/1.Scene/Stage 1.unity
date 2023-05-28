@@ -5226,7 +5226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
-  Health: 0
   _survivorsData: {fileID: 11400000, guid: e61f5d4810dcf704098938cd91aa6170, type: 2}
 --- !u!114 &919132147710366107
 MonoBehaviour:
@@ -5357,7 +5356,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
-  Health: 0
   _survivorsData: {fileID: 11400000, guid: 4329a249ed319564b99f2cf1b5eb28e5, type: 2}
 --- !u!114 &919132148430746634
 MonoBehaviour:

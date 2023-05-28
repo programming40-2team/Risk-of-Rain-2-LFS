@@ -22,48 +22,46 @@ public class CommandoSkill : MonoBehaviour
     private float _centerAimY = 124.75f;
     private RaycastHit _aimHit;
 
-    /// <summary>
     /// 아래는 스킬 관련 변수들입니다. 기존 쿨타임은 프로퍼티화를 시켰으나
     /// 남은 쿨타임은 ref참조가 필요하기에 Get"스킬이름"Remain 함수를 만들었습니다.
-    /// </summary>
 
     //DoubleTap (1번째 스킬 / 평타 / 노쿨)
     private ObjectPool _bulletObjectPool;
     private bool _isRight;
     private bool _isCanShooting;
-    private WaitForSeconds _doubleTapDelay = new WaitForSeconds(0.167f);
+    private readonly WaitForSeconds _doubleTapDelay = new WaitForSeconds(0.167f);
     [SerializeField] private GameObject _leftMuzzleEffect;
     [SerializeField] private GameObject _rightMuzzleEffect;
-
+    
     //PhaseRound (2번째 스킬)
     //public float _phaseRoundCooldown = 3f;
-    public float _phaseRoundCooldown { get; private set; } = 3f;
+    public float PhaseRoundCooldown { get; private set; } = 3f;
     private float _phaseRoundCooldownRemain  = 0f;
     public float GetPhaseRoundCooldownRemain()
     {
         return _phaseRoundCooldownRemain;
     }
-    private WaitForSeconds _phaseRoundDelay = new WaitForSeconds(1f);
+    private readonly WaitForSeconds _phaseRoundDelay = new WaitForSeconds(1f);
     private ObjectPool _phaseRoundObjectPool;
 
     //Tactical Dive (3번째 스킬)
-    public float _tacticalDiveCooldown { get; private set; } = 4f;
+    public float TacticalDiveCooldown { get; private set; } = 4f;
     private float _tacticalDiveCooldownRemain = 0f;
     public float GetTacticalDiveCooldownRemain()
     {
         return _tacticalDiveCooldownRemain;
     }
-    private float _diveForce = 7f;
-    private WaitForSeconds _taticalDiveDelay = new WaitForSeconds(1f);
+    private readonly float _diveForce = 7f;
+    private readonly WaitForSeconds _taticalDiveDelay = new WaitForSeconds(1f);
 
     //Suppressive Fire (4번째 스킬)
-    public float _suppressiveFireCooldown { get; private set; } = 9f;
+    public float SuppressiveFireCooldown { get; private set; } = 9f;
     private float _suppressiveFireCooldownRemain = 0f;
     public float GetSuppressiveFireCooldownRemain()
     {
         return _suppressiveFireCooldownRemain;
     }
-    private WaitForSeconds _suppressiveFireInterval = new WaitForSeconds(0.16667f);
+    private readonly WaitForSeconds _suppressiveFireInterval = new WaitForSeconds(0.16667f);
     private ObjectPool _spFirePool;
 
     private void Awake()
@@ -134,7 +132,7 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Mouse2Down && _phaseRoundCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(PhaseRound_co());
-            _phaseRoundCooldownRemain = _phaseRoundCooldown;
+            _phaseRoundCooldownRemain = PhaseRoundCooldown;
         }
     }
 
@@ -143,7 +141,7 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Shift && _tacticalDiveCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(TacticalDive_co());
-            _tacticalDiveCooldownRemain = _tacticalDiveCooldown;
+            _tacticalDiveCooldownRemain = TacticalDiveCooldown;
         }
     }
     private void CheckSuppressiveFire()
@@ -151,7 +149,7 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Special && _suppressiveFireCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(SuppressiveFire_co());
-            _suppressiveFireCooldownRemain = _suppressiveFireCooldown;
+            _suppressiveFireCooldownRemain = SuppressiveFireCooldown;
             
         }
     }
@@ -186,8 +184,7 @@ public class CommandoSkill : MonoBehaviour
         GameObject PhaseRound = _phaseRoundObjectPool.GetObject();
         Vector3 bulletDirection;
         bulletDirection = _aimHit.point - _centerMuzzle.transform.position;
-        PhaseRound.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);
-        PhaseRound.transform.position = _centerMuzzle.transform.position;
+        PhaseRound.transform.SetPositionAndRotation(_centerMuzzle.transform.position, Quaternion.LookRotation(bulletDirection, Vector3.up));
         PhaseRound.GetComponent<Projectile>().ShootForward();
         yield return _phaseRoundDelay;
         _attackCoroutine = null;

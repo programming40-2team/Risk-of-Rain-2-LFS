@@ -31,6 +31,7 @@ public class Entity : MonoBehaviour
     [HideInInspector]
     public float MaxHealth; // 레벨에 따라 늘어남
     public float Health { get; protected set; }
+  
     public bool IsDeath { get; protected set; }
     public event Action OnDeath;
 

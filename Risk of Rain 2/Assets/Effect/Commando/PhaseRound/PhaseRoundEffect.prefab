@@ -14330,6 +14330,7 @@ GameObject:
   - component: {fileID: 19859174}
   - component: {fileID: 8989165058849111314}
   - component: {fileID: 4440504306454612369}
+  - component: {fileID: 18119631879986988}
   m_Layer: 8
   m_Name: PhaseRoundEffect
   m_TagString: Untagged
@@ -17996,21 +17997,15 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
-    type: 1
+    type: 0
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes:
-    - {fileID: 400014}
-    - {fileID: 400006}
-    - {fileID: 400002}
-    - {fileID: 400000}
-    - {fileID: 400010}
-    - {fileID: 0}
+    m_Planes: []
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -19164,3 +19159,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &18119631879986988
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.704
+  m_Center: {x: 0, y: 0, z: 0}

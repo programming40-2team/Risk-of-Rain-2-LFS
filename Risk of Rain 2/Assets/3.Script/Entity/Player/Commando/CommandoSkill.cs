@@ -22,6 +22,11 @@ public class CommandoSkill : MonoBehaviour
     private float _centerAimY = 124.75f;
     private RaycastHit _aimHit;
 
+    /// <summary>
+    /// 아래는 스킬 관련 변수들입니다. 기존 쿨타임은 프로퍼티화를 시켰으나
+    /// 남은 쿨타임은 ref참조가 필요하기에 Get"스킬이름"Remain 함수를 만들었습니다.
+    /// </summary>
+
     //DoubleTap (1번째 스킬 / 평타 / 노쿨)
     private ObjectPool _bulletObjectPool;
     private bool _isRight;
@@ -31,22 +36,34 @@ public class CommandoSkill : MonoBehaviour
     [SerializeField] private GameObject _rightMuzzleEffect;
 
     //PhaseRound (2번째 스킬)
-    private float _phaseRoundCooldown = 3f;
-    private float _phaseRoundCooldownRemain = 0f;
+    //public float _phaseRoundCooldown = 3f;
+    public float _phaseRoundCooldown { get; private set; } = 3f;
+    private float _phaseRoundCooldownRemain  = 0f;
+    public float GetPhaseRoundCooldownRemain()
+    {
+        return _phaseRoundCooldownRemain;
+    }
     private WaitForSeconds _phaseRoundDelay = new WaitForSeconds(1f);
     private ObjectPool _phaseRoundObjectPool;
 
     //Tactical Dive (3번째 스킬)
-    private float _tacticalDiveCooldown = 4f;
+    public float _tacticalDiveCooldown { get; private set; } = 4f;
     private float _tacticalDiveCooldownRemain = 0f;
+    public float GetTacticalDiveCooldownRemain()
+    {
+        return _tacticalDiveCooldownRemain;
+    }
     private float _diveForce = 7f;
     private WaitForSeconds _taticalDiveDelay = new WaitForSeconds(1f);
 
     //Suppressive Fire (4번째 스킬)
-    private float _suppressiveFireCooldown = 9f;
+    public float _suppressiveFireCooldown { get; private set; } = 9f;
     private float _suppressiveFireCooldownRemain = 0f;
+    public float GetSuppressiveFireCooldownRemain()
+    {
+        return _suppressiveFireCooldownRemain;
+    }
     private WaitForSeconds _suppressiveFireInterval = new WaitForSeconds(0.16667f);
-    private WaitForSeconds _suppressiveFireDelay = new WaitForSeconds(1f);
     private ObjectPool _spFirePool;
 
     private void Awake()
@@ -72,7 +89,6 @@ public class CommandoSkill : MonoBehaviour
         CheckTacticalDive();
         CheckSuppressiveFire();
         CheckAllCooldown();
-        Debug.Log(_attackCoroutine == null);
     }
 
     private void Aiming()

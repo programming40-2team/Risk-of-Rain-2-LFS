@@ -16,15 +16,10 @@ public class PhaseRoundProjectile : Projectile
     {
         StartCoroutine(EndPhaseRound_co());
     }
-
-    private void OnParticleCollision(GameObject other)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Monster"))
-        {
-            other.GetComponent<Entity>().OnDamage(10f);
-        }
     }
-
     private IEnumerator EndPhaseRound_co()
     {
         yield return _phaseRoundLifeTime;

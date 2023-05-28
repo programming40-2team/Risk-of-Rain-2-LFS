@@ -8,14 +8,16 @@ public class PlayerStatus : Entity
 {
     [SerializeField] private SurvivorsData _survivorsData;
     //Survivors DAta에서 가져올 변수
-    [HideInInspector] public string Name;
-    [HideInInspector] public float Mass;
-    [HideInInspector] public float CriticalChance;
-    [HideInInspector] public int MaxJumpCount;
+    public string Name { get; private set; }
+    public float Mass { get; private set; }
+    public float CriticalChance { get; private set; }
+    public int MaxJumpCount { get; private set; }
+
     //Survivors Data와 상관없는 고정 변수
-    [HideInInspector] public int Level;
-    [HideInInspector] public float Exp;
-    [HideInInspector] public float Gold;
+    public int Level { get; private set; }
+    public float Exp { get; private set; }
+    public float Gold { get; private set; }
+    public float ChanceBlockDamage { get; private set; }
 
     protected override void OnEnable()
     {
@@ -34,5 +36,23 @@ public class PlayerStatus : Entity
         Mass = _survivorsData.Mass;
         CriticalChance = _survivorsData.CriticalChance;
         MaxJumpCount = _survivorsData.MaxJumpCount;
+    }
+
+    public override void OnDamage(float damage)
+    {
+        if(GetBlockChanceResult())
+        {
+            base.OnDamage(damage);
+        }
+    }
+
+    private bool GetBlockChanceResult()
+    {
+        bool result = false;
+        if(Random.Range(0,100) <= ChanceBlockDamage)
+        {
+            result = true;
+        }
+        return result;
     }
 }

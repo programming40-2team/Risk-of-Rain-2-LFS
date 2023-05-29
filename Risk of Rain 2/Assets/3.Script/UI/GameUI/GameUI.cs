@@ -10,7 +10,7 @@ public class GameUI : UI_Game, IListener
     string isnotActiveTeleport = "<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오";
     string isActtiveTeleport = "보스를 처치하십시오!";
     string doneTeleporyEvent = "텔리포트로 들어가주십시오";
-
+    public float RunTime = 0f;
     #region UI기본 요소들 Bind
     enum Sliders
     {
@@ -156,9 +156,9 @@ public class GameUI : UI_Game, IListener
     }
     private void FixedUpdate()
     {
-        float time = Time.time - Managers.Game.PlayingTIme;
-        int minutes = (int)(time / 60); // 분
-        int seconds = (int)(time % 60); // 초
+        RunTime = Time.time - Managers.Game.PlayingTIme;
+        int minutes = (int)(RunTime / 60); // 분
+        int seconds = (int)(RunTime % 60); // 초
 
         GetText((int)Texts.TimeText).text = $"{minutes:00}:{seconds:00}";
 
@@ -230,6 +230,8 @@ public class GameUI : UI_Game, IListener
     private void DifficultyImageChagngeEvent()
     {
         GetImage((int)Images.StageImage).sprite = Managers.Resource.LoadSprte($"Difficultyicon{(int)Managers.Game.Difficulty + 1}");
+        Debug.Log("만약 난이도 에 따라서 시작 Sprite를 다르게 하고 싶으면 여기에 추가적인설정");
+        // (int)Manager.Game.Difficulty++1 + [ 난이도 보정값] 하면 될듯
     }
     private void EventOfSkill()
     {
@@ -287,7 +289,14 @@ public class GameUI : UI_Game, IListener
         if (_Sender.TryGetComponent(out ItemContainer _itemCOntainer))
         {
             GetText((int)Texts.InteractionKeyText).text = "E";
-            GetText((int)Texts.InteractionContentsText).text = $"상자 열기($<color=#FFD700>{_itemCOntainer.Itemprice}</color>)";
+            if (Managers.Game.Gold > _itemCOntainer.Itemprice)
+            {
+                GetText((int)Texts.InteractionContentsText).text = $"상자 열기($<color=#FFD700>{_itemCOntainer.Itemprice}</color>)";
+            }
+            else
+            {
+                GetText((int)Texts.InteractionContentsText).text = $"상자 열기($<color=#FF0000>{_itemCOntainer.Itemprice}</color>)";
+            }
             //이런식으로 처리 하지만 결국 그 가격에 따라 아이템을 사는 (상자를 여는 행위) 자체는 상자 ItemContainer에서 진행
             // 다른 상호작용 키들도 마찬가지 여기는 UI만 관리하고 동작들은 해당 class 내에서 처리합시다.!!
         }

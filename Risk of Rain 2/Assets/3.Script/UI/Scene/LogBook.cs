@@ -14,8 +14,8 @@ public class LogBook : UI_Scene, IListener
     private bool iseverclicked;
     private DetailInLogBook detailInLogBook;
     public static Define.ECurrentClickType ClickType { get; private set; } = Define.ECurrentClickType.None;
-    private Color subMenuImagePrevColor;
-    private Color subMenuButtonPrevColor;
+    private Color _subMenuImagePrevColor;
+    private Color _subMenuButtonPrevColor;
     enum ETexts
     {
         ItemAndEquipText,
@@ -65,8 +65,8 @@ public class LogBook : UI_Scene, IListener
         Bind<GameObject>(typeof(EGameObjects));
         Bind<Image>(typeof(EImages));
 
-        subMenuImagePrevColor = GetImage((int)EImages.CharacterColor).color;
-        subMenuButtonPrevColor = GetButton((int)EButtons.ItemAndEquip).GetComponent<Image>().color;
+        _subMenuImagePrevColor = GetImage((int)EImages.CharacterColor).color;
+        _subMenuButtonPrevColor = GetButton((int)EButtons.ItemAndEquip).GetComponent<Image>().color;
         Managers.Event.AddListener(Define.EVENT_TYPE.LogBookItem, this);
         Managers.Event.AddListener(Define.EVENT_TYPE.ClickLogBookDetail, this);
 
@@ -85,19 +85,19 @@ public class LogBook : UI_Scene, IListener
         GetButton((int)EButtons.ItemAndEquip).gameObject
             .BindEvent((PointerEventData data) => GetImage((int)EImages.ItemAndEquipColor).color = Color.yellow, Define.UIEvent.PointerEnter);
         GetButton((int)EButtons.ItemAndEquip).gameObject
-           .BindEvent((PointerEventData data) => GetImage((int)EImages.ItemAndEquipColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
+           .BindEvent((PointerEventData data) => GetImage((int)EImages.ItemAndEquipColor).color = _subMenuImagePrevColor, Define.UIEvent.PointerExit);
         GetButton((int)EButtons.Monster).gameObject
          .BindEvent((PointerEventData data) => GetImage((int)EImages.MonsterColor).color = Color.yellow, Define.UIEvent.PointerEnter);
         GetButton((int)EButtons.Monster).gameObject
-           .BindEvent((PointerEventData data) => GetImage((int)EImages.MonsterColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
+           .BindEvent((PointerEventData data) => GetImage((int)EImages.MonsterColor).color = _subMenuImagePrevColor, Define.UIEvent.PointerExit);
         GetButton((int)EButtons.Environment).gameObject
                  .BindEvent((PointerEventData data) => GetImage((int)EImages.EnvironmentColor).color = Color.yellow, Define.UIEvent.PointerEnter);
         GetButton((int)EButtons.Environment).gameObject
-           .BindEvent((PointerEventData data) => GetImage((int)EImages.EnvironmentColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
+           .BindEvent((PointerEventData data) => GetImage((int)EImages.EnvironmentColor).color = _subMenuImagePrevColor, Define.UIEvent.PointerExit);
         GetButton((int)EButtons.Character).gameObject
                  .BindEvent((PointerEventData data) => GetImage((int)EImages.CharacterColor).color = Color.yellow, Define.UIEvent.PointerEnter);
         GetButton((int)EButtons.Character).gameObject
-           .BindEvent((PointerEventData data) => GetImage((int)EImages.CharacterColor).color = subMenuImagePrevColor, Define.UIEvent.PointerExit);
+           .BindEvent((PointerEventData data) => GetImage((int)EImages.CharacterColor).color = _subMenuImagePrevColor, Define.UIEvent.PointerExit);
 
 
 
@@ -218,10 +218,10 @@ public class LogBook : UI_Scene, IListener
         Get<GameObject>((int)EGameObjects.EnvionmentIneventoryPannel).SetActive(false);
         Get<GameObject>((int)EGameObjects.CharacterIneventoryPannel).SetActive(false);
         Get<GameObject>((int)EGameObjects.MonsterIneventoryPannel).SetActive(false);
-        GetButton((int)EButtons.ItemAndEquip).GetComponent<Image>().color = subMenuButtonPrevColor;
-        GetButton((int)EButtons.Environment).GetComponent<Image>().color = subMenuButtonPrevColor;
-        GetButton((int)EButtons.Character).GetComponent<Image>().color = subMenuButtonPrevColor;
-        GetButton((int)EButtons.Monster).GetComponent<Image>().color = subMenuButtonPrevColor;
+        GetButton((int)EButtons.ItemAndEquip).GetComponent<Image>().color = _subMenuButtonPrevColor;
+        GetButton((int)EButtons.Environment).GetComponent<Image>().color = _subMenuButtonPrevColor;
+        GetButton((int)EButtons.Character).GetComponent<Image>().color = _subMenuButtonPrevColor;
+        GetButton((int)EButtons.Monster).GetComponent<Image>().color = _subMenuButtonPrevColor;
 
         switch (_clickType)
         {

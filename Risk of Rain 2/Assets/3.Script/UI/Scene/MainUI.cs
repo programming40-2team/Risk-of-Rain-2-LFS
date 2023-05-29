@@ -7,9 +7,6 @@ public class MainUI : UI_Scene
 {
     [SerializeField]
     private string _username = "Noname";
-    GameObject MouseCursor;
-
-
     enum Buttons
     {
         GameStartButton,

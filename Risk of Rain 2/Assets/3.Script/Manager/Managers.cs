@@ -21,7 +21,6 @@ public class Managers : MonoBehaviour
 
     public static GameManager Game { get { return Instance._game; } }
 
-
     void Start()
     {
         Init();
@@ -49,6 +48,7 @@ public class Managers : MonoBehaviour
     {
         Scene.Clear();
         UI.Clear();
+        Event.ClearEventList();
 
     }
 }

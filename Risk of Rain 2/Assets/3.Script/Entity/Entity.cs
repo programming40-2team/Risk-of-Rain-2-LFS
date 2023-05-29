@@ -28,17 +28,18 @@ public class Entity : MonoBehaviour
     // --------------------------------------
     [HideInInspector]
     public float MaxHealth; // 레벨에 따라 늘어남
-    public float Health { get; protected set; }
+    public float Health { get; set; }                              //<---- Health 프로퍼티 _health 
     public bool IsDeath { get; protected set; }
     public event Action OnDeath;
 
-    public float Damage { get; protected set; } // 공격력
-    public float MoveSpeed { get; protected set; } // 속도
+    public float Damage { get;  set; } // 공격력
+    public float MoveSpeed { get;  set; } // 속도
     public float Armor { get; protected set; } // 방어력
     public float MaxHealthAscent { get; protected set; } // 레벨당 체력 상승치
     public float DamageAscent { get; protected set; } // 레벨당 공격력 상승치
-    public float HealthRegen { get; protected set; }// 체력 회복량
+    public float HealthRegen { get;  set; }// 체력 회복량
     public float HealthRegenAscent { get; protected set; }// 레벨당 체력 회복량
+ 
 
     protected virtual void OnEnable()
     {

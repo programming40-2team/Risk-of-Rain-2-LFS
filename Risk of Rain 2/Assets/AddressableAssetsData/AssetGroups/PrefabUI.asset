@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Prefab
+  m_Name: PrefabUI
   m_EditorClassIdentifier: 
-  m_GroupName: Prefab
+  m_GroupName: PrefabUI
   m_Data:
     m_SerializedData: []
   m_GUID: 10c1c0a236c3dae4298a49cffa847096
@@ -89,6 +89,16 @@ MonoBehaviour:
     - Asynchronous_Load
   - m_GUID: 07e04cec400f64b4ba122240c4ad545d
     m_Address: ItemContainerPriceUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2b30ededbeed87d49b0790d9550af2f4
+    m_Address: GameUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 911ccbe50d8e6d740b348fc792eb7d47
+    m_Address: MonsterHpBar
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load

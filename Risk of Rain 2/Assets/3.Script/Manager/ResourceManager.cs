@@ -53,7 +53,13 @@ public class ResourceManager
 
         Object.Destroy(go);
     }
+    public void Destroy(GameObject go,float time)
+    {
+        if (go == null)
+            return;
 
+        Object.Destroy(go,time);
+    }
     #region 어드레서블
     public void LoadAsync<T>(string key, Action<T> callback = null) where T : UnityEngine.Object
     {

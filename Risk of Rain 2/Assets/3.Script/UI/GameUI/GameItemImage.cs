@@ -27,7 +27,7 @@ public class GameItemImage : UI_Game
     {
         Init();
     }
-    private void SetItemGameUI(int _Itemcode)
+    public void SetItemGameUI(int _Itemcode)
     {
         if (Itemcode == _Itemcode)
         {

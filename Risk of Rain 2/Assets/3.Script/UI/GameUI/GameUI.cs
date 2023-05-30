@@ -227,7 +227,7 @@ public class GameUI : UI_Game, IListener
 
         GetImage((int)Images.TeleCheckTrue).enabled = false;
     }
-    private void DifficultyImageChagngeEvent()
+    private void DifficultyImageChagngeEvent(int _)
     {
         GetImage((int)Images.StageImage).sprite = Managers.Resource.LoadSprte($"Difficultyicon{(int)Managers.Game.Difficulty + 1}");
         Debug.Log("만약 난이도 에 따라서 시작 Sprite를 다르게 하고 싶으면 여기에 추가적인설정");

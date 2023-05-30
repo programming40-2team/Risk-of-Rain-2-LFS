@@ -60,14 +60,14 @@ public class MainUI : UI_Scene
     }
     private void GameStartEvent()
     {
-        Debug.Log("게임 시작 버튼 누르면 나올 소리 여기다!");
+        Debug.Log("게임 시작 버튼 누르면 나올 소리 여기");
 
         Managers.UI.ShowSceneUI<GameStartUI>();
 
     }
     private void ShowLogBook()
     {
-        Debug.Log("로그북 버튼 누르면 나올 소리 여기다!");
+        Debug.Log("로그북 버튼 누르면 나올 소리 여기");
         Managers.UI.ShowSceneUI<LogBook>();
     }
 

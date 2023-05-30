@@ -192,7 +192,10 @@ public class PrimitivePassiveItem : ItemPrimitiive
             {
                 GameObject item1007 = Managers.Resource.Instantiate("Item1014Skill");
                 item1007.transform.position = Player.transform.position;
-                item1007.SetRandomPositionSphere(1, 1, 1);
+
+                item1007.SetRandomPositionSphere(1, 1, 5);
+                Debug.Log("위치 2개의 직선 을 이어주는 연기 필요");
+                Debug.Log("연동방법   함수 (item1007.transform.position ,item1007.SetRandomPositionSphere(1, 1, 5) ");
                 item1007.GetOrAddComponent<Item1007Skill>();
                 
             }

@@ -270,7 +270,6 @@ public class LogBook : UI_Scene, IListener
                 SetText();
                 break;
             case Define.EVENT_TYPE.ClickLogBookDetail:
-                Debug.Log("ClickLogBookDetail 이벤트 발송");
                 detailInLogBook.gameObject.SetActive(true);
                 if (Sender.TryGetComponent(out ItemButton itemButtons))
                 {

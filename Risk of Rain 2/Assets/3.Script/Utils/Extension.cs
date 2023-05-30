@@ -43,6 +43,12 @@ public static class Extension
 
         return newPosition;
     }
+    public static bool IsGrounded(this GameObject go,float yOffSet,float groundCheckDistance)
+    {
+        return Physics.Raycast(go.transform.position + new Vector3(0, yOffSet, 0), Vector3.down, out _, groundCheckDistance) ? true : false;
+    }
+
+
 }
 
 

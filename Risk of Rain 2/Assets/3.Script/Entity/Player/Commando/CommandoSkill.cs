@@ -1,10 +1,7 @@
 using System.Collections;
-<<<<<<< HEAD
-=======
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
->>>>>>> feature/Player
 using UnityEngine;
 using System;
 

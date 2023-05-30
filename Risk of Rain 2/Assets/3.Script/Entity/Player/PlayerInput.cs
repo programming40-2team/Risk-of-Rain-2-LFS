@@ -8,11 +8,8 @@ public class PlayerInput : MonoBehaviour
 
     public float Move { get; private set; }
     public float HorizontalDirection { get; private set; }
-<<<<<<< HEAD
-=======
     public float MoveRaw { get; private set; }
     public float HorizontalDirectionRaw { get; private set; }
->>>>>>> feature/Player
 
     public bool Jump { get; private set; }
     public bool Sprint { get; private set; }

@@ -7,14 +7,10 @@ TagManager:
   - Monster
   - BeetleQueenMouth
   - BeetleQueenButt
-  - GoalPoint
   - JumpGear
-  - AcidBallPool
-  - AcidPoolPool
-  - WardPool
   - Ground
-  - Test
   - LemurianMouth
+  - Goal Point
   layers:
   - Default
   - TransparentFX

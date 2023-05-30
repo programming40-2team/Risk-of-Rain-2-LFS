@@ -28,13 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private readonly float _groundCheckDistance = 0.11f;
     private readonly float _yOffset = 0.1f;
 
-<<<<<<< HEAD
     //이동에 영향을 주는 아이템 관련
     public int _bonusJumpCount = 0;
     public float _bonusMoveSpeed = 1f;
 
-=======
->>>>>>> feature/Player
     private void Awake()
     {
         TryGetComponent(out _playerAnimator);

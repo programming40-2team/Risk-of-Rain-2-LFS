@@ -1,32 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Altar : MonoBehaviour
 {
-    private MeshRenderer objectMesh;
-    private Material mat;
-    [SerializeField] Material highlightMaterial;
+    private MeshRenderer _objectMesh;
+    private Material _mat;
+    [SerializeField] Material _highlightMaterial;
 
-    [SerializeField] GameObject bossPrefab;
-    [SerializeField] Transform spawnPoint;
-    [SerializeField] ParticleSystem bossRazer;
+    [SerializeField] GameObject _bossPrefab;
+    [SerializeField] Transform _spawnPoint;
+    [SerializeField] ParticleSystem _bossRazer;
 
     private void Awake()
     {
         //bossRazer = GetComponent<ParticleSystem>();
-        objectMesh = GetComponent<MeshRenderer>();
-        mat = objectMesh.material;
+        _objectMesh = GetComponent<MeshRenderer>();
+        _mat = _objectMesh.material;
     }
     private void Start()
     {
-        if (bossRazer.isPlaying)
+        if (_bossRazer.isPlaying)
         {
-            bossRazer.Stop();
+            _bossRazer.Stop();
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        Transform bossSpawnPoint = spawnPoint;
+        Transform bossSpawnPoint = _spawnPoint;
 
         if (other.CompareTag("Player"))
         {
@@ -36,7 +38,7 @@ public class Altar : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("입력");
-                Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);  //제단에서 e키를 누르면 보스가 소환될 지점
+                Instantiate(_bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);  //제단에서 e키를 누르면 보스가 소환될 지점
                 BossRazer();
             }
         }
@@ -52,21 +54,19 @@ public class Altar : MonoBehaviour
 
     private void BossRazer()
     {
-        if(!bossRazer.isPlaying)
+        if (!_bossRazer.isPlaying)
         {
-            bossRazer.Play();
+            _bossRazer.Play();
         }
     }
 
     private void Highlight()
     {
-        objectMesh.material = highlightMaterial;
+        _objectMesh.material = _highlightMaterial;
     }
 
     private void ResetHighlight()
     {
-        objectMesh.material = mat;
+        _objectMesh.material = _mat;
     }
 }
-
-

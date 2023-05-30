@@ -5,18 +5,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 /// </summary>
 public class PlayerStatus : Entity
 {
-<<<<<<< HEAD
-    [HideInInspector]
-    public string Name;
-    [HideInInspector]
-    public float Mass;
-    [HideInInspector]
-    public float CriticalChance;
-    [HideInInspector]
-    public int MaxJumpCount;
     public  SurvivorsData _survivorsData;
-=======
-    [SerializeField] private SurvivorsData _survivorsData;
     //Survivors Data에서 가져올 변수
     public string Name { get; private set; }
     public float Mass { get; private set; }
@@ -28,7 +17,6 @@ public class PlayerStatus : Entity
     public float Exp { get; private set; } = 100f;
     public float CurrentExp { get; private set; }
     public float ChanceBlockDamage { get; private set; }
->>>>>>> feature/Player
 
     protected override void OnEnable()
     {

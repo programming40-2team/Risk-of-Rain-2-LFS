@@ -7,10 +7,14 @@ public class GameUI : UI_Game, IListener
 {
 
     Color PrevSkillFillImageColor;
+    Color FullChargeSkillFillImageColor;
     string isnotActiveTeleport = "<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오";
     string isActtiveTeleport = "보스를 처치하십시오!";
     string doneTeleporyEvent = "텔리포트로 들어가주십시오";
     public float RunTime = 0f;
+
+    private CommandoSkill characterSkill;
+
     #region UI기본 요소들 Bind
     enum Sliders
     {
@@ -94,8 +98,11 @@ public class GameUI : UI_Game, IListener
         Bind<Image>(typeof(Images));
         Bind<Button>(typeof(Buttons));
 
+        #region 스킬
+        characterSkill = FindObjectOfType<CommandoSkill>();
         PrevSkillFillImageColor = GetImage((int)Images.SkillRFillImage).color;
-
+        FullChargeSkillFillImageColor = Color.clear;
+        #endregion
         #region  이벤트 연동
         Managers.Event.DifficultyChange -= DifficultyImageChagngeEvent;
         Managers.Event.DifficultyChange += DifficultyImageChagngeEvent;
@@ -183,6 +190,8 @@ public class GameUI : UI_Game, IListener
             Get<GameObject>((int)GameObjects.EscPannel).SetActive(true);
             Time.timeScale = 0f;
         }
+
+        EventOfSkill();
     }
 
     // 상호작용을 누구와 할것인가에 따라 이벤트 구현방식 다르게 할예정?..
@@ -216,14 +225,19 @@ public class GameUI : UI_Game, IListener
         Get<Slider>((int)Sliders.PlayerHpSlider).value = 1;
         Get<Slider>((int)Sliders.ExpSlider).value = 1;
         Get<Slider>((int)Sliders.BossHpSlider).value = 1;
+
+
     }
     private void InitImage()
     {
-        GetImage((int)Images.SkillM1FillImage).color = PrevSkillFillImageColor;
-        GetImage((int)Images.SkillM2FillImage).color = PrevSkillFillImageColor;
-        GetImage((int)Images.SkillShiftFillImage).color = PrevSkillFillImageColor;
-        GetImage((int)Images.SkillRFillImage).color = PrevSkillFillImageColor;
-        GetImage((int)Images.SkillQFillImage).color = PrevSkillFillImageColor;
+        GetImage((int)Images.SkillM1FillImage).color = FullChargeSkillFillImageColor;
+        GetImage((int)Images.SkillM2FillImage).color = FullChargeSkillFillImageColor;
+        GetImage((int)Images.SkillShiftFillImage).color = FullChargeSkillFillImageColor;
+        GetImage((int)Images.SkillRFillImage).color = FullChargeSkillFillImageColor;
+        GetImage((int)Images.SkillQFillImage).color = FullChargeSkillFillImageColor;
+
+
+
 
         GetImage((int)Images.TeleCheckTrue).enabled = false;
     }
@@ -235,17 +249,51 @@ public class GameUI : UI_Game, IListener
     }
     private void EventOfSkill()
     {
-        //Get<Slider>((int)Sliders.SkillM1).value = (float)현재 남은시간/ 스킬쿨타임;
-        //Get<Slider>((int)Sliders.SkillM2).value = (float)현재 남은시간/ 스킬쿨타임;
-        //Get<Slider>((int)Sliders.SkillShift).value = (float)현재 남은시간/ 스킬쿨타임;
 
-        //Get<Slider>((int)Sliders.SkillR).value = (float)현재 남은시간/ 스킬쿨타임;
-        //if (Get<Slider>((int)Sliders.SkillQ).value.CompareTo(0.95) > 0)
-        //{
-        //    Color color = Color.white;
-        //    color.a = 0;
-        //    GetImage((int)Images.SkillQFillImage).color = color;
-        //}
+        Get<Slider>((int)Sliders.SkillM2).value = characterSkill.GetPhaseRoundCooldownRemain() / characterSkill.PhaseRoundCooldown;
+        if (Get<Slider>((int)Sliders.SkillM2).value.Equals(0))
+        {
+            GetImage((int)Images.SkillM2FillImage).color = FullChargeSkillFillImageColor;
+            GetText((int)Texts.SkillM2CoolTime).text = string.Empty;
+        }
+        else
+        {
+            GetImage((int)Images.SkillM2FillImage).color = PrevSkillFillImageColor;
+            GetText((int)Texts.SkillM2CoolTime).text = $"{characterSkill.GetPhaseRoundCooldownRemain():0.0}";
+        }
+        Get<Slider>((int)Sliders.SkillShift).value = characterSkill.GetTacticalDiveCooldownRemain() / characterSkill.TacticalDiveCooldown;
+        if (Get<Slider>((int)Sliders.SkillShift).value.Equals(0))
+        {
+            GetImage((int)Images.SkillShiftFillImage).color = FullChargeSkillFillImageColor;
+
+            GetText((int)Texts.SkillShiftCoolTime).text = "";
+        }
+        else
+        {
+            GetImage((int)Images.SkillShiftFillImage).color = PrevSkillFillImageColor;
+
+            GetText((int)Texts.SkillShiftCoolTime).text = $"{characterSkill.GetTacticalDiveCooldownRemain():0.0}";
+        }
+
+        Get<Slider>((int)Sliders.SkillR).value = characterSkill.GetSuppressiveFireCooldownRemain() / characterSkill.SuppressiveFireCooldown;
+        if (Get<Slider>((int)Sliders.SkillR).value.Equals(0))
+        {
+            GetImage((int)Images.SkillRFillImage).color = FullChargeSkillFillImageColor;
+
+            GetText((int)Texts.SkillRCoolTime).text = "";
+        }
+        else
+        {
+            GetImage((int)Images.SkillRFillImage).color = PrevSkillFillImageColor;
+
+            GetText((int)Texts.SkillRCoolTime).text = $"{characterSkill.GetSuppressiveFireCooldownRemain():0.0}";
+        }
+
+
+
+
+        //R 스킬 쿨타임 스킬 추가해야 함 -> 플레이어 침투 예정
+
     }
     //여기는 한번 더 머지  받으면 (플레이어 경험치, Hp 에 따라서 이벤트를 연동시켜줄 예정) 
     private void EventOfPlayerHp()
@@ -335,5 +383,4 @@ public class GameUI : UI_Game, IListener
 
         }
     }
-
 }

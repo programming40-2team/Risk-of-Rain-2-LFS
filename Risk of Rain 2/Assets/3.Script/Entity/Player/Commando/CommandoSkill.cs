@@ -131,7 +131,6 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Mouse2Down && _phaseRoundCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(PhaseRound_co());
-            _phaseRoundCooldownRemain = PhaseRoundCooldown;
         }
     }
 
@@ -140,7 +139,7 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Shift && _tacticalDiveCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(TacticalDive_co());
-            _tacticalDiveCooldownRemain = TacticalDiveCooldown;
+            
         }
     }
     private void CheckSuppressiveFire()
@@ -148,7 +147,7 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Special && _suppressiveFireCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(SuppressiveFire_co());
-            _suppressiveFireCooldownRemain = SuppressiveFireCooldown;
+            
             
         }
     }
@@ -179,6 +178,7 @@ public class CommandoSkill : MonoBehaviour
 
     private IEnumerator PhaseRound_co()
     {
+        _phaseRoundCooldownRemain = PhaseRoundCooldown;
         _playerAnimator.SetTrigger("PhaseRound");
         GameObject PhaseRound = _phaseRoundObjectPool.GetObject();
         Vector3 bulletDirection;
@@ -191,6 +191,7 @@ public class CommandoSkill : MonoBehaviour
 
     private IEnumerator TacticalDive_co()
     {
+        _tacticalDiveCooldownRemain = TacticalDiveCooldown;
         _playerAnimator.SetFloat("RollHorizon", _playerInput.HorizontalDirectionRaw);
         _playerAnimator.SetFloat("RollVertical", _playerInput.MoveRaw);
         _playerAnimator.SetTrigger("Roll");
@@ -204,6 +205,7 @@ public class CommandoSkill : MonoBehaviour
 
     private IEnumerator SuppressiveFire_co()
     {
+        _suppressiveFireCooldownRemain = SuppressiveFireCooldown;
         for (int i = 0; i < 6; i++)
         {
             _playerAnimator.SetTrigger("SuppressiveFire");

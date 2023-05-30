@@ -40,7 +40,7 @@ public class CommandoSkill : MonoBehaviour
     {
         return _phaseRoundCooldownRemain;
     }
-    private readonly WaitForSeconds _phaseRoundDelay = new WaitForSeconds(1f);
+    private readonly WaitForSeconds _phaseRoundDelay = new WaitForSeconds(0.1f);
     private ObjectPool _phaseRoundObjectPool;
 
     //Tactical Dive (3번째 스킬)
@@ -51,7 +51,7 @@ public class CommandoSkill : MonoBehaviour
         return _tacticalDiveCooldownRemain;
     }
     private readonly float _diveForce = 7f;
-    private readonly WaitForSeconds _taticalDiveDelay = new WaitForSeconds(1f);
+    private readonly WaitForSeconds _taticalDiveDelay = new WaitForSeconds(0.5f);
 
     //Suppressive Fire (4번째 스킬)
     public float SuppressiveFireCooldown { get; private set; } = 9f;

@@ -10,7 +10,7 @@ public class EventManager
 
     //Sender와 관련이 없는 이벤트들
     public Action<int> AddItem;
-    public Action DifficultyChange;
+    public Action <int>DifficultyChange;
     public Action<int> GoldChange;
     public Action <int>EquipItemChange;
 

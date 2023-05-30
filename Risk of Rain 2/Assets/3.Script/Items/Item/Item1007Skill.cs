@@ -18,8 +18,7 @@ public class Item1007Skill : ItemPrimitiive
         damage = Player.GetComponent<PlayerStatus>().Damage
             * 3 * (Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1007].WhenItemActive][1007].Count);
 
-        //오브젝트 풀링하려면 기존 오브젝트 풀 List형식이나 해서 Prefab 여러개 받도록 수정해야함
-        //아니면 그냥 여기서 새로운 ObjectPool을 만들어도 됨
+
 
         //플레이어 방향으로 앞으로 나아가기
         GetComponent<Rigidbody>().velocity = Player.transform.forward*movespeed;

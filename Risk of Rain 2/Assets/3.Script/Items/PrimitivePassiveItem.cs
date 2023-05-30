@@ -160,20 +160,26 @@ public class PrimitivePassiveItem : ItemPrimitiive
     }
     private IEnumerator Item1014_co()
     {
-         bool item1014Spawned = false;
-        if (!item1014Spawned)
+        if (Util.Probability(30))
         {
-            item1014Spawned = true;
-            for (int i = 0; i < 3; i++)
+            bool item1014Spawned = false;
+            if (!item1014Spawned)
             {
-                GameObject item1014 = Managers.Resource.Instantiate("Item1014Skill");
-                item1014.transform.position = Player.transform.position;
-                item1014.SetRandomPositionSphere(1, 4, 3);
-                item1014.GetOrAddComponent<item1014Skill>();
+                item1014Spawned = true;
+                for (int i = 0; i < 3; i++)
+                {
+                    GameObject item1014 = Managers.Resource.Instantiate("Item1014Skill");
+                    item1014.transform.position = Player.transform.position;
+                    //¤Á¤µµå
+                    item1014.SetRandomPositionSphere(1, 2, 1);
+
+                    item1014.GetOrAddComponent<item1014Skill>();
+                }
+                yield return new WaitForSeconds(3.0f);
+                item1014Spawned = false;
             }
-            yield return new WaitForSeconds(3.0f);
-            item1014Spawned = false;
         }
+  
 
     }
     private IEnumerator Item1007_co()

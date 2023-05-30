@@ -47,7 +47,7 @@ public class GameManager
         set
         {
             _difficulty = value;
-            Managers.Event.DifficultyChange?.Invoke();
+            Managers.Event.DifficultyChange?.Invoke((int)_difficulty+1);
         }
     }
     public int Gold

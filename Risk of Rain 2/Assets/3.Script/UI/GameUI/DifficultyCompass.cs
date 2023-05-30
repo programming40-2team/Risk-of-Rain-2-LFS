@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DifficultyCompass : MonoBehaviour
@@ -9,7 +7,7 @@ public class DifficultyCompass : MonoBehaviour
     {
         if (!isFirst)
         {
-            isFirst= true;
+            isFirst = true;
             Debug.Log($"현재 난이도:{Managers.Game.Difficulty}");
         }
         else
@@ -17,6 +15,6 @@ public class DifficultyCompass : MonoBehaviour
             Managers.Game.Difficulty = (Define.EDifficulty)((int)Managers.Game.Difficulty + 1);
             Debug.Log($"현재 난이도:{Managers.Game.Difficulty}");
         }
-     
+
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemIneventoryPannel : MonoBehaviour
@@ -14,7 +12,7 @@ public class ItemIneventoryPannel : MonoBehaviour
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-        foreach(int i in Managers.Data.ItemDataDict.Keys)
+        foreach (int i in Managers.Data.ItemDataDict.Keys)
         {
             ItemButton item = Managers.UI.ShowSceneUI<ItemButton>();
             item.transform.SetParent(gameObject.transform);

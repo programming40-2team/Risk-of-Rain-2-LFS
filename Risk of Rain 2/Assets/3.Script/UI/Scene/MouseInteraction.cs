@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using TMPro;
 
-public class MouseInteraction : UI_Scene,IListener
+public class MouseInteraction : UI_Scene, IListener
 {
     public int SpecialCode;
     [SerializeField] private Texture2D mouseCursorImage;
@@ -56,7 +53,7 @@ public class MouseInteraction : UI_Scene,IListener
 
         Cursor.SetCursor(mouseCursorImage, Vector2.zero, CursorMode.Auto);
         GetImage((int)EImages.MouseCursorImage).enabled = false;
-     
+
     }
     void Start()
     {
@@ -87,7 +84,7 @@ public class MouseInteraction : UI_Scene,IListener
                 Get<GameObject>((int)EGameObjects.RightPannel).SetActive(true);
                 break;
             case EInteractionType.Difficulty:
-                Get<GameObject>((int)EGameObjects.LeftPannel).SetActive(true); 
+                Get<GameObject>((int)EGameObjects.LeftPannel).SetActive(true);
                 break;
         }
 
@@ -120,13 +117,22 @@ public class MouseInteraction : UI_Scene,IListener
                             break;
                     }
                 }
-                else if(Sender.TryGetComponent(out CharacterSelectButton characterSelect))
+                else if (Sender.TryGetComponent(out CharacterSelectButton characterSelect))
                 {
                     ActivePannel(EInteractionType.Character);
                     GetText((int)ETexts.RightTitleText).text = Managers.Data.CharacterDataDict[characterSelect.Charactercode].Name;
-                    GetText((int)ETexts.RightContentsTitleText).text = Managers.Data.CharacterDataDict[characterSelect.Charactercode].unlockscript2;
+                    //캐릭터 보유 미보유 여부에 따라 달르게 출력
+                    if (Managers.Data.CharacterDataDict[characterSelect.Charactercode].isActive)
+                    {
+                        GetText((int)ETexts.RightContentsTitleText).text = Managers.Data.CharacterDataDict[characterSelect.Charactercode].script1;
+                    }
+                    else
+                    {
+                        GetText((int)ETexts.RightContentsTitleText).text = Managers.Data.CharacterDataDict[characterSelect.Charactercode].unlockscript2;
+                    }
+
                 }
-                else if(Sender.TryGetComponent(out LoadSkillTempo Tempo))
+                else if (Sender.TryGetComponent(out LoadSkillTempo Tempo))
                 {
                     ActivePannel(EInteractionType.Skill);
                     GetText((int)ETexts.RightTitleText).text = Tempo.skillTitle;
@@ -134,7 +140,7 @@ public class MouseInteraction : UI_Scene,IListener
                 }
                 break;
             case Define.EVENT_TYPE.MousePointerExit:
-                    ReInit();
+                ReInit();
                 break;
         }
 

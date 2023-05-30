@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AcidPool : MonoBehaviour
@@ -44,7 +43,7 @@ public class AcidPool : MonoBehaviour
 
     private void OnTriggerStay(Collider col)
     {
-        if(!isRun)
+        if (!isRun)
         {
             isRun = true;
             StartCoroutine(OnDamage_co(col));

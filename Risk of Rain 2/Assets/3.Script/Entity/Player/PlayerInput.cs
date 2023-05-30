@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
 
     public float Move { get; private set; }
     public float HorizontalDirection { get; private set; }
-    
+
     public bool Jump { get; private set; }
     public bool Sprint { get; private set; }
     public bool Mouse1 { get; private set; }

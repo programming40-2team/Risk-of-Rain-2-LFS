@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static Define;
 
-public class GameStartUI : UI_Scene,IListener
+public class GameStartUI : UI_Scene, IListener
 {
     private bool isCharacterSelected;
     private int characterCode;
@@ -28,7 +26,7 @@ public class GameStartUI : UI_Scene,IListener
         M2SkillReactPannel,
         ShiftSkillReactPannel,
         RSkillReactPannel,
-
+        LoadPassiveSkill,
     }
     enum ETexts
     {
@@ -47,7 +45,7 @@ public class GameStartUI : UI_Scene,IListener
         MoreDetailText2,
         MoreDetailText3,
         MoreDetailText4,
-       
+
 
         PassiveSkillTitle,
         PassiveSkillText,
@@ -138,7 +136,6 @@ public class GameStartUI : UI_Scene,IListener
     void Start()
     {
         Init();
-      
     }
     public override void Init()
     {
@@ -161,7 +158,7 @@ public class GameStartUI : UI_Scene,IListener
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             Diffidculty diff = Managers.UI.ShowSceneUI<Diffidculty>();
             diff.myDifficulty = (EDifficulty)i;
@@ -181,19 +178,19 @@ public class GameStartUI : UI_Scene,IListener
         GetText((int)ETexts.ShowScriptButtonText).text = $"개요";
         GetText((int)ETexts.SkillScriptText).text = "스킬";
         GetText((int)ETexts.LoadText).text = "장전";
-                     
+
         GetText((int)ETexts.CharacterNameText).text = "";
         GetText((int)ETexts.MoreDetailText1).text = "";
         GetText((int)ETexts.MoreDetailText2).text = "";
         GetText((int)ETexts.MoreDetailText3).text = "";
         GetText((int)ETexts.MoreDetailText4).text = "";
-        GetText((int)ETexts.PassiveSkillTitle).text="";
-        GetText((int)ETexts.PassiveSkillText).text="";
-        GetText((int)ETexts.M1SkillTitle).text="";
-        GetText((int)ETexts.M1SkillText).text="";
-        GetText((int)ETexts.M2SkillTitle).text="";
-        GetText((int)ETexts.M2SkillText).text="";
-        GetText((int)ETexts.RSkillTitle).text="";
+        GetText((int)ETexts.PassiveSkillTitle).text = "";
+        GetText((int)ETexts.PassiveSkillText).text = "";
+        GetText((int)ETexts.M1SkillTitle).text = "";
+        GetText((int)ETexts.M1SkillText).text = "";
+        GetText((int)ETexts.M2SkillTitle).text = "";
+        GetText((int)ETexts.M2SkillText).text = "";
+        GetText((int)ETexts.RSkillTitle).text = "";
         GetText((int)ETexts.RSkillText).text = "";
         GetText((int)ETexts.ShiftSkillText).text = "";
         GetText((int)ETexts.ShiftSkillTitle).text = "";
@@ -207,19 +204,17 @@ public class GameStartUI : UI_Scene,IListener
 
     private void InitGameObect()
     {
-        //Get<GameObject>((int)EGameObjects. DifficultyEasySelectEffect).SetActive(false);
-        //Get<GameObject>((int)EGameObjects. DifficultyNormalSelectEffect).SetActive(false);
-        //Get<GameObject>((int)EGameObjects. DifficultyHardSelectEffect).SetActive(false);
-        Get<GameObject>((int)EGameObjects. ShowScriptButtonIsClickEffect).SetActive(false);
-        Get<GameObject>((int)EGameObjects. SkillScriptIsClickEffect).SetActive(false);
-        Get<GameObject>((int)EGameObjects. LoadIsClickEffect).SetActive(false);
-        Get<GameObject>((int)EGameObjects. AboutScript).SetActive(false);
-        Get<GameObject>((int)EGameObjects. AboutSkill).SetActive(false);
+
+        Get<GameObject>((int)EGameObjects.ShowScriptButtonIsClickEffect).SetActive(false);
+        Get<GameObject>((int)EGameObjects.SkillScriptIsClickEffect).SetActive(false);
+        Get<GameObject>((int)EGameObjects.LoadIsClickEffect).SetActive(false);
+        Get<GameObject>((int)EGameObjects.AboutScript).SetActive(false);
+        Get<GameObject>((int)EGameObjects.AboutSkill).SetActive(false);
         Get<GameObject>((int)EGameObjects.AboutLoad).SetActive(false);
 
         #region 스킬창 포인터 엔터 아웃시 나타나는 색상 이벤트
         Get<GameObject>((int)EGameObjects.PassiveReactPannel)
-            .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.PassiveReactPannel), Color.white),Define.UIEvent.PointerEnter);
+            .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.PassiveReactPannel), Color.white), Define.UIEvent.PointerEnter);
         Get<GameObject>((int)EGameObjects.M1SkillReactPannel)
               .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.M1SkillReactPannel), Color.white), Define.UIEvent.PointerEnter);
         Get<GameObject>((int)EGameObjects.M2SkillReactPannel)
@@ -228,23 +223,23 @@ public class GameStartUI : UI_Scene,IListener
               .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.ShiftSkillReactPannel), Color.white), Define.UIEvent.PointerEnter);
         Get<GameObject>((int)EGameObjects.RSkillReactPannel)
               .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.RSkillReactPannel), Color.white), Define.UIEvent.PointerEnter);
-      
+
 
         Get<GameObject>((int)EGameObjects.PassiveReactPannel)
            .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.PassiveReactPannel), Color.white), Define.UIEvent.PointerExit);
         Get<GameObject>((int)EGameObjects.M1SkillReactPannel)
               .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.M1SkillReactPannel), Color.white), Define.UIEvent.PointerExit);
-        Get<GameObject>((int)EGameObjects.M2SkillReactPannel)                     
+        Get<GameObject>((int)EGameObjects.M2SkillReactPannel)
               .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.M2SkillReactPannel), Color.white), Define.UIEvent.PointerExit);
-        Get<GameObject>((int)EGameObjects.ShiftSkillReactPannel)                  
+        Get<GameObject>((int)EGameObjects.ShiftSkillReactPannel)
               .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.ShiftSkillReactPannel), Color.white), Define.UIEvent.PointerExit);
-        Get<GameObject>((int)EGameObjects.RSkillReactPannel)                      
+        Get<GameObject>((int)EGameObjects.RSkillReactPannel)
               .BindEvent((PointerEventData data) => SetColor(Get<GameObject>((int)EGameObjects.RSkillReactPannel), Color.white), Define.UIEvent.PointerExit);
-       
+
         #endregion
     }
 
-    private void SetColor(GameObject go,Color color)
+    private void SetColor(GameObject go, Color color)
     {
         if (go.GetComponent<Image>().color.a.Equals(1))
         {
@@ -264,17 +259,6 @@ public class GameStartUI : UI_Scene,IListener
             .BindEvent((PointerEventData data) => ReturnToMain());
         GetButton((int)EButtons.GameReadyButton).gameObject
             .BindEvent((PointerEventData data) => GameStart());
-        /*
-        GetButton((int)EButtons.DifficultyEasy).gameObject
-           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Easy));
-        GetButton((int)EButtons.DifficultyNormal).gameObject
-           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Normal));
-        GetButton((int)EButtons.DifficultyHard).gameObject
-           .BindEvent((PointerEventData data) => DifficultySelect(EDifficulty.Hard));
-        */
-
-
-
 
         GetButton((int)EButtons.ShowScriptButton).gameObject
             .BindEvent((PointerEventData data) => DetaillCharacterScriptChange(ECharacterDetail.AboutScript));
@@ -284,10 +268,10 @@ public class GameStartUI : UI_Scene,IListener
             .BindEvent((PointerEventData data) => DetaillCharacterScriptChange(ECharacterDetail.AboutLoad));
 
         GetButton((int)EButtons.ExtendSubButton).gameObject
-            .BindEvent((PointerEventData data) => Managers.UI.ShowPopupUI<RelicExtendPopupUI>().MyType=RelicExtendPopupUI.EClickType.Extend);
+            .BindEvent((PointerEventData data) => Managers.UI.ShowPopupUI<RelicExtendPopupUI>().MyType = RelicExtendPopupUI.EClickType.Extend);
         GetButton((int)EButtons.RelicsSubButton).gameObject
           .BindEvent((PointerEventData data) => Managers.UI.ShowPopupUI<RelicExtendPopupUI>().MyType = RelicExtendPopupUI.EClickType.Relic);
-        
+
     }
 
 
@@ -299,6 +283,7 @@ public class GameStartUI : UI_Scene,IListener
     }
     private void GameStart()
     {
+        Debug.Log("게임 스타트 소리!");
         Debug.Log("게임화면 넘어가는 코드!");
     }
     private void DetaillCharacterScriptChange(ECharacterDetail ShowMenu)
@@ -331,46 +316,30 @@ public class GameStartUI : UI_Scene,IListener
                 break;
         }
     }
-    /*
-    private void DifficultySelect(EDifficulty difficulty)
-    {
-        Get<GameObject>((int)EGameObjects.DifficultyEasySelectEffect).gameObject.SetActive(false);
-        Get<GameObject>((int)EGameObjects.DifficultyNormalSelectEffect).gameObject.SetActive(false);
-        Get<GameObject>((int)EGameObjects.DifficultyHardSelectEffect).gameObject.SetActive(false);
-
-        switch (difficulty)
-        {
-            case EDifficulty.Easy:
-                Get<GameObject>((int)EGameObjects.DifficultyEasySelectEffect).gameObject.SetActive(true);
-                myDifficulty = EDifficulty.Easy;
-                break;
-            case EDifficulty.Normal:
-                Get<GameObject>((int)EGameObjects.DifficultyNormalSelectEffect).gameObject.SetActive(true);
-                myDifficulty = EDifficulty.Normal;
-                break;
-            case EDifficulty.Hard:
-                Get<GameObject>((int)EGameObjects.DifficultyHardSelectEffect).gameObject.SetActive(true);
-                myDifficulty = EDifficulty.Hard;
-                break;
-        }
-        Debug.Log("게임 난이도 소리 설정 시 여기다!");
-        Debug.Log("게임 시작 난이도 관련 설정은 여기서! (ex.난이도 클릭 시 소리 변경하고 싶으면 여기!)");
-
-
-    }
-    */
 
 
 
     //편하게 하려면 스킬 데이터 를 체계적으로 만들어야 하는데 귀찮아서ㅓㅓㅓㅓ...''
     private void ChangeSkillImage(int charcode)
     {
+        //일부 캐릭터는 패시브가 있고 일부 캐릭터는 없네요 ---.. 미리 알았으면 편했는데;
+        if (!charcode.Equals(7))
+        {
 
-        GetImage((int)EImages.PassiveSkillImage).sprite =Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].passiveskilliconpath);
-       GetImage((int)EImages. M1SkilIImage          ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m1skilliconpath);
-       GetImage((int)EImages. M2SkilIImage          ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m2skill_1iconpath);
-       GetImage((int)EImages. RSkilIImage           ).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].rskill_1iconpath);
-       GetImage((int)EImages.ShiftSkillImage).sprite=Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].shiftskill_1iconpath);
+            Get<GameObject>((int)EGameObjects.PassiveReactPannel).SetActive(false);
+            Get<GameObject>((int)EGameObjects.LoadPassiveSkill).SetActive(false);
+        }
+        else
+        {
+            Get<GameObject>((int)EGameObjects.PassiveReactPannel).SetActive(true);
+            Get<GameObject>((int)EGameObjects.LoadPassiveSkill).SetActive(true);
+        }
+
+        GetImage((int)EImages.PassiveSkillImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].passiveskilliconpath);
+        GetImage((int)EImages.M1SkilIImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m1skilliconpath);
+        GetImage((int)EImages.M2SkilIImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m2skill_1iconpath);
+        GetImage((int)EImages.RSkilIImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].rskill_1iconpath);
+        GetImage((int)EImages.ShiftSkillImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].shiftskill_1iconpath);
 
 
 
@@ -383,7 +352,7 @@ public class GameStartUI : UI_Scene,IListener
         if (Managers.Data.CharacterDataDict[charcode].isshiftskill_1learn)
         {
             GetImage((int)EImages.LoadShiftSkillImage_1).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[charcode].m1skilliconpath);
-            
+
         }
         if (Managers.Data.CharacterDataDict[charcode].isshiftskill_2learn)
         {
@@ -416,12 +385,12 @@ public class GameStartUI : UI_Scene,IListener
     }
     private void LoadButtonEvent()
     {
-     
+
     }
 
     private void DesCribeChange(int charcode)
     {
-        Debug.Log("나중에 마우스 캔버스 한테도 이벤트 발송해 줘야합니다. => 미니 UI 생성 ");
+
         GetText((int)ETexts.CharacterNameText).text = $"{Managers.Data.CharacterDataDict[charcode].Name}";
         GetText((int)ETexts.MoreDetailText1).text = $"{Managers.Data.CharacterDataDict[charcode].script1}";
         GetText((int)ETexts.MoreDetailText2).text = $"{Managers.Data.CharacterDataDict[charcode].script2}";
@@ -435,12 +404,12 @@ public class GameStartUI : UI_Scene,IListener
         GetText((int)ETexts.M2SkillText).text = $"{Managers.Data.CharacterDataDict[charcode].m2skill_1script}";
         GetText((int)ETexts.RSkillTitle).text = $"{Managers.Data.CharacterDataDict[charcode].rskill_1}";
         GetText((int)ETexts.RSkillText).text = $"{Managers.Data.CharacterDataDict[charcode].rskill_1script}";
-        GetText((int)ETexts.ShiftSkillTitle).text= $"{Managers.Data.CharacterDataDict[charcode].shiftskill_1}";
-        GetText((int)ETexts.ShiftSkillText).text= $"{Managers.Data.CharacterDataDict[charcode].shiftskill_1script}";
+        GetText((int)ETexts.ShiftSkillTitle).text = $"{Managers.Data.CharacterDataDict[charcode].shiftskill_1}";
+        GetText((int)ETexts.ShiftSkillText).text = $"{Managers.Data.CharacterDataDict[charcode].shiftskill_1script}";
 
 
     }
-    
+
     public void OnEvent(Define.EVENT_TYPE Event_Type, Component Sender, object Param = null)
     {
         switch (Event_Type)
@@ -448,13 +417,16 @@ public class GameStartUI : UI_Scene,IListener
             case Define.EVENT_TYPE.SelectCharacter:
                 isCharacterSelected = true;
                 DetaillCharacterScriptChange(ECharacterDetail.AboutScript);
-                characterCode = Sender.GetComponent<CharacterSelectButton>().Charactercode;
-                DesCribeChange(characterCode);
-                ChangeSkillImage(characterCode);
+                if (Sender.TryGetComponent(out CharacterSelectButton CharBtn))
+                {
+                    characterCode = CharBtn.Charactercode;
+                    DesCribeChange(characterCode);
+                    ChangeSkillImage(characterCode);
+                }
                 break;
         }
 
 
- 
+
     }
 }

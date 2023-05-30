@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterintroductionPannel : MonoBehaviour
@@ -11,11 +9,11 @@ public class CharacterintroductionPannel : MonoBehaviour
     }
     public void Init()
     {
-       foreach (Transform transforom in gameObject.GetComponentInChildren<Transform>())
+        foreach (Transform transforom in gameObject.GetComponentInChildren<Transform>())
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-        foreach(var i in Managers.Data.CharacterDataDict.Keys)
+        foreach (var i in Managers.Data.CharacterDataDict.Keys)
         {
             CharacterSelectButton Character = Managers.UI.ShowSceneUI<CharacterSelectButton>();
             Character.transform.SetParent(gameObject.transform);

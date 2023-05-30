@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CharacterSelectButton : UI_Scene
+public class CharacterSelectButton : UI_Scene, IListener
 {
 
     public int Charactercode = -1;
@@ -34,14 +32,23 @@ public class CharacterSelectButton : UI_Scene
         GetComponent<Canvas>().sortingOrder = (int)Define.SortingOrder.CharacterSelectButton;
         Bind<Image>(typeof(EImages));
         Bind<GameObject>(typeof(EGameObjects));
-     
 
-        GetImage((int)EImages.CharacterImage).sprite= Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[Charactercode].iconkey);
+
+        GetImage((int)EImages.CharacterImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[Charactercode].iconkey);
         gameObject.GetComponent<Button>().enabled = false;
         if (Charactercode.Equals(7))
         {
             Color color = Color.white;
-            color.a = 1;    
+            color.a = 1;
+            GetImage((int)EImages.CharacterImage).color = color;
+            gameObject.GetComponent<Button>().enabled = true;
+
+            gameObject.BindEvent((PointerEventData data) => EventExcute());
+        }
+        else if (Charactercode.Equals(1))
+        {
+            Color color = Color.yellow;
+            color.a = 1;
             GetImage((int)EImages.CharacterImage).color = color;
             gameObject.GetComponent<Button>().enabled = true;
 
@@ -52,6 +59,8 @@ public class CharacterSelectButton : UI_Scene
         rectImageprevcolor = GetImage((int)EImages.Character_RectImage).color;
         gameObject.BindEvent((PointerEventData data) => CharacterPointerEnterEvent(), Define.UIEvent.PointerEnter);
         gameObject.BindEvent((PointerEventData data) => CharacterPointerExitEvent(), Define.UIEvent.PointerExit);
+
+        Managers.Event.AddListener(Define.EVENT_TYPE.SelectCharacter, this);
     }
     private void CharacterPointerEnterEvent()
     {
@@ -68,8 +77,6 @@ public class CharacterSelectButton : UI_Scene
     {
         if (Get<GameObject>((int)EGameObjects.Character_RectImage_Image).activeSelf)
         {
-            GetImage((int)EImages.SelectChangeColorImage).color =
-                Color.red;
 
             Get<GameObject>((int)EGameObjects.Character_RectImage_Image).SetActive(false);
         }
@@ -78,7 +85,7 @@ public class CharacterSelectButton : UI_Scene
             GetImage((int)EImages.SelectChangeColorImage).color = selectImageprevcolor;
             Get<GameObject>((int)EGameObjects.Character_RectImage_Image).SetActive(true);
         }
-       
+
     }
     private void EventExcute()
     {
@@ -88,6 +95,18 @@ public class CharacterSelectButton : UI_Scene
         Managers.Event.PostNotification(Define.EVENT_TYPE.SelectCharacter, this);
     }
 
-
-
+    public void OnEvent(Define.EVENT_TYPE Event_Type, Component Sender, object Param = null)
+    {
+        if (Sender.TryGetComponent(out CharacterSelectButton button))
+        {
+            if (!button.Charactercode.Equals(Charactercode))
+            {
+                GetImage((int)EImages.SelectChangeColorImage).color = selectImageprevcolor;
+            }
+            else
+            {
+                GetImage((int)EImages.SelectChangeColorImage).color = Color.red;
+            }
+        }
+    }
 }

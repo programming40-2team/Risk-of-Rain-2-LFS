@@ -13,8 +13,8 @@ public class DataManager
     public Dictionary<int, Data.EnvData> EnvDataDict { get; private set; } = new Dictionary<int, Data.EnvData>();
     public void Init()
     {
-       ItemDataDict = LoadJson<Data.ItemLoader, int, Data.ItemData>("ItemData").MakeDict();
-       CharacterDataDict = LoadJson<Data.CharacterLoader, int, Data.CharacterData>("CharacterData").MakeDict();
+        ItemDataDict = LoadJson<Data.ItemLoader, int, Data.ItemData>("ItemData").MakeDict();
+        CharacterDataDict = LoadJson<Data.CharacterLoader, int, Data.CharacterData>("CharacterData").MakeDict();
         EnvDataDict = LoadJson<Data.EnvLoader, int, Data.EnvData>("EnvData").MakeDict();
         // SkillDataDict = LoadJson<Data.SKillDataLoader, int, Data.Skill>("SkillData").MakeDict();
     }

@@ -6,16 +6,16 @@
     {
         None,
         MainMenu,
-       
+
 
     }
     public enum SortingOrder
     {
-        CharacterSelectButton=15,
-        GameStartUI=5,
+        CharacterSelectButton = 15,
+        GameStartUI = 5,
         LogBookUI = 6,
-        DetailInLogBook=20,
-        MouseInteraction=100,
+        DetailInLogBook = 20,
+        MouseInteraction = 100,
     }
     public enum UIEvent
     {
@@ -30,8 +30,8 @@
     }
     public enum ItemType
     {
-       Passive,
-       Active,
+        Passive,
+        Active,
 
     }
     public enum EVENT_TYPE
@@ -56,7 +56,7 @@
         StartBattle,
         EndBattle,
 
-        
+
     }
     public enum WhenItemActivates
     {
@@ -77,7 +77,7 @@
     }
     public enum EDifficulty
     {
-       
+
         Easy,
         Normal,
         Hard,
@@ -86,7 +86,19 @@
         VeryHard3,
         VeryHard4,
         VeryHard5,
- 
+
+
+    }
+    public enum ESkillType
+    {
+        Passive,
+        M1,
+        M21,
+        M22,
+        Shift1,
+        Shift2,
+        R1,
+        R2
 
     }
 }

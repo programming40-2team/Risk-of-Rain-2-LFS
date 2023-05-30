@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStatus : Entity
@@ -12,7 +10,7 @@ public class PlayerStatus : Entity
     public float CriticalChance;
     [HideInInspector]
     public int MaxJumpCount;
-    [SerializeField] private SurvivorsData _survivorsData;
+    public  SurvivorsData _survivorsData;
 
     protected override void OnEnable()
     {

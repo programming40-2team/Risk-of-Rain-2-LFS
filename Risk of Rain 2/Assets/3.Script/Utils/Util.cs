@@ -50,5 +50,11 @@ public class Util
     }
 
 
+    public static bool Probability(int prob)
+    {
+        return prob > Random.Range(1, 101)?true:false;
+    }
+
+    
 
 }

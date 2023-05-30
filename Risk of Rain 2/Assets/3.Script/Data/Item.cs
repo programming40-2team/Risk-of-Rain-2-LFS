@@ -1,6 +1,5 @@
 ﻿using Data;
 using System;
-using UnityEngine;
 using static Define;
 
 public class Item
@@ -51,15 +50,6 @@ public class Item
         }
         return item;
     }
-    public static Item SpawnItem(ItemData itemInfo,Transform position)
-    {
-       Item item= MakeItem(itemInfo);
-
-       
-
-        return item;
-    }
-
     public class ActiveItem : Item
     {
         public int Cooltime { get; private set; }
@@ -96,7 +86,7 @@ public class Item
             PassiveData data = (PassiveData)itemData;
             {
                 Tier = data.tier;
-                WhenItemActive= (WhenItemActivates)Enum.Parse(typeof(WhenItemActivates), data.whenitemactivates);
+                WhenItemActive = (WhenItemActivates)Enum.Parse(typeof(WhenItemActivates), data.whenitemactivates);
             }
         }
     }

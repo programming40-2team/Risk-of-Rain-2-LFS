@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainUI : UI_Scene
 {
     [SerializeField]
     private string _username = "Noname";
-    GameObject MouseCursor;
-
-
     enum Buttons
     {
         GameStartButton,
@@ -57,6 +52,7 @@ public class MainUI : UI_Scene
             .BindEvent((PointerEventData data) => GameStartEvent());
         GetButton((int)Buttons.DicitonaryButton).gameObject
             .BindEvent((PointerEventData data) => ShowLogBook());
+
     }
     private void Start()
     {
@@ -64,14 +60,14 @@ public class MainUI : UI_Scene
     }
     private void GameStartEvent()
     {
-        Debug.Log("게임 시작 버튼 누르면 나올 소리 여기다!");
+        Debug.Log("게임 시작 버튼 누르면 나올 소리 여기");
 
         Managers.UI.ShowSceneUI<GameStartUI>();
 
     }
     private void ShowLogBook()
     {
-        Debug.Log("로그북 버튼 누르면 나올 소리 여기다!");
+        Debug.Log("로그북 버튼 누르면 나올 소리 여기");
         Managers.UI.ShowSceneUI<LogBook>();
     }
 

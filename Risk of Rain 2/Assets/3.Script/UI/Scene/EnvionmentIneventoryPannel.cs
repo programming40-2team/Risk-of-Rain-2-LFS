@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 public class EnvionmentIneventoryPannel : MonoBehaviour
 {
     private int CurrentIndex = 0;
@@ -13,17 +12,17 @@ public class EnvionmentIneventoryPannel : MonoBehaviour
     }
     public void Init()
     {
-       
+
         foreach (Transform transforom in gameObject.GetComponentInChildren<Transform>())
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-        for(int i=CurrentIndex;i<CurrentIndex+4;i++)
+        for (int i = CurrentIndex; i < CurrentIndex + 4; i++)
         {
             EnvButton item = Managers.UI.ShowSceneUI<EnvButton>();
             item.transform.SetParent(gameObject.transform);
-            item.EnvCode = EnvDataKeyList[i%EnvDataKeyList.Count];
-           
+            item.EnvCode = EnvDataKeyList[i % EnvDataKeyList.Count];
+
         }
         CurrentIndex += 4;
     }

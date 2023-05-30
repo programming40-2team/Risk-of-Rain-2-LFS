@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class EnvButton : UI_Scene
 {
-    public int EnvCode=-1;
+    public int EnvCode = -1;
     private void Start()
     {
-        Init();   
+        Init();
     }
     public override void Init()
     {

@@ -1,7 +1,5 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.iOS;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -28,13 +26,13 @@ public class PlayerAttack : MonoBehaviour
         _virtualCamera = FindObjectOfType<CinemachineFreeLook>();
         _cameraTransform = Camera.main.transform;
     }
-   
+
     private void Update()
     {
         Debug.Log(_playerInput.Mouse1);
-        if(_playerInput.Mouse1 && _attackCount <= 2 && !_isAttacking)
+        if (_playerInput.Mouse1 && _attackCount <= 2 && !_isAttacking)
         {
-            if(_attackCount == 0)
+            if (_attackCount == 0)
             {
                 Attack1();
             }
@@ -47,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
                 Attack3();
             }
         }
-        if(_playerInput.Shift)
+        if (_playerInput.Shift)
         {
             StartCoroutine(Dash_co());
         }
@@ -63,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
         _isAttacking = true;
         _playerAnimator.SetBool("Attack2", true);
         _attackCount++;
-        if(RunningCoroutine != null)
+        if (RunningCoroutine != null)
         {
             StopCoroutine(RunningCoroutine);
         }
@@ -115,12 +113,12 @@ public class PlayerAttack : MonoBehaviour
     {
         //Vector3 _destPos = transform.position + (transform.position - _virtualCamera.transform.position) * _dashDistance;
         Vector3 _destPos = transform.position + _cameraTransform.forward * _dashDistance;
-        while(Vector3.SqrMagnitude(transform.position - _destPos) >= 0.001f)
+        while (Vector3.SqrMagnitude(transform.position - _destPos) >= 0.001f)
         {
             transform.position = Vector3.MoveTowards(transform.position, _destPos, _dashSpeed * Time.deltaTime);
             yield return null;
         }
-        transform.position = _destPos;  
+        transform.position = _destPos;
     }
     private void OnTriggerEnter(Collider other)
     {

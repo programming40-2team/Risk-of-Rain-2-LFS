@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -40,8 +38,8 @@ public class ItemButton : UI_Scene
 
         GetImage((int)EImages.ItemImage).sprite = Managers.Resource.LoadSprte(Managers.Data.ItemDataDict[Itemcode].iconkey);
         gameObject.BindEvent((PointerEventData data) => ItemButtonClick());
-        gameObject.BindEvent((PointerEventData data) => ItemButtonPointerEnter(),Define.UIEvent.PointerEnter);
-        gameObject.BindEvent((PointerEventData data) => ItemButtonPointerExit(),Define.UIEvent.PointerExit);
+        gameObject.BindEvent((PointerEventData data) => ItemButtonPointerEnter(), Define.UIEvent.PointerEnter);
+        gameObject.BindEvent((PointerEventData data) => ItemButtonPointerExit(), Define.UIEvent.PointerExit);
 
         SetImage(Itemcode);
     }

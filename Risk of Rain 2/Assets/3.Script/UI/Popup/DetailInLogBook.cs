@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -61,7 +59,7 @@ public class DetailInLogBook : UI_Popup
     }
     private void Setting()
     {
-       
+
         if (SpecialCode.Equals(-1))
         {
             return;
@@ -80,7 +78,7 @@ public class DetailInLogBook : UI_Popup
         SetText();
         SetModel();
     }
-    
+
     private void SetText()
     {
 
@@ -118,19 +116,28 @@ public class DetailInLogBook : UI_Popup
         switch (LogBook.ClickType)
         {
             case Define.ECurrentClickType.ItemAndEquip:
-               GameObject item= Managers.Resource.Instantiate($"item{Managers.Data.ItemDataDict[SpecialCode].itemcode}", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
+                GameObject item = Managers.Resource.Instantiate($"item{SpecialCode}", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
                 item.GetOrAddComponent<UIItemController>();
                 break;
             case Define.ECurrentClickType.Monster:
                 break;
             case Define.ECurrentClickType.Character:
                 Debug.Log("추후 캐릭터 모델링 완성되면 완성된 캐릭터만 모델 추가");
-                if (!SpecialCode.Equals(7))
+                if (!(SpecialCode.Equals(7) || SpecialCode.Equals(1)))
                 {
                     return;
                 }
-                GameObject character = Managers.Resource.Instantiate($"Merc", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
-                character.GetOrAddComponent<UIItemController>();
+                if (SpecialCode.Equals(1))
+                {
+                    GameObject character = Managers.Resource.Instantiate($"Commando", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
+                    character.GetOrAddComponent<UIItemController>();
+
+                }
+                else if (SpecialCode.Equals(7))
+                {
+                    GameObject character = Managers.Resource.Instantiate($"Merc", Get<GameObject>((int)EGameObjects.ObjectSpawnPosition).transform);
+                    character.GetOrAddComponent<UIItemController>();
+                }
                 break;
             case Define.ECurrentClickType.Enviroment:
                 break;

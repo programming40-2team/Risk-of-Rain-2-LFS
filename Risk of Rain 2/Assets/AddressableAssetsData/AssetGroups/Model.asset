@@ -227,6 +227,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
+  - m_GUID: 61f07c321ce32f8428572b8c66f35b63
+    m_Address: Commando
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

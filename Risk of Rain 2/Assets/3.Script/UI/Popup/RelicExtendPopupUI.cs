@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class RelicExtendPopupUI : UI_Popup
@@ -12,7 +10,7 @@ public class RelicExtendPopupUI : UI_Popup
     {
         ClosePannel,
     }
-   public enum EClickType
+    public enum EClickType
     {
         Relic,
         Extend,

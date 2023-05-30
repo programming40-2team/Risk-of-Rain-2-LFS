@@ -74,9 +74,20 @@ public class UIManager
             name = typeof(T).Name;
 
         GameObject go = Managers.Resource.Instantiate($"{name}");
-         Canvas canvas = go.GetComponent<Canvas>();
+        Canvas canvas = go.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.WorldSpace;
         canvas.worldCamera = Camera.main;
+
+        return Util.GetOrAddComponent<T>(go);
+    }
+    public T ShowGameUI<T>(string name = null) where T : UI_Game
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"{name}");
+
+        go.transform.SetParent(Root.transform);
 
         return Util.GetOrAddComponent<T>(go);
     }

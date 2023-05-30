@@ -95,8 +95,6 @@ public class GameUI : UI_Game, IListener
         Managers.Event.DifficultyChange -= DifficultyImageChagngeEvent;
         Managers.Event.GoldChange -= GoldChangeEvent;
         Managers.Event.EquipItemChange -= EquipChangeEvent;
-        Managers.Event.PlayerHealthChange -= EventOfPlayerHp;
-        Managers.Event.PlayerExpUp -= EventOfPlayerExp;
     }
     public override void Init()
     {
@@ -121,10 +119,6 @@ public class GameUI : UI_Game, IListener
         Managers.Event.GoldChange += GoldChangeEvent;
         Managers.Event.EquipItemChange -= EquipChangeEvent;
         Managers.Event.EquipItemChange += EquipChangeEvent;
-        Managers.Event.PlayerHealthChange -= EventOfPlayerHp;
-        Managers.Event.PlayerHealthChange += EventOfPlayerHp;
-        Managers.Event.PlayerExpUp -= EventOfPlayerExp;
-        Managers.Event.PlayerExpUp += EventOfPlayerExp;
         Managers.Event.GameStateChange -= GameGoalEvent;
         Managers.Event.GameStateChange += GameGoalEvent;
 
@@ -134,6 +128,7 @@ public class GameUI : UI_Game, IListener
         Managers.Event.AddListener(Define.EVENT_TYPE.PlayerUseSkill, this);
         Managers.Event.AddListener(Define.EVENT_TYPE.PlayerInteractionIn, this);
         Managers.Event.AddListener(Define.EVENT_TYPE.PlayerInteractionOut, this);
+      
 
         #endregion
         InitTexts();
@@ -310,24 +305,23 @@ public class GameUI : UI_Game, IListener
 
     }
     
-    //여기는 한번 더 머지  받으면 (플레이어 경험치, Hp 에 따라서 이벤트를 연동시켜줄 예정) 
-    private void EventOfPlayerHp()
+    //Player Hp 의 경우 Entity 꺼를 공동으로 써서 set 프로퍼티 등으로 받을 수 없어서 어쩔 수 없이 ACtion 사용
+    //
+    private void EventOfPlayerHp(float currHp,float MaxHp)
     {
-         Get<Slider>((int)Sliders.PlayerHpSlider).value = playerStatus.Health/playerStatus.MaxHealth;
+         Get<Slider>((int)Sliders.PlayerHpSlider).value = currHp / MaxHp;
+         GetText((int)Texts.PlayerHpText).text = $"{currHp}/{MaxHp}";
 
     }
-    private void EventOfPlayerExp()
+    private void EventOfPlayerExp(float currentExp,float MaxExp,int level)
     {
-        Get<Slider>((int)Sliders.ExpSlider).value = playerStatus.CurrentExp / playerStatus.Exp;
-        GetText((int)Texts.PlayerLevelText).text = $"{playerStatus.Level}";
+        Get<Slider>((int)Sliders.ExpSlider).value = currentExp / MaxExp;
+        GetText((int)Texts.PlayerLevelText).text = $"{level}";
     }
-    private void EventOfBossHp()
+    private void EventOfBossHp(float currentHp,float MaxHp)
     {
-        if (!Get<GameObject>((int)GameObjects.BossPannel).activeSelf)
-        {
-            Get<GameObject>((int)GameObjects.BossPannel).SetActive(true);
-        }
-
+        Get<Slider>((int)Sliders.BossHpSlider).value = currentHp/ MaxHp;
+        GetText((int)Texts.BossHpText).text = $"{currentHp}/{MaxHp}";
     }
     private void GoldChangeEvent(int gold)
     {
@@ -361,6 +355,7 @@ public class GameUI : UI_Game, IListener
                 break;
             case Define.EGameState.ActiveTelePort:
                 GetText((int)Texts.ObjectContents).text = "<b>보스를 처치하십시오!</b>";
+                Get<GameObject>((int)GameObjects.BossPannel).SetActive(true);
                 GetImage((int)Images.TeleCheckFalse).enabled = true;
                 break;
             case Define.EGameState.CompeleteTelePort:
@@ -416,16 +411,35 @@ public class GameUI : UI_Game, IListener
         {
           
             case Define.EVENT_TYPE.BossHpChange:
-                EventOfBossHp();
+                if(Sender.TryGetComponent(out BeetleQueen boss))
+                {
+                    EventOfBossHp(boss.Health,boss.MaxHealth);
+                }
+                else
+                {
+                    Debug.Log(Sender.gameObject + "Not Found");
+                }
                 break;
             case Define.EVENT_TYPE.PlayerExpChange:
-                EventOfPlayerExp();
-                break;
-            case Define.EVENT_TYPE.PlayerUseSkill:
-                EventOfSkill();
-                break;
-            case Define.EVENT_TYPE.EnemyHpChange:
+               if( Sender.TryGetComponent(out PlayerStatus _PlayerStatusExp))
+                {
+                    EventOfPlayerExp(_PlayerStatusExp.CurrentExp, _PlayerStatusExp.Exp, _PlayerStatusExp.Level);
+                }
+                else
+                {
+                    Debug.Log(Sender.gameObject + "Not Found");
+                }
                 //적체력 변화 SLider는 여기 보다는... 그냥 적 스크립트에서 처리하도록 합시다.
+                break;
+            case Define.EVENT_TYPE.PlayerHpChange:
+                if (Sender.TryGetComponent(out PlayerStatus _PlayerStatusHp))
+                {
+                    EventOfPlayerHp(_PlayerStatusHp.Health, _PlayerStatusHp.MaxHealth);
+                }
+                else
+                {
+                    Debug.Log(Sender.gameObject + "Not Found");
+                }
                 break;
             case Define.EVENT_TYPE.PlayerInteractionIn:
                 InteractionInTextChangeEvent(Sender);

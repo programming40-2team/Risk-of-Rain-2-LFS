@@ -40,7 +40,7 @@ public class Entity : MonoBehaviour
         set
         {
            _health = Mathf.Clamp(value, 0, MaxHealth);
-            Managers.Event.PlayerHealthChange?.Invoke();
+            
         }
     }
 

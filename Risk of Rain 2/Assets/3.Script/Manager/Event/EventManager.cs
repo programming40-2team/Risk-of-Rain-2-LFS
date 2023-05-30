@@ -13,8 +13,7 @@ public class EventManager
     public Action<int> DifficultyChange;
     public Action<int> GoldChange;
     public Action<int> EquipItemChange;
-    public Action PlayerHealthChange;
-    public Action PlayerExpUp;
+
     public Action GameStateChange;
     // 이벤트 리스너를 추가하는 메서드
     public void AddListener(EVENT_TYPE Event_Type, IListener Listener)

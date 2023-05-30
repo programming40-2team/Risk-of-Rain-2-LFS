@@ -15,6 +15,7 @@ public class PrimitivePassiveItem : ItemPrimitiive
 
 
     //보너스 점프 카운트...
+
     PlayerStatus currStartus;
     PlayerMovement playerMoveMent;
     private void Start()
@@ -52,6 +53,7 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 currStartus.MaxHealth = currStartus._survivorsData.MaxHealth + 15 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;  
             case 1002:
+                currStartus.ChanceBlockDamage= 5 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 //얘는 피해차단이라서 따로 컴포넌트 주던가 해야할듯? -> 이 아니라 그냥 플레이어 Hit 부분에 나만의 작은 함수 하나 넣지 뭐
                 break;
             case 1003:
@@ -64,13 +66,13 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 //치명타 추후 구현 예쩡입니다.
                 break;
             case 1005:
-                // currStartus.MoveSpeed=currStartus._survivorsData.MoveSpeed*1.14* Managers.ItemInventory.WhenActivePassiveItem[Define.WhenItemActivates.Always][itemcode].Count;
-                playerMoveMent._bonusMoveSpeed=1.14f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
+                currStartus.MoveSpeed=currStartus._survivorsData.MoveSpeed*1.14f* Managers.ItemInventory.WhenActivePassiveItem[Define.WhenItemActivates.Always][itemcode].Count;
+                //playerMoveMent._bonusMoveSpeed=1.14f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;
             case 1006:
                 //실드 획득인데 실드 관련 속성이 없음
                 //일단  체력 생성으로 넣어놨는데 체력 생성 
-                currStartus.Health+= 15 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
+                currStartus.OnHeal(15 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
                 break;
             case 1007:
                 StopCoroutine(nameof(Item1007_co));
@@ -85,22 +87,24 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 item1008.transform.position = spawnPos;
                 break;
             case 1009:
-                playerMoveMent._bonusJumpCount += Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
+                playerMoveMent._bonusJumpCount = Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;
             case 1010:
-                currStartus.Health += 1 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
+                currStartus.OnHeal(1 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
                 //피해를 입히면 나의 체력이 1 회복... 얘는 몬스터 상태도 봐야 할듯 한데?.. --> 컴포넌트 가져와서 프로퍼티 등으로 확인하면 될듯?..
                 break;
             case 1011:
                 playerMoveMent._bonusMoveSpeed = 1.3f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;
             case 1012:
+                currStartus.CriticalChance=currStartus._survivorsData.CriticalChance+ 5*Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 //치명타 확률 5%증가 치명타 터지면 체력 8  +4 *count 치유
                 break;
             case 1013:
                 //적을 처치하면 장비 쿨타임 4 + 2 * count초 감소
                 break;
             case 1014:
+
                 //일단 1014ㅇ ㅔ쓰는 단검 아이템 model이랑 실제로 나갈 모델이랑 똑같아서 addcomponent 쓰면 좋은데..
                 // 다른 아이테 코드랑 헷갈리니 통일성을 위해서 새롭게 prefab만들었음
 
@@ -109,7 +113,13 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 //적을 처치하면 단검 3개 생성 -> 단검은 적을 쫓아 가서 적에게 나의 공격 만큼타격을 입힘 +  단검의 개수는 일정 ,
                 break;
             case 1015:
-                Managers.Resource.Instantiate("Item1015SKill");
+                bool Isitem1015Created = false;
+                if (!Isitem1015Created)
+                {
+                    Managers.Resource.Instantiate("Item1015SKill");
+                    Isitem1015Created = true;
+                }
+
                 //적을 처치하면 나에게 얼움 폭풍이 생기고 그 안에 있는 몬스터  이속 80% 감소 
                 //매번 생성하는 것이 아니라 한번 생성하면 더이상 생성하지 않아도 되며, 플레이어 위치만 계속 따라다니면 됨 
                 break;

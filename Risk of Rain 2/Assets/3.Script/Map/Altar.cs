@@ -35,9 +35,13 @@ public class Altar : MonoBehaviour
             Debug.Log("입장");
             Highlight();
 
+            //UI이벤트 발생
+            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("입력");
+                Managers.Game.GameState = Define.EGameState.ActiveTelePort;
                 Instantiate(_bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);  //제단에서 e키를 누르면 보스가 소환될 지점
                 BossRazer();
             }
@@ -49,6 +53,7 @@ public class Altar : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ResetHighlight();
+            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionOut, this);
         }
     }
 

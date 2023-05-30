@@ -99,6 +99,14 @@
         Shift2,
         R1,
         R2
+    }
+    public enum EGameState
+    {
+        NonTelePort,
+        ActiveTelePort,
+        CompeleteTelePort,
+
 
     }
+
 }

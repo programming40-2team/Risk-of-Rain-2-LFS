@@ -2,7 +2,7 @@
 public class GameManager
 {
     private Define.EDifficulty _difficulty = Define.EDifficulty.Easy;
-    private bool _isTelePortActive = false;
+    private Define.EGameState _gameState = Define.EGameState.NonTelePort;
     private int _gold = 0;
     private bool _isclear = false;
 
@@ -64,14 +64,15 @@ public class GameManager
     public int StageLevel { get; set; } = 1;
 
     public int PlayerLevel { get; set; } = 1;
-    public bool IsTelePortActive
+    public Define.EGameState GameState
     {
-        get { return _isTelePortActive; }
+        get { return _gameState; }
         set
         {
-            _isTelePortActive = value;
+            _gameState = value;
             // 보스 소환시 나타날 이벤트들 로 일단 임시
             // 추후 상의 후 어디다가 보스 생성 이벤트들을 어디서 어떻게 연동시켜줄지 고려
+            Managers.Event.GameStateChange?.Invoke();
         }
     }
     public float PlayingTIme { get; set; } = 0;

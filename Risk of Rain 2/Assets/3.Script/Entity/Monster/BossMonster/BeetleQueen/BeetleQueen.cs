@@ -78,6 +78,9 @@ public class BeetleQueen : Entity
     {
         base.Die();
         BeetleQueenAnimator.SetTrigger("Die");
+
+        //보스 종료 시 텔레포트 이벤트 완료!
+        Managers.Game.GameState = Define.EGameState.CompeleteTelePort;
     }
 
     private void SetUp(MonsterData data)

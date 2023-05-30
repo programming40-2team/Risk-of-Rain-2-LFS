@@ -61,7 +61,7 @@ public class PlayerStatus : Entity
         }
         return result;
     }
-
+    
     private void CheckLevel()
     {
         if(CurrentExp >= Exp)
@@ -69,10 +69,12 @@ public class PlayerStatus : Entity
             Level++;
             CurrentExp = 0f;
             Exp *= 1.55f;
+            Managers.Event.PlayerExpUp?.Invoke();
         }
     }
     public void IncreaseExp(float exp)
     {
         CurrentExp += exp;
+        Managers.Event.PlayerExpUp?.Invoke();
     }
 }

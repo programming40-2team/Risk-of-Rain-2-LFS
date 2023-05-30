@@ -7,10 +7,14 @@ public class GameUI : UI_Game, IListener
 {
 
     Color PrevSkillFillImageColor;
+    Color FullChargeSkillFillImageColor;
     string isnotActiveTeleport = "<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오";
     string isActtiveTeleport = "보스를 처치하십시오!";
     string doneTeleporyEvent = "텔리포트로 들어가주십시오";
     public float RunTime = 0f;
+
+    private CommandoSkill characterSkill;
+    private PlayerStatus playerStatus;
     #region UI기본 요소들 Bind
     enum Sliders
     {
@@ -37,6 +41,7 @@ public class GameUI : UI_Game, IListener
 
         TeleCheckFalse,
         TeleCheckTrue,
+        TeleCheckComplete,
 
     }
     enum Texts
@@ -84,6 +89,15 @@ public class GameUI : UI_Game, IListener
         QuitButton,
     }
     #endregion
+
+    private void OnDisable()
+    {
+        Managers.Event.DifficultyChange -= DifficultyImageChagngeEvent;
+        Managers.Event.GoldChange -= GoldChangeEvent;
+        Managers.Event.EquipItemChange -= EquipChangeEvent;
+        Managers.Event.PlayerHealthChange -= EventOfPlayerHp;
+        Managers.Event.PlayerExpUp -= EventOfPlayerExp;
+    }
     public override void Init()
     {
         base.Init();
@@ -94,8 +108,12 @@ public class GameUI : UI_Game, IListener
         Bind<Image>(typeof(Images));
         Bind<Button>(typeof(Buttons));
 
+        #region 스킬 및 캐릭터
+        characterSkill = FindObjectOfType<CommandoSkill>();
         PrevSkillFillImageColor = GetImage((int)Images.SkillRFillImage).color;
-
+        FullChargeSkillFillImageColor = Color.clear;
+        playerStatus = FindObjectOfType<PlayerStatus>();
+        #endregion
         #region  이벤트 연동
         Managers.Event.DifficultyChange -= DifficultyImageChagngeEvent;
         Managers.Event.DifficultyChange += DifficultyImageChagngeEvent;
@@ -103,7 +121,12 @@ public class GameUI : UI_Game, IListener
         Managers.Event.GoldChange += GoldChangeEvent;
         Managers.Event.EquipItemChange -= EquipChangeEvent;
         Managers.Event.EquipItemChange += EquipChangeEvent;
-
+        Managers.Event.PlayerHealthChange -= EventOfPlayerHp;
+        Managers.Event.PlayerHealthChange += EventOfPlayerHp;
+        Managers.Event.PlayerExpUp -= EventOfPlayerExp;
+        Managers.Event.PlayerExpUp += EventOfPlayerExp;
+        Managers.Event.GameStateChange -= GameGoalEvent;
+        Managers.Event.GameStateChange += GameGoalEvent;
 
         Managers.Event.AddListener(Define.EVENT_TYPE.PlayerHpChange, this);
         Managers.Event.AddListener(Define.EVENT_TYPE.BossHpChange, this);
@@ -151,8 +174,6 @@ public class GameUI : UI_Game, IListener
         GetText((int)Texts.StageLevel).text = $"레벨. {1}";
         GetText((int)Texts.ObjectContents).text = $"{isnotActiveTeleport}";
         GetText((int)Texts.PlayerLevelText).text = $"{1}";
-
-
     }
     private void FixedUpdate()
     {
@@ -161,13 +182,14 @@ public class GameUI : UI_Game, IListener
         int seconds = (int)(RunTime % 60); // 초
 
         GetText((int)Texts.TimeText).text = $"{minutes:00}:{seconds:00}";
-
-
     }
+
+
+
+
+
     private void Update()
     {
-
-
         //E 버튼 누르면 활성/비활성
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -183,13 +205,13 @@ public class GameUI : UI_Game, IListener
             Get<GameObject>((int)GameObjects.EscPannel).SetActive(true);
             Time.timeScale = 0f;
         }
+
+        EventOfSkill();
     }
 
     // 상호작용을 누구와 할것인가에 따라 이벤트 구현방식 다르게 할예정?..
     //아무래도 플레이어와 직접 하는게 좋을듯
-    private void SetCoolTime()
-    {
-    }
+
     private void InitButton()
     {
         GetButton((int)Buttons.ReturnToMenuButton).gameObject
@@ -214,48 +236,90 @@ public class GameUI : UI_Game, IListener
         Get<Slider>((int)Sliders.SkillQ).value = 1;
         Get<Slider>((int)Sliders.SkillR).value = 1;
         Get<Slider>((int)Sliders.PlayerHpSlider).value = 1;
-        Get<Slider>((int)Sliders.ExpSlider).value = 1;
+        Get<Slider>((int)Sliders.ExpSlider).value = 0;
         Get<Slider>((int)Sliders.BossHpSlider).value = 1;
+
+
     }
     private void InitImage()
     {
-        GetImage((int)Images.SkillM1FillImage).color = PrevSkillFillImageColor;
-        GetImage((int)Images.SkillM2FillImage).color = PrevSkillFillImageColor;
-        GetImage((int)Images.SkillShiftFillImage).color = PrevSkillFillImageColor;
-        GetImage((int)Images.SkillRFillImage).color = PrevSkillFillImageColor;
-        GetImage((int)Images.SkillQFillImage).color = PrevSkillFillImageColor;
+        GetImage((int)Images.SkillM1FillImage).color = FullChargeSkillFillImageColor;
+        GetImage((int)Images.SkillM2FillImage).color = FullChargeSkillFillImageColor;
+        GetImage((int)Images.SkillShiftFillImage).color = FullChargeSkillFillImageColor;
+        GetImage((int)Images.SkillRFillImage).color = FullChargeSkillFillImageColor;
+        GetImage((int)Images.SkillQFillImage).color = FullChargeSkillFillImageColor;
+
+
+
 
         GetImage((int)Images.TeleCheckTrue).enabled = false;
+        GetImage((int)Images.TeleCheckComplete).enabled = false;
     }
     private void DifficultyImageChagngeEvent(int _)
     {
         GetImage((int)Images.StageImage).sprite = Managers.Resource.LoadSprte($"Difficultyicon{(int)Managers.Game.Difficulty + 1}");
         Debug.Log("만약 난이도 에 따라서 시작 Sprite를 다르게 하고 싶으면 여기에 추가적인설정");
-        // (int)Manager.Game.Difficulty++1 + [ 난이도 보정값] 하면 될듯
+
     }
     private void EventOfSkill()
     {
-        //Get<Slider>((int)Sliders.SkillM1).value = (float)현재 남은시간/ 스킬쿨타임;
-        //Get<Slider>((int)Sliders.SkillM2).value = (float)현재 남은시간/ 스킬쿨타임;
-        //Get<Slider>((int)Sliders.SkillShift).value = (float)현재 남은시간/ 스킬쿨타임;
 
-        //Get<Slider>((int)Sliders.SkillR).value = (float)현재 남은시간/ 스킬쿨타임;
-        //if (Get<Slider>((int)Sliders.SkillQ).value.CompareTo(0.95) > 0)
-        //{
-        //    Color color = Color.white;
-        //    color.a = 0;
-        //    GetImage((int)Images.SkillQFillImage).color = color;
-        //}
+        Get<Slider>((int)Sliders.SkillM2).value = characterSkill.GetPhaseRoundCooldownRemain() / characterSkill.PhaseRoundCooldown;
+        if (Get<Slider>((int)Sliders.SkillM2).value .Equals(0))
+        {
+            GetImage((int)Images.SkillM2FillImage).color = FullChargeSkillFillImageColor;
+            GetText((int)Texts.SkillM2CoolTime).text = string.Empty;
+        }
+        else
+        {
+            GetImage((int)Images.SkillM2FillImage).color = PrevSkillFillImageColor;
+            GetText((int)Texts.SkillM2CoolTime).text = $"{characterSkill.GetPhaseRoundCooldownRemain():0.0}";
+        }
+        Get<Slider>((int)Sliders.SkillShift).value = characterSkill.GetTacticalDiveCooldownRemain() / characterSkill.TacticalDiveCooldown;
+        if (Get<Slider>((int)Sliders.SkillShift).value.Equals(0))
+        {
+            GetImage((int)Images.SkillShiftFillImage).color = FullChargeSkillFillImageColor;
+
+            GetText((int)Texts.SkillShiftCoolTime).text = "";
+        }
+        else
+        {
+            GetImage((int)Images.SkillShiftFillImage).color = PrevSkillFillImageColor;
+
+            GetText((int)Texts.SkillShiftCoolTime).text = $"{characterSkill.GetTacticalDiveCooldownRemain():0.0}";
+        }
+
+        Get<Slider>((int)Sliders.SkillR).value = characterSkill.GetSuppressiveFireCooldownRemain() / characterSkill.SuppressiveFireCooldown;
+        if (Get<Slider>((int)Sliders.SkillR).value.Equals(0))
+        {
+            GetImage((int)Images.SkillRFillImage).color = FullChargeSkillFillImageColor;
+
+            GetText((int)Texts.SkillRCoolTime).text = "";
+        }
+        else
+        {
+            GetImage((int)Images.SkillRFillImage).color = PrevSkillFillImageColor;
+
+            GetText((int)Texts.SkillRCoolTime).text = $"{characterSkill.GetSuppressiveFireCooldownRemain():0.0}";
+        }
+
+        
+  
+      
+        //R 스킬 쿨타임 스킬 추가해야 함 -> 플레이어 침투 예정
+
     }
+    
     //여기는 한번 더 머지  받으면 (플레이어 경험치, Hp 에 따라서 이벤트를 연동시켜줄 예정) 
     private void EventOfPlayerHp()
     {
-        // Get<Slider>((int)Sliders.PlayerHpSlider).value = 1;
-        // Get<Slider>((int)Sliders.ExpSlider).value = 1;
+         Get<Slider>((int)Sliders.PlayerHpSlider).value = playerStatus.Health/playerStatus.MaxHealth;
+
     }
     private void EventOfPlayerExp()
     {
-
+        Get<Slider>((int)Sliders.ExpSlider).value = playerStatus.CurrentExp / playerStatus.Exp;
+        GetText((int)Texts.PlayerLevelText).text = $"{playerStatus.Level}";
     }
     private void EventOfBossHp()
     {
@@ -283,6 +347,30 @@ public class GameUI : UI_Game, IListener
             .sprite = Managers.Resource.LoadSprte($"{Managers.Data.ItemDataDict[itemcode].iconkey}");
 
     }
+    private void GameGoalEvent()
+    {
+        GetImage((int)Images.TeleCheckFalse).enabled = false;
+        GetImage((int)Images.TeleCheckTrue).enabled = false;
+        GetImage((int)Images.TeleCheckComplete).enabled = false;
+
+        switch (Managers.Game.GameState)
+        {
+            case Define.EGameState.NonTelePort:
+                GetText((int)Texts.ObjectContents).text = "<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오";
+                GetImage((int)Images.TeleCheckFalse).enabled = true;
+                break;
+            case Define.EGameState.ActiveTelePort:
+                GetText((int)Texts.ObjectContents).text = "<b>보스를 처치하십시오!</b>";
+                GetImage((int)Images.TeleCheckFalse).enabled = true;
+                break;
+            case Define.EGameState.CompeleteTelePort:
+                GetText((int)Texts.ObjectContents).text = "텔리포트로 들어가십시오";
+                GetImage((int)Images.TeleCheckComplete).enabled = true;
+                break;
+        }
+
+    }
+
     private void InteractionInTextChangeEvent(Component _Sender)
     {
         Get<GameObject>((int)GameObjects.InteractionPannel).SetActive(true);
@@ -300,6 +388,23 @@ public class GameUI : UI_Game, IListener
             //이런식으로 처리 하지만 결국 그 가격에 따라 아이템을 사는 (상자를 여는 행위) 자체는 상자 ItemContainer에서 진행
             // 다른 상호작용 키들도 마찬가지 여기는 UI만 관리하고 동작들은 해당 class 내에서 처리합시다.!!
         }
+        else if (_Sender.TryGetComponent(out Altar aitar))
+        {
+            GetText((int)Texts.InteractionKeyText).text = "E";
+            switch (Managers.Game.GameState)
+            {
+                case Define.EGameState.NonTelePort:
+                    GetText((int)Texts.InteractionContentsText).text = $"텔레포터 가동...?";
+                    break;
+                case Define.EGameState.ActiveTelePort:
+                    Get<GameObject>((int)GameObjects.InteractionPannel).SetActive(false);
+                    break;
+                case Define.EGameState.CompeleteTelePort:
+                    GetText((int)Texts.InteractionContentsText).text = $"텔레포터에 들어가십시오";
+                    break;
+            }
+        }
+
     }
     private void InteractionOutEvent()
     {
@@ -309,9 +414,7 @@ public class GameUI : UI_Game, IListener
     {
         switch (Event_Type)
         {
-            case Define.EVENT_TYPE.PlayerHpChange:
-                EventOfPlayerHp();
-                break;
+          
             case Define.EVENT_TYPE.BossHpChange:
                 EventOfBossHp();
                 break;

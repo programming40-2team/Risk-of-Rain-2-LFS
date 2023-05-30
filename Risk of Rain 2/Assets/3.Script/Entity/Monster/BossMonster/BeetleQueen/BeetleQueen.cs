@@ -43,9 +43,9 @@ public class BeetleQueen : Entity
         _player = GameObject.FindGameObjectWithTag("Player");
         _beetleQueenMouthTransform = GameObject.FindGameObjectWithTag("BeetleQueenMouth").transform;
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
-        AcidBallPool = GameObject.FindGameObjectWithTag("AcidBallPool").GetComponent<ObjectPool>();
-        AcidPoolPool = GameObject.FindGameObjectWithTag("AcidPoolPool").GetComponent<ObjectPool>();
-        WardPool = GameObject.FindGameObjectWithTag("WardPool").GetComponent<ObjectPool>();
+        AcidBallPool = GameObject.Find("AcidBallPool").GetComponent<ObjectPool>();
+        AcidPoolPool = GameObject.Find("AcidPoolPool").GetComponent<ObjectPool>();
+        WardPool = GameObject.Find("WardPool").GetComponent<ObjectPool>();
     }
 
     protected override void OnEnable()
@@ -96,7 +96,7 @@ public class BeetleQueen : Entity
     /// <summary>
     /// 산성담즙 6개 부채꼴로 발사하는 스킬
     /// </summary>
-    public void StartAcidBileSkill()
+    public void AcidBileSkill()
     {
         IsRun = true;
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
@@ -112,7 +112,7 @@ public class BeetleQueen : Entity
     /// <summary>
     /// 뒤꽁무니에서 구체 3개 뿅뿅뿅 발사하는 스킬
     /// </summary>
-    public void StartWardSkill() // 체력 50% 미만
+    public void WardSkill() // 체력 50% 미만
     {
         IsRun = true;
         StartCoroutine(CreateWard_co());
@@ -123,7 +123,7 @@ public class BeetleQueen : Entity
     /// <summary>
     /// 플레이어 위치에 시간차 범위 공격 하는 스킬
     /// </summary>
-    public void StartRangeBombSkill() // 체력 25% 미만
+    public void RangeBombSkill() // 체력 25% 미만
     {
         IsRun = true;
         Vector3 pos = Vector3.zero;

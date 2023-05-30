@@ -11,10 +11,14 @@ public class Lemurian : Entity
 
     public Animator LemurianAnimator;
 
+    [Header("Transforms")]
+    [SerializeField] private Transform _lemurianMouthTransform;
+
     private void Awake()
     {
         TryGetComponent(out LemurianAnimator);
         _player = GameObject.FindGameObjectWithTag("Player");
+        _lemurianMouthTransform = GameObject.FindGameObjectWithTag("LemurianMouth").transform;
         FireWardPool = GameObject.Find("FireWardPool").GetComponent<ObjectPool>();
     }
 
@@ -67,10 +71,9 @@ public class Lemurian : Entity
     /// </summary>
     public void FireWardSkill()
     {
-        // Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
-        // GameObject obj = FireWardPool.GetObject();
-        // obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
-        // obj 방향 플레이어 향하도록 설정해야함
+        Quaternion rot = Quaternion.LookRotation(_player.transform.position - _lemurianMouthTransform.position);
+        GameObject obj = FireWardPool.GetObject();
+        obj.transform.SetPositionAndRotation(_lemurianMouthTransform.position, Quaternion.Euler(0, 0, 0) * rot);
     }
 
     /// <summary>

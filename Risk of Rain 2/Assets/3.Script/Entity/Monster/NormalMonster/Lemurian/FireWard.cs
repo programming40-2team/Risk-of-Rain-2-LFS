@@ -42,6 +42,7 @@ public class FireWard : MonoBehaviour
                 col.GetComponent<Entity>().OnDamage(_damage);
             }
             // 사라지는 효과 있다면 여기
+            DeleteFireWard();
         }
     }
 }

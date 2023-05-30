@@ -21,17 +21,20 @@ public class PlayerMovement : MonoBehaviour
     private float _jumpForce = 200f;
     private int _jumpCount;
     private bool _isJumping;
-    private float _rotateSpeed = 550f;
+    private readonly float _rotateSpeed = 550f;
     private bool _isSprinting;
 
     //Ground Check
     private readonly float _groundCheckDistance = 0.11f;
     private readonly float _yOffset = 0.1f;
 
+<<<<<<< HEAD
     //이동에 영향을 주는 아이템 관련
     public int _bonusJumpCount = 0;
     public float _bonusMoveSpeed = 1f;
 
+=======
+>>>>>>> feature/Player
     private void Awake()
     {
         TryGetComponent(out _playerAnimator);
@@ -55,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-
     }
 
     private void FixedUpdate()
@@ -70,11 +72,11 @@ public class PlayerMovement : MonoBehaviour
         _moveDirection = _move.x * transform.right + _move.y * transform.forward;
         if (_isSprinting)
         {
-            _distance = 1.5f * _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
+            _distance = 1.5f * _playerStatus.MoveSpeed  * Time.deltaTime * _moveDirection.normalized;
         }
         else
         {
-            _distance = _playerStatus.MoveSpeed * _bonusMoveSpeed * Time.deltaTime * _moveDirection.normalized;
+            _distance = _playerStatus.MoveSpeed * Time.deltaTime * _moveDirection.normalized;
         }
         _playerRigidbody.MovePosition(_playerRigidbody.position + _distance);
 
@@ -121,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(transform.position + new Vector3(0, _yOffset, 0), Vector3.down, out _, _groundCheckDistance) && _isJumping)
         {
             _playerAnimator.SetBool("Jump", false);
-            _jumpCount = _playerStatus.MaxJumpCount + _bonusJumpCount;
+            _jumpCount = _playerStatus.MaxJumpCount;
             _isJumping = false;
         }
     }

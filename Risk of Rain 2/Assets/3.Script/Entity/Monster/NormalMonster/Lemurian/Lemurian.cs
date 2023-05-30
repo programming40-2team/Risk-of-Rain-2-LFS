@@ -77,10 +77,10 @@ public class Lemurian : Entity
     }
 
     /// <summary>
-    /// 10m 이내로 근접하면 달려와서 할퀴기 공격을 해 200%의 피해를 입힘. 할퀴기 공격은 1초의 쿨타임이 존재
+    /// 10m 이내로 근접하면 달려와서 할퀴기(bite) 공격을 해 200%의 피해를 입힘. 할퀴기 공격은 1초의 쿨타임이 존재
     /// </summary>
-    public void ScratchSkill() // 이펙트가 있는지 없는지 모르겠음
+    public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
-
+        // 애니메이터 상태 스크립트로만 가능 한거 같은데?
     }
 }

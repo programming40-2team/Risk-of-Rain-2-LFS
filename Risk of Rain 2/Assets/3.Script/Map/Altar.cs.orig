@@ -25,7 +25,7 @@ public class Altar : MonoBehaviour
             bossRazer.Stop();
         }
     }
-    
+
     private void OnTriggerStay(Collider other)
     {
         Transform bossSpawnPoint = spawnPoint;
@@ -54,7 +54,11 @@ public class Altar : MonoBehaviour
 
     private void BossRazer()
     {
+<<<<<<< HEAD
+        if (!bossRazer.isPlaying)
+=======
         if(!bossRazer.isPlaying)
+>>>>>>> feature/Boss
         {
             bossRazer.Play();
         }
@@ -70,5 +74,6 @@ public class Altar : MonoBehaviour
         objectMesh.material = mat;
     }
 }
+
 
 

@@ -18,6 +18,8 @@ public class BeetleQueen : Entity
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
+    public bool IsRun = false;
+
     [Header("Transforms")]
     [SerializeField] private Transform _beetleQueenMouthTransform;
     [SerializeField] private Transform _beetleQueenButtTransform;
@@ -41,9 +43,9 @@ public class BeetleQueen : Entity
         _player = GameObject.FindGameObjectWithTag("Player");
         _beetleQueenMouthTransform = GameObject.FindGameObjectWithTag("BeetleQueenMouth").transform;
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
-        AcidBallPool = GameObject.FindGameObjectWithTag("AcidBallPool").GetComponent<ObjectPool>();
-        AcidPoolPool = GameObject.FindGameObjectWithTag("AcidPoolPool").GetComponent<ObjectPool>();
-        WardPool = GameObject.FindGameObjectWithTag("WardPool").GetComponent<ObjectPool>();
+        AcidBallPool = GameObject.Find("AcidBallPool").GetComponent<ObjectPool>();
+        AcidPoolPool = GameObject.Find("AcidPoolPool").GetComponent<ObjectPool>();
+        WardPool = GameObject.Find("WardPool").GetComponent<ObjectPool>();
     }
 
     protected override void OnEnable()
@@ -94,22 +96,53 @@ public class BeetleQueen : Entity
     /// <summary>
     /// 산성담즙 6개 부채꼴로 발사하는 스킬
     /// </summary>
-    public void StartAcidBileSkill()
+    public void AcidBileSkill()
     {
+        IsRun = true;
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {
             GameObject obj = AcidBallPool.GetObject();
             obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
         }
+        //yield return new WaitForSeconds(10f);
+        IsRun = false;
     }
 
     /// <summary>
-    /// 뒤꽁무니에서 3개 뿅뿅뿅 발사하는 스킬
+    /// 뒤꽁무니에서 구체 3개 뿅뿅뿅 발사하는 스킬
     /// </summary>
-    public void StartWardSkill()
+    public void WardSkill() // 체력 50% 미만
     {
+        IsRun = true;
         StartCoroutine(CreateWard_co());
+        //yield return new WaitForSeconds(18f);
+        IsRun = false;
+    }
+
+    /// <summary>
+    /// 플레이어 위치에 시간차 범위 공격 하는 스킬
+    /// </summary>
+    public void RangeBombSkill() // 체력 25% 미만
+    {
+        IsRun = true;
+        Vector3 pos = Vector3.zero;
+        RaycastHit[] hits;
+        Ray ray = new Ray(_player.transform.position, Vector3.down);
+
+        hits = Physics.RaycastAll(ray);
+
+        foreach (RaycastHit obj in hits)
+        {
+            if (obj.transform.gameObject.CompareTag("Ground"))
+            {
+                pos = obj.point;
+                pos = new Vector3(pos.x, pos.y + 0.2f, pos.z);
+                Instantiate(BombRange, pos, Quaternion.identity);
+            }
+        }
+        //yield return new WaitForSeconds(20f);
+        IsRun = false;
     }
 
     private IEnumerator CreateWard_co()
@@ -133,22 +166,4 @@ public class BeetleQueen : Entity
         transform.Rotate(new Vector3(0, angle, 0));
     }
 
-    public void StartRangeBombSkill()
-    {
-        Vector3 pos = Vector3.zero;
-        RaycastHit[] hits;
-        Ray ray = new Ray(_player.transform.position, Vector3.down);
-
-        hits = Physics.RaycastAll(ray);
-
-        foreach (RaycastHit obj in hits)
-        {
-            if (obj.transform.gameObject.CompareTag("Ground"))
-            {
-                pos = obj.point;
-                pos = new Vector3(pos.x, pos.y + 0.1f, pos.z);
-                Instantiate(BombRange, pos, Quaternion.identity);
-            }
-        }
-    }
 }

@@ -498,7 +498,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.019146586
-        functionName: StartRangeBombSkill
+        functionName: RangeBombSkill
         data: 
         objectReferenceParameter: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
         floatParameter: 0
@@ -657,7 +657,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.36421725
-        functionName: StartWardSkill
+        functionName: WardSkill
         data: 
         objectReferenceParameter: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
         floatParameter: 0
@@ -765,7 +765,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: StartAcidBileSkill
+        functionName: AcidBileSkill
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
         floatParameter: 0

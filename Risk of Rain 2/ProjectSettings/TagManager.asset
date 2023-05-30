@@ -14,6 +14,7 @@ TagManager:
   - WardPool
   - Ground
   - Test
+  - LemurianMouth
   layers:
   - Default
   - TransparentFX

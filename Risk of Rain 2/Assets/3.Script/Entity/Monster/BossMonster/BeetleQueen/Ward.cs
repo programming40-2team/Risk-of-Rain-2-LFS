@@ -87,8 +87,18 @@ public class Ward : MonoBehaviour
                 Debug.Log("플레이어 아야");
                 col.gameObject.GetComponent<Entity>().OnDamage(_damage);
             }
+            else
+            {
+                Debug.Log("벽이나 바닥에 닿음");
+            }
             // TODO :  터져서 사라지는 효과 코루틴으로 넣기
-            _beetleQueen.WardPool.ReturnObject(gameObject);
+            DeleteWard();
         }
+    }
+
+    private void DeleteWard()
+    {
+        Debug.Log("사라졌다");
+        _beetleQueen.WardPool.ReturnObject(gameObject);
     }
 }

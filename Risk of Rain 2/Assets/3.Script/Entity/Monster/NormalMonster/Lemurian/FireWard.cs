@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireWard : MonoBehaviour
 {
     private Lemurian _lemurian;
-    [SerializeField] private GameObject __lemurianObject;
+    [SerializeField] private GameObject _lemurianObject;
     private float _shootingSpeed = 45f;
     private float _damage = 0; // 100%
 
@@ -29,19 +29,23 @@ public class FireWard : MonoBehaviour
 
     private void DeleteFireWard()
     {
+        Debug.Log("사라졌다");
         _lemurian.FireWardPool.ReturnObject(gameObject);
     }
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject != __lemurianObject)
+        if(col.gameObject != _lemurianObject)
         {
             if(col.gameObject.CompareTag("Player"))
             {
                 Debug.Log("플레이어 아야");
                 col.GetComponent<Entity>().OnDamage(_damage);
             }
-            // 사라지는 효과 있다면 여기
+            else
+            {
+                Debug.Log("벽이나 바닥에 닿음");
+            }
             DeleteFireWard();
         }
     }

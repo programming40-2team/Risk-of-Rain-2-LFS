@@ -146,7 +146,7 @@ public class BeetleQueen : Entity
 
     private IEnumerator CreateWard_co()
     {
-        Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
+        //Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         WaitForSeconds wfs = new WaitForSeconds(0.3f);
         for (int i = 0; i < 3; i++)
         {

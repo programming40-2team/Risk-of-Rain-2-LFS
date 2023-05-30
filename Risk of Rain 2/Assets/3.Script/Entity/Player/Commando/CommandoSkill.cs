@@ -19,7 +19,7 @@ public class CommandoSkill : MonoBehaviour
 
     //aiming
     private float _aimY;
-    private float _centerAimY = 124.75f;
+    private readonly float _centerAimY = 124.75f;
     private RaycastHit _aimHit;
 
     /// 아래는 스킬 관련 변수들입니다. 기존 쿨타임은 프로퍼티화를 시켰으나
@@ -34,7 +34,6 @@ public class CommandoSkill : MonoBehaviour
     [SerializeField] private GameObject _rightMuzzleEffect;
     
     //PhaseRound (2번째 스킬)
-    //public float _phaseRoundCooldown = 3f;
     public float PhaseRoundCooldown { get; private set; } = 3f;
     private float _phaseRoundCooldownRemain  = 0f;
     public float GetPhaseRoundCooldownRemain()

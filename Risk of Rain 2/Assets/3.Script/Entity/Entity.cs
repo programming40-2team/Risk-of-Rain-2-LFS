@@ -30,8 +30,21 @@ public class Entity : MonoBehaviour
     // --------------------------------------
     [HideInInspector]
     public float MaxHealth; // 레벨에 따라 늘어남
-    public float Health { get; protected set; }
-  
+    //    public float Health { get; protected set; }
+    private float _health;
+    public float Health
+    {
+        get
+        {
+            return _health;
+        }
+        set
+        {
+           _health = Mathf.Clamp(value, 0, MaxHealth);
+        }
+    }
+
+
     public bool IsDeath { get; protected set; }
     public event Action OnDeath;
 
@@ -42,12 +55,28 @@ public class Entity : MonoBehaviour
     public float DamageAscent { get; protected set; } // 레벨당 공격력 상승치
     public float HealthRegen { get; protected set; }// 체력 회복량
     public float HealthRegenAscent { get; protected set; }// 레벨당 체력 회복량
+    private WaitForSeconds _healthRegenDelay = new WaitForSeconds(1f);
 
+    private int _difficulty = 0;
     protected virtual void OnEnable()
     {
         IsDeath = false;
         // MaxHealth = data.health;
-        Health = MaxHealth;
+        Health = MaxHealth + MaxHealthAscent * _difficulty;
+        Damage += MaxHealthAscent * _difficulty;
+        HealthRegen += HealthRegenAscent * _difficulty;
+        StartCoroutine(RegenerateHealth_co());
+    }
+
+    private void Start()
+    {
+        Managers.Event.DifficultyChange -= SetDifficulty;
+        Managers.Event.DifficultyChange += SetDifficulty;
+    }
+
+    private void SetDifficulty(int difficulty)
+    {
+        _difficulty = difficulty;
     }
 
     /// <summary>
@@ -77,5 +106,11 @@ public class Entity : MonoBehaviour
             OnDeath();
         }
         IsDeath = true;
+    }
+
+    private IEnumerator RegenerateHealth_co()
+    {
+        yield return _healthRegenDelay;
+        Health += HealthRegen;
     }
 }

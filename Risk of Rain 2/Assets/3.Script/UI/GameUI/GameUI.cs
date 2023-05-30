@@ -221,7 +221,7 @@ public class GameUI : UI_Scene,IListener
 
         GetImage((int)Images.TeleCheckTrue).enabled = false;
     }
-    private void DifficultyImageChagngeEvent()
+    private void DifficultyImageChagngeEvent(int _)
     {
         GetImage((int)Images.StageImage).sprite = Managers.Resource.LoadSprte($"Difficultyicon{(int)Managers.Game.Difficulty+1}");
     }

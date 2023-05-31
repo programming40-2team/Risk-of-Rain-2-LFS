@@ -19,7 +19,7 @@ public class Item1017Skill : ItemPrimitiive
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Define.BossTag)||other.CompareTag("Monster")) //스킬들 전부 테그 가져오는 거 임시, 추후  컴포넌트를 가져오던가 변경 예정
+        if (!other.CompareTag("Player")) //스킬들 전부 테그 가져오는 거 임시, 추후  컴포넌트를 가져오던가 변경 예정
         {
             if (enemyTagert.ContainsKey(other.GetHashCode()))
             {

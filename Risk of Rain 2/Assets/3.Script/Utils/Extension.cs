@@ -14,7 +14,7 @@ public static class Extension
         UI_Base.BindEvent(go, action, type);
     }
 
-    public static Vector3 SetRandomPositionSphere(this GameObject go,float mindisatnce=3f,float maxdistacne=8f,float additionalHeighy=5f)
+    public static Vector3 SetRandomPositionSphere(this GameObject go,float mindisatnce=3f,float maxdistacne=8f,float additionalHeighy=5f,Transform transform=null)
     {
        
         Collider collider = go.GetComponent<Collider>();
@@ -38,14 +38,13 @@ public static class Extension
         //새롭게 잡힌 포지션은, X,Z 좌표값은 랜덤한 반경, 각도를 통해 얻은 값
         //Y 값(높이)는 현재 위치 ( 콜리터 중심점 + 백터 위*(콜리터 가장 윗자리  + 추가적인 아이템이 올라갈높이)
         Vector3 newPosition = colliderCenter + CirclePos + Vector3.up * (colliderSize.y * 0.5f + _additionalHeight);
-
+        if (transform != null)
+        {
+            newPosition = new Vector3(newPosition.x, transform.position.y+additionalHeighy, newPosition.z);
+        }
         go.transform.position = newPosition;
 
         return newPosition;
-    }
-    public static bool IsGrounded(this GameObject go,float yOffSet,float groundCheckDistance)
-    {
-        return Physics.Raycast(go.transform.position + new Vector3(0, yOffSet, 0), Vector3.down, out _, groundCheckDistance) ? true : false;
     }
 
 

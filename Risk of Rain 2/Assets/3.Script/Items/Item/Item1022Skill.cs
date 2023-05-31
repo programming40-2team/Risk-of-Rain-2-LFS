@@ -9,7 +9,7 @@ public class Item1022Skill : ItemPrimitiive
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Monster")||other.CompareTag(Define.BossTag))
+        if (!other.CompareTag("Player"))
         {
             if (!IsCooltime)
             {

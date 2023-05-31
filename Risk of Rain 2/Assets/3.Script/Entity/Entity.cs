@@ -30,6 +30,7 @@ public class Entity : MonoBehaviour
     // --------------------------------------
     [HideInInspector]
     public float MaxHealth; // 레벨에 따라 늘어남
+
     private float _health;
     public float Health
     {
@@ -40,7 +41,6 @@ public class Entity : MonoBehaviour
         set
         {
            _health = Mathf.Clamp(value, 0, MaxHealth);
-            
         }
     }
 

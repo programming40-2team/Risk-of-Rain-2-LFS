@@ -10,13 +10,15 @@ public class PlayerStatus : Entity
     public string Name { get; private set; }
     public float Mass { get; private set; }
     public float CriticalChance { get;  set; }
-    public int MaxJumpCount { get; private set; }
+    public int MaxJumpCount { get;  set; }
 
     //Survivors Data와 상관없는 고정 변수
     public int Level { get; private set; }
     public float Exp { get; private set; } = 100f;
     public float CurrentExp { get; private set; }
     public float ChanceBlockDamage { get;  set; }
+
+
 
     protected override void OnEnable()
     {
@@ -47,6 +49,13 @@ public class PlayerStatus : Entity
 
     }
     //직접 넣는 것보다 OnHeal, OnDamage로 넣는게 좋을 것 같아서 수정!
+
+    public void AddMaxHealth(float addHealth)
+    {
+     
+        MaxHealth += addHealth;
+        OnHeal(addHealth);
+    }
     public void OnHeal(float heal)
     {
         Health += heal;
@@ -54,7 +63,7 @@ public class PlayerStatus : Entity
     }
     public override void OnDamage(float damage)
     {
-        if(GetBlockChanceResult())
+        if(!GetBlockChanceResult())
         {
             base.OnDamage(damage);
             Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);

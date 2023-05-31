@@ -10,21 +10,23 @@ public class PrimitivePassiveItem : ItemPrimitiive
      1. 상시 아이템은 Invoke() 받으면 어떻게 처리할 것인가?
           ==> 스텟 올려주는 것은 그냥 코루틴 실행하면 되는데 생성하는 것은?
      */
-
-
-
-
+    #region 스킬 제약조건 일부
+    bool Isitem1015Created = false;
+    bool item1019Spawned = false;
+    #endregion
     //보너스 점프 카운트...
-
-   
-    PlayerMovement playerMoveMent;
-    private void Start()
+    public override void Init()
     {
-
-        playerMoveMent = Player.GetComponent<PlayerMovement>();
-
+        base.Init();
         Managers.Event.CharacterStateChange -= ExcuteSkill;
         Managers.Event.CharacterStateChange += ExcuteSkill;
+        Managers.Event.AddItem -= OnPassiveSkill;
+        Managers.Event.AddItem += OnPassiveSkill;
+    }
+    private void Start()
+    {
+        Init();
+       
     }
     //기본적으론 플레이어 상태에 따라 한번씩 전부 실행시켜주고, 만약 아이템을 획득한 경우에만 추가적으로 한번더 실행
     //원본 데이터 가지고 있어야 하고, 아이템을 획득한 경우 아이템 타입이 현재 플레이어 상태가 어떠하냐에 따라서
@@ -79,8 +81,8 @@ public class PrimitivePassiveItem : ItemPrimitiive
         {
             case 1001:
                 //공속 15% 향상 -> 일단 임시로 최대체력 올려놨고 필요한거 따라서 설정할 예정
-                _playerStatus.MaxHealth = _playerStatus._survivorsData.MaxHealth + 15 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
-                break;  
+                _playerStatus.AddMaxHealth(15 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
+                    break;  
             case 1002:
                 _playerStatus.ChanceBlockDamage= 5 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 //얘는 피해차단이라서 따로 컴포넌트 주던가 해야할듯? -> 이 아니라 그냥 플레이어 Hit 부분에 나만의 작은 함수 하나 넣지 뭐
@@ -92,16 +94,15 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 break;
             case 1004:
                 _playerStatus.CriticalChance = _playerStatus._survivorsData.CriticalChance + 10 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
-                //치명타 추후 구현 예쩡입니다.
                 break;
             case 1005:
                 _playerStatus.MoveSpeed=_playerStatus._survivorsData.MoveSpeed*1.14f* Managers.ItemInventory.WhenActivePassiveItem[Define.WhenItemActivates.Always][itemcode].Count;
                 //playerMoveMent._bonusMoveSpeed=1.14f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;
             case 1006:
-                //실드 획득인데 실드 관련 속성이 없음
-                //일단  체력 생성으로 넣어놨는데 체력 생성 
-                _playerStatus.OnHeal(15 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
+                //실드 획득인데 실드 관련 속성이 없음 --> 체력 재생량 증가로 설정해둠
+                //일단 체력 생성으로 넣어놨는데 체력 생성 
+                _playerStatus.HealthRegen=_playerStatus._survivorsData.HealthRegen+(5 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
                 break;
             case 1007:
                 StopCoroutine(nameof(Item1007_co));
@@ -116,20 +117,22 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 item1008.transform.position = Player.transform.position;
                 break;
             case 1009:
-                playerMoveMent._bonusJumpCount = Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
+                 _playerStatus.MaxJumpCount = 1+Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;
             case 1010:
                 _playerStatus.OnHeal(1 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
                 //피해를 입히면 나의 체력이 1 회복... 얘는 몬스터 상태도 봐야 할듯 한데?.. --> 컴포넌트 가져와서 프로퍼티 등으로 확인하면 될듯?..
                 break;
             case 1011:
-                playerMoveMent._bonusMoveSpeed = 1.3f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
+                _playerStatus.MoveSpeed = 1.3f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;
             case 1012:
                 _playerStatus.CriticalChance=_playerStatus._survivorsData.CriticalChance+ 5*Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
-                //치명타 확률 5%증가 치명타 터지면 체력 8  +4 *count 치유
+                //치명타 확률 5%증가 치명타 터지면 체력 8  +4 *count 치유  ===> 대신 일정 확률로 치유
+                _playerStatus.OnHeal(4 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
                 break;
             case 1013:
+                FindObjectOfType<CommandoSkill>().SkillQColldown-=4+2* Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 //적을 처치하면 장비 쿨타임 4 + 2 * count초 감소
                 break;
             case 1014:
@@ -138,22 +141,25 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 //적을 처치하면 단검 3개 생성 -> 단검은 적을 쫓아 가서 적에게 나의 공격 만큼타격을 입힘 +  단검의 개수는 일정 ,
                 break;
             case 1015:
-                bool Isitem1015Created = false;
+                GameObject Item1015=null;
                 if (!Isitem1015Created)
                 {
-                    Managers.Resource.Instantiate("Item1015SKill");
+                    Item1015 = Managers.Resource.Instantiate("Item1015Skill");
+                    Item1015.GetOrAddComponent<Item1015Skill>();
                     Isitem1015Created = true;
+                }
+                else
+                {
+
+                    Item1015.GetOrAddComponent<Item1015Skill>().SetSize(Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1015].WhenItemActive][1015].Count);
                 }
                 //적을 처치하면 나에게 얼움 폭풍이 생기고 그 안에 있는 몬스터  이속 80% 감소 
                 //매번 생성하는 것이 아니라 한번 생성하면 더이상 생성하지 않아도 되며, 플레이어 위치만 계속 따라다니면 됨 
                 break;
             case 1016:
-                bool Isitem1016Created = false;
-                if (!Isitem1016Created)
-                {
-                  GameObject Item1016 =Managers.Resource.Instantiate("Item1016Skill");
-                    Isitem1016Created = true;
-                }
+                GameObject Item1016 =Managers.Resource.Instantiate("Item1016Skill");
+                Item1016.GetOrAddComponent<Item1016Skill>();
+                Item1016.transform.position = Player.transform.position;
                 //점프 높이가 증가하여 착지할 때 5~100m 반경의 운동에너지 폭발 (데미지주는 장판 생성) 점프 끝날떄
                 //=>  점프 시작할 떄 데미지 주는 것으로 변경
                 break;
@@ -162,8 +168,7 @@ public class PrimitivePassiveItem : ItemPrimitiive
 
                 break;
             case 1018:
-                _playerStatus.MaxHealth = _playerStatus._survivorsData.MaxHealth;
-                _playerStatus.MaxHealth +=_playerStatus._survivorsData.MaxHealth+ 40*Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
+                _playerStatus.AddMaxHealth( 40*Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
                 _playerStatus.HealthRegen += _playerStatus._survivorsData.HealthRegen + 1.6f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;
             case 1019:
@@ -181,12 +186,13 @@ public class PrimitivePassiveItem : ItemPrimitiive
         if (!item1003Spawned)
         {
             item1003Spawned = true;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 1; i++)
             {
                 GameObject item1003 = Managers.Resource.Instantiate("Item1003Skill");
                 item1003.transform.position = Player.transform.position;
                 item1003.GetOrAddComponent<Item1003Skill>();
-                item1003.SetRandomPositionSphere();
+                item1003.SetRandomPositionSphere(5, 2, 5,Player.transform);
+
             }
             yield return new WaitForSeconds(1.5f);
             item1003Spawned = false;
@@ -205,7 +211,7 @@ public class PrimitivePassiveItem : ItemPrimitiive
                     GameObject item1014 = Managers.Resource.Instantiate("Item1014Skill");
                     item1014.transform.position = Player.transform.position;
                     //ㅑㅅ드
-                    item1014.SetRandomPositionSphere(1, 2, 1);
+                    item1014.SetRandomPositionSphere(2f, 2f, 5,Player.transform);
 
                     item1014.GetOrAddComponent<Item1014Skill>();
                 }
@@ -225,13 +231,12 @@ public class PrimitivePassiveItem : ItemPrimitiive
             for (int i = 0; i < 1; i++)
             {
                 GameObject item1007 = Managers.Resource.Instantiate("Item1007Skill");
-                item1007.transform.position = Player.transform.position;
 
-                item1007.SetRandomPositionSphere(1, 1, 5);
                 Debug.Log("위치 2개의 직선 을 이어주는 연기 필요");
-                Debug.Log("연동방법   함수 (item1007.transform.position ,item1007.SetRandomPositionSphere(1, 1, 5) ");
+                Debug.Log("연동방법   함수 (item1007.transform.position ,item1007.SetRandomPositionSphere(2f, 2f, 5, Player.transform);" +
+                    "기존 SetRandomPosition 지워야함 문의 바람 -KYS ");
                 item1007.GetOrAddComponent<Item1007Skill>();
-                
+                item1007.SetRandomPositionSphere(2f, 2f, 5, Player.transform);
             }
             yield return new WaitForSeconds(3.0f);
             item1007Spawned = false;
@@ -241,32 +246,18 @@ public class PrimitivePassiveItem : ItemPrimitiive
 
     private IEnumerator Item1019_co()
     {
-        bool item1019Spawned = false;
+        GameObject item1019=null;
         if (!item1019Spawned)
         {
-            
-            Item1019Skill[] prev1019skills= GameObject.FindObjectsOfType<Item1019Skill>();
-            if(prev1019skills.Length > 0)
-            {
-                for (int i = 0; i < prev1019skills.Length; i++)
-                {
-                    Managers.Resource.Destroy(prev1019skills[i].gameObject);
-                }
-            }
-
-
-
             item1019Spawned = true;
-            for (int i = 0; i < (Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1019].WhenItemActive][1019].Count); i++)
+            for (int i = 0; i < 2; i++)
             {
-                GameObject item1019 = Managers.Resource.Instantiate("Item1019Skill");
-                item1019.transform.position = Player.transform.position;
-                item1019.SetRandomPositionSphere(1, 10, 5);
-                item1019.GetOrAddComponent<Item1007Skill>();
-               
+                item1019 = Managers.Resource.Instantiate("Item1019Skill");
+                item1019.SetRandomPositionSphere(2, 7, 5,Player.transform);
+                item1019.GetOrAddComponent<Item1019Skill>();
             }
             yield return new WaitForSeconds(3.0f);
-            item1019Spawned = false;
         }
+        item1019.GetComponent<Item1019Skill>().SetStats(Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1019].WhenItemActive][1019].Count);
     }
 }

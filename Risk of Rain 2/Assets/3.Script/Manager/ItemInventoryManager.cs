@@ -25,13 +25,18 @@ public class ItemInventoryManager
         {
             if (itemdata.itemType.Equals(Define.ItemType.Active))
             {
-                ActiveItem.Add(itemdata.itemcode, (Item.ActiveItem)Item.MakeItem(itemdata));
+                Item item = Item.MakeItem(itemdata);
+                ActiveItem.Add(itemdata.itemcode,(Item.ActiveItem)item);
+                Items.Add(itemdata.itemcode,item);
+                // (Item.ActiveItem)Item.MakeItem(itemdata));
             }
             else
             {
-                PassiveItem.Add(itemdata.itemcode, (Item.PassiveItem)Item.MakeItem(itemdata));
+                Item item = Item.MakeItem(itemdata);
+                PassiveItem.Add(itemdata.itemcode, (Item.PassiveItem)item);
+                Items.Add(itemdata.itemcode, item);
             }
-            Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
+           // Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
         }
 
     }
@@ -103,7 +108,7 @@ public class ItemInventoryManager
             Add(item, count);
         }
 
-        PassiveItem[itemcode].Count += count;
+       // PassiveItem[itemcode].Count += count;
         switch (PassiveItem[itemcode].WhenItemActive)
         {
             case Define.WhenItemActivates.Always:
@@ -123,10 +128,6 @@ public class ItemInventoryManager
                     {
                         WhenActivePassiveItem[Define.WhenItemActivates.Always].Add(itemcode, PassiveItem[itemcode]);
                     }
-                    else
-                    {
-                        WhenActivePassiveItem[Define.WhenItemActivates.Always][itemcode].Count++;
-                    }
                 }
                 break;
             case Define.WhenItemActivates.AfterBattle:
@@ -140,10 +141,6 @@ public class ItemInventoryManager
                     if (!WhenActivePassiveItem[Define.WhenItemActivates.AfterBattle].ContainsKey(itemcode))
                     {
                         WhenActivePassiveItem[Define.WhenItemActivates.AfterBattle].Add(itemcode, PassiveItem[itemcode]);
-                    }
-                    else
-                    {
-                        WhenActivePassiveItem[Define.WhenItemActivates.AfterBattle][itemcode].Count++;
                     }
                 }
                 break;
@@ -159,10 +156,7 @@ public class ItemInventoryManager
                     {
                         WhenActivePassiveItem[Define.WhenItemActivates.InBattle].Add(itemcode, PassiveItem[itemcode]);
                     }
-                    else
-                    {
-                        WhenActivePassiveItem[Define.WhenItemActivates.InBattle][itemcode].Count++;
-                    }
+
                 }
                 break;
                  case Define.WhenItemActivates.NotBattle:
@@ -177,65 +171,10 @@ public class ItemInventoryManager
                     {
                         WhenActivePassiveItem[Define.WhenItemActivates.NotBattle].Add(itemcode, PassiveItem[itemcode]);
                     }
-                    else
-                    {
-                        WhenActivePassiveItem[Define.WhenItemActivates.NotBattle][itemcode].Count++;
-                    }
                 }
                 break;
         }
-        /* 구조 변경중...
-        foreach (Item.PassiveItem item in PassiveItem.Values)
-        {
-            switch (item.WhenItemActive)
-            {
-                case Define.WhenItemActivates.Always:
-                    if (!WhenActivePassiveItem.ContainsKey(Define.WhenItemActivates.Always))
-                    {
-                        WhenActivePassiveItem.Add(Define.WhenItemActivates.Always, new List<Item>());
-                        WhenActivePassiveItem[Define.WhenItemActivates.Always].Add(item);
-                    }
-                    else
-                    {
-                        WhenActivePassiveItem[Define.WhenItemActivates.Always].Add(item);
-                    }
-                    break;
-                case Define.WhenItemActivates.AfterBattle:
-                    if (!WhenActivePassiveItem.ContainsKey(Define.WhenItemActivates.AfterBattle))
-                    {
-                        WhenActivePassiveItem.Add(Define.WhenItemActivates.AfterBattle, new List<Item>());
-                        WhenActivePassiveItem[Define.WhenItemActivates.AfterBattle].Add(item);
-                    }
-                    else
-                    {
-                        WhenActivePassiveItem[Define.WhenItemActivates.AfterBattle].Add(item);
-                    }
-                    break;
-                case Define.WhenItemActivates.InBattle:
-                    if (!WhenActivePassiveItem.ContainsKey(Define.WhenItemActivates.InBattle))
-                    {
-                        WhenActivePassiveItem.Add(Define.WhenItemActivates.InBattle, new List<Item>());
-                        WhenActivePassiveItem[Define.WhenItemActivates.InBattle].Add(item);
-                    }
-                    else
-                    {
-                        WhenActivePassiveItem[Define.WhenItemActivates.InBattle].Add(item);
-                    }
-                    break;
-                case Define.WhenItemActivates.NotBattle:
-                    if (!WhenActivePassiveItem.ContainsKey(Define.WhenItemActivates.NotBattle))
-                    {
-                        WhenActivePassiveItem.Add(Define.WhenItemActivates.NotBattle, new List<Item>());
-                        WhenActivePassiveItem[Define.WhenItemActivates.NotBattle].Add(item);
-                    }
-                    else
-                    {
-                        WhenActivePassiveItem[Define.WhenItemActivates.NotBattle].Add(item);
-                    }
-                    break;
-            }
-        }
-        */
+      
 
         Managers.Event.AddItem?.Invoke(itemcode);
         return true;
@@ -252,24 +191,7 @@ public class ItemInventoryManager
         else
         {
             PassiveItem.Add(item.ItemCode, (Item.PassiveItem)item);
-            switch (PassiveItem[item.ItemCode].WhenItemActive)
-            {
-                case Define.WhenItemActivates.Always:
-                    WhenActivePassiveItem[Define.WhenItemActivates.Always][item.ItemCode].Count++;
-                    break;
-                case Define.WhenItemActivates.AfterBattle:
-                    WhenActivePassiveItem[Define.WhenItemActivates.AfterBattle][item.ItemCode].Count++;
-                    break;
-                case Define.WhenItemActivates.InBattle:
-                    WhenActivePassiveItem[Define.WhenItemActivates.InBattle][item.ItemCode].Count++;
-                    break;
-                case Define.WhenItemActivates.NotBattle:
-                    WhenActivePassiveItem[Define.WhenItemActivates.NotBattle][item.ItemCode].Count++;
-                    break;
-            }
         }
-
-
     }
     public int FindCode(Item item)
     {

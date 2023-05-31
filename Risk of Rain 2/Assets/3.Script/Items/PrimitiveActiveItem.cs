@@ -6,13 +6,18 @@ public class PrimitiveActiveItem : ItemPrimitiive
 {
     private int _myEquipItem = -1;
     // Start is called before the first frame update
-    void Start()
+    public override void Init()
     {
+        base.Init();
         Managers.Event.EquipItemChange -= SetMyItemCode;
         Managers.Event.EquipItemChange += SetMyItemCode;
 
         Managers.Event.ExcuteActiveItem -= OnActiveSkill;
         Managers.Event.ExcuteActiveItem += OnActiveSkill;
+    }
+    void Start()
+    {
+        Init();
     }
     private void SetMyItemCode(int itemcode)
     {

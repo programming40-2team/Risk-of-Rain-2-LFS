@@ -1,7 +1,6 @@
 ﻿public class Define
 {
 
-    public static readonly string BossTag = "Boss";
 
     public enum Scene
     {

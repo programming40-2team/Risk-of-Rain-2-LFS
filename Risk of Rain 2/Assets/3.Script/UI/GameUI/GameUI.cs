@@ -137,9 +137,10 @@ public class GameUI : UI_Game, IListener
 
         InitButton();
         InitGameObjects();
-
+      
+        EventOfPlayerHp(FindObjectOfType<PlayerStatus>().Health, FindObjectOfType<PlayerStatus>().MaxHealth);
     }
-    void Awake()
+    void Start()
     {
         Init();
 

@@ -133,7 +133,10 @@ public class Lemurian : Entity
     /// </summary>
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
-        _player.GetComponent<Entity>().OnDamage(Damage * 2); // 200%
+        if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 2f)
+        {
+            _player.GetComponent<Entity>().OnDamage(Damage * 2); // 200%
+        }
     }
 
     private IEnumerator UpdateTargetPosition_co()
@@ -152,14 +155,14 @@ public class Lemurian : Entity
                         UseSkill(1);
                     }
                 }
-                else
+                else if(Vector3.Distance(transform.position, _targetEntity.transform.position) <= 50f)
                 {
                     if (!_isSkillRun[0])
                     {
                         UseSkill(0);
                     }
                 }
-                if(Vector3.Distance(transform.position, _targetEntity.transform.position) > 50f)
+                else
                 {
                     _targetEntity = null;
                 }

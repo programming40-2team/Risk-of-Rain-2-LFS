@@ -1,22 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Lemurian : Entity
 {
-    [SerializeField] private MonsterData _lemurianData;
-    private GameObject _player;
+    [SerializeField] public MonsterData _lemurianData;
+    public GameObject _player;
+    [Header("추적대상 레이어")]
+    public LayerMask TargetLayer;
+
+    private Entity _targetEntity;
+    private NavMeshAgent _navMeshAgent;
 
     public ObjectPool FireWardPool;
 
-    public Animator LemurianAnimator;
+    private Animator _lemurianAnimator;
 
     [Header("Transforms")]
     [SerializeField] private Transform _lemurianMouthTransform;
 
+    private bool _hasTarget
+    {
+        get
+        {
+            if (_targetEntity != null && !_targetEntity.IsDeath)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
     private void Awake()
     {
-        TryGetComponent(out LemurianAnimator);
+        TryGetComponent(out _navMeshAgent);
+        TryGetComponent(out _lemurianAnimator);
         _player = GameObject.FindGameObjectWithTag("Player");
         _lemurianMouthTransform = GameObject.FindGameObjectWithTag("LemurianMouth").transform;
         FireWardPool = GameObject.Find("FireWardPool").GetComponent<ObjectPool>();
@@ -35,6 +54,13 @@ public class Lemurian : Entity
         Debug.Log("DamageAscent : " + DamageAscent);
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
+
+        StartCoroutine(UpdateTargetPosision_co());
+    }
+
+    private void Update()
+    {
+        _lemurianAnimator.SetBool("IsRun", _hasTarget);
     }
 
     private void SetUp(MonsterData data)
@@ -63,7 +89,18 @@ public class Lemurian : Entity
     public override void Die()
     {
         base.Die();
-        LemurianAnimator.SetTrigger("Die");
+        _lemurianAnimator.SetTrigger("Die");
+
+        Collider[] colls = GetComponents<Collider>();
+        foreach (Collider col in colls)
+        {
+            col.enabled = false;
+        }
+
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.enabled = false;
+
+        Debug.Log("레무리안 죽는 사운드 넣을거면 여기");
     }
 
     /// <summary>
@@ -81,6 +118,37 @@ public class Lemurian : Entity
     /// </summary>
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
-        // 애니메이터 상태 스크립트로만 가능 한거 같은데?
+        OnDamage(Damage * 2); // 200%
+    }
+
+    private IEnumerator UpdateTargetPosision_co()
+    {
+        while(!IsDeath)
+        {
+            if(_hasTarget)
+            {
+                _navMeshAgent.isStopped = false;
+                _navMeshAgent.SetDestination(_targetEntity.transform.position);
+            }
+            else
+            {
+                _navMeshAgent.isStopped = true;
+                Collider[] colls = Physics.OverlapSphere(transform.position, _lemurianData.AttackRange[0], TargetLayer);
+
+                for(int i = 0; i < colls.Length; i++)
+                {
+                    if(colls[i].TryGetComponent(out Entity en))
+                    {
+                        if(!en.IsDeath)
+                        {
+                            _targetEntity = en;
+                            break;
+                        }
+                    }
+                }
+
+            }
+        }
+        yield return null;
     }
 }

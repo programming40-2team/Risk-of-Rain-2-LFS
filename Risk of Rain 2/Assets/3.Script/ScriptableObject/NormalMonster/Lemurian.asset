@@ -20,3 +20,7 @@ MonoBehaviour:
   DamageAscent: 2.4
   HealthRegen: 0
   RegenAscent: 0
+  AttackRange:
+  - 40
+  - 10
+  - 30

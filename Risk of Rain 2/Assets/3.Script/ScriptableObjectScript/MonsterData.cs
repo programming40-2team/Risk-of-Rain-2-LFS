@@ -11,4 +11,6 @@ public class MonsterData : ScriptableObject
     public float DamageAscent = 5f;
     public float HealthRegen = 0f;
     public float RegenAscent = 0f;
+    [Header("근접 -> 원거리")]
+    public float[] AttackRange;
 }

@@ -13,7 +13,7 @@ public class BeetleQueen : Entity
     public ObjectPool WardPool;
     public GameObject BombRange;
 
-    public Animator BeetleQueenAnimator;
+    private Animator _beetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
@@ -38,7 +38,7 @@ public class BeetleQueen : Entity
     //}
     private void Awake()
     {
-        TryGetComponent(out BeetleQueenAnimator);
+        TryGetComponent(out _beetleQueenAnimator);
         _player = GameObject.FindGameObjectWithTag("Player");
         _beetleQueenMouthTransform = GameObject.FindGameObjectWithTag("BeetleQueenMouth").transform;
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
@@ -77,7 +77,7 @@ public class BeetleQueen : Entity
     public override void Die()
     {
         base.Die();
-        BeetleQueenAnimator.SetTrigger("Die");
+        _beetleQueenAnimator.SetTrigger("Die");
     }
 
     private void SetUp(MonsterData data)

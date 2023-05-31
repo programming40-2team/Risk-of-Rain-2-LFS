@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 96cf6c02a0bdd60478c152504ab356e4, type: 2}
 --- !u!1 &59635995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,7 +1175,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1179796768
 Transform:
@@ -2100,7 +2100,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1901075146
 BoxCollider:
@@ -3738,8 +3738,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   _lemurianData: {fileID: 11400000, guid: e34ef0843f748eb40b044f6d55866dbd, type: 2}
+  _player: {fileID: 0}
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 128
   FireWardPool: {fileID: 0}
-  LemurianAnimator: {fileID: 0}
   _lemurianMouthTransform: {fileID: 6453913743121211164}
 --- !u!4 &4093133006334819601
 Transform:

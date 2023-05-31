@@ -21,6 +21,6 @@ MonoBehaviour:
   HealthRegen: 0
   RegenAscent: 0
   AttackRange:
-  - 40
-  - 10
+  - 15
   - 30
+  - 10

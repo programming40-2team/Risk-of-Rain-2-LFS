@@ -55,10 +55,15 @@ public class Lemurian : Entity
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
     }
+
+    private void Start()
+    {
+        StartCoroutine(UpdateTargetPosition_co());
+    }
+
     private void Update()
     {
-        //_lemurianAnimator.SetBool("IsRun", _hasTarget);
-        _navMeshAgent.SetDestination(_player.transform.position);
+        _lemurianAnimator.SetBool("IsRun", _hasTarget);
     }
 
     private void SetUp(MonsterData data)
@@ -118,5 +123,43 @@ public class Lemurian : Entity
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
         OnDamage(Damage * 2); // 200%
+    }
+
+    private IEnumerator UpdateTargetPosition_co()
+    {
+        while (!IsDeath)
+        {
+            if (_hasTarget)
+            {
+                Debug.Log("타겟이 있습니다.");
+                _navMeshAgent.isStopped = false;
+                _navMeshAgent.SetDestination(_targetEntity.transform.position); 
+                if(Vector3.Distance(transform.position, _targetEntity.transform.position) > _lemurianData.AttackRange[1])
+                {
+                    _targetEntity = null;
+                }
+            }
+            else
+            {
+                Debug.Log("타겟이 없습니다.");
+                _navMeshAgent.isStopped = true;
+
+                Collider[] colls = Physics.OverlapSphere(transform.position, _lemurianData.AttackRange[0], TargetLayer);
+
+                for (int i = 0; i < colls.Length; i++)
+                {
+                    if (colls[i].TryGetComponent(out Entity en))
+                    {
+                        if (!en.IsDeath)
+                        {
+                            _targetEntity = en;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            yield return null;
+        }
     }
 }

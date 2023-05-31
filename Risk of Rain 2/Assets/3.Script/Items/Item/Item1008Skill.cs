@@ -21,7 +21,7 @@ public class Item1008Skill : ItemPrimitiive
     //장판딜 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Monster")) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
+        if (other.CompareTag(Define.BossTag)) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
         {
             if (!IsExcute)
             {
@@ -38,7 +38,15 @@ public class Item1008Skill : ItemPrimitiive
     private IEnumerator TakeDamage_co(Collider coll)
     {
         IsExcute = true;
-        coll.GetComponent<Entity>().OnDamage(damageCoolTime);
+        if(coll.TryGetComponent(out Entity entity))
+        {
+           entity.OnDamage(damageCoolTime);
+        }
+        else
+        {
+            Debug.Log($"{coll.gameObject.name}의 Entity를 찾지 못함");
+        }
+      
         yield return new WaitForSeconds(damageCoolTime);
         IsExcute = false;
     }

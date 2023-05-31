@@ -5,7 +5,7 @@ public class GameManager
     private Define.EGameState _gameState = Define.EGameState.NonTelePort;
     private int _gold = 0;
     private bool _isclear = false;
-
+    private Define.WhenItemActivates _playerState=Define.WhenItemActivates.Always;
 
 
     #region 마지막 통계를 위함
@@ -75,6 +75,20 @@ public class GameManager
             Managers.Event.GameStateChange?.Invoke();
         }
     }
+
+    public Define.WhenItemActivates PlayerState
+    {
+        get
+        {
+            return _playerState;
+        }
+        set
+        {
+            _playerState = value;
+
+        }
+    }
+
     public float PlayingTIme { get; set; } = 0;
 
 

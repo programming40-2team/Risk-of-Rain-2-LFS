@@ -9,7 +9,7 @@ public class ItemInventoryManager
     //구조를 어떻게 가져가야할지.. 어려워서 
     //그냥 Dict 자료구조기도 하고 해서 Items 에 추가하고 Passive 면 Passiec 추가 하는 방식으로 가겠습니다.
     public Dictionary<int, Item> Items { get; } = new Dictionary<int, Item>();
-    public Dictionary<int, Item> ActiveItem { get; } = new Dictionary<int, Item>();
+    public Dictionary<int, Item.ActiveItem> ActiveItem { get; } = new Dictionary<int, Item.ActiveItem>();
     public Dictionary<int, Item.PassiveItem> PassiveItem { get; } = new Dictionary<int, Item.PassiveItem>();
     public Dictionary<Define.WhenItemActivates, Dictionary<int,Item>> WhenActivePassiveItem { get; } = new Dictionary<Define.WhenItemActivates, Dictionary<int,Item>>();
     public Dictionary<Define.ItemType, Item> MyActiveItem { get; } = new Dictionary<Define.ItemType, Item>();
@@ -25,7 +25,7 @@ public class ItemInventoryManager
         {
             if (itemdata.itemType.Equals(Define.ItemType.Active))
             {
-                ActiveItem.Add(itemdata.itemcode, Item.MakeItem(itemdata));
+                ActiveItem.Add(itemdata.itemcode, (Item.ActiveItem)Item.MakeItem(itemdata));
             }
             else
             {
@@ -246,7 +246,7 @@ public class ItemInventoryManager
         Items.Add(item.ItemCode, item);
         if (Items[item.ItemCode].ItemType.Equals(Define.ItemType.Active))
         {
-            ActiveItem.Add(item.ItemCode, item);
+            ActiveItem.Add(item.ItemCode, (Item.ActiveItem)item);
 
         }
         else

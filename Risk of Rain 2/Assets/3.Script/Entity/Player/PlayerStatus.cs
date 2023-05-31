@@ -22,6 +22,7 @@ public class PlayerStatus : Entity
     {
         InitStatus();
         base.OnEnable();
+        Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
     }
 
     private void Update()
@@ -44,8 +45,6 @@ public class PlayerStatus : Entity
         MaxJumpCount = _survivorsData.MaxJumpCount;
 
 
-        //첫 생성 시 Player Hp 조절을 위한 알림
-        Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
     }
     //직접 넣는 것보다 OnHeal, OnDamage로 넣는게 좋을 것 같아서 수정!
     public void OnHeal(float heal)

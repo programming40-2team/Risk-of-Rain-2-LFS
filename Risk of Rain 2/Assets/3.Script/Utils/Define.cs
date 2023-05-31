@@ -1,7 +1,8 @@
 ﻿public class Define
 {
 
-    public static readonly int MaxCharacterCount = 15;
+    public static readonly string BossTag = "Boss";
+
     public enum Scene
     {
         None,

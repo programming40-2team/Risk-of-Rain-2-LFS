@@ -14,7 +14,10 @@ public class EventManager
     public Action<int> GoldChange;
     public Action<int> EquipItemChange;
 
+    public Action ExcuteActiveItem;
+    public Action<WhenItemActivates> CharacterStateChange;
     public Action GameStateChange;
+
     // 이벤트 리스너를 추가하는 메서드
     public void AddListener(EVENT_TYPE Event_Type, IListener Listener)
     {

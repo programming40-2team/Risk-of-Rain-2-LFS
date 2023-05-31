@@ -11,14 +11,14 @@ public class MonsterHpBar : UI_Base
     }
     public override void Init()
     {
-        Bind<Slider>(typeof(Sliders));
+       
 
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Init();
+        Bind<Slider>(typeof(Sliders));
         Debug.Log("몬스터 체력 컴포넌트 가져와서 value 값해줘야함");
     }
 

@@ -21,7 +21,7 @@ public class StageSceneTemp : BaseScene
         Init();
         Managers.Data.Init();
         Managers.ItemInventory.init();
-        Managers.UI.ShowGameUI<GameUI>();
+       
         Managers.Game.Gold = 9900;
     }
     protected override void Init()

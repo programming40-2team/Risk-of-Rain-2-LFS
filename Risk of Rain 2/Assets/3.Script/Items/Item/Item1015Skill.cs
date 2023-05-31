@@ -28,7 +28,7 @@ public class Item1015Skill : ItemPrimitiive
     //장판딜 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Monster")) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
+        if (other.CompareTag("Monster")||other.CompareTag(Define.BossTag)) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
         {
             //이속은 상시 - 데미지는 1초마다 
 
@@ -58,7 +58,17 @@ public class Item1015Skill : ItemPrimitiive
     }
     private void OnTriggerExit(Collider other)
     {
-        other.GetComponent<Entity>().MoveSpeed = prevMoveSpeed;
+        if (other.CompareTag("Monster") || other.CompareTag(Define.BossTag)) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
+        {
+            if (other.TryGetComponent(out Entity entity))
+            {
+                entity.MoveSpeed = prevMoveSpeed;
+            }
+            else
+            {
+                Debug.Log($"{other.gameObject.name}의 Entity를 찾을 수 없음");
+            }
+        }
     }
 
     private IEnumerator TakeDamage_co(Collider coll)

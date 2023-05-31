@@ -8,9 +8,8 @@ public class GameUI : UI_Game, IListener
 
     Color PrevSkillFillImageColor;
     Color FullChargeSkillFillImageColor;
-    string isnotActiveTeleport = "<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오";
-    string isActtiveTeleport = "보스를 처치하십시오!";
-    string doneTeleporyEvent = "텔리포트로 들어가주십시오";
+   
+
     public float RunTime = 0f;
 
     private CommandoSkill characterSkill;
@@ -95,6 +94,7 @@ public class GameUI : UI_Game, IListener
         Managers.Event.DifficultyChange -= DifficultyImageChagngeEvent;
         Managers.Event.GoldChange -= GoldChangeEvent;
         Managers.Event.EquipItemChange -= EquipChangeEvent;
+        Managers.Event.GameStateChange -= GameGoalEvent;
     }
     public override void Init()
     {
@@ -139,7 +139,7 @@ public class GameUI : UI_Game, IListener
         InitGameObjects();
 
     }
-    void Start()
+    void Awake()
     {
         Init();
 
@@ -167,7 +167,7 @@ public class GameUI : UI_Game, IListener
         GetText((int)Texts.GoldText).text = $"{0}";
         GetText((int)Texts.StageNumber).text = $"스테이지 {1}";
         GetText((int)Texts.StageLevel).text = $"레벨. {1}";
-        GetText((int)Texts.ObjectContents).text = $"{isnotActiveTeleport}";
+        GetText((int)Texts.ObjectContents).text = $"{"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오"}";
         GetText((int)Texts.PlayerLevelText).text = $"{1}";
     }
     private void FixedUpdate()
@@ -398,6 +398,11 @@ public class GameUI : UI_Game, IListener
                     GetText((int)Texts.InteractionContentsText).text = $"텔레포터에 들어가십시오";
                     break;
             }
+        }
+        else if(_Sender.TryGetComponent(out Item1025Skill item2025skill))
+        {
+            GetText((int)Texts.InteractionKeyText).text = "E";
+            GetText((int)Texts.InteractionContentsText).text = $"양자터널 이동!";
         }
 
     }

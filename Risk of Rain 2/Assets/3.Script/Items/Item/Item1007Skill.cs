@@ -17,9 +17,10 @@ public class Item1007Skill : ItemPrimitiive
         myTargetEnemy = GameObject.FindGameObjectWithTag("Monster");
         if (myTargetEnemy == null)
         {
-            myTargetEnemy = GameObject.FindGameObjectWithTag("Boss");
+            myTargetEnemy = GameObject.FindGameObjectWithTag(Define.BossTag);
             if (myTargetEnemy == null)
             {
+
                 return;
             }
         }
@@ -27,34 +28,37 @@ public class Item1007Skill : ItemPrimitiive
         damage = Player.GetComponent<PlayerStatus>().Damage
             * 3 * (Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1007].WhenItemActive][1007].Count);
 
+        if (myTargetEnemy == null)
+        {
+            //플레이어 방향으로 앞으로 나아가기
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = Player.transform.forward * movespeed;
+        }
+        else
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-        //플레이어 방향으로 앞으로 나아가기
-        GetComponent<Rigidbody>().velocity = Player.transform.forward*movespeed;
+            GetComponent<Rigidbody>().velocity = movespeed * myTargetEnemy.transform.position;
+        }
+
         Managers.Resource.Destroy(gameObject, 15f);
         Debug.Log("미사일 발사하는 파티클, 쉐이더 필요");
        
     }
     private void OnTriggerEnter(Collider other)
     {
-
-        //총알 나가는데 하나 더 나가는 느낌으로 ㄱㄱ
-        if (!isDectedEnemy && other.CompareTag("Monster"))
+        if (other.CompareTag("Monster")||other.CompareTag(Define.BossTag))
         {
-            //isDectedEnemy = true;
-            //myTargetEnemy = other.gameObject;
-            ////앞으로 가다가 적을 발견할 경우 그놈한테 다가가서 자폭 공격느낌
-            //Vector3 movedir = other.transform.position - gameObject.transform.position;
-
-            //gameObject.transform.Translate(movedir.normalized * movespeed * Time.deltaTime);
-
-            //if ((other.transform.position - gameObject.transform.position).sqrMagnitude < 1.1f)
-            //{
-            //    Debug.Log("몬스터 의 IDmage 컴포넌트 가져와서 떄리기");
-            //    Managers.Resource.Destroy(gameObject);
-            //}
+            if(other.TryGetComponent(out Entity entity))
+            {
+                entity.OnDamage(damage);
+            }
+            else
+            {
+                Debug.Log($"{other.gameObject.name} 의 Entity를 가져오지 못함");
+            }
 
         }
-     
     }
 
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WalkState : StateMachineBehaviour
+public class WalkState_BeeQ : StateMachineBehaviour
 {
     private Transform _beetleQueenTransForm;
     private BeetleQueen _beetleQueen;

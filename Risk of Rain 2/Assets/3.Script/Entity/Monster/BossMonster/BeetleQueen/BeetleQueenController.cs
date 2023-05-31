@@ -13,7 +13,6 @@ public class BeetleQueenController : MonoBehaviour
     // StartWardSkill() 18초 체력 / 50% 미만일때
     // StartRangeBombSkill() 20초 체력 / 30% 미만일때
     private float[] _skillCoolDownArr = new float[3]; // 10 18 20
-    private float[] _skillCoolDownRemainArr = new float[3]; // 0 0 0
     private bool[] _isSkillRun = new bool[3];
 
     private enum RotationAngle { LEFT45, LEFT90, LEFT135, RIGHT45, RIGHT90, RIGHT135}
@@ -33,11 +32,6 @@ public class BeetleQueenController : MonoBehaviour
         _skillCoolDownArr[0] = 10f;
         _skillCoolDownArr[1] = 15f;
         _skillCoolDownArr[2] = 20f;
-
-        for(int i = 0; i < _skillCoolDownRemainArr.Length; i++)
-        {
-            _skillCoolDownRemainArr[i] = 0f;
-        }
 
         for (int i = 0; i < _isSkillRun.Length; i++)
         {
@@ -128,10 +122,10 @@ public class BeetleQueenController : MonoBehaviour
     }
     private void UseSkill(int skillIndex) // 스킬 사용
     {
-        StartCoroutine(UseSkillCoroutine(skillIndex));
+        StartCoroutine(UseSkill_co(skillIndex));
     }
 
-    private IEnumerator UseSkillCoroutine(int skillIndex)
+    private IEnumerator UseSkill_co(int skillIndex)
     {
         switch (skillIndex)
         {

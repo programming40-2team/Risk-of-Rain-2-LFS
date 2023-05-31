@@ -7,11 +7,10 @@ public class Lemurian : Entity
 {
     [SerializeField] public MonsterData _lemurianData;
     private Animator _lemurianAnimator;
-    public GameObject _player;
+    private GameObject _player;
     
     [Header("추적대상 레이어")]
     public LayerMask TargetLayer;
-
     private Entity _targetEntity;
     private NavMeshAgent _navMeshAgent;
 
@@ -19,6 +18,9 @@ public class Lemurian : Entity
 
     [Header("Transforms")]
     [SerializeField] private Transform _lemurianMouthTransform;
+
+    private float[] _skillCoolDownArr = new float[2];
+    private bool[] _isSkillRun = new bool[2];
 
     private bool _hasTarget
     {
@@ -39,6 +41,14 @@ public class Lemurian : Entity
         _player = GameObject.FindGameObjectWithTag("Player");
         _lemurianMouthTransform = GameObject.FindGameObjectWithTag("LemurianMouth").transform;
         FireWardPool = GameObject.Find("FireWardPool").GetComponent<ObjectPool>();
+
+        _skillCoolDownArr[0] = 2f;
+        _skillCoolDownArr[1] = 1f;
+
+        for (int i = 0; i < _isSkillRun.Length; i++)
+        {
+            _isSkillRun[i] = false;
+        }
     }
 
     protected override void OnEnable()
@@ -65,7 +75,6 @@ public class Lemurian : Entity
     {
         _lemurianAnimator.SetBool("IsRun", _hasTarget);
     }
-
     private void SetUp(MonsterData data)
     {
         MaxHealth = data.MaxHealth;
@@ -85,6 +94,8 @@ public class Lemurian : Entity
         {
             //.Play();
             //.PlayOneShot(hitSound);
+            _lemurianAnimator.SetTrigger("Hit");
+
         }
 
         base.OnDamage(damage);
@@ -122,7 +133,7 @@ public class Lemurian : Entity
     /// </summary>
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
-        OnDamage(Damage * 2); // 200%
+        _player.GetComponent<Entity>().OnDamage(Damage * 2); // 200%
     }
 
     private IEnumerator UpdateTargetPosition_co()
@@ -133,8 +144,22 @@ public class Lemurian : Entity
             {
                 Debug.Log("타겟이 있습니다.");
                 _navMeshAgent.isStopped = false;
-                _navMeshAgent.SetDestination(_targetEntity.transform.position); 
-                if(Vector3.Distance(transform.position, _targetEntity.transform.position) > _lemurianData.AttackRange[1])
+                _navMeshAgent.SetDestination(_targetEntity.transform.position);
+                if(Vector3.Distance(transform.position, _targetEntity.transform.position) <= 10f)
+                {
+                    if(!_isSkillRun[1])
+                    {
+                        UseSkill(1);
+                    }
+                }
+                else
+                {
+                    if (!_isSkillRun[0])
+                    {
+                        UseSkill(0);
+                    }
+                }
+                if(Vector3.Distance(transform.position, _targetEntity.transform.position) > 50f)
                 {
                     _targetEntity = null;
                 }
@@ -144,7 +169,7 @@ public class Lemurian : Entity
                 Debug.Log("타겟이 없습니다.");
                 _navMeshAgent.isStopped = true;
 
-                Collider[] colls = Physics.OverlapSphere(transform.position, _lemurianData.AttackRange[0], TargetLayer);
+                Collider[] colls = Physics.OverlapSphere(transform.position, 30f, TargetLayer);
 
                 for (int i = 0; i < colls.Length; i++)
                 {
@@ -161,5 +186,30 @@ public class Lemurian : Entity
 
             yield return null;
         }
+    }
+
+    private void UseSkill(int skillIndex)
+    {
+        StartCoroutine(UseSkill_co(skillIndex));
+    }
+
+    private IEnumerator UseSkill_co(int skillIndex)
+    {
+        switch (skillIndex)
+        {
+            case 0:
+                _lemurianAnimator.SetTrigger("FireWard"); // 스킬은 애니메이터에 이벤트로 있음
+                Debug.Log("불 뿜었다");
+                _isSkillRun[skillIndex] = true;
+                break;
+            case 1:
+                _lemurianAnimator.SetTrigger("Bite"); // 스킬은 애니메이터에 이벤트로 있음
+                Debug.Log("물었다");
+                _isSkillRun[skillIndex] = true;
+                break;
+        }
+        yield return new WaitForSeconds(_skillCoolDownArr[skillIndex]); // 쿨타임만큼 기다리기
+        _isSkillRun[skillIndex] = false; // 스킬 쿨타임 다 돌았음
+
     }
 }

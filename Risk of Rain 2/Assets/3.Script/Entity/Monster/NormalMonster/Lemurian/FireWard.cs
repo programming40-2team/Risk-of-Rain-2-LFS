@@ -29,7 +29,6 @@ public class FireWard : MonoBehaviour
 
     private void DeleteFireWard()
     {
-        Debug.Log("사라졌다");
         _lemurian.FireWardPool.ReturnObject(gameObject);
     }
 
@@ -41,10 +40,6 @@ public class FireWard : MonoBehaviour
             {
                 Debug.Log("플레이어 아야");
                 col.GetComponent<Entity>().OnDamage(_damage);
-            }
-            else
-            {
-                Debug.Log("벽이나 바닥에 닿음");
             }
             DeleteFireWard();
         }

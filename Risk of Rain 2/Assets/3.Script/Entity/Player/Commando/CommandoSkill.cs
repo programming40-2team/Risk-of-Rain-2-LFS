@@ -30,6 +30,7 @@ public class CommandoSkill : MonoBehaviour
     private bool _isRight;
     private bool _isCanShooting;
     private readonly WaitForSeconds _doubleTapDelay = new WaitForSeconds(0.167f);
+    private ObjectPool _hitEffectPool;
     [SerializeField] private GameObject _leftMuzzleEffect;
     [SerializeField] private GameObject _rightMuzzleEffect;
     
@@ -70,6 +71,7 @@ public class CommandoSkill : MonoBehaviour
         TryGetComponent(out _playerRigidbody);
         
         _bulletObjectPool = GameObject.Find("BulletPool").GetComponent<ObjectPool>();
+        _hitEffectPool = GameObject.Find("HitEffectPool").GetComponent<ObjectPool>();
         _phaseRoundObjectPool = GameObject.Find("PhaseRoundPool").GetComponent<ObjectPool>();
         _spFirePool = GameObject.Find("SpFirePool").GetComponent<ObjectPool>();
     }
@@ -171,6 +173,7 @@ public class CommandoSkill : MonoBehaviour
         }
         bullet.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);
         bullet.GetComponent<Projectile>().ShootForward();
+        _hitEffectPool.GetObject().transform.position = _aimHit.point;
         _isRight = !_isRight;
         yield return _doubleTapDelay;
         _isCanShooting = true;

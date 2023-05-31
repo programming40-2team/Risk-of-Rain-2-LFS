@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class Lemurian : Entity
 {
     [SerializeField] public MonsterData _lemurianData;
+    private Animator _lemurianAnimator;
     public GameObject _player;
+    
     [Header("추적대상 레이어")]
     public LayerMask TargetLayer;
 
@@ -14,8 +16,6 @@ public class Lemurian : Entity
     private NavMeshAgent _navMeshAgent;
 
     public ObjectPool FireWardPool;
-
-    private Animator _lemurianAnimator;
 
     [Header("Transforms")]
     [SerializeField] private Transform _lemurianMouthTransform;
@@ -54,13 +54,11 @@ public class Lemurian : Entity
         Debug.Log("DamageAscent : " + DamageAscent);
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
-
-        StartCoroutine(UpdateTargetPosision_co());
     }
-
     private void Update()
     {
-        _lemurianAnimator.SetBool("IsRun", _hasTarget);
+        //_lemurianAnimator.SetBool("IsRun", _hasTarget);
+        _navMeshAgent.SetDestination(_player.transform.position);
     }
 
     private void SetUp(MonsterData data)
@@ -73,6 +71,7 @@ public class Lemurian : Entity
         DamageAscent = data.DamageAscent;
         HealthRegen = data.HealthRegen;
         HealthRegenAscent = data.RegenAscent;
+        _navMeshAgent.speed = data.MoveSpeed;
     }
 
     public override void OnDamage(float damage)
@@ -119,36 +118,5 @@ public class Lemurian : Entity
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
         OnDamage(Damage * 2); // 200%
-    }
-
-    private IEnumerator UpdateTargetPosision_co()
-    {
-        while(!IsDeath)
-        {
-            if(_hasTarget)
-            {
-                _navMeshAgent.isStopped = false;
-                _navMeshAgent.SetDestination(_targetEntity.transform.position);
-            }
-            else
-            {
-                _navMeshAgent.isStopped = true;
-                Collider[] colls = Physics.OverlapSphere(transform.position, _lemurianData.AttackRange[0], TargetLayer);
-
-                for(int i = 0; i < colls.Length; i++)
-                {
-                    if(colls[i].TryGetComponent(out Entity en))
-                    {
-                        if(!en.IsDeath)
-                        {
-                            _targetEntity = en;
-                            break;
-                        }
-                    }
-                }
-
-            }
-        }
-        yield return null;
     }
 }

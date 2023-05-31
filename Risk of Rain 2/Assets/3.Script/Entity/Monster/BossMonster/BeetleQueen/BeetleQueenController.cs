@@ -18,10 +18,7 @@ public class BeetleQueenController : MonoBehaviour
     private enum RotationAngle { LEFT45, LEFT90, LEFT135, RIGHT45, RIGHT90, RIGHT135}
     private enum BossState { IDLE, WALK, ROTATING, USINGSKILL}
 
-    private RotationAngle _currentRotationAngle;
     private BossState _currentState = BossState.IDLE;
-
-    private bool _playerInFieldOfView = false;
 
     private void Awake()
     {

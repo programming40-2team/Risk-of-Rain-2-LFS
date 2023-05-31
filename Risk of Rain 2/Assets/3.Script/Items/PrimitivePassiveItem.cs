@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class PrimitivePassiveItem : ItemPrimitiive
+public class PrimitivePassiveItem : ItemPrimitiive,IListener
 {
 
     /*
@@ -18,10 +19,11 @@ public class PrimitivePassiveItem : ItemPrimitiive
     public override void Init()
     {
         base.Init();
-        Managers.Event.CharacterStateChange -= ExcuteSkill;
-        Managers.Event.CharacterStateChange += ExcuteSkill;
-        Managers.Event.AddItem -= OnPassiveSkill;
-        Managers.Event.AddItem += OnPassiveSkill;
+        //2가지 방법으로 처리 => 적이 공격받음 In Battle/ 적이 죽음  //AFter Battle
+        // 패시브의 경우  획득할 때 마다, 갱신 
+      //  Managers.Event.AddItem -= OnPassiveSkill;
+     //   Managers.Event.AddItem += OnPassiveSkill;
+        
     }
     private void Start()
     {
@@ -32,14 +34,14 @@ public class PrimitivePassiveItem : ItemPrimitiive
     //원본 데이터 가지고 있어야 하고, 아이템을 획득한 경우 아이템 타입이 현재 플레이어 상태가 어떠하냐에 따라서
     //갱신 을 시켜줄지를 결정 워차피 상태가 바뀜에 따라 모든 패시브 스킬들을 순회할 예정이니까
 
-    private void ExcuteSkill(Define.WhenItemActivates SKillType)
+    private void ExcuteSkill(Define.WhenItemActivates SKillType,Transform _enemyTransform)
     {
         switch (SKillType)
         {
             case Define.WhenItemActivates.AfterBattle:
                 foreach (var itemkey in Managers.ItemInventory.WhenActivePassiveItem[Define.WhenItemActivates.AfterBattle].Keys)
                 {
-                   
+                    OnPassiveSkill(itemkey);
                 }
                 break;
             case Define.WhenItemActivates.InBattle:
@@ -55,12 +57,22 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 }
                 break;
         }
+   
+
+    }
+    //만약 씬전환이 생길 경우  패시브 스킬 재설정!
+    private void PassiveSKillInit()
+    {
         foreach (var itemkey in Managers.ItemInventory.WhenActivePassiveItem[Define.WhenItemActivates.Always].Keys)
         {
             OnPassiveSkill(itemkey);
         }
+    }
+    private void ExcuteSkillAboutEnemyTransform(Define.WhenItemActivates SkillType,Transform EnemyTransfomr)
+    {
 
     }
+
     private void StopSkill()
     {
 
@@ -73,7 +85,11 @@ public class PrimitivePassiveItem : ItemPrimitiive
 
     //몬스터 다이 -몬스터 힛
     //항시 적용
+    //피해를 입히면 -> InBattle
+    //적이 죽으면 -> AfterBattle
+    //NotBattle --> 1012번 하나 해놨는데 바꿔야 할듯 -> 치명타 를 더올려주거나,  경험치를 추가적으로 준다던가 다른 형식의 아이템이 필요!
     
+
 
     private void OnPassiveSkill(int itemcode)
     {
@@ -90,7 +106,7 @@ public class PrimitivePassiveItem : ItemPrimitiive
             case 1003:
                 StopCoroutine(nameof(Item1003_co));
                 StartCoroutine(nameof(Item1003_co));
-                //플레이어 위치 기준으로 랜덤한 곳 에 메디킷 같은거 하나 생성해주고 거기에 기능을 구현  (완)
+                //플레이어 위치 기준으로 랜덤한 곳 에 메디킷 같은거 하나 생성해주고 거기에 기능을 구현  (완)===> 적이 죽은 곳으로 변경 가능
                 break;
             case 1004:
                 _playerStatus.CriticalChance = _playerStatus._survivorsData.CriticalChance + 10 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
@@ -100,14 +116,14 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 //playerMoveMent._bonusMoveSpeed=1.14f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 break;
             case 1006:
-                //실드 획득인데 실드 관련 속성이 없음 --> 체력 재생량 증가로 설정해둠
+                //실드 획득인데 실드 관련 속성이 없음 --> 체력 재생량 증가로 설정해둠 ---> 골드 추가로 설정
                 //일단 체력 생성으로 넣어놨는데 체력 생성 
-                _playerStatus.HealthRegen=_playerStatus._survivorsData.HealthRegen+(5 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
+                Managers.Game.Gold+=(5 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
                 break;
             case 1007:
                 StopCoroutine(nameof(Item1007_co));
                 StartCoroutine(nameof(Item1007_co));
-                //공격 발사 시 미사일 발사 -> 우선 플레이어 위로 나가서 타겟 위치에 떨어지도록 수정
+                //공격 발사 시 미사일 발사 -> 우선 플레이어 위로 나가서 타겟 위치에 떨어지도록 수정     //적이 맞아야댐
                 break;
             case 1008:
                 //용암 기능 생성하는 스크립트 생성 적을 처치할 경우 12m 반경에 용암기둥이 생성 되어 350% 피해
@@ -121,7 +137,7 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 break;
             case 1010:
                 _playerStatus.OnHeal(1 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
-                //피해를 입히면 나의 체력이 1 회복... 얘는 몬스터 상태도 봐야 할듯 한데?.. --> 컴포넌트 가져와서 프로퍼티 등으로 확인하면 될듯?..
+                //피해를 입히면 나의 체력이 1 회복... 얘는 몬스터 상태도 봐야 할듯 한데?.. --> 컴포넌트 가져와서 프로퍼티 등으로 확인하면 될듯?.. //적이 맞아야댐
                 break;
             case 1011:
                 _playerStatus.MoveSpeed = 1.3f * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
@@ -129,11 +145,13 @@ public class PrimitivePassiveItem : ItemPrimitiive
             case 1012:
                 _playerStatus.CriticalChance=_playerStatus._survivorsData.CriticalChance+ 5*Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
                 //치명타 확률 5%증가 치명타 터지면 체력 8  +4 *count 치유  ===> 대신 일정 확률로 치유
+                //치명타에만 영향 따로 구현 이거는 조금 어렵다....
+                //아머 올려주자
                 _playerStatus.OnHeal(4 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count);
                 break;
             case 1013:
                 FindObjectOfType<CommandoSkill>().SkillQColldown-=4+2* Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[itemcode].WhenItemActive][itemcode].Count;
-                //적을 처치하면 장비 쿨타임 4 + 2 * count초 감소
+                //적을 처치하면 장비 쿨타임 4 + 2 * count초 감소 -> 적 처치
                 break;
             case 1014:
                 StopCoroutine(nameof(Item1014_co));
@@ -158,10 +176,10 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 break;
             case 1016:
                 GameObject Item1016 =Managers.Resource.Instantiate("Item1016Skill");
-                Item1016.GetOrAddComponent<Item1016Skill>();
+               // Item1016.GetOrAddComponent<Item1016Skill>();
                 Item1016.transform.position = Player.transform.position;
                 //점프 높이가 증가하여 착지할 때 5~100m 반경의 운동에너지 폭발 (데미지주는 장판 생성) 점프 끝날떄
-                //=>  점프 시작할 떄 데미지 주는 것으로 변경
+                //=>  점프 시작할 떄 데미지 주는 것으로 변경                                                       ====> 점프만 따로
                 break;
             case 1017:
                 //적에게 공격이 명중하면 유도갈고리 생성
@@ -179,7 +197,7 @@ public class PrimitivePassiveItem : ItemPrimitiive
                 break;
         }
     }
-
+ 
     private IEnumerator Item1003_co()
     {
         bool item1003Spawned = false;
@@ -250,14 +268,19 @@ public class PrimitivePassiveItem : ItemPrimitiive
         if (!item1019Spawned)
         {
             item1019Spawned = true;
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 1; i++)
             {
                 item1019 = Managers.Resource.Instantiate("Item1019Skill");
-                item1019.SetRandomPositionSphere(2, 7, 5,Player.transform);
-                item1019.GetOrAddComponent<Item1019Skill>();
+                item1019.SetRandomPositionSphere(2, 5, 5,Player.transform);
+               // item1019.GetOrAddComponent<Item1019Skill>();
             }
             yield return new WaitForSeconds(3.0f);
         }
-        item1019.GetComponent<Item1019Skill>().SetStats(Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1019].WhenItemActive][1019].Count);
+        //item1019.GetComponent<Item1019Skill>().SetStats(Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1019].WhenItemActive][1019].Count);
+    }
+
+    public void OnEvent(Define.EVENT_TYPE Event_Type, Component Sender, object Param = null)
+    {
+        
     }
 }

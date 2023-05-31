@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IPassiveItem 
 {
-    void OnExcute(int itemcode, Define.WhenItemActivates WhenitemActivates);
+    public int Itemid { get; }
+    public void ApplyPassiveEffect();
 
 }

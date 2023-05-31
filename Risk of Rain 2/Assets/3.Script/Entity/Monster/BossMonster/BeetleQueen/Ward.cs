@@ -82,23 +82,27 @@ public class Ward : MonoBehaviour
     {
         if (col.gameObject != _beetleQueenObject)
         {
-            if (col.gameObject.CompareTag("Player"))
+            if (col.gameObject.TryGetComponent(out Entity en))
             {
-                Debug.Log("플레이어 아야");
-                col.gameObject.GetComponent<Entity>().OnDamage(_damage);
+                if(en.CompareTag("Player"))
+                {
+                    Debug.Log("플레이어가 비틀퀸의 Ward에 맞음");
+                    Debug.Log("플레이어 Hit Sound는 여기");
+                    en.OnDamage(_damage);
+                    DeleteWard();
+                }
             }
             else
             {
-                Debug.Log("벽이나 바닥에 닿음");
+                Debug.Log("BeetleQueen의 Ward가 벽이나 바닥에 닿는 소리는 여기");
+                // TODO :  터져서 사라지는 효과 코루틴으로 넣기
+                DeleteWard();
             }
-            // TODO :  터져서 사라지는 효과 코루틴으로 넣기
-            DeleteWard();
         }
     }
 
     private void DeleteWard()
     {
-        Debug.Log("사라졌다");
         _beetleQueen.WardPool.ReturnObject(gameObject);
     }
 }

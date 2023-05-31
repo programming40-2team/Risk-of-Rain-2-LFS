@@ -38,18 +38,23 @@ public class AcidSkill : MonoBehaviour
     {
         if (collObj != _beetleQueenObject)
         {
-            if (collObj.CompareTag("Player"))
+            if(collObj.TryGetComponent(out Entity en))
             {
-                Debug.Log("플레이어 아야");
-                collObj.GetComponent<Entity>().OnDamage(_damage);
+                if(en.CompareTag("Player"))
+                {
+                    Debug.Log("플레이어가 비틀퀸의 AcidSkill에 맞음");
+                    Debug.Log("플레이어 Hit Sound는 여기");
+                    en.OnDamage(_damage);
+                    DeleteAcidBile();
+                }
             }
             else
             {
+                Debug.Log("AcidBall이 AcidPool로 변하는 사운드는 여기 (오브젝트와 부딪혀 폭발하는? 사운드)");
                 GameObject obj = _beetleQueen.AcidPoolPool.GetObject();
                 obj.transform.position = collObj.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                DeleteAcidBile();
             }
-            // TODO : 터져서 사라지는 효과 코루틴으로 넣기
-            DeleteAcidBile();
         }
     }
 }

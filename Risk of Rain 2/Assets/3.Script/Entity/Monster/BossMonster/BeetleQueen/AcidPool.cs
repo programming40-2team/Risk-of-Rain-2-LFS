@@ -33,7 +33,8 @@ public class AcidPool : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Player"))
             {
-                Debug.Log("플레이어 아야");
+                Debug.Log("플레이어가 BeetleQueen의 AcidPool에 피격입음");
+                Debug.Log("플레이어 Hit Sound는 여기");
                 col.gameObject.GetComponent<Entity>().OnDamage(_damage);
                 yield return new WaitForSeconds(0.5f);
                 isRun = false;

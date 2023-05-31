@@ -36,12 +36,21 @@ public class FireWard : MonoBehaviour
     {
         if(col.gameObject != _lemurianObject)
         {
-            if(col.gameObject.CompareTag("Player"))
+            if(col.gameObject.TryGetComponent(out Entity en))
             {
-                Debug.Log("플레이어 아야");
-                col.GetComponent<Entity>().OnDamage(_damage);
+                if(en.CompareTag("Player"))
+                {
+                    Debug.Log("플레이어가 레무리안의 FireWard에 맞음");
+                    Debug.Log("플레이어 Hit Sound는 여기");
+                    col.GetComponent<Entity>().OnDamage(_damage);
+                    DeleteFireWard();
+                }
             }
-            DeleteFireWard();
+            else
+            {
+                Debug.Log("레무리안의 FireWard가 벽이나 바닥에 닿는 소리는 여기");
+                DeleteFireWard();
+            }
         }
     }
 }

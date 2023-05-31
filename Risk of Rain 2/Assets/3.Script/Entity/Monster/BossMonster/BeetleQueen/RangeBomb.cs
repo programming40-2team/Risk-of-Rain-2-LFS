@@ -19,10 +19,11 @@ public class RangeBomb : MonoBehaviour
         yield return new WaitForSeconds(5f);
         if (_isAddForce)
         {
-            // 폭발 이펙트
+            Debug.Log("플레이어 Hit Sound는 여기");
             _player.GetComponent<Rigidbody>().AddForce(Vector3.up * _force);
             _player.GetComponent<Entity>().OnDamage(_damage);
         }
+        Debug.Log("BeetleQueen의 RangeBomb이 터지는 소리는 여기");
         Destroy(gameObject);
     }
 

@@ -98,6 +98,7 @@ public class BeetleQueen : Entity
     public void AcidBileSkill()
     {
         IsRun = true;
+        Debug.Log("BeetleQueen AcidSkill 발사하는 사운드 넣을거면 여기");
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {
@@ -138,6 +139,7 @@ public class BeetleQueen : Entity
                 pos = obj.point;
                 pos = new Vector3(pos.x, pos.y + 0.2f, pos.z);
                 Instantiate(BombRange, pos, Quaternion.identity);
+                Debug.Log("RangeBombSkill 나타나는 사운드 넣을거면 여기");
             }
         }
         //yield return new WaitForSeconds(20f);
@@ -152,6 +154,7 @@ public class BeetleQueen : Entity
         {
             GameObject obj = WardPool.GetObject();
             obj.transform.position = _beetleQueenButtTransform.position;
+            Debug.Log("BeetleQueen Ward 발사하는 사운드 넣을거면 여기");
             yield return wfs;
         }
     }

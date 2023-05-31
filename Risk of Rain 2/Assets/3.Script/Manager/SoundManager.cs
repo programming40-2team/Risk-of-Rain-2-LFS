@@ -29,13 +29,34 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public AudioSource[] audioSourcesEffects; 
+    [Header("효과음 플레이어")]
+    public AudioSource[] audioSourcesEffects;
+    [Header("BGM 플레이어")]
     public AudioSource audioSourceBgm;
 
     public string[] playSoundName;
-
+    
+    [Header("사운드 등록")]
     public Sound[] effectSound;     //AudioCilp
     public Sound[] bgmSound;
+
+    private void Start()
+    {
+        playSoundName = new string[audioSourcesEffects.Length];
+    }
+
+    public void PlayBGM(string _name)
+    {
+        for (int i = 0; i < bgmSound.Length; i++)
+        {
+            if(_name == bgmSound[i].name)
+            {
+                audioSourceBgm.clip = bgmSound[i].clip;
+                audioSourceBgm.Play();
+                return;
+            }
+        }
+    }
 
     public void PlaySE(string _name)
     {

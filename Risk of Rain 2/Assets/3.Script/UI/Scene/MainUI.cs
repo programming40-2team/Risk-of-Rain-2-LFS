@@ -7,6 +7,7 @@ public class MainUI : UI_Scene
 {
     [SerializeField]
     private string _username = "Noname";
+
     enum Buttons
     {
         GameStartButton,
@@ -48,6 +49,7 @@ public class MainUI : UI_Scene
         GetText((int)Texts.QuitText).text = $"데스크톱으로 나가기";
 
         Debug.Log("게임 실행 하면 나오는 배경음 나오는 곳!");
+        SoundManager.instance.PlayBGM("MainBgm");
         GetButton((int)Buttons.GameStartButton).gameObject
             .BindEvent((PointerEventData data) => GameStartEvent());
         GetButton((int)Buttons.DicitonaryButton).gameObject
@@ -61,13 +63,14 @@ public class MainUI : UI_Scene
     private void GameStartEvent()
     {
         Debug.Log("게임 시작 버튼 누르면 나올 소리 여기");
-
+        SoundManager.instance.PlaySE("MenuClick");
         Managers.UI.ShowSceneUI<GameStartUI>();
 
     }
     private void ShowLogBook()
     {
         Debug.Log("로그북 버튼 누르면 나올 소리 여기");
+        SoundManager.instance.PlaySE("MenuClickLog");
         Managers.UI.ShowSceneUI<LogBook>();
     }
 

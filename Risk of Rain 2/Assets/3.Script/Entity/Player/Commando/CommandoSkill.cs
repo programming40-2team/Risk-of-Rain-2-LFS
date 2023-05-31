@@ -141,6 +141,7 @@ public class CommandoSkill : MonoBehaviour
         {
             _attackCoroutine ??= StartCoroutine(TacticalDive_co());
             _tacticalDiveCooldownRemain = TacticalDiveCooldown;
+            SoundManager.instance.PlaySE("CommandoShift");
         }
     }
     private void CheckSuppressiveFire()
@@ -162,12 +163,14 @@ public class CommandoSkill : MonoBehaviour
         {
             bulletDirection = _aimHit.point - _leftMuzzle.transform.position;
             bullet.transform.position = _leftMuzzle.transform.position;
+            SoundManager.instance.PlaySE("CommandoM1_1");
             _leftMuzzleEffect.SetActive(true);
         }
         else
         {
             bulletDirection = _aimHit.point - _rightMuzzle.transform.position;
             bullet.transform.position = _rightMuzzle.transform.position;
+            SoundManager.instance.PlaySE("CommandoM1_2");
             _rightMuzzleEffect.SetActive(true);
         }
         bullet.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);

@@ -43,8 +43,45 @@ public class BeetleQueenControl : MonoBehaviour
             var method = type.GetMethod("Clear");
             method.Invoke(new object(), null);
 
-            Debug.Log("플레이어가 시야에 " + IsPlayerInFieldOfView());
-            Debug.Log("플레이어가 뒤에 " + IsPlayerBehindBoss());
+            //Debug.Log("플레이어가 시야에 " + IsPlayerInFieldOfView());
+            //Debug.Log("플레이어가 뒤에 " + IsPlayerBehindBoss());
+            if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            { 
+                // FireSpit SpawnWard RangeBomb
+                if(!_isSkillRun[0])
+                {
+                    if(IsPlayerInFieldOfView())
+                    {
+                        UseSkill(0);
+                        Debug.Log("0번 스킬 사용 / 플레이어 시야 안에 있음");
+                    }
+                    else
+                    {
+                        Debug.Log("0번 스킬 사용 가능 / 플레이어 시야 밖에 있음");
+                    }
+                }
+                if(!_isSkillRun[1])
+                {
+                    if(IsPlayerBehindBoss())
+                    {
+                        UseSkill(1);
+                        Debug.Log("1번 스킬 사용 / 플레이어 뒤에 있음");
+                    }
+                    else
+                    {
+                        Debug.Log("1번 스킬 사용 가능 / 플레이어 뒤에 없음");
+                    }
+                }
+                if(!_isSkillRun[2])
+                {
+                    UseSkill(2);
+                    Debug.Log("2번 스킬 사용");
+                }
+                if(_isSkillRun[0] && _isSkillRun[1] && _isSkillRun[2])
+                {
+                    Debug.Log("모든 스킬 사용 불가능");
+                }
+            }
             yield return null;
         }
     }
@@ -114,5 +151,6 @@ public class BeetleQueenControl : MonoBehaviour
         }
         yield return new WaitForSeconds(_skillCoolDownArr[skillIndex]); // 쿨타임만큼 기다리기
         _isSkillRun[skillIndex] = false; // 스킬 쿨타임 다 돌았음
+        Debug.Log(skillIndex + "번 스킬 쿨 돌았음");
     }
 }

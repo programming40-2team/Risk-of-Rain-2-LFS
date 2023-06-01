@@ -27,13 +27,17 @@ public class RangeBomb : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerStay(Collider col)
+    private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             _isAddForce = true;
         }
-        else
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.CompareTag("Player"))
         {
             _isAddForce = false;
         }

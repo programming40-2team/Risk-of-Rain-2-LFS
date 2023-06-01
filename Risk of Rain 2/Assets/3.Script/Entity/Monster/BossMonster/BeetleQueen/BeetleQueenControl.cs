@@ -58,6 +58,15 @@ public class BeetleQueenControl : MonoBehaviour
                     else
                     {
                         Debug.Log("0번 스킬 사용 가능 / 플레이어 시야 밖에 있음");
+                        float angle = CalculateAngle();
+                        if(angle < 0)
+                        {
+                            _beetleQueenAnimator.SetTrigger("Left90");
+                        }
+                        else
+                        {
+                            _beetleQueenAnimator.SetTrigger("Right90");
+                        }
                     }
                 }
                 if(!_isSkillRun[1])
@@ -70,6 +79,15 @@ public class BeetleQueenControl : MonoBehaviour
                     else
                     {
                         Debug.Log("1번 스킬 사용 가능 / 플레이어 뒤에 없음");
+                        float angle = CalculateAngle();
+                        if (angle < 0)
+                        {
+                            _beetleQueenAnimator.SetTrigger("Left90");
+                        }
+                        else
+                        {
+                            _beetleQueenAnimator.SetTrigger("Right90");
+                        }
                     }
                 }
                 if(!_isSkillRun[2])
@@ -80,6 +98,7 @@ public class BeetleQueenControl : MonoBehaviour
                 if(_isSkillRun[0] && _isSkillRun[1] && _isSkillRun[2])
                 {
                     Debug.Log("모든 스킬 사용 불가능");
+                    _beetleQueenAnimator.SetTrigger("Aiming");
                 }
             }
             yield return null;

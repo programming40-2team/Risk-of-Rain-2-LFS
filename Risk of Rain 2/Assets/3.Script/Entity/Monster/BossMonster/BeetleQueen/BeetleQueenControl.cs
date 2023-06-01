@@ -38,10 +38,10 @@ public class BeetleQueenControl : MonoBehaviour
     {
         while(!_beetleQueen.IsDeath)
         {
-            var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-            var type = assembly.GetType("UnityEditor.LogEntries");
-            var method = type.GetMethod("Clear");
-            method.Invoke(new object(), null);
+            //var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+            //var type = assembly.GetType("UnityEditor.LogEntries");
+            //var method = type.GetMethod("Clear");
+            //method.Invoke(new object(), null);
 
             //Debug.Log("플레이어가 시야에 " + IsPlayerInFieldOfView());
             //Debug.Log("플레이어가 뒤에 " + IsPlayerBehindBoss());

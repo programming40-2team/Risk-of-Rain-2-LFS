@@ -316,6 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634964032010400780}
   - component: {fileID: 8760726072401883364}
+  - component: {fileID: -3053989575721005948}
   - component: {fileID: -4844538190719011655}
   - component: {fileID: 3947812199606246929}
   - component: {fileID: 2137207061607402921}
@@ -363,7 +364,7 @@ MonoBehaviour:
   IsRun: 0
   _beetleQueenMouthTransform: {fileID: 430505227350585667}
   _beetleQueenButtTransform: {fileID: 0}
---- !u!114 &-4844538190719011655
+--- !u!114 &-3053989575721005948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,6 +372,18 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145294595452209251}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262b1e8204ee02d4bb4e96b7e0082860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4844538190719011655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145294595452209251}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8724a948dd19fc74a934c32289ccccf6, type: 3}
   m_Name: 

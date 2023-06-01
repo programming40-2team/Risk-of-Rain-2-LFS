@@ -3686,7 +3686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &4067630833750929950
 Animator:
   serializedVersion: 3
@@ -3742,7 +3742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   _lemurianData: {fileID: 11400000, guid: e34ef0843f748eb40b044f6d55866dbd, type: 2}
-  _player: {fileID: 1442611305}
   TargetLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -5177,7 +5176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   _lemurianData: {fileID: 11400000, guid: e34ef0843f748eb40b044f6d55866dbd, type: 2}
-  _player: {fileID: 0}
   TargetLayer:
     serializedVersion: 2
     m_Bits: 128

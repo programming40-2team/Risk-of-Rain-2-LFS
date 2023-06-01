@@ -14,9 +14,10 @@ public class BeetleQueenController : MonoBehaviour
     // StartRangeBombSkill() 20초 체력 / 30% 미만일때
     private float[] _skillCoolDownArr = new float[3]; // 10 18 20
     private bool[] _isSkillRun = new bool[3];
+    private bool _isRotate = false;
 
     private enum RotationAngle { LEFT45, LEFT90, LEFT135, RIGHT45, RIGHT90, RIGHT135}
-    private enum BossState { IDLE, WALK, ROTATING, USINGSKILL}
+    public enum BossState { IDLE, WALK, ROTATING, USINGSKILL}
 
     private BossState _currentState = BossState.IDLE;
 
@@ -36,84 +37,165 @@ public class BeetleQueenController : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        switch (_currentState)
+        StartCoroutine(UpdateState_co());
+    }
+
+    private IEnumerator UpdateState_co()
+    {
+        while(!_beetleQueen.IsDeath)
         {
-            case BossState.IDLE:
-                if (_isSkillRun[0] && IsPlayerInFieldOfView())
-                {
-                    ChangeState(BossState.USINGSKILL);
-                    UseSkill(0); //스킬1 발동 SetTrigger("FireSpit");
-                }
-                else if (_isSkillRun[0] && !IsPlayerInFieldOfView())
-                {
-                    ChangeState(BossState.ROTATING);
-                }
-                else if (_isSkillRun[1] && IsPlayerBehindBoss())
-                {
-                    ChangeState(BossState.USINGSKILL);
-                    UseSkill(1); //스킬2발동 SetTrigger("SpawnWard");
-                }
-                else if (_isSkillRun[1] && !IsPlayerBehindBoss())
-                {
-                    ChangeState(BossState.ROTATING);
-                }
-                else if (_isSkillRun[2])
-                {
-                    ChangeState(BossState.USINGSKILL);
-                    UseSkill(2); //스킬3발동 SetTrgger("RangeBomb");
-                }
-                else
-                {
-                    ChangeState(BossState.WALK); // SetTrigger("Walk");
-                }
-                break;
-            case BossState.WALK:
-                MoveTowardsPlayer(); // SetTrigger("Walk")
-                break;
-            case BossState.ROTATING:
-                // SetTrigger("Aiming")
-                break;
-            case BossState.USINGSKILL:
-                if (!_beetleQueen.IsRun) // 스킬 시전 끝나면 바꿈 (쿨타임 아님 주의)
-                {
-                    ChangeState(BossState.IDLE);
-                }
-                break;
+            Debug.Log("BeetleQueen current state : " + _currentState);
+            switch (_currentState)
+            {
+                case BossState.IDLE:
+                    if (!_isSkillRun[0] && IsPlayerInFieldOfView())
+                    {
+                        ChangeState(BossState.USINGSKILL);
+                        UseSkill(0); //스킬1 발동 SetTrigger("FireSpit");
+                        Debug.Log("1");
+                    }
+                    else if (!_isSkillRun[1] && IsPlayerBehindBoss())
+                    {
+                        ChangeState(BossState.USINGSKILL);
+                        UseSkill(1); //스킬2발동 SetTrigger("SpawnWard");
+                        Debug.Log("2");
+                    }
+                    else if (!_isSkillRun[0] && !IsPlayerInFieldOfView())
+                    {
+                        Debug.Log("3");
+                        //ChangeState(BossState.ROTATING);
+                    }
+                    else if (!_isSkillRun[1] && !IsPlayerBehindBoss())
+                    {
+                        //ChangeState(BossState.ROTATING);
+                        Debug.Log("4");
+                    }
+                    else if (!_isSkillRun[2])
+                    {
+                        ChangeState(BossState.USINGSKILL);
+                        UseSkill(2); //스킬3발동 SetTrgger("RangeBomb");
+                        Debug.Log("5");
+                    }
+                    else
+                    {
+                        ChangeState(BossState.WALK); // SetTrigger("Walk");
+                    }
+                    break;
+                case BossState.WALK:
+                    MoveTowardsPlayer(); // SetTrigger("Walk")
+                    break;
+                case BossState.ROTATING:
+                    if(!_isRotate)
+                    {
+                        _isRotate = true;
+                        _beetleQueenAnimator.SetTrigger("Aiming");
+                        yield return null;
+                        if (_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("BeetleQueenArmature|aimHorizontal"))
+                        {
+                            if (_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.97)
+                            {
+                                float angle = CalculateAngle(transform.forward, _player.transform.position - transform.position);
+                                if (angle >= -75 && angle < -45)
+                                {
+                                    _beetleQueenAnimator.SetTrigger("Left45");
+                                }
+                                else if (angle >= -105 && angle < -75)
+                                {
+                                    _beetleQueenAnimator.SetTrigger("Left90");
+                                }
+                                else if (angle >= -135 && angle < -105)
+                                {
+                                    _beetleQueenAnimator.SetTrigger("Left135");
+                                }
+                                else if (angle >= 45 && angle < 75)
+                                {
+                                    _beetleQueenAnimator.SetTrigger("Right45");
+                                }
+                                else if (angle >= 75 && angle < 105)
+                                {
+                                    _beetleQueenAnimator.SetTrigger("Right90");
+                                }
+                                else if (angle >= 105 && angle < 135)
+                                {
+                                    _beetleQueenAnimator.SetTrigger("Right135");
+                                }
+                                //ChangeState(BossState.IDLE);
+                                //_isRotate = false;
+                            }
+                        }
+                    }
+                    break;
+                case BossState.USINGSKILL:
+                    yield return null;
+                    if (!_beetleQueen.IsRun) // 스킬 시전 끝나면 바꿈 (쿨타임 아님 주의)
+                    {
+                        ChangeState(BossState.IDLE);
+                    }
+                    break;
+            }
+            yield return null;
         }
     }
+    // 회전하는 애니메이션 끝날때 상태Idle로 바꾸고 bool 변수 바꾸기
+    // Walk도 쿨타임 해야할듯..? / 안하니까 계속 계속 걸어가..
+
+
 
     private bool IsPlayerInFieldOfView() // 플레이어가 보스 시야에 있는지 없는지 판단하는 메소드
     {
-        return true;
+        float angle = CalculateAngle(transform.forward, _player.transform.position - transform.position);
+        if(angle >= -45 && angle < 45)
+        {
+            Debug.Log("플레이어가 보스 시야에 있습니다.");
+            return true;
+        }
+        else
+        {
+            Debug.Log("플레이어가 보스 시야에 없습니다.");
+            return false;
+        }
     }
 
     private bool IsPlayerBehindBoss() // 플레이어가 보스 뒤쪽에 있는지 없는지 판단하는 메소드 / 수정해야함
     {
-        return true;
+        float angle = CalculateAngle(transform.forward, _player.transform.position - transform.position);
+        if (angle < -135 || angle >= 135)
+        {
+            Debug.Log("플레이어가 보스 뒤에 있습니다.");
+            return true;
+        }
+        else
+        {
+            Debug.Log("플레이어가 보스 뒤에 없습니다.");
+            return false;
+        }
     }
 
     private void ChangeState(BossState newState)
     {
         _currentState = newState;
-
-        if(_currentState == BossState.ROTATING)
-        {
-            _beetleQueenAnimator.SetTrigger("Aiming");
-            CalculateAngle(); // 각도 계산
-            // 각각 회전하는 애니메이션이 끝날때 IDLE로 상태 바꿔줘야함
-        }
     }
 
-    private void CalculateAngle()
+    private float CalculateAngle(Vector3 vStart, Vector3 vEnd)
     {
-        // 각도 계산 하고 얼만큼 회전 시킬건지 애니메이션 실행 / SetTrigger("Left45");
+        // 각도 계산
+        Vector3 v = vEnd - vStart;
+
+        return Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
     }
 
     private void MoveTowardsPlayer() // 보스가 플레이어 향해 걷는 메소드
     {
         _beetleQueenAnimator.SetTrigger("Walk"); // 이동은 애니메이터에 이벤트로 있음
+        if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("BeetleQueenArmature|walkForward"))
+        {
+            if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99)
+            {
+                ChangeState(BossState.IDLE);
+            }
+        }
         // Has Exit Time 체크 -> Idle 애니메이션으로 넘어감
         // 애니메이션 끝날때 IDLE로 상태는 바꿔줘야함
     }

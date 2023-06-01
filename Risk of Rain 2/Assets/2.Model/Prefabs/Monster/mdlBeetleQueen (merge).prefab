@@ -360,7 +360,6 @@ MonoBehaviour:
   AcidPoolPool: {fileID: 0}
   WardPool: {fileID: 0}
   BombRange: {fileID: 59060071674946947, guid: d1984401bbdd4a04881023e037010c83, type: 3}
-  BeetleQueenAnimator: {fileID: 0}
   IsRun: 0
   _beetleQueenMouthTransform: {fileID: 430505227350585667}
   _beetleQueenButtTransform: {fileID: 0}
@@ -371,7 +370,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145294595452209251}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8724a948dd19fc74a934c32289ccccf6, type: 3}
   m_Name: 

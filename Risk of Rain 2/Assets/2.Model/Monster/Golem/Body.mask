@@ -1,0 +1,201 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Body
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/AimAssist
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/golem
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/armIKtarget.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/armIKtarget.l/armIKpole.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/armIKtarget.l/armIKpole.l/armIKpole.l_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/armIKtarget.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/armIKtarget.r/armIKpole.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/armIKtarget.r/armIKpole.r/armIKpole.r_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/Hurtbox
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.l/calf.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.l/calf.l/calf.l_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.l/calf.l/Hurtbox
+      (2)
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.l/calf.l/LeftFoot
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.l/Debris
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.l/Hurtbox
+      (1)
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.r/calf.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.r/calf.r/calf.r_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.r/calf.r/Hurtbox
+      (2) 1
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.r/calf.r/RightFoot
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.r/Debris
+      1
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/pelvis/thigh.r/Hurtbox
+      (1) 1
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/Eye
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/Eye/FireParticles
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/Eye/FlashLight
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/Eye/Line
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/head_end
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/Hurtbox
+      3
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/Hurtbox
+      4
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/MuzzleLaser
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/head/MuzzleLaser/AimOrigin
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/Hurtbox
+      2
+    m_Weight: 0
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/Debris
+      2
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/Hurtbox
+      5
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/Debris
+      4
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/Hurtbox
+      (1) 3
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/lower_arm.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/lower_arm.l/hand.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/lower_arm.l/hand.l/f1.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/lower_arm.l/hand.l/f1.l/f1.l_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/lower_arm.l/Hitbox
+      1
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/lower_arm.l/Hurtbox
+      (1) 4
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/lower_arm.l/thumb.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.l/upper_arm.l.001/upper_arm.l.002/lower_arm.l/thumb.l/thumb.l_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/Debris
+      3
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/Hurtbox
+      (1) 2
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/Hurtbox
+      (2) 2
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/Debris
+      5
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/Hitbox
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/Hurtbox
+      (2) 3
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/lower_arm.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/lower_arm.r/hand.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/lower_arm.r/hand.r/f1.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/lower_arm.r/hand.r/f1.r/f1.r_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/lower_arm.r/Hurtbox
+      (3)
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/lower_arm.r/thumb.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/chest/upper_arm.r/upper_arm.r.001/upper_arm.r.002/lower_arm.r/thumb.r/thumb.r_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/base/stomach/Hurtbox 1
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/ClapZone
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/HealthBarOrigin
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/ik-leg.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/ik-leg.l/knee.l
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/ik-leg.l/knee.l/knee.l_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/ik-leg.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/ik-leg.r/knee.r
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/GolemArmature/ROOT/ik-leg.r/knee.r/knee.r_end
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/LogbookTarget
+    m_Weight: 1
+  - m_Path: mdlGolem (merge)/mdlGolem/LogbookTarget/LogbookCamera
+    m_Weight: 1

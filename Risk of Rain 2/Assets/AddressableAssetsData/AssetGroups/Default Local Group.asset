@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: be15a8d2c5eeed5409b1da1136e9a629
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 0873df62fc6b81844ac5c5a6ee950dd2
+    m_Address: TurretBullet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

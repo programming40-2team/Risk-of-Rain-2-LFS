@@ -108,5 +108,10 @@
 
 
     }
+    public enum LayerMask
+    {
+        Enviroment=6,
+
+    }
 
 }

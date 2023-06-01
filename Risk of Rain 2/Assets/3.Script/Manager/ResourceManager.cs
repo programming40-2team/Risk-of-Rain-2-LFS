@@ -22,28 +22,35 @@ public class ResourceManager
 
         return sprite;
     }
-    public GameObject Instantiate(string key, Transform parent = null, bool pooling = false)
+    public GameObject Instantiate(string key, Transform parent = null)
     {
-        GameObject prefab = Load<GameObject>($"{key}");
-        if (prefab == null)
+        GameObject original = Load<GameObject>($"{key}");
+        if (original == null)
         {
             Debug.Log($"Failed to load prefab : {key}");
             return null;
         }
-        GameObject go = Object.Instantiate(prefab, parent);
-        go.name = prefab.name;
+
+        if (original.GetComponent<Poolable>() != null)
+            return Managers.Pool.Pop(original, parent).gameObject;
+
+        GameObject go = Object.Instantiate(original, parent);
+        go.name = original.name;
         return go;
     }
-    public GameObject Instantiate(string key, Vector3 position)
+    public GameObject Instantiate(string key, Vector3 position,Transform parent=null)
     {
-        GameObject prefab = Load<GameObject>($"{key}");
-        if (prefab == null)
+        GameObject original = Load<GameObject>($"{key}");
+        if (original == null)
         {
             Debug.Log($"Failed to load prefab : {key}");
             return null;
         }
-        GameObject go = Object.Instantiate(prefab, position, Quaternion.identity);
-        go.name = prefab.name;
+        if (original.GetComponent<Poolable>() != null)
+            return Managers.Pool.Pop(original, parent).gameObject;
+
+        GameObject go = Object.Instantiate(original, position, Quaternion.identity);
+        go.name = original.name;
         return go;
     }
     public void Destroy(GameObject go)
@@ -51,14 +58,29 @@ public class ResourceManager
         if (go == null)
             return;
 
+        Poolable poolable = go.GetComponent<Poolable>();
+        if (poolable != null)
+        {
+            Managers.Pool.Push(poolable);
+            return;
+        }
+
         Object.Destroy(go);
     }
-    public void Destroy(GameObject go,float time)
+
+    public void Destroy(GameObject go, float time)
     {
         if (go == null)
             return;
 
-        Object.Destroy(go,time);
+        Poolable poolable = go.GetComponent<Poolable>();
+        if (poolable != null)
+        {
+            Managers.Pool.Push(poolable);
+            return;
+        }
+
+        Object.Destroy(go, time);
     }
     #region 어드레서블
     public void LoadAsync<T>(string key, Action<T> callback = null) where T : UnityEngine.Object

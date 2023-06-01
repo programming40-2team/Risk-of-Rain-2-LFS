@@ -13,6 +13,7 @@ public class Managers : MonoBehaviour
     EventManager _event = new EventManager();
     GameManager _game = new GameManager();
     ItemApplyManager _ItemApply = new ItemApplyManager();
+    PoolManager _pool = new PoolManager();
     public static DataManager Data { get { return Instance._data; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
@@ -22,6 +23,7 @@ public class Managers : MonoBehaviour
 
     public static GameManager Game { get { return Instance._game; } }
     public static ItemApplyManager ItemApply { get { return Instance._ItemApply; } }
+    public static PoolManager Pool { get { return Instance._pool; } }
 
     void Start()
     {
@@ -41,6 +43,7 @@ public class Managers : MonoBehaviour
 
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
+            s_instance._pool.Init();
            
             //초기화가 필요한 멤버들의 초기화를 진행해 줍니다. ==> 데이터 연관되있으면 무조건 첫 씬에서!!
             //데이터 관련은 첫 씬인 MenMenu에서

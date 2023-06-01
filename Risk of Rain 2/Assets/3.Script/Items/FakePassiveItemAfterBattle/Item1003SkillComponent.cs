@@ -7,7 +7,10 @@ public class Item1003SkillComponent : ItemPrimitiive
     private float movespeed = 5f;
 
     [SerializeField] private float SkillDectDistance = 8f;
-
+    private void Start()
+    {
+        Managers.Resource.Destroy(gameObject, 8.0f);
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))

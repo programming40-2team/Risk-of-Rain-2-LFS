@@ -5,49 +5,41 @@ using UnityEngine;
 public class Item1007SkillComponent : ItemPrimitiive
 {
     private float damage;
-    private float movespeed = 5.0f;
+    [SerializeField]
     private GameObject myTargetEnemy;
-
+    Vector3 Objectposition;
     // GameItemImage Target;
     //유도 미사일 아님!
 
+    private float lerpTime = 5f;
+    float currentLerpTime;
     public override void Init()
     {
         base.Init();
         myTargetEnemy = GameObject.FindGameObjectWithTag("Monster");
-        if (myTargetEnemy == null)
-        {
-            myTargetEnemy = GameObject.FindGameObjectWithTag("BettleQueenMouse");
-            if (myTargetEnemy == null)
-            {
-
-                return;
-            }
-        }
-
+       
         damage = Player.GetComponent<PlayerStatus>().Damage
             * 3 * (Managers.ItemInventory.Items[1007].Count);
 
         if (myTargetEnemy == null)
         {
-            //플레이어 방향으로 앞으로 나아가기
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            GetComponent<Rigidbody>().velocity = Player.transform.forward * movespeed;
+            Objectposition = gameObject.SetRandomPositionSphere(0, 10, 3);
         }
         else
         {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-            GetComponent<Rigidbody>().velocity = movespeed * (myTargetEnemy.transform.position - gameObject.transform.position).normalized;
+            Objectposition = myTargetEnemy.transform.position;
         }
-
-        Managers.Resource.Destroy(gameObject, 15f);
-        Debug.Log("미사일 발사하는 파티클, 쉐이더 필요");
     }
-    private void Start()
+    private void OnEnable()
     {
 
         Init();
+        StartCoroutine(nameof(LerpTransform_co));
+       
+    }
+    private void OnDisable()
+    {
+        StopCoroutine(nameof(LerpTransform_co));
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -58,11 +50,30 @@ public class Item1007SkillComponent : ItemPrimitiive
                 entity.OnDamage(damage);
                 Managers.Resource.Destroy(gameObject);
             }
-            else
-            {
-                Debug.Log($"{other.gameObject.name} 의 Entity를 가져오지 못함");
-            }
+         
+        }
+        else if (other.gameObject.layer == 1 << (int)Define.LayerMask.Enviroment)
+        {
+            Managers.Resource.Destroy(gameObject);
         }
 
+    }
+
+    IEnumerator LerpTransform_co()
+    {
+        float timeElapsed = 0;
+        while (timeElapsed < lerpTime)
+        {
+            transform.position = Vector3.Lerp(transform.position, Objectposition, timeElapsed / lerpTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = Objectposition;
+
+        if ((transform.position - Objectposition).sqrMagnitude < 0.7f)
+        {
+            Managers.Resource.Destroy(gameObject);
+        }
     }
 }

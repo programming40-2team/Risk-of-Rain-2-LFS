@@ -13,6 +13,8 @@ public class Item1023Skill : PrimitiveActiveItem
     private void Start()
     {
         Init();
+        radius = Random.Range(5, 11);
+        StartCoroutine(nameof(StartFire_co));
         Managers.Resource.Destroy(gameObject, 30f);
     }
 
@@ -21,15 +23,17 @@ public class Item1023Skill : PrimitiveActiveItem
         base.Init();
 
         playerTransform = Player.transform;
-        InitStats();
-        gameObject.SetRandomPositionSphere(2, 5, 5, Player.transform);
+        gameObject.SetRandomPositionSphere(2, 5, 2, Player.transform);
     }
 
     private void Update()
     {
         RotateAroundPlayer();
     }
-
+    private void OnDisable()
+    {
+        StopCoroutine(nameof(StartFire_co));
+    }
     private void RotateAroundPlayer()
     {
         transform.RotateAround(playerTransform.position, Vector3.up, rotationSpeed * Time.deltaTime);
@@ -48,31 +52,19 @@ public class Item1023Skill : PrimitiveActiveItem
         }
     }
 
-    private void InitStats()
-    {
-        int itemCount = Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1019].WhenItemActive][1019].Count;
-        _playerStatus.Damage = _playerStatus._survivorsData.Damage * 3 * itemCount;
-        _playerStatus.AddMaxHealth(3 * itemCount);
-    }
-
-    private void OnDisable()
-    {
-        _playerStatus.Damage = _playerStatus._survivorsData.Damage;
-        int itemCount = Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1019].WhenItemActive][1019].Count;
-        _playerStatus.AddMaxHealth(-3 * itemCount);
-    }
-
-    public void SetStats(int count)
-    {
-        _playerStatus.Damage = _playerStatus._survivorsData.Damage * 3 * count;
-        _playerStatus.AddMaxHealth(3 * count);
-    }
     private IEnumerator StartFire_co()
     {
-
-
-
-        yield return new WaitForSeconds(5f);
+        while (true)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+               GameObject go= Managers.Resource.Instantiate("TurretBullet");
+                go.transform.position = gameObject.transform.position;
+                yield return new WaitForSeconds(1f);
+            }
+            yield return new WaitForSeconds(3f);
+        }
+     
 
     }
 }

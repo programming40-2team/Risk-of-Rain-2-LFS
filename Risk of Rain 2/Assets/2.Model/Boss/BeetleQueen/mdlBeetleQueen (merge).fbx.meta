@@ -94,10 +94,11 @@ ModelImporter:
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: Event Rotate has a time (3.870927) outside the clip's
-      valid range (0.000000..3.683334). It will never be firedEvent Rotate has a
-      time (3.621725) outside the clip's valid range (0.000000..3.550000). It will
-      never be firedEvent Rotate has a time (2.159745) outside the clip's valid range
-      (0.000000..2.016667). It will never be fired
+      valid range (0.000000..3.683334). It will never be firedEvent SetState has
+      a time (3.552368) outside the clip's valid range (0.000000..3.550000). It will
+      never be firedEvent Rotate has a time (3.621725) outside the clip's valid range
+      (0.000000..3.550000). It will never be firedEvent Rotate has a time (2.159745)
+      outside the clip's valid range (0.000000..2.016667). It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0

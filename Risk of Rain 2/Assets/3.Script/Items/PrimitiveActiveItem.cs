@@ -41,14 +41,15 @@ public class PrimitiveActiveItem : ItemPrimitiive
                 _playerStatus.OnHeal(_playerStatus.MaxHealth*0.5f);
                 break;
             case 1022:
-                GameObject Item1022 = Managers.Resource.Instantiate("Item1022SKill");
+                GameObject Item1022 = Managers.Resource.Instantiate("Item1022Skill");
                 Item1022.GetOrAddComponent<Item1022Skill>();
                 break;
             case 1023:
 
                 break;
             case 1024:
-
+                StopCoroutine(nameof(Item2024_co));
+                StartCoroutine(nameof(Item2024_co));
                 break;
             case 1025:
                 Item1025SKilll();
@@ -61,6 +62,13 @@ public class PrimitiveActiveItem : ItemPrimitiive
     {
         Managers.Event.EquipItemChange -= SetMyItemCode;
         Managers.Event.ExcuteActiveItem -= OnActiveSkill;
+    }
+    private IEnumerator Item2024_co()
+    {
+        float chacne = _playerStatus.ChanceBlockDamage;
+        _playerStatus.ChanceBlockDamage = 100;
+        yield return new WaitForSeconds(10.0f);
+        _playerStatus.ChanceBlockDamage = chacne;
     }
     private IEnumerator Item1020_co()
     {
@@ -77,7 +85,7 @@ public class PrimitiveActiveItem : ItemPrimitiive
                 Debug.Log("위치 2개의 직선 을 이어주는 연기 필요");
                 
                 Debug.Log("연동방법   함수 (item1007.transform.position ,item1007.SetRandomPositionSphere(1, 1, 5) 위의 item1007.SEtRandomPositionSphere 지워야함");
-                item1007.GetOrAddComponent<Item1007Skill>();
+                item1007.GetOrAddComponent<Item1007SkillComponent>();
 
             }
             yield return new WaitForSeconds(3.0f);
@@ -89,14 +97,14 @@ public class PrimitiveActiveItem : ItemPrimitiive
     {
       
 
-       GameObject Tele_Input = Managers.Resource.Instantiate("Item1025Skill");
-       GameObject Tele_OutPut = Managers.Resource.Instantiate("Item1025Skill");
+       GameObject Tele1 = Managers.Resource.Instantiate("Item1025Skill");
+       GameObject Tele2 = Managers.Resource.Instantiate("Item1025Skill");
 
-        Tele_OutPut.GetOrAddComponent<Item1025Skill>();
-        Tele_Input.GetOrAddComponent<Item1025Skill>();
-      
-      Tele_Input.SetRandomPositionSphere(2, 4, 1);
-      Tele_OutPut.SetRandomPositionSphere(200, 400, 1);
+        Tele1.GetOrAddComponent<Item1025Skill>().SetTeleCode(1);
+        Tele2.GetOrAddComponent<Item1025Skill>().SetTeleCode(2);
+
+        Tele1.SetRandomPositionSphere(2, 4, 0,Player.transform);
+        Tele2.SetRandomPositionSphere(200, 400, 0,Player.transform);
 
     }
 }

@@ -9,8 +9,7 @@ public class Item1004Skill : NewItemPrimitive, IPassiveItem
     public void ApplyPassiveEffect()
     {
         base.Init();
-        _playerStatus.CriticalChance = _playerStatus._survivorsData.CriticalChance + 10 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[Itemid].WhenItemActive][Itemid].Count;
-
+        _playerStatus.CriticalChance = _playerStatus._survivorsData.CriticalChance + 10 * Managers.ItemInventory.Items[Itemid].Count;
     }
 
 

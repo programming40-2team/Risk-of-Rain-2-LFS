@@ -9,7 +9,7 @@ public class Item1001Skill : NewItemPrimitive, IPassiveItem
     public void ApplyPassiveEffect()
     {
         base.Init();
-        _playerStatus.AddMaxHealth(15 * Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[Itemid].WhenItemActive][Itemid].Count);
+        _playerStatus.AddMaxHealth(15 * Managers.ItemInventory.Items[Itemid].Count);
     }
 
 

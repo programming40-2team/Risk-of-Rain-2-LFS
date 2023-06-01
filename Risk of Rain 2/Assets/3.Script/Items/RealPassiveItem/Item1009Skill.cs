@@ -9,8 +9,7 @@ public class Item1009Skill : NewItemPrimitive, IPassiveItem
     public void ApplyPassiveEffect()
     {
         base.Init();
-        _playerStatus.MaxJumpCount = 1 + Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[Itemid].WhenItemActive][Itemid].Count;
-
+        _playerStatus.MaxJumpCount = 1 + Managers.ItemInventory.Items[Itemid].Count;
 
     }
 

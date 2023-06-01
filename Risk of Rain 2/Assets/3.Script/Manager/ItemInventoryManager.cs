@@ -129,6 +129,7 @@ public class ItemInventoryManager
                         WhenActivePassiveItem[Define.WhenItemActivates.Always].Add(itemcode, PassiveItem[itemcode]);
                     }
                 }
+                Managers.ItemApply.AddPassiveSkill(itemcode);
                 break;
             case Define.WhenItemActivates.AfterBattle:
                 if (!WhenActivePassiveItem.ContainsKey(Define.WhenItemActivates.AfterBattle))
@@ -143,6 +144,7 @@ public class ItemInventoryManager
                         WhenActivePassiveItem[Define.WhenItemActivates.AfterBattle].Add(itemcode, PassiveItem[itemcode]);
                     }
                 }
+                Managers.ItemApply.AddAfterBattleSkill(itemcode);
                 break;
             case Define.WhenItemActivates.InBattle:
                 if (!WhenActivePassiveItem.ContainsKey(Define.WhenItemActivates.InBattle))
@@ -158,6 +160,7 @@ public class ItemInventoryManager
                     }
 
                 }
+                Managers.ItemApply.AddInBattleSkill(itemcode);
                 break;
                  case Define.WhenItemActivates.NotBattle:
                 if (!WhenActivePassiveItem.ContainsKey(Define.WhenItemActivates.NotBattle))
@@ -174,8 +177,11 @@ public class ItemInventoryManager
                 }
                 break;
         }
-      
 
+        Debug.Log("실험용 추후  Passive 제외 제거 해야함");
+        Managers.ItemApply.ExcuteAfterSkills(GameObject.FindGameObjectWithTag("Monster").transform);
+        Managers.ItemApply.ExcuteInSkills();
+        Managers.ItemApply.ApplyPassiveSkill(itemcode);
         Managers.Event.AddItem?.Invoke(itemcode);
         return true;
     }

@@ -4,85 +4,27 @@ using System.Linq;
 using UnityEngine;
 
 //의식용 단검 3개의 유도 단검 발사
-public class Item1014Skill : ItemPrimitiive
+public class Item1014Skill : NewItemPrimitive, IAfterBattleItem
 {
-  //  List<GameObject> Enemys;
-    private float damage;
-    float movespeed = 8.0f;
-    private bool isDectedEnemy = false;
-    private GameObject myTargetEnemy;
-    private float rotateSpeed = 800.0f;
+    public int Itemid => 1014;
 
-    private Entity enemyEntity;
-
-    public override void Init()
+    public void AfterExcuteSkillEffect(Transform TargetTransform)
     {
+        if (Managers.ItemInventory.Items[Itemid].Count.Equals(0))
+        {
+            return;
+        }
         base.Init();
-        damage = Player.GetComponent<PlayerStatus>().Damage
-          * 1.5f * (Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1014].WhenItemActive][1014].Count);
-
-    }
-    private void Start()
-    {
-        //   Enemys = GameObject.FindGameObjectsWithTag("Monster").ToList();
-        //  Enemys.Add(GameObject.FindGameObjectWithTag("Boss"));
-        Init();
-    }
-
-
-    //방법 1. 모든 적을 긁어 모아서 가장 가까운 적에게 공격을 가하는 방식 ( 콜라이더를 조금 작게 해서 Trigger처리)
-    // 발생가능한 문제 1. 적 죽음 , 타겟 없음 -> 타겟 별로 Die 인지 및 체력 확인하여 넘겨야함 
-    // 근데 찾아서 넘겼는데 죽었을 수 있음 
-    //방법 2. 콜라이더를 매우 크게 만들어서 Stay 에 있는 거 계쏙 찾음 .. 그리고 거리가 일정 거리 0.5f? 정도로 가까워지면 삭제시킴
-    // 스킬 설명에도 인식범위가 넓다고 나오니  우선 2방법으로 구현
-
-    private void OnTriggerStay(Collider other)
-    {
-
-        //other의 테그를 가져오는 부분은 일단 납두고 플레이어도 만약
-        //IDamge를 같이 구현하면 테그 써야대고 안하면 태그 구지 안써도 될듯?
-        if (!other.CompareTag("Player"))
+        if (Util.Probability(30))
         {
-            if (!isDectedEnemy&&other.TryGetComponent(out Entity entity))
-            {
-               
-
-                isDectedEnemy = true;
-                myTargetEnemy = other.gameObject;
-                enemyEntity = entity;
-
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-                GetComponent<Rigidbody>().velocity = movespeed * (myTargetEnemy.transform.position - gameObject.transform.position).normalized;
-
-            
+            for (int i = 0; i < 3; i++)
+            { base.Init();
+                GameObject item1014 = Managers.Resource.Instantiate("Item1014Skill");
+                item1014.transform.position = Player.transform.position;
+                item1014.SetRandomPositionSphere(2f, 2f, 5, Player.transform);
+                item1014.GetOrAddComponent<Item1014SkillComponent>();
             }
         }
+     
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (isDectedEnemy && collision.gameObject.Equals(myTargetEnemy))
-        {
-            if ((myTargetEnemy.transform.position - gameObject.transform.position).sqrMagnitude < 5f)
-            {
-                Debug.Log("탐지됨!");
-                enemyEntity.OnDamage(damage);
-                Managers.Resource.Destroy(gameObject);
-            }
-        }
-    }
-
-    private void Update()
-    {
-        transform.RotateAround(transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other == myTargetEnemy)
-        {
-            isDectedEnemy = false;
-            myTargetEnemy = null;
-        }
-    }
-
-
 }

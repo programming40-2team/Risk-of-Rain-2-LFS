@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Item1019Component : ItemPrimitiive
 {
-    private bool item1019Spawned = false;
 
 
 

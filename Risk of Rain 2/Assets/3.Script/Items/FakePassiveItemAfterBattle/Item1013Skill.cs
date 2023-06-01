@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item1013Skill : MonoBehaviour
+public class Item1013Skill : NewItemPrimitive,IAfterBattleItem
 {
-    // Start is called before the first frame update
-    void Start()
+    public int Itemid => 1013;
+
+    public void AfterExcuteSkillEffect(Transform TargetTransform)
     {
-        
+        if (Managers.ItemInventory.Items[Itemid].Count.Equals(0))
+        {
+            return;
+        }
+
+        GameObject.FindObjectOfType<CommandoSkill>().SkillQColldown -= 4 + 2* Managers.ItemInventory.Items[Itemid].Count;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

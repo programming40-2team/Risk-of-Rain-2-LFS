@@ -18,7 +18,7 @@ public class Item1019Skill : NewItemPrimitive, IPassiveItem
         }
         else
         {
-            go.GetComponent<Item1019Component>().SetStats(Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1019].WhenItemActive][1019].Count);
+            go.GetComponent<Item1019Component>().SetStats(Managers.ItemInventory.Items[Itemid].Count);
         }
       
     }

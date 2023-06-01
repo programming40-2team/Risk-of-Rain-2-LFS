@@ -16,12 +16,6 @@ public static class Extension
 
     public static Vector3 SetRandomPositionSphere(this GameObject go,float mindisatnce=3f,float maxdistacne=8f,float additionalHeighy=5f,Transform TargetTransform=null)
     {
-       
-        Collider collider = go.GetComponent<Collider>();
-        Bounds colliderBounds = collider.bounds;
-        Vector3 colliderSize = colliderBounds.size;
-        Vector3 colliderCenter = colliderBounds.center;
-  
 
         float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
 
@@ -37,7 +31,12 @@ public static class Extension
         Vector3 newPosition;
         if (TargetTransform != null)
         {
-            
+            Vector3 colliderSize = Vector3.zero;
+            if (TargetTransform.TryGetComponent(out Collider collider))
+            {
+                colliderSize = collider.bounds.size;
+            }
+           
             // 삼각함수를 사용하여 위치 계산
             float xPos = TargetTransform.position.x + Mathf.Cos(angle) * distance;
             float zPos = TargetTransform.position.z + Mathf.Sin(angle) * distance;
@@ -48,6 +47,10 @@ public static class Extension
         }
         else
         {
+            Collider collider = go.GetComponent<Collider>();
+            Bounds colliderBounds = collider.bounds;
+            Vector3 colliderSize = colliderBounds.size;
+            Vector3 colliderCenter = colliderBounds.center;
             // 삼각함수를 사용하여 위치 계산
             float xPos = go.transform.position.x + Mathf.Cos(angle) * distance;
             float zPos = go.transform.position.z + Mathf.Sin(angle) * distance;

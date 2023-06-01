@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item1010Skill : MonoBehaviour
+public class Item1010Skill : NewItemPrimitive,IInBattleItem
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int Itemid => 1010;
 
-    // Update is called once per frame
-    void Update()
+    public void InExcuteSkillEffect()
     {
-        
+        if (Managers.ItemInventory.Items[Itemid].Count.Equals(0))
+        {
+            return;
+        }
+        base.Init();
+        _playerStatus.OnHeal(1 * Managers.ItemInventory.Items[Itemid].Count);
+
     }
 }

@@ -9,8 +9,7 @@ public class Item1012Skill : NewItemPrimitive, IPassiveItem
     public void ApplyPassiveEffect()
     {
         base.Init();
-        _playerStatus.Armor = _playerStatus._survivorsData.Armor * 1.14f * Managers.ItemInventory.WhenActivePassiveItem[Define.WhenItemActivates.Always][Itemid].Count;
-
+        _playerStatus.Armor = _playerStatus._survivorsData.Armor * 1.14f * Managers.ItemInventory.Items[Itemid].Count;
     }
 
 

@@ -89,6 +89,10 @@ public class Entity : MonoBehaviour
         damage *= damageMultiplier;
 
         Health -= damage;
+        if (!gameObject.CompareTag("Player"))
+        {
+            Managers.ItemApply.ExcuteInSkills();
+        }
 
         if (Health <= 0 && !IsDeath)
         {
@@ -101,6 +105,11 @@ public class Entity : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
+        if (!gameObject.CompareTag("Player"))
+        {
+            Managers.ItemApply.ExcuteAfterSkills(gameObject.transform);
+        }
+
         if (OnDeath != null)
         {
             OnDeath();

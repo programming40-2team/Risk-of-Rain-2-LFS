@@ -5,7 +5,6 @@ using UnityEngine;
 public class Item1016Skill : NewItemPrimitive, IPassiveItem
 {
     public int Itemid => 1016;
-    private bool isActive = false;
 
     public void ApplyPassiveEffect()
     {

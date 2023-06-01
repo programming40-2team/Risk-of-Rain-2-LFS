@@ -9,8 +9,7 @@ public class Item1005Skill : NewItemPrimitive, IPassiveItem
     public void ApplyPassiveEffect()
     {
         base.Init();
-        _playerStatus.MoveSpeed = _playerStatus._survivorsData.MoveSpeed * 1.11f * Managers.ItemInventory.WhenActivePassiveItem[Define.WhenItemActivates.Always][Itemid].Count;
-
+        _playerStatus.MoveSpeed = _playerStatus._survivorsData.MoveSpeed * 1.11f * Managers.ItemInventory.Items[Itemid].Count;
 
     }
 

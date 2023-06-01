@@ -3,87 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //서리유물
-public class Item1015Skill : ItemPrimitiive
+public class Item1015Skill : NewItemPrimitive, IAfterBattleItem
 {
-    private float damageCoolTime = 1.0f;
-    private float damage;
-    private bool IsExcute = false;
-    private float prevMoveSpeed;
-    private Vector3 prevTransformScale;
-    //적 죽은 위치에 생성해야 하는데 적 위치를 어떻게 받아올 것인가??
-    //세분화를 해야할 것인가?.. 생각할게 만구만
-
-    public override void Init()
+    public int Itemid => 1015;
+    private bool Isitem1015Created;
+    GameObject Item1015 = null;
+    public void AfterExcuteSkillEffect(Transform TargetTransform)
     {
-        base.Init();
-        damage = Player.GetComponent<PlayerStatus>().Damage
-  * 3.5f * (Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1015].WhenItemActive][1015].Count);
-        prevTransformScale = gameObject.transform.localScale;
-
-    }
-    public void SetSize(int Count)
-    {
-        gameObject.transform.localScale = new Vector3(
-        prevTransformScale.x * (1 + 0.1f *Count),
-        prevTransformScale.y,
-        prevTransformScale.z * (1 + 0.1f * Count));
-
-    }
-    private void Start()
-    {
-        Init();
-    }
-    //장판딜 
-    private void OnTriggerStay(Collider other)
-    {
-        if (!other.CompareTag("Player")) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
+        if (Managers.ItemInventory.Items[Itemid].Count.Equals(0))
         {
-            //이속은 상시 - 데미지는 1초마다 
-
-            if (other.TryGetComponent(out Entity MonsterEntity))
-            {
-                prevMoveSpeed = MonsterEntity.MoveSpeed;
-                MonsterEntity.MoveSpeed = prevMoveSpeed * 0.8f;
-                if (!IsExcute)
-                {
-                    StopCoroutine(nameof(TakeDamage_co));
-                    StartCoroutine(nameof(TakeDamage_co), other);
-
-                }
-            }
-            else
-            {
-                Debug.Log("Entiotly 가져오기실패"); 
-            }
-           
-
-
+            return;
         }
-    }
-    private void Update()
-    {
-        gameObject.transform.position = Player.transform.position;
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("Player")) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
+        
+        if (!Isitem1015Created)
         {
-            if (other.TryGetComponent(out Entity entity))
-            {
-                entity.MoveSpeed = prevMoveSpeed;
-            }
-            else
-            {
-                Debug.Log($"{other.gameObject.name}의 Entity를 찾을 수 없음");
-            }
+            Item1015 = Managers.Resource.Instantiate("Item1015Skill");
+            Item1015.GetOrAddComponent<Item1015SkillComponent>();
+            Isitem1015Created = true;
         }
-    }
+        else
+        {
 
-    private IEnumerator TakeDamage_co(Collider coll)
-    {
-        IsExcute = true;
-        coll.GetComponent<Entity>().OnDamage(damage);
-        yield return new WaitForSeconds(damageCoolTime);
-        IsExcute = false;
+            Item1015.GetOrAddComponent<Item1015SkillComponent>().SetSize(Managers.ItemInventory.Items[Itemid].Count);
+        }
     }
 }

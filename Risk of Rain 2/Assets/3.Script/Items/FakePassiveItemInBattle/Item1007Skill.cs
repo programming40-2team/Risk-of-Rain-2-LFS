@@ -3,68 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Item1007Skill : ItemPrimitiive
+public class Item1007Skill : NewItemPrimitive, IInBattleItem
 {
-    private float damage;
-    private float movespeed = 5.0f;
-    private GameObject myTargetEnemy;
+    public int Itemid => 1007;
 
-    // GameItemImage Target;
-    //유도 미사일 아님!
-
-    public override void Init()
+    public void InExcuteSkillEffect()
     {
+        if (Managers.ItemInventory.Items[Itemid].Count.Equals(0))
+        {
+            return;
+        }
         base.Init();
-        myTargetEnemy = GameObject.FindGameObjectWithTag("Monster");
-        if (myTargetEnemy == null)
-        {
-            myTargetEnemy = GameObject.FindGameObjectWithTag("BettleQueenMouse");
-            if (myTargetEnemy == null)
-            {
+        GameObject item1007 = Managers.Resource.Instantiate("Item1007Skill");
 
-                return;
-            }
-        }
-
-        damage = Player.GetComponent<PlayerStatus>().Damage
-            * 3 * (Managers.ItemInventory.WhenActivePassiveItem[Managers.ItemInventory.PassiveItem[1007].WhenItemActive][1007].Count);
-
-        if (myTargetEnemy == null)
-        {
-            //플레이어 방향으로 앞으로 나아가기
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            GetComponent<Rigidbody>().velocity = Player.transform.forward * movespeed;
-        }
-        else
-        {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-            GetComponent<Rigidbody>().velocity = movespeed * (myTargetEnemy.transform.position- gameObject.transform.position).normalized;
-        }
-
-        Managers.Resource.Destroy(gameObject, 15f);
-        Debug.Log("미사일 발사하는 파티클, 쉐이더 필요");
+        Debug.Log("위치 2개의 직선 을 이어주는 연기 필요");
+        Debug.Log("연동방법   함수 (item1007.transform.position ,item1007.SetRandomPositionSphere(2f, 2f, 5, Player.transform);" +
+            "기존 SetRandomPosition 지워야함 문의 바람 -KYS ");
+        item1007.GetOrAddComponent<Item1007SkillComponent>();
+        item1007.SetRandomPositionSphere(2f, 2f, 5, Player.transform);
     }
-    private void Start()
-    {
-
-        Init();
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-        {
-            if (other.TryGetComponent(out Entity entity))
-            {
-                entity.OnDamage(damage);
-                Managers.Resource.Destroy(gameObject);
-            }
-            else
-            {
-                Debug.Log($"{other.gameObject.name} 의 Entity를 가져오지 못함");
-            }
-        }
-          
-    }
-
 }

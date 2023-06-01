@@ -192,6 +192,41 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
+  - m_GUID: 5e2b7167e058b9249bb6acbfea094ac0
+    m_Address: Item1008Skill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: eb2d8d5e97a822b42a7d776b02f18b2b
+    m_Address: Item1017Skill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: a33ba2f9bb01c8d48a1da7d70a516170
+    m_Address: Item1022Skill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 134c8f99d5175cf4f82d91ea86c4b293
+    m_Address: Item1025Skill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: aa4374aa71496974abea7aa1cc4f858e
+    m_Address: Item1016Skill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2958772d5d1b27044a84fc3aa8186b28
+    m_Address: Item1019Skill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 36d637458abb41946990e49135494b63
+    m_Address: Item1023Skill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

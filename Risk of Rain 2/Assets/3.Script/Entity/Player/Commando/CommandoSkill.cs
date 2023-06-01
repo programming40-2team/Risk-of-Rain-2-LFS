@@ -165,7 +165,7 @@ public class CommandoSkill : MonoBehaviour
     }
     private void CheckQSkill()
     {
-        if (_playerInput.ActiveItem && _skillQCollDownRemain <= 0f)
+        if (_playerInput.ActiveItem && _skillQCollDownRemain >= 0f)
         {
             Managers.Event.ExcuteActiveItem?.Invoke();
             _skillQCollDownRemain = SkillQColldown;

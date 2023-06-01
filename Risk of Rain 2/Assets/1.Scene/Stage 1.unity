@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43771833, g: 0.48560315, b: 0.56587994, a: 1}
+  m_IndirectSpecularColor: {r: 0.43771812, g: 0.48560292, b: 0.5658796, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1067,6 +1067,7 @@ GameObject:
   - component: {fileID: 288467812}
   - component: {fileID: 288467811}
   - component: {fileID: 288467815}
+  - component: {fileID: 288467816}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Monster
@@ -1163,6 +1164,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
+--- !u!54 &288467816
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288467810}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &307776850
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,6 +1326,7 @@ GameObject:
   - component: {fileID: 334473122}
   - component: {fileID: 334473121}
   - component: {fileID: 334473125}
+  - component: {fileID: 334473126}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Monster
@@ -1405,6 +1423,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
+--- !u!54 &334473126
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334473120}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &398241438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3828,6 +3862,7 @@ GameObject:
   - component: {fileID: 1941521095}
   - component: {fileID: 1941521094}
   - component: {fileID: 1941521098}
+  - component: {fileID: 1941521099}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Monster
@@ -3924,6 +3959,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
+--- !u!54 &1941521099
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941521093}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1958378735
 GameObject:
   m_ObjectHideFlags: 0
@@ -4077,7 +4128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2095141210}
-  - component: {fileID: 2095141211}
   - component: {fileID: 2095141212}
   m_Layer: 0
   m_Name: ItemTemp
@@ -4085,7 +4135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2095141210
 Transform:
   m_ObjectHideFlags: 0
@@ -4100,18 +4150,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2095141211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095141209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98daad5bb1219744bb2e56e91874e57c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2095141212
 MonoBehaviour:
   m_ObjectHideFlags: 0

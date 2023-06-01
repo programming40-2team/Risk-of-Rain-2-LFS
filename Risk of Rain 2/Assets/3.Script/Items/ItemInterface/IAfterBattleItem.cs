@@ -6,6 +6,6 @@ public interface IAfterBattleItem
 {
 
     public int Itemid { get; }
-    public void AfterExcuteSkillEffect();
+    public void AfterExcuteSkillEffect(Transform TargetTransform);
 
 }

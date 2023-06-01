@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7313464260218919093}
   - component: {fileID: 7313464260218919098}
   - component: {fileID: 7313464260218919099}
-  - component: {fileID: 4221010264797990594}
+  - component: {fileID: 7191316177999611790}
   m_Layer: 0
   m_Name: Item1015Skill
   m_TagString: Untagged
@@ -82,16 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4221010264797990594
-SphereCollider:
+--- !u!65 &7191316177999611790
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7313464260218919097}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2588977, y: 8.365441, z: 1.3436402}
+  m_Center: {x: 0.026162624, y: 3.6827202, z: -0.07225418}

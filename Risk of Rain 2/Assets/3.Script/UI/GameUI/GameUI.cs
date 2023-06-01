@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameUI : UI_Game, IListener
 {
@@ -41,6 +42,7 @@ public class GameUI : UI_Game, IListener
         TeleCheckFalse,
         TeleCheckTrue,
         TeleCheckComplete,
+        ItemInformationImage,
 
     }
     enum Texts
@@ -63,7 +65,9 @@ public class GameUI : UI_Game, IListener
         PlayerHpText,
         BossHpText,
         InteractionKeyText,
-        InteractionContentsText
+        InteractionContentsText,
+        ItemInformationText,
+
 
     }
     enum GameObjects
@@ -79,6 +83,7 @@ public class GameUI : UI_Game, IListener
         BagPannel,
         EscPannel,
         InteractionPannel,
+        ItemInformationPannel,
 
     }
     enum Buttons
@@ -95,6 +100,8 @@ public class GameUI : UI_Game, IListener
         Managers.Event.GoldChange -= GoldChangeEvent;
         Managers.Event.EquipItemChange -= EquipChangeEvent;
         Managers.Event.GameStateChange -= GameGoalEvent;
+        Managers.Event.AddItem -= ItemGainPannelEvent;
+        Managers.Event.EquipItemChange -= ItemGainPannelEvent;
     }
     public override void Init()
     {
@@ -121,6 +128,10 @@ public class GameUI : UI_Game, IListener
         Managers.Event.EquipItemChange += EquipChangeEvent;
         Managers.Event.GameStateChange -= GameGoalEvent;
         Managers.Event.GameStateChange += GameGoalEvent;
+        Managers.Event.AddItem -= ItemGainPannelEvent;
+        Managers.Event.AddItem += ItemGainPannelEvent;
+        Managers.Event.EquipItemChange -= ItemGainPannelEvent;
+        Managers.Event.EquipItemChange += ItemGainPannelEvent;
 
         Managers.Event.AddListener(Define.EVENT_TYPE.PlayerHpChange, this);
         Managers.Event.AddListener(Define.EVENT_TYPE.BossHpChange, this);
@@ -156,6 +167,7 @@ public class GameUI : UI_Game, IListener
         Get<GameObject>((int)GameObjects.EscPannel).SetActive(false);
         Get<GameObject>((int)GameObjects.InteractionPannel).SetActive(false);
         Get<GameObject>((int)GameObjects.BagPannel).SetActive(false);
+        Get<GameObject>((int)GameObjects.ItemInformationPannel).SetActive(false);
     }
     private void InitTexts()
     {
@@ -298,10 +310,22 @@ public class GameUI : UI_Game, IListener
 
             GetText((int)Texts.SkillRCoolTime).text = $"{characterSkill.GetSuppressiveFireCooldownRemain():0.0}";
         }
+        Get<Slider>((int)Sliders.SkillQ).value = characterSkill.GetSkillQCooldownRemain() / characterSkill.SuppressiveFireCooldown;
+        if (Get<Slider>((int)Sliders.SkillQ).value.Equals(0))
+        {
+            GetImage((int)Images.SkillQFillImage).color = FullChargeSkillFillImageColor;
 
-        
-  
-      
+            GetText((int)Texts.SkillQCoolTime).text = "";
+        }
+        else
+        {
+            GetImage((int)Images.SkillQFillImage).color = PrevSkillFillImageColor;
+
+            GetText((int)Texts.SkillQCoolTime).text = $"{characterSkill.GetSkillQCooldownRemain():0.0}";
+        }
+
+
+
         //R 스킬 쿨타임 스킬 추가해야 함 -> 플레이어 침투 예정
 
     }
@@ -458,5 +482,39 @@ public class GameUI : UI_Game, IListener
 
         }
     }
+
+    private void ItemGainPannelEvent(int n)
+    {
+        Get<GameObject>((int)GameObjects.ItemInformationPannel).SetActive(true);
+        GetText((int)Texts.ItemInformationText).text = $"{Managers.Data.ItemDataDict[n].explanation}";
+        GetImage((int)Images.ItemInformationImage).sprite = Managers.Resource.LoadSprte(Managers.Data.ItemDataDict[n].iconkey);
+        
+        StartCoroutine(nameof(ItemPannelFadeInout_co), Get<GameObject>((int)GameObjects.ItemInformationPannel).GetComponent<Image>());
+    
+    }
+
+
+    private IEnumerator ItemPannelFadeInout_co(Image image)
+    {
+        float FameTime = 2.2f;
+        image.color = Color.white;
+       
+        float currentTime = 0.0f;
+        float percent = 0.0f;
+        while (percent < 1)
+        {
+            currentTime += Time.deltaTime;
+            percent = currentTime / FameTime;
+            Color color = image.color;
+            color.a = Mathf.Lerp(1, 0, percent);
+            image.color = color;
+            yield return null;
+        }
+
+        Get<GameObject>((int)GameObjects.ItemInformationPannel).SetActive(false);
+                                                                                                          
+    }
+
+
 
 }

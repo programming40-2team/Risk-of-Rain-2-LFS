@@ -12,6 +12,7 @@ public class BeetleQueenControl : MonoBehaviour
 
     private float[] _skillCoolDownArr = new float[3]; // 10 15 20
     private bool[] _isSkillRun = new bool[3];
+    public bool IsAniRun = false;
 
     private void Awake()
     {
@@ -45,8 +46,10 @@ public class BeetleQueenControl : MonoBehaviour
 
             //Debug.Log("플레이어가 시야에 " + IsPlayerInFieldOfView());
             //Debug.Log("플레이어가 뒤에 " + IsPlayerBehindBoss());
-            if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-            { 
+            Debug.Log("IsAniRun : " + IsAniRun);
+            if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !IsAniRun)
+            {
+                IsAniRun = true;
                 // FireSpit SpawnWard RangeBomb
                 if(!_isSkillRun[0])
                 {

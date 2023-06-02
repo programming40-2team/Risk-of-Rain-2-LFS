@@ -13,30 +13,47 @@ public class DamageUI : UI_Base
     {
         DamageText,
     }
+    private void Awake()
+    {
+        Bind<TextMeshProUGUI>(typeof(Texts));
+    }
     public override void Init()
     {
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         moveSpeed = 2.0f;
         alphaSpeed = 2.0f;
         destroyTime = 2.0f;
-        Bind<TextMeshProUGUI>(typeof(Texts));
         alpha = GetText((int)Texts.DamageText).color;
         GetText((int)Texts.DamageText).text=$"{Damage}";
 
-        //오브젝트풀 해야함 나중에 디테일
-        Managers.Resource.Destroy(gameObject, destroyTime);
+        StartCoroutine(nameof(Damage_Effect_co));
 
     }
 
-    void Update()
+    private IEnumerator Damage_Effect_co()
     {
-        transform.Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0)); // 텍스트 위치
+        float deleteTime = 2f;
+        float currentTime = 0f;
+        while (true)
+        {
+            transform.Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0)); // 텍스트 위치
 
-        alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed); // 텍스트 알파값
-        GetText((int)Texts.DamageText).color = alpha;
+            alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed); // 텍스트 알파값
+            GetText((int)Texts.DamageText).color = alpha;
+            currentTime += Time.deltaTime;
+            yield return null;
+            if (currentTime > deleteTime)
+            {
+                Managers.Resource.Destroy(gameObject);
+            }
+        }
+    }
+    private void OnDisable()
+    {
+        StopCoroutine(nameof(Damage_Effect_co));
     }
 }

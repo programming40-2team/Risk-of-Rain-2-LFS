@@ -92,7 +92,9 @@ public class DetailInLogBook : UI_Popup
                 GetText((int)ETexts.FindCountText).text = $"발견함 : {0}";
                 GetText((int)ETexts.FindMaxCountTitleText).text = $"최고중첩 : {0}";
                 GetText((int)ETexts.InformationTitleText).text = "정보";
-                GetText((int)ETexts.InformationContentsText).text = "아이템에 대한 디테일한 설명!";
+                GetText((int)ETexts.InformationContentsText).text = $"{Managers.Data.ItemDataDict[SpecialCode].explanation}\n" +
+                    $"발견 가능 지역 : {Managers.Data.EnvDataDict[Random.Range(100, 107)].enviromentname}\n";
+        
                 break;
             case Define.ECurrentClickType.Monster:
 
@@ -105,7 +107,7 @@ public class DetailInLogBook : UI_Popup
                 GetText((int)ETexts.FindCountText).text = $"몬스터 처치 : {0}";
                 GetText((int)ETexts.FindMaxCountTitleText).text = $"최대 몬스터 처치 : {0}";
                 GetText((int)ETexts.InformationTitleText).text = "정보";
-                GetText((int)ETexts.InformationContentsText).text = "캐릭터에 대한 디테일한 설명!";
+                GetText((int)ETexts.InformationContentsText).text = $"{Managers.Data.CharacterDataDict[SpecialCode].script1}\n{Managers.Data.CharacterDataDict[SpecialCode].script2}\n{Managers.Data.CharacterDataDict[SpecialCode].script3}\n{Managers.Data.CharacterDataDict[SpecialCode].script4}";
                 break;
             case Define.ECurrentClickType.Enviroment:
                 break;

@@ -41,7 +41,7 @@ public class Altar : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("입력");
+                Debug.Log("입력 및 보스 생성");
                 
                 Instantiate(_bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);  //제단에서 e키를 누르면 보스가 소환될 지점
                 BossRazer();

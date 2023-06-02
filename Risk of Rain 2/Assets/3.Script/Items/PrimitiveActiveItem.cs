@@ -64,7 +64,7 @@ public class PrimitiveActiveItem : ItemPrimitiive
         for(int i = 0; i < 4; i++)
         {
             GameObject item1023 = Managers.Resource.Instantiate("Item1023Skill");
-            item1023.SetRandomPositionSphere(Random.Range(2, 5), Random.Range(2, 6), Random.Range(2, 4), Player.transform);
+            item1023.SetRandomPositionSphere(Random.Range(2, 5), Random.Range(2, 6), Random.Range(2, 5), Player.transform);
             yield return new WaitForSeconds(0.5f);
         }
       

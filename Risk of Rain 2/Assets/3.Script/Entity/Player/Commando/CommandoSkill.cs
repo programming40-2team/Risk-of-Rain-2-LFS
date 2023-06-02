@@ -65,7 +65,7 @@ public class CommandoSkill : MonoBehaviour
 
 
     // Active Item (Q Skill)
-    public float SkillQColldown { get; set; } = 45f;
+    public float SkillQColldown { get; set; } = 0f;
     private float _skillQCollDownRemain = 0f;
     public float GetSkillQCooldownRemain()
     {
@@ -254,5 +254,6 @@ public class CommandoSkill : MonoBehaviour
         CheckCooldown(ref _phaseRoundCooldownRemain);
         CheckCooldown(ref _tacticalDiveCooldownRemain);
         CheckCooldown(ref _suppressiveFireCooldownRemain);
+        CheckCooldown(ref _skillQCollDownRemain);
     }
 }

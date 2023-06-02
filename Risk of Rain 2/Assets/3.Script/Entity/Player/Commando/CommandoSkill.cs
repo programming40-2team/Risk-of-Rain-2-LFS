@@ -8,6 +8,7 @@ using System;
 public class CommandoSkill : MonoBehaviour
 {
     private PlayerInput _playerInput;
+    private PlayerStatus _playerStatus;
     private Animator _playerAnimator;
     private Rigidbody _playerRigidbody;
     private Transform _cameraTransform;
@@ -77,6 +78,7 @@ public class CommandoSkill : MonoBehaviour
     private void Awake()
     {
         TryGetComponent(out _playerInput);
+        TryGetComponent(out _playerStatus);
         TryGetComponent(out _playerAnimator);
         TryGetComponent(out _playerRigidbody);
         
@@ -234,12 +236,16 @@ public class CommandoSkill : MonoBehaviour
         {
             _playerAnimator.SetTrigger("SuppressiveFire");
             _rightMuzzleEffect.SetActive(true);
-            _spFirePool.GetObject().transform.position = _aimHit.point;
+            GameObject spFireBullet = _spFirePool.GetObject();
+            Vector3 bulletDirection;
+            bulletDirection = _aimHit.point - _rightMuzzle.transform.position;
+            spFireBullet.transform.SetPositionAndRotation(_rightMuzzle.transform.position, Quaternion.LookRotation(bulletDirection, Vector3.up));
+            spFireBullet.GetComponent<Projectile>().ShootForward();
             yield return _suppressiveFireInterval;
         }
         _attackCoroutine = null;
-
     }
+
     private void CheckCooldown(ref float skillCooldownRemain)
     {
         if (skillCooldownRemain > 0)

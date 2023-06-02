@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Compilation;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
     protected PlayerStatus _playerStatus;

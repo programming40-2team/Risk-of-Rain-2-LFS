@@ -98,10 +98,10 @@ public class PlayerStatus : Entity
 
     public float GetCriticalChanceResult()
     {
-        float result = 1f;
+        float result = 1;
         if (Random.Range(1, 101) <= CriticalChance)
         {
-            result = 2f;
+            result = 2;
         }
         return result;
     }

@@ -94,11 +94,10 @@ ModelImporter:
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: Event Rotate has a time (3.870927) outside the clip's
-      valid range (0.000000..3.683334). It will never be firedEvent SetState has
-      a time (3.552368) outside the clip's valid range (0.000000..3.550000). It will
-      never be firedEvent Rotate has a time (3.621725) outside the clip's valid range
-      (0.000000..3.550000). It will never be firedEvent Rotate has a time (2.159745)
-      outside the clip's valid range (0.000000..2.016667). It will never be fired
+      valid range (0.000000..3.683334). It will never be firedEvent Rotate has a
+      time (3.621725) outside the clip's valid range (0.000000..3.550000). It will
+      never be firedEvent Rotate has a time (2.159745) outside the clip's valid range
+      (0.000000..2.016667). It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -498,7 +497,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.019146586
+      - time: 0.25591537
         functionName: RangeBombSkill
         data: 
         objectReferenceParameter: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
@@ -562,14 +561,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.99680513
-        functionName: Rotate
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
-        floatParameter: -90
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -728,14 +720,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.99680513
-        functionName: Rotate
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 13eaa221d82735748a7c50608ac9b62f, type: 3}
-        floatParameter: 90
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

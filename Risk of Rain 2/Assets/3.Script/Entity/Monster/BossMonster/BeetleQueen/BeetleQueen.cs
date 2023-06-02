@@ -109,7 +109,13 @@ public class BeetleQueen : Entity
     /// </summary>
     public void AcidBileSkill()
     {
+        StartCoroutine(AcidBileSkill_co());
+    }
+
+    private IEnumerator AcidBileSkill_co()
+    {
         IsRun = true;
+        yield return null;
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {
@@ -137,7 +143,7 @@ public class BeetleQueen : Entity
     public void RangeBombSkill() // 체력 25% 미만
     {
         IsRun = true;
-        Vector3 pos = Vector3.zero;
+        Vector3 pos;
         RaycastHit[] hits;
         Ray ray = new Ray(_player.transform.position, Vector3.down);
 
@@ -167,14 +173,4 @@ public class BeetleQueen : Entity
             yield return wfs;
         }
     }
-
-    /// <summary>
-    /// 애니메이션 끝나고 회전시킬때 사용하는 메소드
-    /// </summary>
-    /// <param name="angle"></param>
-    public void Rotate(float angle)
-    {
-        transform.Rotate(new Vector3(0, angle, 0));
-    }
-
 }

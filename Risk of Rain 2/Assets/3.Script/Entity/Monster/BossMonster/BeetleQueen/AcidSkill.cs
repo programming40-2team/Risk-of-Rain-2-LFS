@@ -25,7 +25,6 @@ public class AcidSkill : MonoBehaviour
 
     private IEnumerator Shoot_co() // น฿ป็
     {
-        yield return null;
         float time = 0;
         while (time < 5f)
         {

@@ -10,9 +10,11 @@ public class Projectile : MonoBehaviour
     protected string _projectilePoolName;
     protected int _environmentLayer = 6;
     protected float _projectileSpeed;
+    protected PlayerStatus _playerStatus;
 
     private void Awake()
     {
+        _playerStatus = FindObjectOfType<PlayerStatus>();
         InitializeProjectile();
     }
 

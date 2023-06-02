@@ -62,7 +62,8 @@ public class Entity : MonoBehaviour
     {
         IsDeath = false;
         // MaxHealth = data.health;
-        Health = MaxHealth + MaxHealthAscent * _difficulty;
+        MaxHealth += MaxHealthAscent * _difficulty;
+        Health = MaxHealth;
         Damage += DamageAscent * _difficulty;
         HealthRegen += HealthRegenAscent * _difficulty;
         StartCoroutine(RegenerateHealth_co());

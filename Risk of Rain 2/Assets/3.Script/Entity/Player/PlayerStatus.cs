@@ -5,6 +5,8 @@ using UnityEngine.Experimental.GlobalIllumination;
 /// </summary>
 public class PlayerStatus : Entity
 {
+    private Animator _playerAnimator;
+    private PlayerInput _playerInput;
     public  SurvivorsData _survivorsData;
     //Survivors Data에서 가져올 변수
     public string Name { get; private set; }
@@ -18,6 +20,11 @@ public class PlayerStatus : Entity
     public float CurrentExp { get; private set; }
     public float ChanceBlockDamage { get;  set; }
 
+    private void Awake()
+    {
+        TryGetComponent(out _playerAnimator);
+        TryGetComponent(out _playerInput);
+    }
 
 
     protected override void OnEnable()
@@ -25,6 +32,8 @@ public class PlayerStatus : Entity
         InitStatus();
         base.OnEnable();
         Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
+        OnDeath -= ToDeath;
+        OnDeath += ToDeath;
     }
 
     private void Update()
@@ -102,4 +111,14 @@ public class PlayerStatus : Entity
         CurrentExp += exp;
         Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerExpChange, this);
     }
+    
+    private void ToDeath()
+    {
+        _playerAnimator.SetTrigger("Die");
+        _playerInput.enabled = false;
+        
+
+    }
+
+
 }

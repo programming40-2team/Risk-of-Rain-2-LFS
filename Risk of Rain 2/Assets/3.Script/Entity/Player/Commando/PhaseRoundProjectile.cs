@@ -19,6 +19,7 @@ public class PhaseRoundProjectile : Projectile
     
     private void OnTriggerEnter(Collider other)
     {
+        float damage = _playerStatus.Damage;
     }
     private IEnumerator EndPhaseRound_co()
     {

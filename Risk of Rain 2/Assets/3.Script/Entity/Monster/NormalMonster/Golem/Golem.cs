@@ -108,10 +108,10 @@ public class Golem : Entity
         Quaternion lookDirection = Quaternion.LookRotation(_targetTransform.position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookDirection, Time.deltaTime * _rotateSpeed);
     }
- 
+
     private void Attack()
     {
-        if(_laserAttackCooldownRemain <= 0f && _golemAgent.remainingDistance >= 10f && _golemAgent.remainingDistance <=40f)
+        if (_laserAttackCooldownRemain <= 0f && _golemAgent.remainingDistance >= 10f && _golemAgent.remainingDistance <= 40f)
         {
             StartCoroutine(LaserAttack_co());
         }
@@ -128,9 +128,9 @@ public class Golem : Entity
         Coroutine chargelaser = StartCoroutine(WarningLaser_co());
         yield return _laserChargeTime;
         Vector3 explosionPos = _aimHit.point;
-        if(chargelaser != null) 
+        if (chargelaser != null)
         {
-            StopCoroutine(chargelaser); 
+            StopCoroutine(chargelaser);
         }
         _golemLaser.enabled = false;
         _chargeEffect.SetActive(false);
@@ -140,18 +140,18 @@ public class Golem : Entity
 
     private IEnumerator WarningLaser_co()
     {
-        
-            Debug.Log("여기가 안되나");
-            _chargeEffect.SetActive(true);
-            _golemLaser.enabled = true;
-            while (true)
-            {
-                Debug.Log(_golemAimOrigin.transform.position);
-                _golemLaser.SetPosition(0, _golemAimOrigin.transform.position);
-                _golemLaser.SetPosition(1, _aimHit.point);
-                yield return null;
-            }
-        
+
+        Debug.Log("여기가 안되나");
+        _chargeEffect.SetActive(true);
+        _golemLaser.enabled = true;
+        while (true)
+        {
+            Debug.Log(_golemAimOrigin.transform.position);
+            _golemLaser.SetPosition(0, _golemAimOrigin.transform.position);
+            _golemLaser.SetPosition(1, _aimHit.point);
+            yield return null;
+        }
+
     }
 
     private IEnumerator SeismicSlam_co()
@@ -167,7 +167,7 @@ public class Golem : Entity
         Debug.Log("애니메이션 이벤트");
         _clapEffect.SetActive(true);
     }
-  
+
     private void CheckCooldown(ref float skillCooldownRemain)
     {
         if (skillCooldownRemain > 0)

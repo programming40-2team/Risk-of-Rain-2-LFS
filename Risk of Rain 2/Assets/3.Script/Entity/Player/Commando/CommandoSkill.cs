@@ -63,6 +63,16 @@ public class CommandoSkill : MonoBehaviour
     private readonly WaitForSeconds _suppressiveFireInterval = new WaitForSeconds(0.16667f);
     private ObjectPool _spFirePool;
 
+
+    // Active Item (Q Skill)
+    public float SkillQColldown { get; set; } = 45f;
+    private float _skillQCollDownRemain = 0f;
+    public float GetSkillQCooldownRemain()
+    {
+        return _skillQCollDownRemain;
+    }
+
+
     private void Awake()
     {
         TryGetComponent(out _playerInput);
@@ -86,6 +96,7 @@ public class CommandoSkill : MonoBehaviour
         CheckTacticalDive();
         CheckSuppressiveFire();
         CheckAllCooldown();
+        CheckQSkill();
     }
 
     private void Aiming()
@@ -153,6 +164,15 @@ public class CommandoSkill : MonoBehaviour
             
         }
     }
+    private void CheckQSkill()
+    {
+        if (_playerInput.ActiveItem && _skillQCollDownRemain >= 0f)
+        {
+            Managers.Event.ExcuteActiveItem?.Invoke();
+            _skillQCollDownRemain = SkillQColldown;
+        }
+    }
+
     private IEnumerator DoubleTap_co()
     {
         _playerAnimator.SetBool("DoubleTap", true);

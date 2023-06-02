@@ -40,7 +40,7 @@ public class Entity : MonoBehaviour
         }
         set
         {
-           _health = Mathf.Clamp(value, 0, MaxHealth);
+            _health = Mathf.Clamp(value, 0, MaxHealth);
         }
     }
 
@@ -48,12 +48,12 @@ public class Entity : MonoBehaviour
     public bool IsDeath { get; protected set; }
     public event Action OnDeath;
 
-    public float Damage { get;  set; } // 공격력
-    public float MoveSpeed { get;  set; } // 속도
-    public float Armor { get;  set; } // 방어력
+    public float Damage { get; set; } // 공격력
+    public float MoveSpeed { get; set; } // 속도
+    public float Armor { get; set; } // 방어력
     public float MaxHealthAscent { get; protected set; } // 레벨당 체력 상승치
     public float DamageAscent { get; protected set; } // 레벨당 공격력 상승치
-    public float HealthRegen { get;  set; }// 체력 회복량
+    public float HealthRegen { get; set; }// 체력 회복량
     public float HealthRegenAscent { get; protected set; }// 레벨당 체력 회복량
     private WaitForSeconds _healthRegenDelay = new WaitForSeconds(1f);
 
@@ -119,7 +119,15 @@ public class Entity : MonoBehaviour
 
     private IEnumerator RegenerateHealth_co()
     {
-        yield return _healthRegenDelay;
+        while (true)
+        {
+            RegenerateHealth();
+            yield return _healthRegenDelay;
+        }
+    }
+
+    protected virtual void RegenerateHealth()
+    {
         Health += HealthRegen;
     }
 }

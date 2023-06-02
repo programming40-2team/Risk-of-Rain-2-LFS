@@ -70,6 +70,12 @@ public class PlayerStatus : Entity
         }
     }
 
+    protected override void RegenerateHealth()
+    {
+        base.RegenerateHealth();
+        Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
+    }
+
     public bool GetBlockChanceResult()
     {
         bool result = false;

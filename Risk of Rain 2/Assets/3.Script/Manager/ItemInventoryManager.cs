@@ -25,6 +25,10 @@ public class ItemInventoryManager
         {
             if (itemdata.itemType.Equals(Define.ItemType.Active))
             {
+                if (ActiveItem.ContainsKey(itemdata.itemcode))
+                {
+                    return;
+                }
                 Item item = Item.MakeItem(itemdata);
                 ActiveItem.Add(itemdata.itemcode,(Item.ActiveItem)item);
                 Items.Add(itemdata.itemcode,item);
@@ -32,6 +36,10 @@ public class ItemInventoryManager
             }
             else
             {
+                if (PassiveItem.ContainsKey(itemdata.itemcode))
+                {
+                    return;
+                }
                 Item item = Item.MakeItem(itemdata);
                 PassiveItem.Add(itemdata.itemcode, (Item.PassiveItem)item);
                 Items.Add(itemdata.itemcode, item);

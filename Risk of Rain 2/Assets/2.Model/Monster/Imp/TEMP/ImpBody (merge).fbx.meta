@@ -536,7 +536,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5871858
+        functionName: SpecialAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 146ea4698b663534aacb7bf3806f422e, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -565,7 +572,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.6226309
+        functionName: BaseAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 146ea4698b663534aacb7bf3806f422e, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

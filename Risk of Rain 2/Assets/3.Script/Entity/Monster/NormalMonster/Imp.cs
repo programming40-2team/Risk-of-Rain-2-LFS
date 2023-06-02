@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Diagnostics;
 
 public class Imp : Entity
 {
@@ -14,18 +15,39 @@ public class Imp : Entity
 
     private float _attackCooltime = 1.0f;
     private bool isAttack = false;
+    MonsterHpBar _myHpBar;
+
+    private bool isBlank = false;
+
+
+    [SerializeField]
+    Animation anissmation;
+
+    enum EAttackType
+    {
+        Attack,
+        DoubleSlash,
+
+    }
 
     private void Awake()
     {
         TryGetComponent(out _impAgent);
         TryGetComponent(out _impAnimator);
+        _myHpBar = GetComponentInChildren<MonsterHpBar>();
 
         _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        _myHpBar.gameObject.SetActive(false);
     }
     protected override void OnEnable()
     {
         InitStatus();
         base.OnEnable();
+        _impAnimator.SetBool("Run", true);
+        foreach (var colider in GetComponentsInChildren<Collider>())
+        {
+            colider.enabled = true;
+        }
     }
 
     private void InitStatus()
@@ -42,7 +64,33 @@ public class Imp : Entity
     private void Update()
     {
         Move();
+        Blank();
     }
+    private void Blank()
+    {
+        if (Health / MaxHealth < 0.3f)
+        {
+            if (!isBlank)
+            {
+                StartCoroutine(nameof(Blink_co));
+            }
+
+        }
+    }
+
+    private IEnumerator Blink_co()
+    {
+        isBlank = true;
+        _impAnimator.SetTrigger("BlinkStart");
+        float currentClipLength = _impAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(currentClipLength);
+        SetOff();
+        yield return new WaitForSeconds(1.0f);
+        SetOn();
+        _impAnimator.SetTrigger("BlinkEnd");
+        yield return new WaitForSeconds(1.5f);
+    }
+
     private void Move()
     {
         _impAgent.SetDestination(_targetTransform.position);
@@ -51,30 +99,31 @@ public class Imp : Entity
         {
            
             _impAnimator.SetBool("Run", false);
-            LookAtTarget();
+            _impAgent.isStopped = true;
         }
         else
         {
             _impAnimator.SetBool("Run", true);
+            _impAgent.isStopped = false;
         }
     }
-    private void LookAtTarget()
-    {
-        Quaternion lookDirection = Quaternion.LookRotation(_targetTransform.position - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookDirection, Time.deltaTime * _rotateSpeed);
-    }
-
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if(TryGetComponent(out Entity entity))
+            if(other.TryGetComponent(out Entity entity))
             {
                
                 if (!isAttack)
                 {
-                    StartCoroutine(nameof(Attack_co), entity);
+                    if (Util.Probability(30))
+                    {
+                        StartCoroutine(nameof(Attack_co), EAttackType.DoubleSlash);
+                    }
+                    else
+                    {
+                        StartCoroutine(nameof(Attack_co), EAttackType.Attack);
+                    }
                 }
             }
             else
@@ -84,16 +133,42 @@ public class Imp : Entity
         }
     }
 
-    private IEnumerator Attack_co(Entity entity)
+    private IEnumerator Attack_co(EAttackType type)
     {
         isAttack = true;
         _impAnimator.SetBool("Run", false);
-        _impAnimator.SetBool("DoubleSlash", true);
-        entity.OnDamage(Damage);
-        yield return new WaitForSeconds(_attackCooltime);
+        switch (type)
+        {
+            case EAttackType.Attack:
+                _impAnimator.SetBool("BaseAttack", true);
+                yield return new WaitForSeconds(_attackCooltime);
+                _impAnimator.SetBool("BaseAttack", false);
+                break;
+            case EAttackType.DoubleSlash:
+                _impAnimator.SetBool("DoubleSlash", true);
+                yield return new WaitForSeconds(_attackCooltime);
+                _impAnimator.SetBool("DoubleSlash", false);
+                break;
+        }
         isAttack = false;
-        _impAnimator.SetBool("Run", true);
     }
+    public void BaseAttack()
+    {
+        if(GameObject.FindGameObjectWithTag("Player").TryGetComponent(out Entity entity))
+        {
+            entity.OnDamage(Damage);
+        }
+    }
+    public void SpecialAttack()
+    {
+        if (GameObject.FindGameObjectWithTag("Player").TryGetComponent(out Entity entity))
+        {
+            entity.OnDamage(2*Damage);
+        }
+    }
+
+
+
     public override void OnDamage(float damage)
     {
         if (!IsDeath)
@@ -101,15 +176,31 @@ public class Imp : Entity
             //.Play();
             //.PlayOneShot(hitSound);
             _impAnimator.SetTrigger("Hit");
-
+            _myHpBar.gameObject.SetActive(true);
         }
 
         base.OnDamage(damage);
     }
+    private IEnumerator Die_co()
+    {
+        IsDeath = false;
+        _myHpBar.gameObject.SetActive(false);
+        _impAnimator.SetTrigger("Die");
+        foreach (var colider in GetComponentsInChildren<Collider>())
+        {
+            colider.enabled = false;
+        }
+        float currentClipLength = _impAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(currentClipLength);
+        Managers.Resource.Destroy(gameObject);
+    }
     public override void Die()
     {
         base.Die();
-        _impAnimator.SetTrigger("Die");
+        if (IsDeath == true)
+        {
+            StartCoroutine(nameof(Die_co));
+        }
 
         //Collider[] colls = GetComponents<Collider>();
         //foreach (Collider col in colls)
@@ -121,6 +212,27 @@ public class Imp : Entity
         //_navMeshAgent.enabled = false;
 
         Debug.Log("레무리안 죽는 사운드 넣을거면 여기");
+    }
+
+    private void SetOff()
+    {
+        if(TryGetComponent(out CapsuleCollider capsule))
+        {
+            capsule.enabled = false;
+           
+        }
+        transform.GetChild(0).gameObject.SetActive(false);
+        _myHpBar.gameObject.SetActive(false);
+    }
+    private void SetOn()
+    {
+        if (TryGetComponent(out CapsuleCollider capsule))
+        {
+            capsule.enabled = true;
+
+        }
+        transform.GetChild(0).gameObject.SetActive(true);
+        _myHpBar.gameObject.SetActive(true);
     }
 
 }

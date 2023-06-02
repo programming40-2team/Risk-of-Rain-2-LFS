@@ -5,7 +5,9 @@
     public enum Scene
     {
         None,
+        LoadingScene,
         MainMenu,
+        Stage1,
 
 
     }

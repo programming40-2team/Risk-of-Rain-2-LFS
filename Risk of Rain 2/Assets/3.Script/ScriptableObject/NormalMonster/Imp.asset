@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81c9c0f1fad1024196b1560d52ac520, type: 3}
   m_Name: Imp
   m_EditorClassIdentifier: 
-  MaxHealth: 8000
+  MaxHealth: 120
   Damage: 12
   MoveSpeed: 7
   Amor: 0

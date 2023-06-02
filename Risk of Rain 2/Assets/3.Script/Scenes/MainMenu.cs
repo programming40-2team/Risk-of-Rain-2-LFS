@@ -4,6 +4,7 @@ public class MainMenu : BaseScene
 {
     void Start()
     {
+        SceneType = Define.Scene.MainMenu;
 
         //음.. 모든 Addserable의 라벨을 Asynchronous_Load 로 할필요 없고,
         //다음 씬으로 넘어갈 때 나,, 뭐 이런식으로 리소스 그때마다 로딩 해도 되는데
@@ -40,6 +41,6 @@ public class MainMenu : BaseScene
     }
     public override void Clear()
     {
-        Managers.Event.ClearEventList();
+        
     }
 }

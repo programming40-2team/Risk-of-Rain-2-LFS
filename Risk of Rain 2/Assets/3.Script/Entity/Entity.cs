@@ -109,7 +109,7 @@ public class Entity : MonoBehaviour
         {
             Managers.ItemApply.ExcuteAfterSkills(gameObject.transform);
         }
-
+        Managers.Game.Gold += UnityEngine.Random.Range(15, 25 + 10 * (int)Managers.Game.Difficulty);
         if (OnDeath != null)
         {
             OnDeath();

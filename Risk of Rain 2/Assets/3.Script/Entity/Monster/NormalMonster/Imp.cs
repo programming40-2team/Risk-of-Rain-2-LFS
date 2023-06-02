@@ -12,8 +12,6 @@ public class Imp : Entity
     private Transform _targetTransform;
     private readonly float _rotateSpeed = 2f;
 
-    [SerializeField] private Transform _clapZone;
-
 
     private void Awake()
     {
@@ -38,6 +36,10 @@ public class Imp : Entity
         DamageAscent = _impData.DamageAscent;
         HealthRegen = _impData.HealthRegen;
         HealthRegenAscent = _impData.RegenAscent;
+    }
+    private void Update()
+    {
+        Move();
     }
     private void Move()
     {
@@ -67,6 +69,22 @@ public class Imp : Entity
         else
         {
 
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if(TryGetComponent(out Entity entity))
+            {
+                entity.OnDamage(Damage);
+
+            }
+            else
+            {
+                Debug.Log("Player Entity컴포넌트를 가져오지 못함");
+            }
         }
     }
 

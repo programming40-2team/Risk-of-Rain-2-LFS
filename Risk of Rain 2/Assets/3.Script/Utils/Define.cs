@@ -114,4 +114,11 @@
 
     }
 
+    public enum EDamageType
+    {
+        Nomal,
+        Cirtical,
+
+    }
+
 }

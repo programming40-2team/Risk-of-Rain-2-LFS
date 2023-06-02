@@ -254,5 +254,6 @@ public class CommandoSkill : MonoBehaviour
         CheckCooldown(ref _phaseRoundCooldownRemain);
         CheckCooldown(ref _tacticalDiveCooldownRemain);
         CheckCooldown(ref _suppressiveFireCooldownRemain);
+        CheckCooldown(ref _skillQCollDownRemain);
     }
 }

@@ -84,21 +84,14 @@ public class PlayerMovement : MonoBehaviour
         if (_isSprinting)
         {
             _distance = 1.5f * _playerStatus.MoveSpeed  * Time.deltaTime * _moveDirection.normalized;
-        }
-        else
-        {
-            _distance = _playerStatus.MoveSpeed * Time.deltaTime * _moveDirection.normalized;
-        }
-        _playerRigidbody.MovePosition(_playerRigidbody.position + _distance);
-
-        if (_isSprinting)
-        {
             _playerAnimator.SetFloat("Move", 1.5f * _playerInput.Move);
         }
         else
         {
+            _distance = _playerStatus.MoveSpeed * Time.deltaTime * _moveDirection.normalized;
             _playerAnimator.SetFloat("Move", _playerInput.Move);
         }
+        _playerRigidbody.MovePosition(_playerRigidbody.position + _distance);
         _playerAnimator.SetFloat("Horizon", _playerInput.HorizontalDirection);
     }
 
@@ -146,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
             _isSprinting = !_isSprinting;
         }
 
-        if (_playerInput.Move <= 0)
+        if (_playerInput.Move <= 0 || _playerInput.Mouse1Down || _playerInput.Mouse2Down || _playerInput.Special)
         {
             _isSprinting = false;
         }

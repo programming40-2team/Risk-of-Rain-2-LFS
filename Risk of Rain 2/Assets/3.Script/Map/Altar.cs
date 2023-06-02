@@ -14,7 +14,6 @@ public class Altar : MonoBehaviour
 
     private void Awake()
     {
-        //bossRazer = GetComponent<ParticleSystem>();
         _objectMesh = GetComponent<MeshRenderer>();
         _mat = _objectMesh.material;
         SoundManager.instance.PlayBGM("Stage1Bgm");
@@ -48,7 +47,6 @@ public class Altar : MonoBehaviour
 
                 //보스가 생성되면 게임의 현재 상태를 ActiveTelePort로 바꾸어 관련 UI들 갱신!
                 Managers.Game.GameState = Define.EGameState.ActiveTelePort;
-
             }
         }
     }

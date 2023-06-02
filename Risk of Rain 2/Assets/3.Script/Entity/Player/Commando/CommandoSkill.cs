@@ -52,7 +52,7 @@ public class CommandoSkill : MonoBehaviour
         return _tacticalDiveCooldownRemain;
     }
     private readonly float _diveForce = 7f;
-    private readonly WaitForSeconds _taticalDiveDelay = new WaitForSeconds(0.5f);
+    private readonly WaitForSeconds _taticalDiveDelay = new WaitForSeconds(0.6f);
 
     //Suppressive Fire (4번째 스킬)
     public float SuppressiveFireCooldown { get; private set; } = 9f;

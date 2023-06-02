@@ -7,18 +7,18 @@ public class PlayerStatus : Entity
 {
     private Animator _playerAnimator;
     private PlayerInput _playerInput;
-    public  SurvivorsData _survivorsData;
+    public SurvivorsData _survivorsData;
     //Survivors Data에서 가져올 변수
     public string Name { get; private set; }
     public float Mass { get; private set; }
-    public float CriticalChance { get;  set; }
-    public int MaxJumpCount { get;  set; }
+    public float CriticalChance { get; set; }
+    public int MaxJumpCount { get; set; }
 
     //Survivors Data와 상관없는 고정 변수
     public int Level { get; private set; }
     public float Exp { get; private set; } = 100f;
     public float CurrentExp { get; private set; }
-    public float ChanceBlockDamage { get;  set; }
+    public float ChanceBlockDamage { get; set; }
 
     private void Awake()
     {
@@ -61,7 +61,7 @@ public class PlayerStatus : Entity
 
     public void AddMaxHealth(float addHealth)
     {
-     
+
         MaxHealth += addHealth;
         OnHeal(addHealth);
     }
@@ -72,7 +72,7 @@ public class PlayerStatus : Entity
     }
     public override void OnDamage(float damage)
     {
-        if(!GetBlockChanceResult())
+        if (!GetBlockChanceResult())
         {
             base.OnDamage(damage);
             Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
@@ -88,21 +88,34 @@ public class PlayerStatus : Entity
     public bool GetBlockChanceResult()
     {
         bool result = false;
-        if(Random.Range(1,101) <= ChanceBlockDamage)
+        if (Random.Range(1, 101) <= ChanceBlockDamage)
         {
             //ChanceBlockDamage 내가 값을 설정해주면 될듯! -KYS
             result = true;
         }
         return result;
     }
-    
+
+    public float GetCriticalChanceResult()
+    {
+        float result = 1f;
+        if (Random.Range(1, 101) <= CriticalChance)
+        {
+            result = 2f;
+        }
+        return result;
+    }
+
+
     private void CheckLevel()
     {
-        if(CurrentExp >= Exp)
+        if (CurrentExp >= Exp)
         {
             Level++;
             CurrentExp = 0f;
             Exp *= 1.55f;
+            LevelUp();
+            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
             Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerExpChange, this);
         }
     }
@@ -111,13 +124,18 @@ public class PlayerStatus : Entity
         CurrentExp += exp;
         Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerExpChange, this);
     }
-    
+
+    private void LevelUp()
+    {
+        MaxHealth += MaxHealthAscent;
+        HealthRegen += HealthRegenAscent;
+        Damage += DamageAscent;
+    }
+
     private void ToDeath()
     {
         _playerAnimator.SetTrigger("Die");
         _playerInput.enabled = false;
-        
-
     }
 
 

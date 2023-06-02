@@ -5,22 +5,29 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    protected PlayerStatus _playerStatus;
     protected Rigidbody _projectileRigidbody;
     protected ObjectPool _projectileObjectPool;
+    protected Entity _entity;
     protected string _projectilePoolName;
-    protected int _environmentLayer = 6;
     protected float _projectileSpeed;
-    protected PlayerStatus _playerStatus;
-
+    protected float _damage;
+    protected float _damageCoefficient;
+    protected float _criticalChance;
     private void Awake()
     {
         _playerStatus = FindObjectOfType<PlayerStatus>();
         InitializeProjectile();
     }
 
-   /// <summary>
-   /// 자식 클래스에서 투사체 풀 이름 지정해줘야함
-   /// </summary>
+    protected virtual void OnEnable()
+    {
+        _damage = _playerStatus.Damage;
+    }
+
+    /// <summary>
+    /// 자식 클래스에서 투사체 풀 이름 지정해줘야함
+    /// </summary>
     protected virtual void InitializeProjectile()
     {
         TryGetComponent(out _projectileRigidbody);

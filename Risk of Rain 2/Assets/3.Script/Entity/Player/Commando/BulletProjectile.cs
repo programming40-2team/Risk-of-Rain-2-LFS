@@ -8,11 +8,16 @@ public class BulletProjectile : Projectile
     {
         _projectilePoolName = "BulletPool";
         _projectileSpeed = 160f;
+        _damageCoefficient = 1f;
         base.InitializeProjectile();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.TryGetComponent(out _entity))
+        {
+            _entity.OnDamage(_damage *  _damageCoefficient * _playerStatus.GetCriticalChanceResult());
+        }
         _projectileObjectPool.ReturnObject(gameObject);
     }
 }

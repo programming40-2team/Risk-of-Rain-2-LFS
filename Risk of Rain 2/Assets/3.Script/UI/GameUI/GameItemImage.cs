@@ -17,10 +17,11 @@ public class GameItemImage : UI_Game
         GetText((int)ETexts.ItemCount).text = $"x{Managers.Data.ItemDataDict[Itemcode].count}";
         GetComponent<Image>().sprite = Managers.Resource.LoadSprte($"{Managers.Data.ItemDataDict[Itemcode].iconkey}");
         Debug.Log(transform.parent.name);
+
         Managers.Event.AddItem -= SetItemGameUI;
         Managers.Event.AddItem += SetItemGameUI;
-
         gameObject.SetActive(false);
+
     }
 
     void Start()
@@ -36,6 +37,7 @@ public class GameItemImage : UI_Game
         }
 
     }
+
 
 
 }

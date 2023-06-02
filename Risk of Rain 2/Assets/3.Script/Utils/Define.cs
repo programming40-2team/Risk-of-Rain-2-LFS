@@ -1,7 +1,7 @@
 ﻿public class Define
 {
 
-    public static readonly int MaxCharacterCount = 15;
+
     public enum Scene
     {
         None,
@@ -99,6 +99,19 @@
         Shift2,
         R1,
         R2
+    }
+    public enum EGameState
+    {
+        NonTelePort,
+        ActiveTelePort,
+        CompeleteTelePort,
+
 
     }
+    public enum LayerMask
+    {
+        Enviroment=6,
+
+    }
+
 }

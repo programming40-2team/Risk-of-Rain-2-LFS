@@ -5,10 +5,16 @@ using UnityEngine;
 public class ItemPrimitiive : MonoBehaviour
 {
     protected GameObject Player;
-
-    private void Start()
+    protected GameObject Target;
+    protected  PlayerStatus _playerStatus;
+    public virtual void Init()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        _playerStatus = Player.GetComponent<PlayerStatus>();
+    }
+    private void Start()
+    {
+        Init();
     }
   
 }

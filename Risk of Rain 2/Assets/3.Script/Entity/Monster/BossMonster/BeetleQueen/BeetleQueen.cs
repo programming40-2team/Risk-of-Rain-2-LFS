@@ -13,7 +13,7 @@ public class BeetleQueen : Entity
     public ObjectPool WardPool;
     public GameObject BombRange;
 
-    private Animator _beetleQueenAnimator;
+    public Animator BeetleQueenAnimator;
     private AudioSource _beetleQueenAudioSource;
     private AudioClip _hitSound;
 
@@ -38,7 +38,7 @@ public class BeetleQueen : Entity
     //}
     private void Awake()
     {
-        TryGetComponent(out _beetleQueenAnimator);
+        TryGetComponent(out BeetleQueenAnimator);
         _player = GameObject.FindGameObjectWithTag("Player");
         _beetleQueenMouthTransform = GameObject.FindGameObjectWithTag("BeetleQueenMouth").transform;
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
@@ -60,6 +60,8 @@ public class BeetleQueen : Entity
         Debug.Log("DamageAscent : " + DamageAscent);
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
+
+
     }
 
     public override void OnDamage(float damage)
@@ -69,6 +71,10 @@ public class BeetleQueen : Entity
             //hitEffect.transform.SetPositionAndRotation(hitposition, Quaternion.LookRotation(hitnormal)); / ㅁ?ㄹ
             //hitEffect.Play();
             //_beetleQueenAudio.PlayOneShot(hitSound);
+
+
+            //Hp Slider 데미지 입을 떄 마다 갱신되도록 연동
+            Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
         }
 
         base.OnDamage(damage);
@@ -77,7 +83,10 @@ public class BeetleQueen : Entity
     public override void Die()
     {
         base.Die();
-        _beetleQueenAnimator.SetTrigger("Die");
+        BeetleQueenAnimator.SetTrigger("Die");
+
+        //보스 종료 시 텔레포트 이벤트 완료!
+        Managers.Game.GameState = Define.EGameState.CompeleteTelePort;
     }
 
     private void SetUp(MonsterData data)
@@ -90,6 +99,9 @@ public class BeetleQueen : Entity
         DamageAscent = data.DamageAscent;
         HealthRegen = data.HealthRegen;
         HealthRegenAscent = data.RegenAscent;
+
+        //첫 생성 시 보스 Hp 조절을 위한 알림
+        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
     }
 
     /// <summary>
@@ -98,7 +110,6 @@ public class BeetleQueen : Entity
     public void AcidBileSkill()
     {
         IsRun = true;
-        Debug.Log("BeetleQueen AcidSkill 발사하는 사운드 넣을거면 여기");
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {
@@ -139,7 +150,6 @@ public class BeetleQueen : Entity
                 pos = obj.point;
                 pos = new Vector3(pos.x, pos.y + 0.2f, pos.z);
                 Instantiate(BombRange, pos, Quaternion.identity);
-                Debug.Log("RangeBombSkill 나타나는 사운드 넣을거면 여기");
             }
         }
         //yield return new WaitForSeconds(20f);
@@ -148,13 +158,12 @@ public class BeetleQueen : Entity
 
     private IEnumerator CreateWard_co()
     {
-        //Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
+        Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         WaitForSeconds wfs = new WaitForSeconds(0.3f);
         for (int i = 0; i < 3; i++)
         {
             GameObject obj = WardPool.GetObject();
             obj.transform.position = _beetleQueenButtTransform.position;
-            Debug.Log("BeetleQueen Ward 발사하는 사운드 넣을거면 여기");
             yield return wfs;
         }
     }

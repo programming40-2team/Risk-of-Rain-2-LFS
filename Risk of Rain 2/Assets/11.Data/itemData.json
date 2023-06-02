@@ -3,7 +3,7 @@
     {
       "itemcode": 1001,
       "itemname": "군인의 주사기",
-      "explanation": "캐릭터 공격속도15%증가",
+      "explanation": "최대 체력 15 x 아이템 개수 만큼 증가",
       "tier": 1,
       "iconkey": "item1001icon",
       "whenitemactivates": "Always",
@@ -53,7 +53,7 @@
     {
       "itemcode": 1006,
       "itemname": "황옥 브로치",
-      "explanation": "적 처치 시 15의 실드 획득",
+      "explanation": "적 처치 시 15* 아이템 개수 만큼의 골드 획득",
       "tier": 1,
       "iconkey": "item1006icon",
       "whenitemactivates": "AfterBattle",
@@ -103,17 +103,17 @@
     {
       "itemcode": 1011,
       "itemname": "빨간 채찍",
-      "explanation": "전투중이 아닐 때 이동속도가 30% 증가",
+      "explanation": "캐릭터 기본공격력 대폭 증가",
       "tier": 2,
       "iconkey": "item1011icon",
-      "whenitemactivates": "NotBattle",
+      "whenitemactivates": "Always",
       "isHaveHad": false,
       "count": 0
     },
     {
       "itemcode": 1012,
       "itemname": "수확꾼의 낫",
-      "explanation": "치명타 확률 증가 5% 치명타가 터질 경우 체력이 8 치유",
+      "explanation": "플레이어 방어력 대폭 증가",
       "tier": 2,
       "iconkey": "item1012icon",
       "whenitemactivates": "Always",
@@ -235,7 +235,7 @@
     {
       "itemcode": 1024,
       "itemname": "우윳빛깔 번데기",
-      "explanation": "날개가 돋아나 15초 동안 비행합니다. 이 동안 이동 속도가 20% 증가합니다.",
+      "explanation": "10초 동안 모든 피해를 방어합니다.",
       "iconkey": "item1024icon",
       "cooltime": 60,
       "whenitemactivates": "MyTime",

@@ -30,6 +30,7 @@ public class Entity : MonoBehaviour
     // --------------------------------------
     [HideInInspector]
     public float MaxHealth; // 레벨에 따라 늘어남
+
     private float _health;
     public float Health
     {
@@ -49,7 +50,7 @@ public class Entity : MonoBehaviour
 
     public float Damage { get;  set; } // 공격력
     public float MoveSpeed { get;  set; } // 속도
-    public float Armor { get; protected set; } // 방어력
+    public float Armor { get;  set; } // 방어력
     public float MaxHealthAscent { get; protected set; } // 레벨당 체력 상승치
     public float DamageAscent { get; protected set; } // 레벨당 공격력 상승치
     public float HealthRegen { get;  set; }// 체력 회복량
@@ -88,6 +89,10 @@ public class Entity : MonoBehaviour
         damage *= damageMultiplier;
 
         Health -= damage;
+        if (!gameObject.CompareTag("Player"))
+        {
+            Managers.ItemApply.ExcuteInSkills();
+        }
 
         if (Health <= 0 && !IsDeath)
         {
@@ -100,6 +105,11 @@ public class Entity : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
+        if (!gameObject.CompareTag("Player"))
+        {
+            Managers.ItemApply.ExcuteAfterSkills(gameObject.transform);
+        }
+
         if (OnDeath != null)
         {
             OnDeath();

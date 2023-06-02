@@ -31,6 +31,20 @@ public class PlayerMovement : MonoBehaviour
     //이동에 영향을 주는 아이템 관련
     public int _bonusJumpCount = 0;
     public float _bonusMoveSpeed = 1f;
+    public bool IsJumping
+    {
+        get { return _isJumping; }
+        set
+        {
+            _isJumping = value;
+            if (IsJumping == true)
+            {
+                Managers.ItemApply.ApplyPassiveSkill(1016);
+            }
+
+        }
+    }
+
 
     private void Awake()
     {
@@ -112,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator CheckJump_co()
     {
         yield return _jumpCheckTime;
-        _isJumping = true;
+        IsJumping = true;
     }
 
     private void CheckGround()
@@ -121,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _playerAnimator.SetBool("Jump", false);
             _jumpCount = _playerStatus.MaxJumpCount;
-            _isJumping = false;
+            IsJumping = false;
         }
     }
 

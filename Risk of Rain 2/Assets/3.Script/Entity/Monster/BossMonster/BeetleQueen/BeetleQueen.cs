@@ -109,18 +109,13 @@ public class BeetleQueen : Entity
     /// </summary>
     public void AcidBileSkill()
     {
-        StartCoroutine(AcidBileSkill_co());
-    }
-
-    private IEnumerator AcidBileSkill_co()
-    {
         IsRun = true;
-        yield return null;
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _beetleQueenMouthTransform.position);
         for (int i = 0; i < 6; i++)
         {
             GameObject obj = AcidBallPool.GetObject();
             obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
+            StartCoroutine(obj.GetComponent<AcidSkill>().Shoot_co());
         }
         //yield return new WaitForSeconds(10f);
         IsRun = false;

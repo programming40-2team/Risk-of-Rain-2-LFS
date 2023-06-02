@@ -12,7 +12,6 @@ public class AcidSkill : MonoBehaviour
     private void OnEnable()
     {
         _beetleQueen = FindObjectOfType<BeetleQueen>();
-        StartCoroutine(Shoot_co());
     }
 
     private void Start()
@@ -23,7 +22,7 @@ public class AcidSkill : MonoBehaviour
         }
     }
 
-    private IEnumerator Shoot_co() // 발사
+    public IEnumerator Shoot_co() // 발사
     {
         float time = 0;
         while (time < 5f)

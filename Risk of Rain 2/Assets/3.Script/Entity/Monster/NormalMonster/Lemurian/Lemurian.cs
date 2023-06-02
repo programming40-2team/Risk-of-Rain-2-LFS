@@ -133,9 +133,11 @@ public class Lemurian : Entity
     /// </summary>
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
-        if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 2f)
+        float damage = Damage * 2;
+        if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 1f)
         {
-            _player.GetComponent<Entity>().OnDamage(Damage * 2); // 200%
+            _player.GetComponent<Entity>().OnDamage(damage); // 200%
+            Debug.Log("플레이어가 레무리안의 Bite에 맞음 가한 damage : " + damage);
         }
     }
 

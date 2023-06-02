@@ -16,6 +16,13 @@ public class AcidPool : MonoBehaviour
         StartCoroutine(DeleteAcidPool_co());
     }
 
+    private void Start()
+    {
+        if (_beetleQueen != null)
+        {
+            _damage = _beetleQueen.Damage * 0.26f;
+        }
+    }
     IEnumerator DeleteAcidPool_co()
     {
         yield return new WaitForSeconds(15f);
@@ -33,7 +40,7 @@ public class AcidPool : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Player"))
             {
-                Debug.Log("플레이어가 BeetleQueen의 AcidPool에 피격입음");
+                Debug.Log("플레이어가 BeetleQueen의 AcidPool에 피격입음 가한 damage : " + _damage);
                 Debug.Log("플레이어 Hit Sound는 여기");
                 col.gameObject.GetComponent<Entity>().OnDamage(_damage);
                 yield return new WaitForSeconds(0.5f);

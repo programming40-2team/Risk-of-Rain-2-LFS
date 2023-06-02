@@ -12,6 +12,8 @@ public class Imp : Entity
     private Transform _targetTransform;
     private readonly float _rotateSpeed = 2f;
 
+    private float _attackCooltime = 1.0f;
+    private bool isAttack = false;
 
     private void Awake()
     {
@@ -47,6 +49,7 @@ public class Imp : Entity
 
         if (_impAgent.remainingDistance <= _impAgent.stoppingDistance)
         {
+           
             _impAnimator.SetBool("Run", false);
             LookAtTarget();
         }
@@ -60,17 +63,7 @@ public class Imp : Entity
         Quaternion lookDirection = Quaternion.LookRotation(_targetTransform.position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookDirection, Time.deltaTime * _rotateSpeed);
     }
-    private void Attack()
-    {
-        if (Random.Range(0, 10) % 2 == 0)
-        {
 
-        }
-        else
-        {
-
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -78,8 +71,11 @@ public class Imp : Entity
         {
             if(TryGetComponent(out Entity entity))
             {
-                entity.OnDamage(Damage);
-
+               
+                if (!isAttack)
+                {
+                    StartCoroutine(nameof(Attack_co), entity);
+                }
             }
             else
             {
@@ -88,6 +84,43 @@ public class Imp : Entity
         }
     }
 
+    private IEnumerator Attack_co(Entity entity)
+    {
+        isAttack = true;
+        _impAnimator.SetBool("Run", false);
+        _impAnimator.SetBool("DoubleSlash", true);
+        entity.OnDamage(Damage);
+        yield return new WaitForSeconds(_attackCooltime);
+        isAttack = false;
+        _impAnimator.SetBool("Run", true);
+    }
+    public override void OnDamage(float damage)
+    {
+        if (!IsDeath)
+        {
+            //.Play();
+            //.PlayOneShot(hitSound);
+            _impAnimator.SetTrigger("Hit");
 
+        }
+
+        base.OnDamage(damage);
+    }
+    public override void Die()
+    {
+        base.Die();
+        _impAnimator.SetTrigger("Die");
+
+        //Collider[] colls = GetComponents<Collider>();
+        //foreach (Collider col in colls)
+        //{
+        //    col.enabled = false;
+        //}
+
+        //_navMeshAgent.isStopped = true;
+        //_navMeshAgent.enabled = false;
+
+        Debug.Log("레무리안 죽는 사운드 넣을거면 여기");
+    }
 
 }

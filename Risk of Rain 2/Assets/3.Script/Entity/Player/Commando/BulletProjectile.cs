@@ -26,7 +26,7 @@ public class BulletProjectile : Projectile
             }
             else
             {
-                PrintDamage(other.gameObject, Define.EDamageType.Nomal);
+                PrintDamage(other.gameObject);
             }
 
         }

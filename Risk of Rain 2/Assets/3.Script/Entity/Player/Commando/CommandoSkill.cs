@@ -30,6 +30,7 @@ public class CommandoSkill : MonoBehaviour
     private bool _isRight;
     private bool _isCanShooting;
     private readonly WaitForSeconds _doubleTapDelay = new WaitForSeconds(0.167f);
+    private ObjectPool _hitEffectPool;
     [SerializeField] private GameObject _leftMuzzleEffect;
     [SerializeField] private GameObject _rightMuzzleEffect;
     
@@ -40,7 +41,7 @@ public class CommandoSkill : MonoBehaviour
     {
         return _phaseRoundCooldownRemain;
     }
-    private readonly WaitForSeconds _phaseRoundDelay = new WaitForSeconds(1f);
+    private readonly WaitForSeconds _phaseRoundDelay = new WaitForSeconds(0.1f);
     private ObjectPool _phaseRoundObjectPool;
 
     //Tactical Dive (3번째 스킬)
@@ -51,7 +52,7 @@ public class CommandoSkill : MonoBehaviour
         return _tacticalDiveCooldownRemain;
     }
     private readonly float _diveForce = 7f;
-    private readonly WaitForSeconds _taticalDiveDelay = new WaitForSeconds(1f);
+    private readonly WaitForSeconds _taticalDiveDelay = new WaitForSeconds(0.5f);
 
     //Suppressive Fire (4번째 스킬)
     public float SuppressiveFireCooldown { get; private set; } = 9f;
@@ -80,6 +81,7 @@ public class CommandoSkill : MonoBehaviour
         TryGetComponent(out _playerRigidbody);
         
         _bulletObjectPool = GameObject.Find("BulletPool").GetComponent<ObjectPool>();
+        _hitEffectPool = GameObject.Find("HitEffectPool").GetComponent<ObjectPool>();
         _phaseRoundObjectPool = GameObject.Find("PhaseRoundPool").GetComponent<ObjectPool>();
         _spFirePool = GameObject.Find("SpFirePool").GetComponent<ObjectPool>();
     }
@@ -142,7 +144,6 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Mouse2Down && _phaseRoundCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(PhaseRound_co());
-            _phaseRoundCooldownRemain = PhaseRoundCooldown;
         }
     }
 
@@ -151,7 +152,7 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Shift && _tacticalDiveCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(TacticalDive_co());
-            _tacticalDiveCooldownRemain = TacticalDiveCooldown;
+            
         }
     }
     private void CheckSuppressiveFire()
@@ -159,7 +160,7 @@ public class CommandoSkill : MonoBehaviour
         if (_playerInput.Special && _suppressiveFireCooldownRemain <= 0f)
         {
             _attackCoroutine ??= StartCoroutine(SuppressiveFire_co());
-            _suppressiveFireCooldownRemain = SuppressiveFireCooldown;
+            
             
         }
     }
@@ -192,6 +193,7 @@ public class CommandoSkill : MonoBehaviour
         }
         bullet.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);
         bullet.GetComponent<Projectile>().ShootForward();
+        _hitEffectPool.GetObject().transform.position = _aimHit.point;
         _isRight = !_isRight;
         yield return _doubleTapDelay;
         _isCanShooting = true;
@@ -199,6 +201,7 @@ public class CommandoSkill : MonoBehaviour
 
     private IEnumerator PhaseRound_co()
     {
+        _phaseRoundCooldownRemain = PhaseRoundCooldown;
         _playerAnimator.SetTrigger("PhaseRound");
         GameObject PhaseRound = _phaseRoundObjectPool.GetObject();
         Vector3 bulletDirection;
@@ -211,6 +214,7 @@ public class CommandoSkill : MonoBehaviour
 
     private IEnumerator TacticalDive_co()
     {
+        _tacticalDiveCooldownRemain = TacticalDiveCooldown;
         _playerAnimator.SetFloat("RollHorizon", _playerInput.HorizontalDirectionRaw);
         _playerAnimator.SetFloat("RollVertical", _playerInput.MoveRaw);
         _playerAnimator.SetTrigger("Roll");
@@ -224,6 +228,7 @@ public class CommandoSkill : MonoBehaviour
 
     private IEnumerator SuppressiveFire_co()
     {
+        _suppressiveFireCooldownRemain = SuppressiveFireCooldown;
         for (int i = 0; i < 6; i++)
         {
             _playerAnimator.SetTrigger("SuppressiveFire");

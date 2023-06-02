@@ -66,7 +66,8 @@ public class CharacterSelectButton : UI_Scene, IListener
     {
         Managers.Event.PostNotification(Define.EVENT_TYPE.MousePointerEnter, this);
         GetImage((int)EImages.Character_RectImage).color = Color.white;
-        Debug.Log("캐릭터 화면 선택 하는 과정에서 효과음 넣으실껀가요?1");
+        Debug.Log("캐릭터 화면 선택 하는 효과음");
+        SoundManager.instance.PlaySE("MenuHover");
     }
     private void CharacterPointerExitEvent()
     {

@@ -17,6 +17,7 @@ public class Altar : MonoBehaviour
         //bossRazer = GetComponent<ParticleSystem>();
         _objectMesh = GetComponent<MeshRenderer>();
         _mat = _objectMesh.material;
+        SoundManager.instance.PlayBGM("Stage1Bgm");
     }
     private void Start()
     {

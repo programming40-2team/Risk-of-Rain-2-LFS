@@ -23,6 +23,9 @@ public class Imp : Entity
     [SerializeField]
     Animation anissmation;
 
+
+    //타격 범위도 COliider로 설정해서 몸통 주변 때리면 총알 먹힘
+
     enum EAttackType
     {
         Attack,
@@ -83,11 +86,14 @@ public class Imp : Entity
         isBlank = true;
         _impAnimator.SetTrigger("BlinkStart");
         float currentClipLength = _impAnimator.GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("Blink  Start Effect ");
         yield return new WaitForSeconds(currentClipLength);
         SetOff();
+        gameObject.SetRandomPositionSphere(3, 8, 0, _targetTransform);
         yield return new WaitForSeconds(1.0f);
         SetOn();
         _impAnimator.SetTrigger("BlinkEnd");
+        Debug.Log("Blink  End Effect ");
         yield return new WaitForSeconds(1.5f);
     }
 
@@ -154,13 +160,15 @@ public class Imp : Entity
     }
     public void BaseAttack()
     {
-        if(GameObject.FindGameObjectWithTag("Player").TryGetComponent(out Entity entity))
+        Debug.Log("Imp AttackEffect");
+        if (GameObject.FindGameObjectWithTag("Player").TryGetComponent(out Entity entity))
         {
             entity.OnDamage(Damage);
         }
     }
     public void SpecialAttack()
     {
+        Debug.Log("Imp SKill Effect");
         if (GameObject.FindGameObjectWithTag("Player").TryGetComponent(out Entity entity))
         {
             entity.OnDamage(2*Damage);

@@ -11,11 +11,13 @@ public class DataManager
     public Dictionary<int, Data.ItemData> ItemDataDict { get; private set; } = new Dictionary<int, Data.ItemData>();
     public Dictionary<int, Data.CharacterData> CharacterDataDict { get; private set; } = new Dictionary<int, Data.CharacterData>();
     public Dictionary<int, Data.EnvData> EnvDataDict { get; private set; } = new Dictionary<int, Data.EnvData>();
+    public Dictionary<int,Data.MonData> MonData { get; private set; }=new Dictionary<int, Data.MonData>();
     public void Init()
     {
         ItemDataDict = LoadJson<Data.ItemLoader, int, Data.ItemData>("ItemData").MakeDict();
         CharacterDataDict = LoadJson<Data.CharacterLoader, int, Data.CharacterData>("CharacterData").MakeDict();
         EnvDataDict = LoadJson<Data.EnvLoader, int, Data.EnvData>("EnvData").MakeDict();
+        MonData = LoadJson<Data.MonLoader, int, Data.MonData>("MonsterData").MakeDict();
         // SkillDataDict = LoadJson<Data.SKillDataLoader, int, Data.Skill>("SkillData").MakeDict();
     }
 

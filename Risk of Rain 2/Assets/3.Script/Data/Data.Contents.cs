@@ -150,4 +150,38 @@ namespace Data
         }
     }
     #endregion
+    #region Monster
+    [Serializable]
+    public class MonData
+    {
+        public int monstercode;
+        public float maxhealth;
+        public float attack;
+        public float speed;
+        public float armor;
+        public float lvhealth;
+        public float lvattack;
+        public float lvspeed;
+        public float lvarmor;
+        public string name;
+        public string script;
+
+    }
+    [Serializable]
+    public class MonLoader : ILoader<int, MonData>
+    {
+        public List<MonData> monsters = new List<MonData>();
+        public Dictionary<int, MonData> MakeDict()
+        {
+            Dictionary<int, MonData> dict = new Dictionary<int, MonData>();
+            foreach (MonData item in monsters)
+            {
+
+                dict.Add(item.monstercode, item);
+            }
+
+            return dict;
+        }
+    }
+    #endregion
 }

@@ -184,7 +184,14 @@ public class LogBook : UI_Scene, IListener
                 GetText((int)ETexts.IneventoryIsAquireText).text = $"획득 여부 : {ConvertToSTring(Managers.Data.ItemDataDict[Iteminfocode].isHaveHad)}";
                 break;
             case Define.ECurrentClickType.Monster:
+                GetText((int)ETexts.IneventoryDescirbeTitleBackGroundText).text
+                  = $"<mark =#8A2BE2>[{Managers.Data.MonData[Monsterinfocode].name}]</mark>";
+                GetText((int)ETexts.IneventoryDescirbeTitleText).text
+                    = $"[{Managers.Data.MonData[Monsterinfocode].name}]";
+                GetText((int)ETexts.IneventoryDescirbeText).text
+                    = $"{Managers.Data.MonData[Monsterinfocode].name}은 매우 강력한 몬스터다.";
 
+                GetText((int)ETexts.IneventoryIsAquireText).text = string.Empty;
                 //각 도감별 코드에 따른 데이터 확인
                 break;
             case Define.ECurrentClickType.Character:
@@ -267,6 +274,10 @@ public class LogBook : UI_Scene, IListener
                 {
                     Envinfocode = envButton.EnvCode;
                 }
+                else if (Sender.TryGetComponent(out InvenMonsterButton Monbutton))
+                {
+                    Monsterinfocode = Monbutton.MonsterCode;
+                }
                 SetText();
                 break;
             case Define.EVENT_TYPE.ClickLogBookDetail:
@@ -278,6 +289,10 @@ public class LogBook : UI_Scene, IListener
                 else if (Sender.TryGetComponent(out InvenCharacterButton CharButton))
                 {
                     detailInLogBook.SpecialCode = CharButton.Charactercode;
+                }
+                else if (Sender.TryGetComponent(out InvenMonsterButton Monbutton))
+                {
+                    detailInLogBook.SpecialCode = Monbutton.MonsterCode;
                 }
 
                 break;

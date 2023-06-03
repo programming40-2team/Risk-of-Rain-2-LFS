@@ -136,25 +136,25 @@ AvatarMask:
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/finger4IKBender.l/finger4IKTarget.l/finger4IKTarget.l_end
     m_Weight: 0
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/gun.l
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/gun.l/gun.l_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/gun.l/GunMesh.001
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/gun.l/MuzzleLeft
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/thumb.1.l
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/thumb.1.l/thumb.2.l
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/thumb.1.l/thumb.2.l/thumb.2.l_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/thumbIKBender.l
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/thumbIKBender.l/thumbIKTarget.l
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.l/lower_arm.l/hand.l/thumbIKBender.l/thumbIKTarget.l/thumbIKTarget.l_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r
     m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r
@@ -218,25 +218,25 @@ AvatarMask:
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/finger4IKBender.r/finger4IKTarget.r/finger4IKTarget.r_end
     m_Weight: 0
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/gun.r
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/gun.r/gun.r_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/gun.r/GunMesh
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/gun.r/MuzzleRight
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/thumb.1.r
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/thumb.1.r/thumb.2.r
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/thumb.1.r/thumb.2.r/thumb.2.r_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/thumbIKBender.r
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/thumbIKBender.r/thumbIKTarget.r
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/base/stomach/chest/upper_arm.r/lower_arm.r/hand.r/thumbIKBender.r/thumbIKTarget.r/thumbIKTarget.r_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/IKLegTarget.l
     m_Weight: 0
   - m_Path: CommandoMesh (merge)/DeadCommando/CommandoArmature/ROOT/IKLegTarget.l/IKLegPole.l

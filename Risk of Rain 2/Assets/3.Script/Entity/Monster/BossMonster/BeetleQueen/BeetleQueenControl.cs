@@ -46,63 +46,9 @@ public class BeetleQueenControl : MonoBehaviour
 
             //Debug.Log("플레이어가 시야에 " + IsPlayerInFieldOfView());
             //Debug.Log("플레이어가 뒤에 " + IsPlayerBehindBoss());
-            Debug.Log("IsAniRun : " + IsAniRun);
             if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !IsAniRun)
             {
                 IsAniRun = true;
-            //    // FireSpit SpawnWard RangeBomb
-            //    if(!_isSkillRun[0])
-            //    {
-            //        if(IsPlayerInFieldOfView())
-            //        {
-            //            UseSkill(0);
-            //            Debug.Log("0번 스킬 사용 / 플레이어 시야 안에 있음");
-            //        }
-            //        else
-            //        {
-            //            Debug.Log("0번 스킬 사용 가능 / 플레이어 시야 밖에 있음");
-            //            float angle = CalculateAngle();
-            //            if(angle < 0)
-            //            {
-            //                _beetleQueenAnimator.SetTrigger("Left90");
-            //            }
-            //            else
-            //            {
-            //                _beetleQueenAnimator.SetTrigger("Right90");
-            //            }
-            //        }
-            //    }
-            //    if(!_isSkillRun[1])
-            //    {
-            //        if(IsPlayerBehindBoss())
-            //        {
-            //            UseSkill(1);
-            //            Debug.Log("1번 스킬 사용 / 플레이어 뒤에 있음");
-            //        }
-            //        else
-            //        {
-            //            Debug.Log("1번 스킬 사용 가능 / 플레이어 뒤에 없음");
-            //            float angle = CalculateAngle();
-            //            if (angle < 0)
-            //            {
-            //                _beetleQueenAnimator.SetTrigger("Left90");
-            //            }
-            //            else
-            //            {
-            //                _beetleQueenAnimator.SetTrigger("Right90");
-            //            }
-            //        }
-            //    }
-            //    if(!_isSkillRun[2])
-            //    {
-            //        UseSkill(2);
-            //        Debug.Log("2번 스킬 사용");
-            //    }
-            //    if(_isSkillRun[0] && _isSkillRun[1] && _isSkillRun[2])
-            //    {
-            //        Debug.Log("모든 스킬 사용 불가능");
-            //        _beetleQueenAnimator.SetTrigger("Aiming");
-            //    }
                 if(IsPlayerInFieldOfView() && !IsPlayerBehindBoss())
                 {
                     if(!_isSkillRun[0])

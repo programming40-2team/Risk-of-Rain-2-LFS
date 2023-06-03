@@ -63,31 +63,4 @@ public class AcidSkill : MonoBehaviour
             }
         }
     }
-
-    //private void OnCollisionEnter(Collision col)
-    //{
-    //    Debug.Log("ddddd");
-    //    if(col.gameObject != _beetleQueenObject)
-    //    {
-    //        if (col.gameObject.TryGetComponent(out Entity en))
-    //        {
-    //            if (en.CompareTag("Player"))
-    //            {
-    //                Debug.Log("플레이어가 비틀퀸의 AcidSkill에 맞음 가한 damage : " + _damage);
-    //                Debug.Log("플레이어 Hit Sound는 여기");
-    //                en.OnDamage(_damage);
-    //                DeleteAcidBile();
-    //            }
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("AcidBall이 AcidPool로 변하는 사운드는 여기 (오브젝트와 부딪혀 폭발하는? 사운드)");
-    //            GameObject obj = _beetleQueen.AcidPoolPool.GetObject();
-    //            ContactPoint contact = col.GetContact(0);
-    //            obj.transform.position = contact.point;
-    //            obj.transform.up = contact.normal;
-    //            DeleteAcidBile();
-    //        }
-    //    }
-    //}
 }

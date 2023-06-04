@@ -37,7 +37,7 @@ public class PhaseRoundProjectile : Projectile
     private IEnumerator EndPhaseRound_co()
     {
         yield return _phaseRoundLifeTime;
-        _projectileObjectPool.ReturnObject(this.gameObject);
         _damageCoefficient = 3.0f;
+        _projectileObjectPool.ReturnObject(this.gameObject);
     }
 }

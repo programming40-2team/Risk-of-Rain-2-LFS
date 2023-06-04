@@ -76,7 +76,7 @@ public class ItemContainer : MonoBehaviour
                     item.SetRandomPositionSphere();
                     if(TryGetComponent(out Animator _animoator))
                     {
-                        _animoator.SetTrigger("Opened");
+                        _animoator.SetTrigger("Open");
                     }
                     Debug.Log("아이템 날라가는 소리 및 이펙트 여기1 ");
                     item.AddComponent<Fielditem>().FieldItemCode = ContainItemCode;

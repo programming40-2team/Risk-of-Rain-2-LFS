@@ -13,7 +13,7 @@ public class FireWard : MonoBehaviour
     {
         _lemurian = FindObjectOfType<Lemurian>();
         StartCoroutine(Shoot_co());
-        _damage = _lemurian.Damage; // 100%
+        _damage = _lemurian.Damage; // 100% / 조건 걸어 줘야 함
     }
 
     IEnumerator Shoot_co()

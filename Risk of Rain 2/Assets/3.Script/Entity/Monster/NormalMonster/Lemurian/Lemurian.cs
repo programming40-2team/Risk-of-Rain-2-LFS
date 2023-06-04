@@ -115,7 +115,15 @@ public class Lemurian : Entity
         _navMeshAgent.isStopped = true;
         _navMeshAgent.enabled = false;
 
+        StartCoroutine(Destroy_co());
+
         Debug.Log("레무리안 죽는 사운드 넣을거면 여기");
+    }
+
+    private IEnumerator Destroy_co()
+    {
+        yield return new WaitForSeconds(5f);
+        // 풀에 반환 시키기
     }
 
     /// <summary>

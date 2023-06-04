@@ -68,7 +68,7 @@ public class BeetleQueen : Entity
     {
         if (!IsDeath)
         {
-            //hitEffect.transform.SetPositionAndRotation(hitposition, Quaternion.LookRotation(hitnormal)); / ㅁ?ㄹ
+            //hitEffect.transform.SetPositionAndRotation(hitposition, Quaternion.LookRotation(hitnormal));
             //hitEffect.Play();
             //_beetleQueenAudio.PlayOneShot(hitSound);
 
@@ -84,6 +84,8 @@ public class BeetleQueen : Entity
     {
         base.Die();
         BeetleQueenAnimator.SetTrigger("Die");
+
+        // 보스 Destroy
 
         //보스 종료 시 텔레포트 이벤트 완료!
         Managers.Game.GameState = Define.EGameState.CompeleteTelePort;
@@ -117,7 +119,6 @@ public class BeetleQueen : Entity
             obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
             StartCoroutine(obj.GetComponent<AcidSkill>().Shoot_co());
         }
-        //yield return new WaitForSeconds(10f);
         IsRun = false;
     }
 
@@ -128,7 +129,6 @@ public class BeetleQueen : Entity
     {
         IsRun = true;
         StartCoroutine(CreateWard_co());
-        //yield return new WaitForSeconds(18f);
         IsRun = false;
     }
 
@@ -153,7 +153,6 @@ public class BeetleQueen : Entity
                 Instantiate(BombRange, pos, Quaternion.identity);
             }
         }
-        //yield return new WaitForSeconds(20f);
         IsRun = false;
     }
 

@@ -39,13 +39,6 @@ public class BeetleQueenControl : MonoBehaviour
     {
         while(!_beetleQueen.IsDeath)
         {
-            //var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-            //var type = assembly.GetType("UnityEditor.LogEntries");
-            //var method = type.GetMethod("Clear");
-            //method.Invoke(new object(), null);
-
-            //Debug.Log("플레이어가 시야에 " + IsPlayerInFieldOfView());
-            //Debug.Log("플레이어가 뒤에 " + IsPlayerBehindBoss());
             if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !IsAniRun)
             {
                 IsAniRun = true;
@@ -100,7 +93,7 @@ public class BeetleQueenControl : MonoBehaviour
         }
     }
 
-    private bool IsPlayerInFieldOfView() // 플레이어가 보스 시야에 있는지 없는지 판단하는 메소드
+    private bool IsPlayerInFieldOfView()
     {
         float angle = CalculateAngle();
         if (angle >= -45 && angle < 45)
@@ -113,7 +106,7 @@ public class BeetleQueenControl : MonoBehaviour
         }
     }
 
-    private bool IsPlayerBehindBoss() // 플레이어가 보스 뒤쪽에 있는지 없는지 판단하는 메소드 / 수정해야함
+    private bool IsPlayerBehindBoss()
     {
         float angle = CalculateAngle();
         if (angle < -135 || angle >= 135)

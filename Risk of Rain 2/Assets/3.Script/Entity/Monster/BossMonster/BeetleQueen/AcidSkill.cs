@@ -58,6 +58,11 @@ public class AcidSkill : MonoBehaviour
             {
                 Debug.Log("AcidBall이 AcidPool로 변하는 사운드는 여기 (오브젝트와 부딪혀 폭발하는? 사운드)");
                 GameObject obj = _beetleQueen.AcidPoolPool.GetObject();
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit))
+                {
+                    //transform.up이 hit.normal과 같아지도록 회전이든 뭐든 여기서 시키기
+                }
                 obj.transform.position = collObj.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
                 DeleteAcidBile();
             }

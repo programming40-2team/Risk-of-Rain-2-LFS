@@ -852,7 +852,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1816545515714307696}
-  - component: {fileID: 2130632183160235773}
   m_Layer: 0
   m_Name: mdlLemurian (1) (merge)
   m_TagString: Untagged
@@ -875,26 +874,6 @@ Transform:
   m_Father: {fileID: 4777617628512619997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2130632183160235773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130632183160235774}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0439721ba5d17d42a40bb99332d552d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 0
-  _lemurianData: {fileID: 11400000, guid: e34ef0843f748eb40b044f6d55866dbd, type: 2}
-  TargetLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  FireWardPool: {fileID: 0}
-  _lemurianMouthTransform: {fileID: 2946930498426239590}
-  _myHpBar: {fileID: 0}
 --- !u!1 &2279946630001399486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,7 +1788,7 @@ GameObject:
   - component: {fileID: 1640371946}
   m_Layer: 0
   m_Name: Lemurian
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1868,7 +1847,6 @@ MonoBehaviour:
     m_Bits: 128
   FireWardPool: {fileID: 0}
   _lemurianMouthTransform: {fileID: 2946930498426239590}
-  _myHpBar: {fileID: 7151478868120681030}
 --- !u!195 &5261982580258101093
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1915,7 +1893,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5261982580258101095}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.03, z: 0.02}
@@ -2498,6 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136b2d8d3703dbf4dbe137ad69903bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _yoffset: 0
 --- !u!1 &7214293038148781571
 GameObject:
   m_ObjectHideFlags: 0

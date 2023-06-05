@@ -118,11 +118,14 @@ public class Entity : MonoBehaviour
 
             Managers.Game.KillCount++;
             Managers.Game.Gold += UnityEngine.Random.Range(15, 25 + 10 * (int)Managers.Game.Difficulty);
-            for(int i = 0; i < UnityEngine.Random.Range(1, 3);i++)
+
+            int _randomvalue= UnityEngine.Random.Range(1, 3);
+            for (int i = 0; i < _randomvalue; i++)
             {
                 Managers.Resource.Instantiate("Gold").SetRandomPositionSphere(3, 3, 3, gameObject.transform);
+                Managers.Resource.Instantiate("Exp").SetRandomPositionSphere(2,5,2, gameObject.transform);
+               
             }
-    
 
         }
         if (OnDeath != null)

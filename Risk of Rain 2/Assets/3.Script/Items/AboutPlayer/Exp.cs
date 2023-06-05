@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class Exp : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
+    [SerializeField] private float _moveSpeed = 5.0f;
+    GameObject _Player;
+    private float _Worth = 5.0f;
+    private void OnEnable()
+    {
+        _Worth = 10+ Random.Range(3,10)* (1 + (int)Managers.Game.Difficulty);
+    }
+    private void Awake()
+    {
+        _Player = GameObject.FindGameObjectWithTag("Player");
+       
+    }
     void Update()
     {
-        
+        Vector3 direction = _Player.transform.position - transform.position;
+        Vector3 movement = direction.normalized * _moveSpeed * Time.deltaTime;
+        transform.position += movement;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerStatus>().IncreaseExp(_Worth);
+            Managers.Resource.Destroy(gameObject);
+        }
     }
 }

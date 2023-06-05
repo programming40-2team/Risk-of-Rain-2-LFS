@@ -10,7 +10,7 @@ public class Imp : Entity
     private NavMeshAgent _impAgent;
     private Animator _impAnimator;
 
-    private Transform _targetTransform;
+    private GameObject _target;
 
     private float _attackCooltime = 1.0f;
     private bool isAttack = false;
@@ -33,7 +33,7 @@ public class Imp : Entity
         TryGetComponent(out _impAnimator);
         _myHpBar = GetComponentInChildren<MonsterHpBar>();
         _myHpBar.gameObject.SetActive(false);
-        _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        _target = GameObject.FindGameObjectWithTag("Player");
        
     }
     protected override void OnEnable()
@@ -83,7 +83,7 @@ public class Imp : Entity
         Debug.Log("Blink  Start Effect ");
         yield return new WaitForSeconds(currentClipLength);
         SetOff();
-        gameObject.SetRandomPositionSphere(3, 8, 0, _targetTransform);
+        gameObject.SetRandomPositionSphere(3, 8, 0, _target.transform);
         yield return new WaitForSeconds(1.0f);
         SetOn();
         _impAnimator.SetTrigger("BlinkEnd");
@@ -93,7 +93,7 @@ public class Imp : Entity
 
     private void Move()
     {
-        _impAgent.SetDestination(_targetTransform.position);
+        _impAgent.SetDestination(_target.transform.position);
 
         if (_impAgent.remainingDistance <= _impAgent.stoppingDistance)
         {

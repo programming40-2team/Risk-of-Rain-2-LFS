@@ -14,12 +14,21 @@ public class Item1007SkillComponent : ItemPrimitiive
     private float lerpTime = 5f;
     float currentLerpTime;
 
-
+    private void Awake()
+    {
+        Init();
+    }
     public override void Init()
     {
         base.Init();
-        myTargetEnemy = GameObject.FindGameObjectWithTag("Monster");
-       
+      
+    }
+    private void OnEnable()
+    {
+
+        Init();
+        myTargetEnemy = FindClosestEnemy();
+
         damage = Player.GetComponent<PlayerStatus>().Damage
             * 3 * (Managers.ItemInventory.Items[1007].Count);
 
@@ -31,13 +40,7 @@ public class Item1007SkillComponent : ItemPrimitiive
         {
             Objectposition = myTargetEnemy.transform.position;
         }
-    }
-    private void OnEnable()
-    {
-
-        Init();
         StartCoroutine(nameof(LerpTransform_co));
-       
     }
     private void OnDisable()
     {
@@ -45,17 +48,16 @@ public class Item1007SkillComponent : ItemPrimitiive
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player"))
+
+            if (other.TryGetComponent(out Entity entity) && !other.CompareTag("Player"))
         {
-            if (other.TryGetComponent(out Entity entity))
-            {
-                entity.OnDamage(damage);
+            transform.position = other.transform.position;
+
+            entity.OnDamage(damage);
                 ShowDamageUI(entity.gameObject, damage, Define.EDamageType.Item);
                 Managers.Resource.Destroy(gameObject);
             }
-         
-        }
-        else if (other.gameObject.layer == 1 << (int)Define.LayerMask.Enviroment)
+        else 
         {
             Managers.Resource.Destroy(gameObject);
         }
@@ -70,15 +72,15 @@ public class Item1007SkillComponent : ItemPrimitiive
         while (timeElapsed < lerpTime)
         {
             float percent = timeElapsed / lerpTime;
-            transform.position = Vector3.Lerp(transform.position, Objectposition, percent* percent* percent* percent* percent);
+            transform.position = Vector3.Lerp(transform.position, Objectposition, percent * percent * percent * percent * percent);
             angle += Time.deltaTime;
-            transform.position = new Vector3(transform.position.x + Mathf.Cos(angle), transform.position.y + Mathf.Cos(angle), transform.position.z + Mathf.Cos(angle));
+            transform.position = new Vector3(transform.position.x + 0.2f * Mathf.Cos(angle), transform.position.y, transform.position.z + 0.2f * Mathf.Sin(angle));
             timeElapsed += Time.deltaTime;
             yield return null;
         }
 
         transform.position = Objectposition;
 
-            Managers.Resource.Destroy(gameObject);
+        Managers.Resource.Destroy(gameObject);
     }
 }

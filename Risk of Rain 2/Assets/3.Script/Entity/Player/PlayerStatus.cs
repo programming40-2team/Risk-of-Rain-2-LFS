@@ -15,9 +15,26 @@ public class PlayerStatus : Entity
     public int MaxJumpCount { get; set; }
 
     //Survivors Data와 상관없는 고정 변수
-    public int Level { get; private set; }
+    public int Level { get; private set; } = 1;
     public float Exp { get; private set; } = 100f;
-    public float CurrentExp { get; private set; }
+    private float _currentExp;
+    public float CurrentExp
+    {
+        get { return _currentExp; }
+        set
+        {
+            _currentExp = value;
+            if(_currentExp> Exp)
+            {
+                Level++;
+                _currentExp = Exp - _currentExp;
+                Exp *= 1.55f;
+                Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
+                Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerExpChange, this);
+            }
+
+        }
+    }
     public float ChanceBlockDamage { get; set; }
 
     private void Awake()
@@ -34,11 +51,6 @@ public class PlayerStatus : Entity
         Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
         OnDeath -= ToDeath;
         OnDeath += ToDeath;
-    }
-
-    private void Update()
-    {
-        CheckLevel();
     }
 
     private void InitStatus()
@@ -107,18 +119,17 @@ public class PlayerStatus : Entity
     }
 
 
-    private void CheckLevel()
-    {
-        if (CurrentExp >= Exp)
-        {
-            Level++;
-            CurrentExp = 0f;
-            Exp *= 1.55f;
-            LevelUp();
-            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
-            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerExpChange, this);
-        }
-    }
+    //private void CheckLevel()
+    //{
+    //    if (CurrentExp >= Exp)
+    //    {
+    //        Level++;
+    //        _currentExp = 0f;
+    //        Exp *= 1.55f;
+    //        LevelUp();
+
+    //    }
+    //}
     public void IncreaseExp(float exp)
     {
         CurrentExp += exp;

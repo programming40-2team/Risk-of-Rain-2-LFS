@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             _isJumping = value;
             if (IsJumping == true)
             {
-                Managers.ItemApply.ApplyPassiveSkill(1016);
+               // Managers.ItemApply.ApplyPassiveSkill(1016);
             }
 
         }

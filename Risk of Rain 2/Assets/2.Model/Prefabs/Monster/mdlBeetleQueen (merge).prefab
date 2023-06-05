@@ -357,9 +357,9 @@ MonoBehaviour:
   MaxHealth: 0
   _beetleQueenData: {fileID: 11400000, guid: 623fe4d3c8f8d6e438fb2ac0618948fe, type: 2}
   AcidBallPool: {fileID: 0}
-  AcidPoolPool: {fileID: 0}
   WardPool: {fileID: 0}
-  BombRange: {fileID: 59060071674946947, guid: d1984401bbdd4a04881023e037010c83, type: 3}
+  BombRange: {fileID: 3617766115184211546, guid: 6a2ec645e2d91e844a919753d696fd4f, type: 3}
+  BeetleQueenAnimator: {fileID: 0}
   IsRun: 0
   _beetleQueenMouthTransform: {fileID: 430505227350585667}
   _beetleQueenButtTransform: {fileID: 0}
@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262b1e8204ee02d4bb4e96b7e0082860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAniRun: 0
 --- !u!54 &3947812199606246929
 Rigidbody:
   m_ObjectHideFlags: 0

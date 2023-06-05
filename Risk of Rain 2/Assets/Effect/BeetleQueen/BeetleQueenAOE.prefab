@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 585274430393215916}
   - component: {fileID: 585274430374863106}
   - component: {fileID: 585274430373174788}
-  - component: {fileID: 585274430383313750}
   m_Layer: 0
   m_Name: SpinningParticles
   m_TagString: Untagged
@@ -4772,20 +4771,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &585274430383313750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585274430393010058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84c9fd6072e17c46b93dd9cf28a0904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateVector: {x: 0, y: 0, z: 45}
-  rotateSpace: 0
 --- !u!1 &585274430393023254
 GameObject:
   m_ObjectHideFlags: 0
@@ -38135,6 +38120,7 @@ GameObject:
   - component: {fileID: 3617766115183917666}
   - component: {fileID: 3617766115164543984}
   - component: {fileID: 3617766115164439030}
+  - component: {fileID: 408509659822889253}
   m_Layer: 0
   m_Name: BeetleQueenAOE
   m_TagString: Untagged
@@ -42878,3 +42864,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &408509659822889253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617766115184211546}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04e0f4f4f7678f428bf64f4b6f7aef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

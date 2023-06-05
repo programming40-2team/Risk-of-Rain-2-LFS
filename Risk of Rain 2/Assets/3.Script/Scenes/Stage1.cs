@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class StageSceneTemp : BaseScene
+public class Stage1 : BaseScene
 {
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -11,10 +12,14 @@ public class StageSceneTemp : BaseScene
 
             if (count == totalCount)
             {
-                Debug.Log("데이터 로딩 완료!");
+                Debug.Log("임시 코드 !");
+                Debug.Log("추후 이부분 StartLoaded 제거해야함");
+                Debug.Log("        Managers.UI.ShowGameUI<GameUI>(); 넣어줘야함");
                 StartLoaded();
             }
         });
+        SceneType = Define.Scene.Stage1;
+
     }
     void StartLoaded()
     {
@@ -23,6 +28,7 @@ public class StageSceneTemp : BaseScene
         Managers.ItemInventory.init();
         Managers.ItemApply.Init();
         Managers.UI.ShowGameUI<GameUI>();
+
         Managers.Game.Gold = 9900;
     }
     protected override void Init()
@@ -34,6 +40,5 @@ public class StageSceneTemp : BaseScene
 
     public override void Clear()
     {
-
     }
 }

@@ -32,8 +32,15 @@ public class PoolManager
         {
             if (poolable == null)
                 return;
-
-            poolable.transform.parent = Root;
+            if(poolable.gameObject.TryGetComponent(out Canvas canvas))
+            {
+                poolable.transform.SetParent(Root);
+            }
+            else
+            {
+                poolable.transform.parent = Root;
+            }
+            
             poolable.gameObject.SetActive(false);
             poolable.IsUsing = false;
 
@@ -53,9 +60,29 @@ public class PoolManager
 
             // DontDestroyOnLoad 해제 용도
             if (parent == null)
-                poolable.transform.parent = Managers.Scene.CurrentScene.transform;
+            {
+                if (poolable.gameObject.TryGetComponent(out Canvas canvas2))
+                {
+                    poolable.transform.SetParent(Managers.Scene.CurrentScene.transform);
+                }
+                else
+                {
+                    poolable.transform.parent = Managers.Scene.CurrentScene.transform;
+                }
+               
+            }
+                
 
-            poolable.transform.parent = parent;
+            if(poolable.gameObject.TryGetComponent(out Canvas canvas))
+            {
+                poolable.transform.SetParent(parent);
+            }
+            else
+            {
+                poolable.transform.parent = parent;
+            }
+
+           
             poolable.IsUsing = true;
 
             return poolable;

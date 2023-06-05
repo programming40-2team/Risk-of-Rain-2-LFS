@@ -23,7 +23,7 @@ public class Item1023Skill : PrimitiveActiveItem
         base.Init();
 
         playerTransform = Player.transform;
-        gameObject.SetRandomPositionSphere(2, 5, 2, Player.transform);
+   
     }
 
     private void Update()
@@ -47,7 +47,7 @@ public class Item1023Skill : PrimitiveActiveItem
         if (distanceToPlayer > radius)
         {
             Vector3 targetPosition = playerTransform.position + directionToPlayer.normalized * radius;
-            targetPosition.y += 0.01f;
+            targetPosition.y += 0.015f;
             transform.position = targetPosition;
         }
     }
@@ -62,7 +62,7 @@ public class Item1023Skill : PrimitiveActiveItem
                 go.transform.position = gameObject.transform.position;
                 yield return new WaitForSeconds(1f);
             }
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
         }
      
 

@@ -10,19 +10,19 @@ public class GameManager
 
     #region 마지막 통계를 위함
     private int _killCount = 0;
-    private int _monsterDamaged = 0;
-    private int _playerAttackedDamage = 0;
+    private float _monsterDamaged = 0;
+    private float _playerAttackedDamage = 0;
     public int KillCount
     {
         get { return _killCount; }
         set { _killCount = value; }
     }
-    public int MonsterDamaged
+    public float MonsterDamaged
     {
         get { return _monsterDamaged; }
         set { _monsterDamaged = value; }
     }
-    public int PlayerAttackedDamage
+    public float PlayerAttackedDamage
     {
         get { return _playerAttackedDamage; }
         set { _playerAttackedDamage = value; }

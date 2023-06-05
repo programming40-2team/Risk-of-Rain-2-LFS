@@ -5,7 +5,9 @@
     public enum Scene
     {
         None,
+        LoadingScene,
         MainMenu,
+        Stage1,
 
 
     }
@@ -112,6 +114,13 @@
     {
         Enviroment=6,
 
+    }
+
+    public enum EDamageType
+    {
+        Nomal,
+        Cirtical,
+        Item,
     }
 
 }

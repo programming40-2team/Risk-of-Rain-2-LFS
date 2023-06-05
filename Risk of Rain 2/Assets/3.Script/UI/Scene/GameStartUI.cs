@@ -283,8 +283,9 @@ public class GameStartUI : UI_Scene, IListener
     }
     private void GameStart()
     {
+        Managers.Scene.LoadScene(Define.Scene.Stage1);
         Debug.Log("게임 스타트 소리!");
-        Debug.Log("게임화면 넘어가는 코드!");
+        
     }
     private void DetaillCharacterScriptChange(ECharacterDetail ShowMenu)
     {

@@ -86,9 +86,11 @@ public class GameResultUI : UI_Popup
 
         GetText((int)Texts.HittedDamageTitle   ).text=$"받은 피해<color=#FFFF00>:{Managers.Game.PlayerAttackedDamage} </color>";
        GetText((int)Texts.HittedDamageText    ).text=$"<color=#FFFF00>: {Managers.Game.PlayerAttackedDamage*2}</color>점.";
-
-       GetText((int)Texts.LevelTitle          ).text=$"최고 레벨<color=#FFFF00>:{Managers.Game.PlayerLevel} </color>";
-       GetText((int)Texts.LevelText           ).text=$"<color=#FFFF00>: {Managers.Game.PlayerLevel*100}</color>점.";
+      if(GameObject.FindGameObjectWithTag("Player").TryGetComponent(out PlayerStatus status))
+        {
+            GetText((int)Texts.LevelTitle).text = $"최고 레벨<color=#FFFF00>:{status.Level} </color>";
+            GetText((int)Texts.LevelText).text = $"<color=#FFFF00>: {status.Level * 100}</color>점.";
+        }
 
        GetText((int)Texts.GainGoldTItle       ).text=$"남은 골드<color=#FFFF00>:{Managers.Game.Gold}</color>";
        GetText((int)Texts.GainGoldText        ).text=$"<color=#FFFF00>: {Managers.Game.Gold*500}</color>점.";

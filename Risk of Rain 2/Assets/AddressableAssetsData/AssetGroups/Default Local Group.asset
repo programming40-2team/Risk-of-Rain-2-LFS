@@ -22,6 +22,91 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
+  - m_GUID: 1e277098b9bf06e418e92faa742909db
+    m_Address: DamageUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: bb38e252a7416c342b22afd11760b965
+    m_Address: 10001Model
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 6144d82544a192b479cdc7332963a759
+    m_Address: 10003Model
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: e544d80d03ecc124fa7c9c9a430c3c18
+    m_Address: 10004Model
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2c9151539c5e17d409b3b053fdae2b07
+    m_Address: 10007Model
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: badc36f3767b836439256939bf904524
+    m_Address: 10005Model
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2572adba92fb9a747adca4ac95a60220
+    m_Address: 10006Model
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2736a3d3c6396394db997071d7b4adb5
+    m_Address: 10005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 74f8ce13ea61dbb49b0cb719fd08e5e4
+    m_Address: 10003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 28b743b5b9c26ff44b8de42bf869b7d7
+    m_Address: 10001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 47621fd1883cc654a8e612626a0ef1de
+    m_Address: 10006
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 1dd7e190453bcd74795aa0f4af637888
+    m_Address: 10007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: eb18b365bf807a047bee9623e52dc554
+    m_Address: 10002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 145b50110ab9378418781e8b53494846
+    m_Address: 10004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 27e4f66bf3a37784fbef2157ceafbe19
+    m_Address: InvenMonsterButton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 91442a353e922644d8f39b23244f72ec
+    m_Address: 10002Model
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: a5978fe9e6b38294da3ee92d693bf835
+    m_Address: ItemContainer007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

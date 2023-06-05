@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
         TryGetComponent(out _projectileRigidbody);
         FindObjectPool();
     }
-   
+
     /// <summary>
     /// 총알이 바라보는 방향으로 발사
     /// </summary>
@@ -45,5 +45,25 @@ public class Projectile : MonoBehaviour
     protected void FindObjectPool()
     {
         _projectileObjectPool = GameObject.Find(_projectilePoolName).GetComponent<ObjectPool>();
+    }
+    protected void PrintDamage(GameObject TargetObject,Define.EDamageType DamageType=Define.EDamageType.Nomal)
+    {
+        DamageUI _damageUI = Managers.UI.MakeWorldSpaceUI<DamageUI>();
+        _damageUI.transform.SetParent(TargetObject.transform);
+        _damageUI.transform.localPosition = Vector3.zero;
+        _damageUI.SetDamage(_damage);
+        _damageUI.Excute();
+
+        switch (DamageType)
+        {
+            case Define.EDamageType.Nomal:
+                break;
+            case Define.EDamageType.Cirtical:
+                _damageUI.SetColor(Color.red);
+                break;
+            case Define.EDamageType.Item:
+                _damageUI.SetColor(Color.blue);
+                break;
+        }
     }
 }

@@ -8,10 +8,21 @@ public class AcidSkill : MonoBehaviour
     private float _shootingSpeed = 40f;
     private float _damage = 0;
 
+    private ParticleSystem _acidShotEffect;
+    [SerializeField] private ParticleSystem _acidArea;
 
+    private Rigidbody _acidShotRigidbody;
+
+    private void Awake()
+    {
+        TryGetComponent(out _acidShotEffect);
+        TryGetComponent(out _acidShotRigidbody);
+    }
     private void OnEnable()
     {
         _beetleQueen = FindObjectOfType<BeetleQueen>();
+        _acidShotEffect.Play();
+        _acidArea.Stop();
     }
 
     private void Start()
@@ -22,16 +33,17 @@ public class AcidSkill : MonoBehaviour
         }
     }
 
-    public IEnumerator Shoot_co() // 발사
+    public void Shoot_co() // 발사
     {
-        float time = 0;
-        while (time < 5f)
-        {
-            transform.position += transform.forward * _shootingSpeed * Time.deltaTime;
-            time += Time.deltaTime;
-            yield return null;
-        }
-        DeleteAcidBile();
+        _acidShotRigidbody.velocity = this.transform.forward * _shootingSpeed;
+        //float time = 0;
+        //while (time < 5f)
+        //{
+        //    transform.position += transform.forward * _shootingSpeed * Time.deltaTime;
+        //    time += Time.deltaTime;
+        //    yield return null;
+        //}
+        //DeleteAcidBile();
     }
 
     // 산성담즙 풀에 반환
@@ -39,7 +51,7 @@ public class AcidSkill : MonoBehaviour
     {
         _beetleQueen.AcidBallPool.ReturnObject(gameObject);
     }
-
+ 
     private void OnParticleCollision(GameObject collObj)
     {
         if (collObj != _beetleQueenObject)
@@ -57,14 +69,10 @@ public class AcidSkill : MonoBehaviour
             else
             {
                 Debug.Log("AcidBall이 AcidPool로 변하는 사운드는 여기 (오브젝트와 부딪혀 폭발하는? 사운드)");
-                GameObject obj = _beetleQueen.AcidPoolPool.GetObject();
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit))
-                {
-                    //transform.up이 hit.normal과 같아지도록 회전이든 뭐든 여기서 시키기
-                }
-                obj.transform.position = collObj.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-                DeleteAcidBile();
+                _acidShotRigidbody.velocity = Vector3.zero;
+                _acidShotRigidbody.useGravity = false;
+                _acidShotEffect.Stop();
+                _acidArea.Play();
             }
         }
     }

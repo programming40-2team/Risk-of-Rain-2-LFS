@@ -24,7 +24,11 @@ public class SpFireBullet : Projectile
             _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
             if (criticalCoefficient == 2)
             {
-                //크리티컬 성공
+                PrintDamage(other.gameObject, Define.EDamageType.Cirtical);
+            }
+            else
+            {
+                PrintDamage(other.gameObject);
             }
         }
         _projectileObjectPool.ReturnObject(gameObject);

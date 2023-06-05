@@ -27,9 +27,13 @@ public class PhaseRoundProjectile : Projectile
             float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
             _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
             _damageCoefficient += _damageAscent;
-            if(criticalCoefficient == 2)
+            if (criticalCoefficient == 2)
             {
-                //크리티컬 성공
+                PrintDamage(other.gameObject, Define.EDamageType.Cirtical);
+            }
+            else
+            {
+                PrintDamage(other.gameObject);
             }
         }
     }

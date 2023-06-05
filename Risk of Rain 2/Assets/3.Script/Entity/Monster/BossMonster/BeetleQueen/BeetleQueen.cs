@@ -9,7 +9,6 @@ public class BeetleQueen : Entity
     private GameObject _player;
 
     public ObjectPool AcidBallPool;
-    public ObjectPool AcidPoolPool;
     public ObjectPool WardPool;
     public GameObject BombRange;
 
@@ -43,7 +42,6 @@ public class BeetleQueen : Entity
         _beetleQueenMouthTransform = GameObject.FindGameObjectWithTag("BeetleQueenMouth").transform;
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
         AcidBallPool = GameObject.Find("AcidBallPool").GetComponent<ObjectPool>();
-        AcidPoolPool = GameObject.Find("AcidPoolPool").GetComponent<ObjectPool>();
         WardPool = GameObject.Find("WardPool").GetComponent<ObjectPool>();
     }
 
@@ -117,7 +115,7 @@ public class BeetleQueen : Entity
         {
             GameObject obj = AcidBallPool.GetObject();
             obj.transform.SetPositionAndRotation(_beetleQueenMouthTransform.position, Quaternion.Euler(0, -20f + 8 * i, 0) * rot);
-            StartCoroutine(obj.GetComponent<AcidSkill>().Shoot_co());
+            obj.GetComponent<AcidSkill>().Shoot_co();
         }
         IsRun = false;
     }

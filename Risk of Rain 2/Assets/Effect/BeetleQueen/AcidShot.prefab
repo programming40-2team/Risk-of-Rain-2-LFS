@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 3811128882720703105}
   - component: {fileID: 3811128882721178343}
   - component: {fileID: 3811128882707045799}
-  - component: {fileID: 3811128882707045792}
-  - component: {fileID: 3811128882707045798}
+  - component: {fileID: 1541082156898382359}
   m_Layer: 0
   m_Name: AcidShot
   m_TagString: Untagged
@@ -212,7 +211,7 @@ ParticleSystem:
   serializedVersion: 7
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 1
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -3690,9 +3689,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -3873,7 +3872,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 1
   TriggerModule:
@@ -4846,20 +4845,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &3811128882707045792
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3811128882707045793}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.4484001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3811128882707045798
+--- !u!114 &1541082156898382359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4868,9 +4854,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3811128882707045793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17ae26851bdc7a849941228ab7765df2, type: 3}
+  m_Script: {fileID: 11500000, guid: 72594b202c1753c4ea96826eda9a03e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _beetleQueenObject: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
   _acidArea: {fileID: 7555681936321933156}
 --- !u!1 &3811128882707045795
 GameObject:
@@ -19108,7 +19095,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7555681936340055554}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 15
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -23935,7 +23922,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7555681936340055556}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 15
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -28679,7 +28666,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7555681936340055558}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 15
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1

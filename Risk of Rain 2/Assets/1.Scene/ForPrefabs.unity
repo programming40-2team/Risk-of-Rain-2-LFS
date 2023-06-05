@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17101f4902a3a4d4ea3a007080b954d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolingObject: {fileID: 100004, guid: 0fe6d5add049f054da06bbb6566b1be3, type: 3}
+  poolingObject: {fileID: 3811128882707045793, guid: 6ac73e1b649a0e8479a6c33db0444178, type: 3}
   count: 12
 --- !u!4 &59635997
 Transform:
@@ -4043,51 +4043,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088599939}
   m_CullTransparentMesh: 1
---- !u!1 &1123380134
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1123380135}
-  - component: {fileID: 1123380136}
-  m_Layer: 0
-  m_Name: AcidPoolPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1123380135
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123380134}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 120.71808, y: -29.565235, z: -2.652904}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1474602167}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1123380136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123380134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17101f4902a3a4d4ea3a007080b954d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolingObject: {fileID: 3430073711167556016, guid: 1dbf552cf8d570843adc06d2bf9a3d0a, type: 3}
-  count: 12
 --- !u!1 &1125149776
 GameObject:
   m_ObjectHideFlags: 0
@@ -5069,7 +5024,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1474602167}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1434385206
 MonoBehaviour:
@@ -5345,7 +5300,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 59635997}
-  - {fileID: 1123380135}
   - {fileID: 1434385205}
   m_Father: {fileID: 83682304}
   m_RootOrder: 0
@@ -6945,8 +6899,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901075145}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.77096, y: 2.44, z: 3.309639}
-  m_LocalScale: {x: 200, y: 1, z: 200}
+  m_LocalPosition: {x: 21.77096, y: -12.56, z: 3.309639}
+  m_LocalScale: {x: 200, y: 30, z: 200}
   m_Children: []
   m_Father: {fileID: 442140267}
   m_RootOrder: 0

@@ -7,12 +7,20 @@ public class FireWard : MonoBehaviour
     private Lemurian _lemurian;
     [SerializeField] private GameObject _lemurianObject;
     private float _shootingSpeed = 45f;
-    private float _damage = 0; // 100%
+    private float _damage = 0;
 
     private void OnEnable()
     {
         _lemurian = FindObjectOfType<Lemurian>();
         StartCoroutine(Shoot_co());
+    }
+
+    private void Start()
+    {
+        if (_lemurian != null)
+        {
+            _damage = _lemurian.Damage;
+        }
     }
 
     IEnumerator Shoot_co()
@@ -40,7 +48,7 @@ public class FireWard : MonoBehaviour
             {
                 if(en.CompareTag("Player"))
                 {
-                    Debug.Log("플레이어가 레무리안의 FireWard에 맞음");
+                    Debug.Log("플레이어가 레무리안의 FireWard에 맞음 가한 damage : " + _damage);
                     Debug.Log("플레이어 Hit Sound는 여기");
                     col.GetComponent<Entity>().OnDamage(_damage);
                     DeleteFireWard();

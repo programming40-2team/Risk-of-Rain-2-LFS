@@ -12,6 +12,7 @@ public class BeetleQueenControl : MonoBehaviour
 
     private float[] _skillCoolDownArr = new float[3]; // 10 15 20
     private bool[] _isSkillRun = new bool[3];
+    public bool IsAniRun = false;
 
     private void Awake()
     {
@@ -38,74 +39,61 @@ public class BeetleQueenControl : MonoBehaviour
     {
         while(!_beetleQueen.IsDeath)
         {
-            //var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-            //var type = assembly.GetType("UnityEditor.LogEntries");
-            //var method = type.GetMethod("Clear");
-            //method.Invoke(new object(), null);
-
-            //Debug.Log("플레이어가 시야에 " + IsPlayerInFieldOfView());
-            //Debug.Log("플레이어가 뒤에 " + IsPlayerBehindBoss());
-            if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-            { 
-                // FireSpit SpawnWard RangeBomb
-                if(!_isSkillRun[0])
+            if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !IsAniRun)
+            {
+                IsAniRun = true;
+                if(IsPlayerInFieldOfView() && !IsPlayerBehindBoss())
                 {
-                    if(IsPlayerInFieldOfView())
+                    if(!_isSkillRun[0])
                     {
                         UseSkill(0);
                         Debug.Log("0번 스킬 사용 / 플레이어 시야 안에 있음");
                     }
                     else
                     {
-                        Debug.Log("0번 스킬 사용 가능 / 플레이어 시야 밖에 있음");
-                        float angle = CalculateAngle();
-                        if(angle < 0)
-                        {
-                            _beetleQueenAnimator.SetTrigger("Left90");
-                        }
-                        else
-                        {
-                            _beetleQueenAnimator.SetTrigger("Right90");
-                        }
+                        _beetleQueenAnimator.SetTrigger("Aiming");
+                        Debug.Log("아무것도 안 하기 / 플레이어 시야 안에 있음");
                     }
                 }
-                if(!_isSkillRun[1])
+                else if (!IsPlayerInFieldOfView() && IsPlayerBehindBoss())
                 {
-                    if(IsPlayerBehindBoss())
+                    if (!_isSkillRun[1])
                     {
                         UseSkill(1);
                         Debug.Log("1번 스킬 사용 / 플레이어 뒤에 있음");
                     }
                     else
                     {
-                        Debug.Log("1번 스킬 사용 가능 / 플레이어 뒤에 없음");
+                        _beetleQueenAnimator.SetTrigger("Aiming");
+                        Debug.Log("아무것도 안 하기 / 플레이어 시야 안에 있음");
+                    }
+                }
+                else if(!IsPlayerInFieldOfView() && !IsPlayerBehindBoss())
+                {
+                    if (!_isSkillRun[2])
+                    {
+                        UseSkill(2);
+                        Debug.Log("2번 스킬 사용");
+                    }
+                    else
+                    {
                         float angle = CalculateAngle();
                         if (angle < 0)
                         {
-                            _beetleQueenAnimator.SetTrigger("Left90");
+                        _beetleQueenAnimator.SetTrigger("Left90");
                         }
                         else
                         {
-                            _beetleQueenAnimator.SetTrigger("Right90");
+                        _beetleQueenAnimator.SetTrigger("Right90");
                         }
                     }
-                }
-                if(!_isSkillRun[2])
-                {
-                    UseSkill(2);
-                    Debug.Log("2번 스킬 사용");
-                }
-                if(_isSkillRun[0] && _isSkillRun[1] && _isSkillRun[2])
-                {
-                    Debug.Log("모든 스킬 사용 불가능");
-                    _beetleQueenAnimator.SetTrigger("Aiming");
                 }
             }
             yield return null;
         }
     }
 
-    private bool IsPlayerInFieldOfView() // 플레이어가 보스 시야에 있는지 없는지 판단하는 메소드
+    private bool IsPlayerInFieldOfView()
     {
         float angle = CalculateAngle();
         if (angle >= -45 && angle < 45)
@@ -118,7 +106,7 @@ public class BeetleQueenControl : MonoBehaviour
         }
     }
 
-    private bool IsPlayerBehindBoss() // 플레이어가 보스 뒤쪽에 있는지 없는지 판단하는 메소드 / 수정해야함
+    private bool IsPlayerBehindBoss()
     {
         float angle = CalculateAngle();
         if (angle < -135 || angle >= 135)

@@ -5,17 +5,24 @@ public class AcidSkill : MonoBehaviour
 {
     private BeetleQueen _beetleQueen;
     [SerializeField] private GameObject _beetleQueenObject;
-    private float _shootingSpeed = 50f;
+    private float _shootingSpeed = 40f;
     private float _damage = 0;
 
 
     private void OnEnable()
     {
         _beetleQueen = FindObjectOfType<BeetleQueen>();
-        StartCoroutine(Shoot_co());
     }
 
-    private IEnumerator Shoot_co() // 발사
+    private void Start()
+    {
+        if (_beetleQueen != null)
+        {
+            _damage = _beetleQueen.Damage * 1.3f;
+        }
+    }
+
+    public IEnumerator Shoot_co() // 발사
     {
         float time = 0;
         while (time < 5f)
@@ -33,36 +40,11 @@ public class AcidSkill : MonoBehaviour
         _beetleQueen.AcidBallPool.ReturnObject(gameObject);
     }
 
-    //private void OnParticleCollision(GameObject collObj)
-    //{
-    //    if (collObj != _beetleQueenObject)
-    //    {
-    //        if(collObj.TryGetComponent(out Entity en))
-    //        {
-    //            if(en.CompareTag("Player"))
-    //            {
-    //                Debug.Log("플레이어가 비틀퀸의 AcidSkill에 맞음");
-    //                Debug.Log("플레이어 Hit Sound는 여기");
-    //                en.OnDamage(_damage);
-    //                DeleteAcidBile();
-    //            }
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("AcidBall이 AcidPool로 변하는 사운드는 여기 (오브젝트와 부딪혀 폭발하는? 사운드)");
-    //            GameObject obj = _beetleQueen.AcidPoolPool.GetObject();
-    //            obj.transform.position = collObj.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-    //            DeleteAcidBile();
-    //        }
-    //    }
-    //}
-
-    private void OnCollisionEnter(Collision col)
+    private void OnParticleCollision(GameObject collObj)
     {
-        Debug.Log("ddddd");
-        if(col.gameObject != _beetleQueenObject)
+        if (collObj != _beetleQueenObject)
         {
-            if (col.gameObject.TryGetComponent(out Entity en))
+            if (collObj.TryGetComponent(out Entity en))
             {
                 if (en.CompareTag("Player"))
                 {
@@ -76,9 +58,12 @@ public class AcidSkill : MonoBehaviour
             {
                 Debug.Log("AcidBall이 AcidPool로 변하는 사운드는 여기 (오브젝트와 부딪혀 폭발하는? 사운드)");
                 GameObject obj = _beetleQueen.AcidPoolPool.GetObject();
-                ContactPoint contact = col.GetContact(0);
-                obj.transform.position = contact.point;
-                obj.transform.up = contact.normal;
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit))
+                {
+                    //transform.up이 hit.normal과 같아지도록 회전이든 뭐든 여기서 시키기
+                }
+                obj.transform.position = collObj.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
                 DeleteAcidBile();
             }
         }

@@ -31,6 +31,7 @@ public class Ward : MonoBehaviour
         if(_beetleQueen != null)
         {
             _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
+            _damage = _beetleQueen.Damage * 1.3f;
         }
         StartCoroutine(Shoot_co());
     }
@@ -86,7 +87,7 @@ public class Ward : MonoBehaviour
             {
                 if(en.CompareTag("Player"))
                 {
-                    Debug.Log("플레이어가 비틀퀸의 Ward에 맞음");
+                    Debug.Log("플레이어가 비틀퀸의 Ward에 맞음 가한 damage : " + _damage);
                     Debug.Log("플레이어 Hit Sound는 여기");
                     en.OnDamage(_damage);
                     DeleteWard();

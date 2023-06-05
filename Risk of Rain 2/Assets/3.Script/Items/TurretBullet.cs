@@ -24,7 +24,7 @@ public class TurretBullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Monster"))
+        if (other.TryGetComponent(out Entity entity)&&!other.CompareTag("Player"))
         {
             other.GetComponent<Entity>().OnDamage(15);
             DamageUI _damageUI = Managers.UI.MakeWorldSpaceUI<DamageUI>();

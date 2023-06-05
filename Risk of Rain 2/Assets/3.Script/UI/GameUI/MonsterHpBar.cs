@@ -38,7 +38,7 @@ public class MonsterHpBar : UI_Base
     void Update()
     {
         Transform parent = transform.parent;
-        transform.position=parent.position+Vector3.up*(parent.GetComponent<Collider>().bounds.size.y+1f);
+        transform.position=parent.position+Vector3.up*(parent.GetComponent<Collider>().bounds.size.y+1.2f);
         Get<Slider>((int)Sliders.HpBar).value = _myentity.Health / _myentity.MaxHealth;
         //부모의 체력을 끌고와서 업데이트 해주면됨
     }

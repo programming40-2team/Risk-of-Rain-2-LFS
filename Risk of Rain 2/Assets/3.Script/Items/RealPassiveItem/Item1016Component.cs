@@ -10,11 +10,16 @@ public class Item1016Component : ItemPrimitiive
     private float damageCoolTime = 1.0f;
 
 
-    private void Start()
+    private void Awake()
     {
         Init();
-        
-        gameObject.SetRandomPositionSphere(1, 1, -Player.GetComponent<Collider>().bounds.size.y-1f, Player.transform);
+
+    }
+    private void OnEnable()
+    {
+        gameObject.transform.position = Player.transform.position + Vector3.up * 0.1f;
+        SetDamage(Managers.ItemInventory.Items[1016].Count);
+        // gameObject.SetRandomPositionSphere(1, 1, -Player.GetComponent<Collider>().bounds.size.y-1f, Player.transform);
         StartCoroutine(nameof(JumpingStart_co));
     }
 
@@ -31,29 +36,23 @@ public class Item1016Component : ItemPrimitiive
     }
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("Player")) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
+        if (!other.CompareTag("Player")&&other.TryGetComponent(out Entity entity)) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
         {
             if (!_isTakeDamageable)
             {
                 StopCoroutine(nameof(TakeDamage_co));
-                StartCoroutine(nameof(TakeDamage_co), other);
+                StartCoroutine(nameof(TakeDamage_co), entity);
 
             }
 
 
         }
     }
-    private IEnumerator TakeDamage_co(Collider coll)
+    private IEnumerator TakeDamage_co(Entity entity)
     {
         _isTakeDamageable = true;
-        if (coll.TryGetComponent(out Entity entity))
-        {
+
             entity.OnDamage(_damage);
-        }
-        else
-        {
-            Debug.Log($"{coll.gameObject.name}의 Entity를 찾지 못함");
-        }
 
         yield return new WaitForSeconds(damageCoolTime);
         _isTakeDamageable = false;

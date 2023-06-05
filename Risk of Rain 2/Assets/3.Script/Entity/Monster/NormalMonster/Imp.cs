@@ -11,18 +11,12 @@ public class Imp : Entity
     private Animator _impAnimator;
 
     private Transform _targetTransform;
-    private readonly float _rotateSpeed = 2f;
 
     private float _attackCooltime = 1.0f;
     private bool isAttack = false;
-    MonsterHpBar _myHpBar;
+    private MonsterHpBar _myHpBar;
 
     private bool isBlank = false;
-
-
-    [SerializeField]
-    Animation anissmation;
-
 
     //타격 범위도 COliider로 설정해서 몸통 주변 때리면 총알 먹힘
 
@@ -38,9 +32,9 @@ public class Imp : Entity
         TryGetComponent(out _impAgent);
         TryGetComponent(out _impAnimator);
         _myHpBar = GetComponentInChildren<MonsterHpBar>();
-
-        _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _myHpBar.gameObject.SetActive(false);
+        _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
+       
     }
     protected override void OnEnable()
     {

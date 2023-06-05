@@ -7,21 +7,30 @@ public class Item1008SkillComponent : ItemPrimitiive
     private float damageCoolTime = 1.5f;
     private float damage;
     private bool IsExcute = false;
-
+    [SerializeField] float deleteTime = 4.0f;
     //적 죽은 위치에 생성해야 하는데 적 위치를 어떻게 받아올 것인가??
     //세분화를 해야할 것인가?.. 생각할게 만구만
 
+    private void Awake()
+    {
+
+        Init();
+    }
     public override void Init()
     {
         base.Init();
+       
+    }
+    private void OnEnable()
+    {
         damage = _playerStatus.Damage
 * 3.5f * Managers.ItemInventory.Items[1008].Count;
         Managers.Resource.Destroy(gameObject, 4.0f);
     }
-
-    private void Start()
+    private IEnumerator DeleteSkill_co()
     {
-        Init();
+        yield return new WaitForSeconds(deleteTime);
+        Managers.Resource.Destroy(gameObject);
     }
     //장판딜 
     private void OnTriggerStay(Collider other)
@@ -45,7 +54,8 @@ public class Item1008SkillComponent : ItemPrimitiive
         IsExcute = true;
         if (coll.TryGetComponent(out Entity entity))
         {
-            entity.OnDamage(damageCoolTime);
+            entity.OnDamage(damage);
+            ShowDamageUI(coll.gameObject, damage, Define.EDamageType.Item);
         }
         else
         {

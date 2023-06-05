@@ -43,6 +43,7 @@ public class Item1014SkillComponent : ItemPrimitiive
         if ((myTargetEnemy.transform.position - gameObject.transform.position).sqrMagnitude < 10f)
         {
             enemyEntity.OnDamage(damage);
+            ShowDamageUI(myTargetEnemy.gameObject, damage, Define.EDamageType.Item);
             Managers.Resource.Destroy(gameObject);
         }
         else if(((myTargetEnemy.transform.position - gameObject.transform.position).sqrMagnitude > 100f))

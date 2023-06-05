@@ -14,7 +14,7 @@ public class Item1007Skill : NewItemPrimitive, IInBattleItem
             return;
         }
         base.Init();
-        if (Util.Probability(30))
+        if (Util.Probability(10))
         {
             GameObject item1007 = Managers.Resource.Instantiate("Item1007Skill");
 

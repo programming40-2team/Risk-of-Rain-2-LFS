@@ -429,6 +429,11 @@ public class GameUI : UI_Game, IListener
             GetText((int)Texts.InteractionKeyText).text = "E";
             GetText((int)Texts.InteractionContentsText).text = $"양자터널 이동!";
         }
+        else if( _Sender.TryGetComponent(out StartShip startship))
+        {
+            GetText((int)Texts.InteractionKeyText).text = "E";
+            GetText((int)Texts.InteractionContentsText).text = $"탈출정 탈출...";
+        }
 
     }
     private void InteractionOutEvent()

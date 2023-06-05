@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8489900611274337030}
   - component: {fileID: 8491423710398158517}
   - component: {fileID: 7158171503400845497}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: mdlAcidLarvaBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3077701916483159135}
   - component: {fileID: 6156469775082365968}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Item1019Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

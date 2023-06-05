@@ -45,6 +45,8 @@ public class Item1022Skill : ItemPrimitiive
             rigid.AddForce((gameObject.transform.position-rigid.transform.position).normalized* force);
         }
         go.OnDamage(10f);
+        ShowDamageUI(go.gameObject, 10, Define.EDamageType.Item);
+
         yield return new WaitForSeconds(0.1f);
         IsCooltime = false;
     }

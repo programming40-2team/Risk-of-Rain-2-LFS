@@ -22,6 +22,9 @@ public class Lemurian : Entity
     private float[] _skillCoolDownArr = new float[2];
     private bool[] _isSkillRun = new bool[2];
 
+
+    //HpBar 
+    private MonsterHpBar _myHpBar;
     private bool _hasTarget
     {
         get
@@ -41,7 +44,6 @@ public class Lemurian : Entity
         _player = GameObject.FindGameObjectWithTag("Player");
         _lemurianMouthTransform = GameObject.FindGameObjectWithTag("LemurianMouth").transform;
         FireWardPool = GameObject.Find("FireWardPool").GetComponent<ObjectPool>();
-
         _skillCoolDownArr[0] = 2f;
         _skillCoolDownArr[1] = 1f;
 
@@ -49,6 +51,10 @@ public class Lemurian : Entity
         {
             _isSkillRun[i] = false;
         }
+
+
+        _myHpBar = GetComponentInChildren<MonsterHpBar>();
+        _myHpBar.gameObject.SetActive(false);
     }
 
     protected override void OnEnable()
@@ -95,7 +101,7 @@ public class Lemurian : Entity
             //.Play();
             //.PlayOneShot(hitSound);
             _lemurianAnimator.SetTrigger("Hit");
-
+            _myHpBar.gameObject.SetActive(true);
         }
 
         base.OnDamage(damage);
@@ -118,6 +124,7 @@ public class Lemurian : Entity
         StartCoroutine(Destroy_co());
 
         Debug.Log("레무리안 죽는 사운드 넣을거면 여기");
+        _myHpBar.gameObject.SetActive(false);
     }
 
     private IEnumerator Destroy_co()

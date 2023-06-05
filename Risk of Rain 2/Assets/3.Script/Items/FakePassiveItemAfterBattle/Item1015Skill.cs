@@ -6,25 +6,26 @@ using UnityEngine;
 public class Item1015Skill : NewItemPrimitive, IAfterBattleItem
 {
     public int Itemid => 1015;
-    private bool Isitem1015Created;
-    GameObject Item1015 = null;
+    GameObject _item1015 = null;
     public void AfterExcuteSkillEffect(Transform TargetTransform)
     {
         if (Managers.ItemInventory.Items[Itemid].Count.Equals(0))
         {
             return;
         }
-        
-        if (!Isitem1015Created)
+
+        if (GameObject.FindObjectOfType<Item1015SkillComponent>()==null)
         {
-            Item1015 = Managers.Resource.Instantiate("Item1015Skill");
-            Item1015.GetOrAddComponent<Item1015SkillComponent>();
-            Isitem1015Created = true;
+
+            _item1015 = Managers.Resource.Instantiate("Item1015Skill");
+            _item1015.GetOrAddComponent<Item1015SkillComponent>();
         }
         else
         {
+            _item1015.GetOrAddComponent<Item1015SkillComponent>().ReCall(Managers.ItemInventory.Items[Itemid].Count);
 
-            Item1015.GetOrAddComponent<Item1015SkillComponent>().SetSize(Managers.ItemInventory.Items[Itemid].Count);
         }
     }
+
+ 
 }

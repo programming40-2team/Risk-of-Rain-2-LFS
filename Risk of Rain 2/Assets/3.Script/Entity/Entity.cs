@@ -94,6 +94,7 @@ public class Entity : MonoBehaviour
         {
             Managers.ItemApply.ExcuteInSkills();
             Managers.Game.PlayerAttackedDamage += damage;
+
         }
         else
         {
@@ -114,9 +115,16 @@ public class Entity : MonoBehaviour
         if (!gameObject.CompareTag("Player"))
         {
             Managers.ItemApply.ExcuteAfterSkills(gameObject.transform);
+
+            Managers.Game.KillCount++;
+            Managers.Game.Gold += UnityEngine.Random.Range(15, 25 + 10 * (int)Managers.Game.Difficulty);
+            for(int i = 0; i < UnityEngine.Random.Range(1, 3);i++)
+            {
+                Managers.Resource.Instantiate("Gold").SetRandomPositionSphere(3, 3, 3, gameObject.transform);
+            }
+    
+
         }
-        Managers.Game.KillCount++;
-        Managers.Game.Gold += UnityEngine.Random.Range(15, 25 + 10 * (int)Managers.Game.Difficulty);
         if (OnDeath != null)
         {
             OnDeath();

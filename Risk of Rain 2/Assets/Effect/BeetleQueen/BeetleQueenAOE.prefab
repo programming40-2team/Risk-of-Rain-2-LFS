@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585274430393010058}
   serializedVersion: 7
-  lengthInSec: 2
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4813,7 +4813,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585274430393023254}
   serializedVersion: 7
-  lengthInSec: 2
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -4888,7 +4888,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9539,7 +9539,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585274430393036646}
   serializedVersion: 7
-  lengthInSec: 2
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -9614,7 +9614,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 1.75
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14244,7 +14244,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1.5
+    scalar: 5
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -19046,7 +19046,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1.5
+    scalar: 5
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -23794,7 +23794,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1.5
+    scalar: 5
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -28542,7 +28542,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1.5
+    scalar: 5
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -33344,7 +33344,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1.5
+    scalar: 5
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -38121,6 +38121,7 @@ GameObject:
   - component: {fileID: 3617766115164543984}
   - component: {fileID: 3617766115164439030}
   - component: {fileID: 408509659822889253}
+  - component: {fileID: 236220334862092946}
   m_Layer: 0
   m_Name: BeetleQueenAOE
   m_TagString: Untagged
@@ -38171,7 +38172,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1.5
+    scalar: 3
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -42876,3 +42877,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04e0f4f4f7678f428bf64f4b6f7aef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &236220334862092946
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617766115184211546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}

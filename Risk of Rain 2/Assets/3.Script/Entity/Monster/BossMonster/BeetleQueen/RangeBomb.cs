@@ -34,6 +34,7 @@ public class RangeBomb : MonoBehaviour
             _player.GetComponent<Entity>().OnDamage(_damage);
         }
         Debug.Log("BeetleQueen의 RangeBomb이 터지는 소리는 여기");
+        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 

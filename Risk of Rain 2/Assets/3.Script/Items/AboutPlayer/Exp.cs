@@ -28,6 +28,7 @@ public class Exp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerStatus>().IncreaseExp(_Worth);
+            Debug.Log("경험치를 획득하였을 경우 나타나는 소리는 여기");
             Managers.Resource.Destroy(gameObject);
         }
     }

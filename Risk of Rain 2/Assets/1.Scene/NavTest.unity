@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -305,7 +305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193565374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.1, y: 0.5, z: 51.4}
+  m_LocalPosition: {x: 62.7, y: 0.5, z: 156.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -703,6 +703,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 339545990352905915, guid: 6144d82544a192b479cdc7332963a759, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6144d82544a192b479cdc7332963a759, type: 3}
       propertyPath: m_Name
       value: mdlGolem (merge)
@@ -856,6 +860,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 190198, guid: 5511542e98d45d24baa0d5d49bd2f989, type: 3}
   m_PrefabInstance: {fileID: 1665484347}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1665484349
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665484348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: -0.0000000023283064, y: -0.00000023841858, z: -0.00000047683716}
+--- !u!114 &1665484350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665484348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df40b04a110a97b40a10d2e4f1b54afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _golem: {fileID: 2099900994}
 --- !u!1 &1871741600 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3188295312901093557, guid: 6144d82544a192b479cdc7332963a759, type: 3}
@@ -15168,7 +15198,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 30
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 0.07
   m_BaseOffset: 0.013
@@ -15201,7 +15231,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099900993}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -15217,7 +15247,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099900993}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.03
   m_Height: 0.08
@@ -39434,6 +39464,8 @@ GameObject:
   - component: {fileID: 7864163540209294064}
   - component: {fileID: 7864163540196008088}
   - component: {fileID: 7864163540195121522}
+  - component: {fileID: 7864163540209563349}
+  - component: {fileID: 7864163540209563350}
   m_Layer: 0
   m_Name: ArcaneBeamImpact
   m_TagString: Untagged
@@ -39441,6 +39473,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!135 &7864163540209563349
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7864163540209563348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: -3.756213e-10, y: -0.00000035762787, z: 0.0000000037252903}
+--- !u!114 &7864163540209563350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7864163540209563348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd95b0eecb8adfe4584e12766c28c115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _golem: {fileID: 2099900994}
 --- !u!1 &7864163540209731404
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class ClapEffect : MonoBehaviour
+public class ExplosionEffect : MonoBehaviour
 {
     [SerializeField] private Golem _golem;
-    private readonly float _clapCoefficents = 3f;
+    private readonly float _explosionCoefficents = 2.5f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            other.GetComponent<Entity>().OnDamage(_golem.Damage * _clapCoefficents);
+            other.GetComponent<Entity>().OnDamage(_golem.Damage * _explosionCoefficents);
         }
     }
 }

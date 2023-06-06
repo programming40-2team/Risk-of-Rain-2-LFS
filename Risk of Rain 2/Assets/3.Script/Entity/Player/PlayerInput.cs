@@ -46,4 +46,23 @@ public class PlayerInput : MonoBehaviour
         Special = Input.GetKeyDown(KeyCode.R);
         ActiveItem = Input.GetKeyDown(KeyCode.Q);
     }
+
+    private void OnDisable()
+    {
+        Move = 0f;
+        HorizontalDirection = 0f;
+        MoveRaw = 0f;
+        HorizontalDirectionRaw = 0f;
+        Jump = false;
+        Sprint = false;
+        Mouse1 = false;
+        Mouse2 = false;
+        Mouse1Down = false;
+        Mouse2Down = false;
+        Mouse1Up = false;
+        Mouse2Up = false;
+        Shift = false;
+        Special = false;
+        ActiveItem = false;
+    }
 }

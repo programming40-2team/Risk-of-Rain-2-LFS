@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class LoadingScene : BaseScene
 {
     [SerializeField]
-    private Slider ProgreesSlider;
+    private Slider ProgressSlider;
     [SerializeField]
     private TextMeshProUGUI ProgressText;
     private void Start()
@@ -30,39 +30,32 @@ public class LoadingScene : BaseScene
     }
     IEnumerator LoadSceneProcess()
     {
-        AsyncOperation op = SceneManager.LoadSceneAsync(Managers.Scene.GetSceneName( Managers.Scene.NextScene));
+        AsyncOperation op = SceneManager.LoadSceneAsync(Managers.Scene.GetSceneName(Managers.Scene.NextScene));
         op.allowSceneActivation = false;
-
 
         float time = 0f;
         while (!op.isDone)
         {
-            if(op.progress < 0.9f)
+            if (op.progress < 0.9f)
             {
-                yield return null;
-                ProgreesSlider.value = op.progress;
-                ProgressText.text = $"...{op.progress:00}%";
+                ProgressSlider.value = op.progress;
+                ProgressText.text = $"...{op.progress * 100f:00}%";
             }
             else
             {
-
                 time += Time.unscaledDeltaTime;
-                ProgreesSlider.value = Mathf.Lerp(0.9f, 1f, time);
-                if (ProgreesSlider.value >= 1f)
+                ProgressSlider.value = Mathf.Lerp(0.9f, 1f, time);
+                ProgressText.text = $"...{ProgressSlider.value * 100f:00}%";
+
+                if (ProgressSlider.value >= 1f)
                 {
                     op.allowSceneActivation = true;
                     yield break;
                 }
-
-
             }
 
-
-
+            yield return null;
         }
-
-
-
     }
 
 }

@@ -16,6 +16,7 @@ public class MainUI : UI_Scene
         SettingButton,
         QuitButton,
         UserProfileButton,
+        PlayerNameChangeButton
 
     }
     enum Images
@@ -32,7 +33,13 @@ public class MainUI : UI_Scene
         MusicText,
         SettingText,
         QuitText,
+        userInputText,
 
+    }
+    enum GameObjects
+    {
+        PlayerNamePannel,
+        NameInputField,
     }
     public override void Init()
     {
@@ -40,8 +47,9 @@ public class MainUI : UI_Scene
         Bind<Button>(typeof(Buttons));
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Image>(typeof(Images));
+        Bind<GameObject>(typeof(GameObjects));
 
-        GetText((int)Texts.UserProfileText).text = $"프로필 :{_username}";
+        GetText((int)Texts.UserProfileText).text = $"프로필 : {_username}";
         GetText((int)Texts.GameStartText).text = $"게임시작";
         GetText((int)Texts.DicitonaryText).text = $"로그북";
         GetText((int)Texts.MusicText).text = $"음악";
@@ -55,6 +63,29 @@ public class MainUI : UI_Scene
         GetButton((int)Buttons.DicitonaryButton).gameObject
             .BindEvent((PointerEventData data) => ShowLogBook());
         GetImage((int)Images.BackGround).gameObject.SetActive(false);
+   
+
+
+
+        GetButton((int)Buttons.UserProfileButton).gameObject.BindEvent
+            ((PointerEventData data) => Get<GameObject>((int)GameObjects.PlayerNamePannel).gameObject.SetActive(true));
+        GetButton((int)Buttons.PlayerNameChangeButton).gameObject
+       .BindEvent((PointerEventData data) => SetPlayerName());
+
+
+        Get<GameObject>((int)GameObjects.PlayerNamePannel).gameObject.SetActive(false);
+
+    }
+    private void SetPlayerName()
+    {
+        if (Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text != string.Empty && Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text.Length<5)
+            {
+
+                _username = Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text;
+                GetText((int)Texts.UserProfileText).text = $"프로필 :{_username}";
+            Get<GameObject>((int)GameObjects.PlayerNamePannel).gameObject.SetActive(false);
+
+            }
     }
     private void Start()
     {

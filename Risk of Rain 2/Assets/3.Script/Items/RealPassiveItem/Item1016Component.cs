@@ -52,6 +52,7 @@ public class Item1016Component : ItemPrimitiive
     {
         _isTakeDamageable = true;
 
+        ShowDamageUI(entity.gameObject, _damage, Define.EDamageType.Item);
             entity.OnDamage(_damage);
 
         yield return new WaitForSeconds(damageCoolTime);

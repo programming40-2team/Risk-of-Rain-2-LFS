@@ -87,11 +87,11 @@ public class PrimitiveActiveItem : ItemPrimitiive
         if (!item1020Spawned)
         {
             item1020Spawned = true;
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 15; i++)
             {
                 GameObject item1020 = Managers.Resource.Instantiate("Item1020Skill");
                 item1020.GetOrAddComponent<Item1020SkillComponent>();
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
             }
             item1020Spawned = false;
         }
@@ -107,8 +107,7 @@ public class PrimitiveActiveItem : ItemPrimitiive
         Tele1.GetOrAddComponent<Item1025Skill>().SetTeleCode(1);
         Tele2.GetOrAddComponent<Item1025Skill>().SetTeleCode(2);
 
-        Tele1.SetRandomPositionSphere(2, 4, 0,Player.transform);
-        Tele2.SetRandomPositionSphere(200, 400, 0,Player.transform);
+
 
     }
 }

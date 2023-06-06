@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333bca2fcfb65e1438e7c41081477a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProgreesSlider: {fileID: 719740587737179767}
+  ProgressSlider: {fileID: 719740587737179767}
   ProgressText: {fileID: 719740588380566898}
 --- !u!1 &2022197039
 GameObject:

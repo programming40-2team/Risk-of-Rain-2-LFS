@@ -27,7 +27,7 @@ public class Item1020SkillComponent : ItemPrimitiive
     {
         base.Init();
         damage = Player.GetComponent<PlayerStatus>().Damage
-            * 1 * (Managers.ItemInventory.Items[1007].Count);
+            * 1 * (Managers.ItemInventory.Items[1020].Count);
 
     }
     private void OnEnable()
@@ -36,7 +36,14 @@ public class Item1020SkillComponent : ItemPrimitiive
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         _myMeshRender.gameObject.SetActive(true);
         myTargetEnemy = GameObject.FindGameObjectWithTag("Monster");
-        gameObject.SetRandomPositionSphere(10, 14, 7, myTargetEnemy.transform);
+        if(myTargetEnemy!= null )
+        {
+            gameObject.SetRandomPositionSphere(10, 14, 7, myTargetEnemy.transform);
+        }
+        else
+        {
+            gameObject.SetRandomPositionSphere(10, 14, 7, Player.transform);
+        }
         _particleObject.SetActive(false);
         StartCoroutine(nameof(GotoGround_co));
 

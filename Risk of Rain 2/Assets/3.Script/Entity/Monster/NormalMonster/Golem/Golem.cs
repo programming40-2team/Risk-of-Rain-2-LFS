@@ -13,6 +13,7 @@ public class Golem : Entity
 
     private Transform _targetTransform;
     private readonly float _rotateSpeed = 2f;
+    private bool _isSpawn = false;
 
     // 레이저 공격 스킬 관련
     [SerializeField] GameObject _golemAimOrigin;
@@ -25,6 +26,7 @@ public class Golem : Entity
     private readonly float _aimSpeed = 2f;
     private readonly float _laserAttackCooldown = 5f;
     private float _laserAttackCooldownRemain = 0f;
+    private Coroutine _warningLaserCoroutine = null;
 
     // 근접 공격 관련
     [SerializeField] private Transform _clapZone;
@@ -38,6 +40,8 @@ public class Golem : Entity
         TryGetComponent(out _golemAnimator);
 
         _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        _golemAnimator.speed = 0.0f;
+
     }
 
     protected override void OnEnable()
@@ -45,18 +49,27 @@ public class Golem : Entity
         InitStatus();
         InitEffect();
         base.OnEnable();
+        OnDeath -= ToDeath;
+        OnDeath += ToDeath;
+        StartCoroutine(CheckNearPlayer_co());
     }
 
     private void Update()
     {
-        Aiming();
-        Move();
-        CheckAllCooldown();
-        Attack();
-
-        if (Input.GetKeyDown(KeyCode.P))
+        if(_isSpawn && !IsDeath)
         {
-            StartCoroutine(LaserAttack_co());
+            Aiming();
+            Move();
+            CheckAllCooldown();
+            Attack();
+        }
+    }
+
+    public override void OnDamage(float damage)
+    {
+        if(_isSpawn)
+        {
+            base.OnDamage(damage);
         }
     }
 
@@ -80,9 +93,33 @@ public class Golem : Entity
         _explosionEffect.SetActive(false);
         _clapEffect.SetActive(false);
     }
+
+    private IEnumerator CheckNearPlayer_co()
+    {
+        _golemAgent.isStopped = true;
+        while (true)
+        {
+            _golemAgent.SetDestination(_targetTransform.position);
+            yield return null;
+            if (_golemAgent.remainingDistance <= 60f)
+            {
+                _golemAnimator.speed = 1f;
+            }
+            if (_golemAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f &&
+                _golemAnimator.GetCurrentAnimatorStateInfo(0).IsName("Spawn"))
+            {
+                _golemAnimator.SetTrigger("Spawn");
+                _isSpawn = true;
+                _golemAgent.isStopped = false;
+                break;
+            }
+        }
+    }
+
     private void Aiming()
     {
-        if (Physics.Raycast(_golemAimOrigin.transform.position, _golemAimOrigin.transform.forward, out _aimHit, Mathf.Infinity))
+        if (Physics.Raycast(_golemAimOrigin.transform.position, _golemAimOrigin.transform.forward, out _aimHit, Mathf.Infinity
+            , (-1) - (1 << LayerMask.NameToLayer("Monster"))))
         {
             _aimRotation = Quaternion.LookRotation(_targetTransform.position - _golemAimOrigin.transform.position);
             _golemAimOrigin.transform.rotation = Quaternion.Slerp(_golemAimOrigin.transform.rotation, _aimRotation, Time.deltaTime * _aimSpeed);
@@ -92,6 +129,14 @@ public class Golem : Entity
     private void Move()
     {
         _golemAgent.SetDestination(_targetTransform.position);
+        if (_laserAttackCooldownRemain > 0f && _warningLaserCoroutine == null)
+        {
+            _golemAgent.stoppingDistance = 10f;
+        }
+        else
+        {
+            _golemAgent.stoppingDistance = 30f;
+        }
 
         if (_golemAgent.remainingDistance <= _golemAgent.stoppingDistance)
         {
@@ -115,7 +160,7 @@ public class Golem : Entity
         {
             StartCoroutine(LaserAttack_co());
         }
-        if (_seismicSlamCooldownRemain <= 0f && _golemAgent.remainingDistance <= 10)
+        if (_seismicSlamCooldownRemain <= 0f && _golemAgent.remainingDistance <= 8f)
         {
             StartCoroutine(SeismicSlam_co());
         }
@@ -123,14 +168,14 @@ public class Golem : Entity
 
     private IEnumerator LaserAttack_co()
     {
-        Debug.Log("레이저");
         _laserAttackCooldownRemain = _laserAttackCooldown;
-        Coroutine chargelaser = StartCoroutine(WarningLaser_co());
+        _warningLaserCoroutine = StartCoroutine(WarningLaser_co());
         yield return _laserChargeTime;
         Vector3 explosionPos = _aimHit.point;
-        if (chargelaser != null)
+        if (_warningLaserCoroutine != null)
         {
-            StopCoroutine(chargelaser);
+            StopCoroutine(_warningLaserCoroutine);
+            _warningLaserCoroutine = null;
         }
         _golemLaser.enabled = false;
         _chargeEffect.SetActive(false);
@@ -140,13 +185,10 @@ public class Golem : Entity
 
     private IEnumerator WarningLaser_co()
     {
-
-        Debug.Log("여기가 안되나");
         _chargeEffect.SetActive(true);
         _golemLaser.enabled = true;
         while (true)
         {
-            Debug.Log(_golemAimOrigin.transform.position);
             _golemLaser.SetPosition(0, _golemAimOrigin.transform.position);
             _golemLaser.SetPosition(1, _aimHit.point);
             yield return null;
@@ -156,7 +198,6 @@ public class Golem : Entity
 
     private IEnumerator SeismicSlam_co()
     {
-        Debug.Log("클랩");
         _seismicSlamCooldownRemain = _seismicSlamCooldown;
         _golemAnimator.SetTrigger("Smack");
         yield return null;
@@ -164,7 +205,6 @@ public class Golem : Entity
 
     private void SeismicSlamEffect()
     {
-        Debug.Log("애니메이션 이벤트");
         _clapEffect.SetActive(true);
     }
 
@@ -184,5 +224,13 @@ public class Golem : Entity
     {
         CheckCooldown(ref _laserAttackCooldownRemain);
         CheckCooldown(ref _seismicSlamCooldownRemain);
+    }
+
+    private void ToDeath()
+    {
+        _golemAnimator.SetTrigger("Die");
+        StopAllCoroutines();
+        InitEffect();
+        _golemAgent.ResetPath();
     }
 }

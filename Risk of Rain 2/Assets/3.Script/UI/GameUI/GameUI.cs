@@ -39,10 +39,11 @@ public class GameUI : UI_Game, IListener
 
         StageImage,
 
-        TeleCheckFalse,
-        TeleCheckTrue,
-        TeleCheckComplete,
+
         ItemInformationImage,
+
+        TeleCheckTrue1,
+        TeleCheckTrue2,
 
     }
     enum Texts
@@ -59,7 +60,9 @@ public class GameUI : UI_Game, IListener
         StageNumber,
         StageLevel,
 
-        ObjectContents,
+        ObjectContents1,
+        ObjectContents2,
+
         PlayerLevelText,
 
         PlayerHpText,
@@ -85,6 +88,12 @@ public class GameUI : UI_Game, IListener
         InteractionPannel,
         ItemInformationPannel,
 
+
+
+        NoneTelePort,
+        ActiveTelePort,
+
+
     }
     enum Buttons
     {
@@ -106,7 +115,7 @@ public class GameUI : UI_Game, IListener
     public override void Init()
     {
         base.Init();
-        Managers.Game.PlayingTIme = Time.time;
+        Managers.Game.PlayingTime = Time.time;
         Bind<GameObject>(typeof(GameObjects));
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Slider>(typeof(Sliders));
@@ -168,6 +177,8 @@ public class GameUI : UI_Game, IListener
         Get<GameObject>((int)GameObjects.InteractionPannel).SetActive(false);
         Get<GameObject>((int)GameObjects.BagPannel).SetActive(false);
         Get<GameObject>((int)GameObjects.ItemInformationPannel).SetActive(false);
+        Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(false);
+
     }
     private void InitTexts()
     {
@@ -180,12 +191,12 @@ public class GameUI : UI_Game, IListener
         GetText((int)Texts.GoldText).text = $"{0}";
         GetText((int)Texts.StageNumber).text = $"스테이지 {1}";
         GetText((int)Texts.StageLevel).text = $"레벨. {1}";
-        GetText((int)Texts.ObjectContents).text = $"{"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오"}";
+        GetText((int)Texts.ObjectContents1).text = $"{"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오"}";
         GetText((int)Texts.PlayerLevelText).text = $"{1}";
     }
     private void FixedUpdate()
     {
-        RunTime = Time.time - Managers.Game.PlayingTIme;
+        RunTime = Time.time - Managers.Game.PlayingTime;
         int minutes = (int)(RunTime / 60); // 분
         int seconds = (int)(RunTime % 60); // 초
 
@@ -256,12 +267,8 @@ public class GameUI : UI_Game, IListener
         GetImage((int)Images.SkillShiftFillImage).color = FullChargeSkillFillImageColor;
         GetImage((int)Images.SkillRFillImage).color = FullChargeSkillFillImageColor;
         GetImage((int)Images.SkillQFillImage).color = FullChargeSkillFillImageColor;
-
-
-
-
-        GetImage((int)Images.TeleCheckTrue).enabled = false;
-        GetImage((int)Images.TeleCheckComplete).enabled = false;
+        GetImage((int)Images.TeleCheckTrue1).enabled = false;
+        GetImage((int)Images.TeleCheckTrue2).enabled = false;
     }
     private void DifficultyImageChagngeEvent(int _)
     {
@@ -366,31 +373,36 @@ public class GameUI : UI_Game, IListener
             .sprite = Managers.Resource.LoadSprte($"{Managers.Data.ItemDataDict[itemcode].iconkey}");
 
     }
+    //효과 넣으려면 코루틴? 으로 해야할듯
     private void GameGoalEvent()
     {
-        GetImage((int)Images.TeleCheckFalse).enabled = false;
-        GetImage((int)Images.TeleCheckTrue).enabled = false;
-        GetImage((int)Images.TeleCheckComplete).enabled = false;
+        Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(false);
+        Get<GameObject>((int)GameObjects.NoneTelePort).SetActive(false);
+        GetImage((int)Images.TeleCheckTrue1).enabled = false;
+        GetImage((int)Images.TeleCheckTrue2).enabled = false;
 
         switch (Managers.Game.GameState)
         {
             case Define.EGameState.NonTelePort:
-                GetText((int)Texts.ObjectContents).text = "<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오";
-                GetImage((int)Images.TeleCheckFalse).enabled = true;
+                Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(true);
+                GetText((int)Texts.ObjectContents1).text = "<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오";
+                GetText((int)Texts.ObjectContents2).text = "";
                 break;
             case Define.EGameState.ActiveTelePort:
-                GetText((int)Texts.ObjectContents).text = "<b>보스를 처치하십시오!</b>";
+                GetText((int)Texts.ObjectContents2).text = "<b>보스를 처치하십시오!</b>";
+                GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss/50f:00})";
                 Get<GameObject>((int)GameObjects.BossPannel).SetActive(true);
-                GetImage((int)Images.TeleCheckFalse).enabled = true;
                 break;
             case Define.EGameState.CompeleteTelePort:
-                GetText((int)Texts.ObjectContents).text = "텔리포트로 들어가십시오";
-                GetImage((int)Images.TeleCheckComplete).enabled = true;
+                GetText((int)Texts.ObjectContents1).text = "텔리포트로 들어가십시오";
+                GetText((int)Texts.ObjectContents2).text = "";
+                Get<GameObject>((int)GameObjects.BossPannel).SetActive(false);
+                GetImage((int)Images.TeleCheckTrue2).enabled = true;
                 break;
         }
 
     }
-
+   
     private void InteractionInTextChangeEvent(Component _Sender)
     {
         Get<GameObject>((int)GameObjects.InteractionPannel).SetActive(true);

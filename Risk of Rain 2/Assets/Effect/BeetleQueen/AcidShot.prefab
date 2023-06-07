@@ -4858,7 +4858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72594b202c1753c4ea96826eda9a03e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _beetleQueenObject: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
+  _beetleQueenObject: {fileID: 2715680452440606212, guid: 5277dc83ff61103448fa7e20838254a4, type: 3}
   _acidArea: {fileID: 7555681936321933156}
 --- !u!136 &7763243051945844388
 CapsuleCollider:

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Altar : MonoBehaviour
 {
-    private MeshRenderer _objectMesh;
-    private Material _mat;
-    [SerializeField] Material _highlightMaterial;
+    [SerializeField] Material _outline;
+    [SerializeField] Renderer _renderer;
+    public List<Material> materialList = new List<Material>();
 
     [SerializeField] GameObject _bossPrefab;
     [SerializeField] Transform _spawnPoint;
@@ -14,10 +14,10 @@ public class Altar : MonoBehaviour
 
     private void Awake()
     {
-        _objectMesh = GetComponent<MeshRenderer>();
-        _mat = _objectMesh.material;
+        _renderer = this.GetComponent<Renderer>();
         SoundManager.instance.PlayBGM("Stage1Bgm");
     }
+
     private void Start()
     {
         if (_bossRazer.isPlaying)
@@ -26,14 +26,24 @@ public class Altar : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other) // 외곽선 적용
+    {
+        if (other.CompareTag("Player"))
+        {
+            materialList.Clear();
+            materialList.AddRange(_renderer.sharedMaterials);
+            materialList.Add(_outline);
+
+            _renderer.materials = materialList.ToArray();
+        }
+    }
+    private void OnTriggerStay(Collider other) 
     {
         Transform bossSpawnPoint = _spawnPoint;
 
         if (other.CompareTag("Player"))
         {
             Debug.Log("입장");
-            Highlight();
 
             //UI이벤트 발생
             Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
@@ -41,7 +51,7 @@ public class Altar : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("입력 및 보스 생성");
-                
+
                 Instantiate(_bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);  //제단에서 e키를 누르면 보스가 소환될 지점
                 BossRazer();
 
@@ -51,11 +61,16 @@ public class Altar : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) // 외곽선 해제
     {
         if (other.CompareTag("Player"))
         {
-            ResetHighlight();
+            materialList.Clear();
+            materialList.AddRange(_renderer.sharedMaterials);
+            materialList.Remove(_outline);
+
+            _renderer.materials = materialList.ToArray();
+
             Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionOut, this);
         }
     }
@@ -68,13 +83,4 @@ public class Altar : MonoBehaviour
         }
     }
 
-    private void Highlight()
-    {
-        _objectMesh.material = _highlightMaterial;
-    }
-
-    private void ResetHighlight()
-    {
-        _objectMesh.material = _mat;
-    }
 }

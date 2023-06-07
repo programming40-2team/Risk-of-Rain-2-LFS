@@ -10509,7 +10509,7 @@ MonoBehaviour:
   _renderer: {fileID: 0}
   materialList:
   - {fileID: 2100000, guid: 393ae00dca0039a40b65b56d80f60062, type: 2}
-  _bossPrefab: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
+  _bossPrefab: {fileID: 2715680452440606212, guid: 5277dc83ff61103448fa7e20838254a4, type: 3}
   _spawnPoint: {fileID: 1170135074897828229}
   _bossRazer: {fileID: 1170135074730003694}
 --- !u!1 &1170135075987498265

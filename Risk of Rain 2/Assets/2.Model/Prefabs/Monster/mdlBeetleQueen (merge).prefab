@@ -692,7 +692,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1496763057405123415}
   - component: {fileID: 4468926546044193861}
-  - component: {fileID: 651697111513675799}
   m_Layer: 9
   m_Name: BeetleQueenMesh
   m_TagString: Untagged
@@ -816,18 +815,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.01182447, y: 0.054081447, z: 0.018707559}
     m_Extent: {x: 0.09821333, y: 0.06822311, z: 0.11985856}
   m_DirtyAABB: 0
---- !u!114 &651697111513675799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802332014560878662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01400405c9ed605489ca11d9b72e0b1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1867672301832980632
 GameObject:
   m_ObjectHideFlags: 0

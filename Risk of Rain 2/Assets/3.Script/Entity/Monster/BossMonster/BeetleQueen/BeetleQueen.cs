@@ -6,7 +6,7 @@ public class BeetleQueen : Entity
     // TODO : 난이도에 따라 MaxHealth 증가시키기
     [SerializeField] private MonsterData _beetleQueenData;
     [SerializeField] Material _material;
-    [SerializeField] MeshCollider _meshColider;
+    [SerializeField] MeshCollider _meshCollider;
 
     private GameObject _player;
 
@@ -45,7 +45,7 @@ public class BeetleQueen : Entity
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
         AcidBallPool = GameObject.Find("AcidBallPool").GetComponent<ObjectPool>();
         WardPool = GameObject.Find("WardPool").GetComponent<ObjectPool>();
-        _meshColider = MeshCollider.FindObjectOfType<MeshCollider>();
+        _meshCollider = FindObjectOfType<MeshCollider>();
     }
 
     protected override void OnEnable()
@@ -62,7 +62,7 @@ public class BeetleQueen : Entity
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
 
-        _meshColider.enabled = true;
+        _meshCollider.enabled = true;
     }
 
     public override void OnDamage(float damage)
@@ -92,7 +92,7 @@ public class BeetleQueen : Entity
     {
         base.Die();
         BeetleQueenAnimator.SetTrigger("Die");
-        _meshColider.enabled = false;
+        _meshCollider.enabled = false;
         // 보스 Destroy
 
         //보스 종료 시 텔레포트 이벤트 완료!

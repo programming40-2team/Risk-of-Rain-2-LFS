@@ -5,6 +5,7 @@ public class AcidSkill : MonoBehaviour
 {
     private BeetleQueen _beetleQueen;
     [SerializeField] private GameObject _beetleQueenObject;
+    [SerializeField] MeshCollider _meshCollider;
     private float _shootingSpeed = 40f;
     private float _damage = 0;
 
@@ -23,6 +24,7 @@ public class AcidSkill : MonoBehaviour
     private void OnEnable()
     {
         _beetleQueen = FindObjectOfType<BeetleQueen>();
+        _meshCollider = FindObjectOfType<MeshCollider>();
         _acidShotEffect.Play();
         _acidArea.Stop();
     }
@@ -62,7 +64,7 @@ public class AcidSkill : MonoBehaviour
  
     private void OnParticleCollision(GameObject collObj)
     {
-        if (collObj != _beetleQueenObject)
+        if (collObj.GetComponent<Collider>() != _meshCollider)
         {
             if (collObj.TryGetComponent(out Entity en))
             {

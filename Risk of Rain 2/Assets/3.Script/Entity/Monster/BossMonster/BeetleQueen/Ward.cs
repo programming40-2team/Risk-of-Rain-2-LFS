@@ -8,6 +8,7 @@ public class Ward : MonoBehaviour
     private Transform _beetleQueenButtTransform;
     private BeetleQueen _beetleQueen;
     [SerializeField] private GameObject _beetleQueenObject;
+    [SerializeField] MeshCollider _meshCollider;
 
     private float _damage = 0f;
 
@@ -28,7 +29,8 @@ public class Ward : MonoBehaviour
     {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").gameObject.transform;
         _beetleQueen = FindObjectOfType<BeetleQueen>();
-        if(_beetleQueen != null)
+        _meshCollider = FindObjectOfType<MeshCollider>();
+        if (_beetleQueen != null)
         {
             _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
             _damage = _beetleQueen.Damage * 1.3f;
@@ -81,7 +83,7 @@ public class Ward : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject != _beetleQueenObject)
+        if (col.gameObject.GetComponent<Collider>() != _meshCollider)
         {
             if (col.gameObject.TryGetComponent(out Entity en))
             {

@@ -40,5 +40,12 @@ public class ObjectPool : MonoBehaviour
         poolingQueue.Enqueue(obj);
     }
 
+    /// <summary>
+    /// SetActive 안 건드리고 큐에만 반환합니다.
+    /// </summary>
+    public void EnqueueObject(GameObject obj)
+    {
+        poolingQueue.Enqueue(obj);
+    }
 }
 

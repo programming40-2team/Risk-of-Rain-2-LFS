@@ -53,6 +53,12 @@ public class AcidSkill : MonoBehaviour
     {
         _beetleQueen.AcidBallPool.ReturnObject(gameObject);
     }
+
+    private IEnumerator Delete_co()
+    {
+        yield return new WaitForSeconds(15f);
+        DeleteAcidBile();
+    }
  
     private void OnParticleCollision(GameObject collObj)
     {
@@ -74,6 +80,7 @@ public class AcidSkill : MonoBehaviour
                 _acidShotRigidbody.velocity = Vector3.zero;
                 _acidShotEffect.Stop();
                 _acidArea.Play();
+                StartCoroutine(Delete_co());
             }
         }
     }

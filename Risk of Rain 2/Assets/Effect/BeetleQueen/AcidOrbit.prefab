@@ -9537,6 +9537,7 @@ GameObject:
   - component: {fileID: 2701549264801273412}
   - component: {fileID: 2701549264800962082}
   - component: {fileID: 2813629643557824920}
+  - component: {fileID: 3271338331293777889}
   m_Layer: 0
   m_Name: AcidOrbit
   m_TagString: Untagged
@@ -14407,6 +14408,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _beetleQueenObject: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
+--- !u!136 &3271338331293777889
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2701549264781314404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.8
+  m_Height: 0.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8661707524950175760
 GameObject:
   m_ObjectHideFlags: 0

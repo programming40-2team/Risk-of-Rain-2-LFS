@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _playerRigidbody;
     private PlayerInput _playerInput;
     private PlayerStatus _playerStatus;
+    private CapsuleCollider _playerCollider;
+    private float _colliderRadius;
 
     //플레이어 스테이터스
     private readonly WaitForSeconds _jumpCheckTime = new WaitForSeconds(0.02f);
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             _isJumping = value;
             if (IsJumping == true)
             {
-               // Managers.ItemApply.ApplyPassiveSkill(1016);
+                // Managers.ItemApply.ApplyPassiveSkill(1016);
             }
 
         }
@@ -57,22 +59,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-
-
     private void Awake()
     {
         TryGetComponent(out _playerAnimator);
         TryGetComponent(out _playerRigidbody);
         TryGetComponent(out _playerInput);
         TryGetComponent(out _playerStatus);
+        TryGetComponent(out _playerCollider);
     }
     private void Start()
     {
         _cameraTransform = Camera.main.transform;
         _jumpForce *= _massCoefficient / _playerStatus.Mass;
         _jumpCount = _playerStatus.MaxJumpCount;
+        _colliderRadius = _playerCollider.radius;
     }
+
     private void Update()
     {
         CheckGround();
@@ -97,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         _moveDirection = _move.x * transform.right + _move.y * transform.forward;
         if (_isSprinting)
         {
-            _distance = 1.5f * _playerStatus.MoveSpeed  * Time.deltaTime * _moveDirection.normalized;
+            _distance = 1.5f * _playerStatus.MoveSpeed * Time.deltaTime * _moveDirection.normalized;
             _playerAnimator.SetFloat("Move", 1.5f * _playerInput.Move);
         }
         else
@@ -138,8 +140,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckGround()
     {
-        if (Physics.Raycast(transform.position + new Vector3(0, _yOffset, 0), Vector3.down, out _, _groundCheckDistance,
-            (-1) - (1 << (int)Define.LayerMask.Skill)) && _isJumping)
+        LayerMask layerMask = (-1) - (1 << (int)Define.LayerMask.Skill);
+        if ((Physics.Raycast(transform.position + new Vector3(_colliderRadius, _yOffset, _colliderRadius), Vector3.down, out _, _groundCheckDistance, layerMask) ||
+            Physics.Raycast(transform.position + new Vector3(-_colliderRadius, _yOffset, -_colliderRadius), Vector3.down, out _, _groundCheckDistance, layerMask) ||
+            Physics.Raycast(transform.position + new Vector3(_colliderRadius, _yOffset, -_colliderRadius), Vector3.down, out _, _groundCheckDistance, layerMask) ||
+            Physics.Raycast(transform.position + new Vector3(-_colliderRadius, _yOffset, _colliderRadius), Vector3.down, out _, _groundCheckDistance, layerMask)) && IsJumping)
         {
             _playerAnimator.SetBool("Jump", false);
             JumpCount = _playerStatus.MaxJumpCount;

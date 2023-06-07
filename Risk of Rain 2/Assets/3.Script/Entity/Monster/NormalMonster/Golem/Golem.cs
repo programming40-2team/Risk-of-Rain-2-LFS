@@ -118,7 +118,8 @@ public class Golem : Entity
 
     private void Aiming()
     {
-        if (Physics.Raycast(_golemAimOrigin.transform.position, _golemAimOrigin.transform.forward, out _aimHit, Mathf.Infinity))
+        if (Physics.Raycast(_golemAimOrigin.transform.position, _golemAimOrigin.transform.forward, out _aimHit, Mathf.Infinity
+            , (-1) - (1 << LayerMask.NameToLayer("Monster"))))
         {
             _aimRotation = Quaternion.LookRotation(_targetTransform.position - _golemAimOrigin.transform.position);
             _golemAimOrigin.transform.rotation = Quaternion.Slerp(_golemAimOrigin.transform.rotation, _aimRotation, Time.deltaTime * _aimSpeed);

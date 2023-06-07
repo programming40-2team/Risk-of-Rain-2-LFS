@@ -148,7 +148,7 @@ public class BeetleQueen : Entity
             {
                 pos = obj.point;
                 pos = new Vector3(pos.x, pos.y + 0.2f, pos.z);
-                Instantiate(BombRange, pos, Quaternion.identity);
+                Instantiate(BombRange, pos, Quaternion.Euler(-90, 0, 0));
             }
         }
         IsRun = false;

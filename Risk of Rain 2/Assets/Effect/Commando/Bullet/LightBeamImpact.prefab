@@ -528,7 +528,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 0
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 999
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -5374,7 +5374,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 999
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -10052,7 +10052,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 0
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 999
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -14243,6 +14243,7 @@ GameObject:
   - component: {fileID: 447906}
   - component: {fileID: 19925952}
   - component: {fileID: 19854152}
+  - component: {fileID: 151523780483494284}
   m_Layer: 0
   m_Name: LightBeamImpact
   m_TagString: Untagged
@@ -14308,7 +14309,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 99
   m_RenderMode: 0
   m_SortMode: 3
   m_MinParticleSize: 0
@@ -14884,7 +14885,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 999
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -19043,6 +19044,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &151523780483494284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2057f9680db81394d8b265dc7bec6f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &179242
 GameObject:
   m_ObjectHideFlags: 0
@@ -19589,7 +19602,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 300
+    maxNumParticles: 999
     size3D: 0
     rotation3D: 0
     gravityModifier:

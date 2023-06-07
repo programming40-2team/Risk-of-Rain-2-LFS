@@ -3148,7 +3148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6307788010862198243, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -59.316406
+      value: -59.966408
       objectReference: {fileID: 0}
     - target: {fileID: 6307788010862198243, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3185,6 +3185,10 @@ PrefabInstance:
     - target: {fileID: 6307788010862198269, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}
       propertyPath: m_Name
       value: CM vcam1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307788012427274632, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}
+      propertyPath: m_TrackedObjectOffset.y
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 6307788012427274638, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}
       propertyPath: m_AmplitudeGain
@@ -12474,7 +12478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423871551}
   m_LocalRotation: {x: 0.03838781, y: 0, z: 0, w: 0.9992629}
-  m_LocalPosition: {x: -10.606101, y: -59.316406, z: -5.3699837}
+  m_LocalPosition: {x: -10.606101, y: -59.966408, z: -5.3699837}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

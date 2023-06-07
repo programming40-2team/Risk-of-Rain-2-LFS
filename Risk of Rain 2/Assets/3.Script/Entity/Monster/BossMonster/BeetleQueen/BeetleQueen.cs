@@ -72,10 +72,10 @@ public class BeetleQueen : Entity
 
 
             //Hp Slider 데미지 입을 떄 마다 갱신되도록 연동
-            Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
+            
         }
-
         base.OnDamage(damage);
+        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
     }
 
     public override void Die()

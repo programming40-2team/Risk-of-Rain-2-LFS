@@ -15,7 +15,6 @@ public class BulletProjectile : Projectile
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ÃÑ¾ËÀÌ ºÎµúÈû");
         float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
         if (other.TryGetComponent(out _entity))
         {

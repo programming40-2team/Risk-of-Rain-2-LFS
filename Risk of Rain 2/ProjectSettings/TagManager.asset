@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - LemurianMouth
   - Goal Point
+  - GoalPoint
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,7 @@ TagManager:
   - Monster
   - 
   - Skill
-  - 
-  - 
+  - ETCObject
   - 
   - 
   - 

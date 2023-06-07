@@ -7,7 +7,7 @@ public class ItemRandomSpawn : MonoBehaviour
     [SerializeField] GameObject[] _spawnPrefab;
     [SerializeField] Transform[] _spawnPoint;
 
-    private void Awake()
+    private void Start()
     {
         ShuffleSpawnPoints();
 
@@ -15,7 +15,8 @@ public class ItemRandomSpawn : MonoBehaviour
 
         for (int i = 0; i < spawnPointNum; i++)
         {
-            Instantiate(_spawnPrefab[i], _spawnPoint[i].position, _spawnPoint[i].rotation);
+          GameObject go= Managers.Resource.Instantiate(_spawnPrefab[i].name, _spawnPoint[i].position, _spawnPoint[i]);
+            go.transform.parent = _spawnPoint[i];
         }
     }
 

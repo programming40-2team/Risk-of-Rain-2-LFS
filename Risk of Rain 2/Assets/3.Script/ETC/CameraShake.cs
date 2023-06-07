@@ -29,6 +29,7 @@ public class CameraShake : MonoBehaviour
     /// </summary>
     /// <param name="intensity"></param>
     /// <param name="time"></param>
+    /// 
     public void ShakeCamera(float intensity, float time)
     {
         _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;

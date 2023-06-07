@@ -105,8 +105,9 @@ public class CommandoSkill : MonoBehaviour
 
     private void Aiming()
     {
-        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity,
-            (-1) - (1 << LayerMask.NameToLayer("Player")) | (-1) - (1 << (int)Define.LayerMask.Skill)))
+
+        int layerMask = (1 << LayerMask.NameToLayer("Monster")) + (1 << LayerMask.NameToLayer("Environment"));
+        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _aimHit, Mathf.Infinity,layerMask))
         {   
             _aimY = _aimHit.point.y - _centerMuzzle.transform.position.y - _centerAimY;
             _playerAnimator.SetFloat("Aim", _aimY / _centerAimY);

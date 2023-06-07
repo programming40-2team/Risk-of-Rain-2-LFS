@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9105094667292864269}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKFrontLegTarget.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4823403376379238205}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox (1) 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4292747086635454418}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger3.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4468246636014793511}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8009401123122243080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKFrontLegPole.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6630008049718845367}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lowerArm.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3101334820486147007}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6555761617225817479}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 939325137985618976}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: upperArm.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4451106511672251105}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crown, Small_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 3947812199606246929}
   - component: {fileID: 2137207061607402921}
   - component: {fileID: 641029074613782272}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mdlBeetleQueen (merge)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4060764623315756914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2024944202061119271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AimAssist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1067759650999630269}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKFrontLegTarget.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5749188435411531881}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKFrontLegPole.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6836458949810041887}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: upperArm.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 688213193421341308}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: thumb.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,7 +617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400343998433605215}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: backCalf.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6492415414490268}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger1.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1496763057405123415}
   - component: {fileID: 4468926546044193861}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BeetleQueenMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -810,7 +810,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5309592756897977186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKBackLegPole.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -841,7 +841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6260538772820437278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: frontCalf.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5502367486616683167}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hand.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3342080825087681295}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,7 +936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5593943072553143643}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKFrontLegTarget.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -967,7 +967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 314037477256741210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: frontThigh.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3209021082869468090}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1034,7 +1034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5418506639730798288}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKBackLegPole.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1766496046225434077}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6292779057958983018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BurrowCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1131,7 +1131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3741421414263011282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: backCalf.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1161,7 +1161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6941095122701807960}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger2.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1191,7 +1191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3175020195318866085}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger1.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,7 +1221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5777671414193262766}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKBackLegTarget.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1251,7 +1251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4583390819041478213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: frontCalf.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1283,7 +1283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6319858048569324731}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKArmPole.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1313,7 +1313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3479090221327133520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1343,7 +1343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8553727443197727162}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKGripTarget.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1373,7 +1373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4523669196540637834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LogbookTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1404,7 +1404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8334363306886585674}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4504159221230874362}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mandible.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1474,7 +1474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2795665398487283086}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1504,7 +1504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5169764086332484816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EyeLights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1536,7 +1536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430505227350585667}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mouth
   m_TagString: BeetleQueenMouth
   m_Icon: {fileID: 0}
@@ -1566,7 +1566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1567623348989467833}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1596,7 +1596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8376175703528198779}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: frontCalf.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1626,7 +1626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 728074335087148119}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mandible.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1657,7 +1657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2705714840014100541}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: frontThigh.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1690,7 +1690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2067597158902150163}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1720,7 +1720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8119934721822788268}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox (2) 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1750,7 +1750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 520149359647615602}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BackShell_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5339988397868031712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1810,7 +1810,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5214642392755552156}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BeetleQueenArmature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1841,7 +1841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5454329804488721504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKBackLegTarget.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1872,7 +1872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5226294640414246448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKBackLegTarget.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1903,7 +1903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5834007430427452693}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger1.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1934,7 +1934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2257151608961741277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger3.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1964,7 +1964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 18040338162020002}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: thumb.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1994,7 +1994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1977371866414748295}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKArmPole.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2024,7 +2024,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5872930727567111586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKBackLegTarget.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2054,7 +2054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661208955889564173}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crown, Big_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2084,7 +2084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5570627946601636832}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mandible.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2114,7 +2114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5557874001812352224}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: backCalf.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2146,7 +2146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3553426185362266520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2176,7 +2176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7500837002576645430}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKBackLegPole.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2206,7 +2206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2733946578471282616}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2236,7 +2236,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8074995893245315397}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: frontCalf.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2266,7 +2266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8377786593890010961}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKPlant 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2296,7 +2296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3534262265206738205}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger1.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2327,7 +2327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6622538134972147225}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ButtShell_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2357,7 +2357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8351351517397546360}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKArmTarget.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2388,7 +2388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8822787910331796133}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: backCalf.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2420,7 +2420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5825720332794715650}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger2.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2450,7 +2450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7423717809570797277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger3.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2481,7 +2481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1892590886078497072}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKGripTarget.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2512,7 +2512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1835100214767252369}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: thumb.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2543,7 +2543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3339818148578278334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKBackLegPole.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2574,7 +2574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2694446993163927524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2604,7 +2604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4727276102378857131}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stomach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2635,7 +2635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5974195780642151302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2666,7 +2666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7089918633148253350}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mandible.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2696,7 +2696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3239223589036076444}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2726,7 +2726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5723245459707278120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lowerArm.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2759,7 +2759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7238558757253440503}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKFrontLegPole.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2789,7 +2789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7564574808043601621}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LogbookCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2819,7 +2819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1908321698359748262}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mdlBeetleQueen (merge)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2850,7 +2850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6353430089361771912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hand.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2884,7 +2884,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9214663825438503018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKFrontLegTarget.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2915,7 +2915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9117705665389503991}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ButtShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2947,7 +2947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 553942113361968741}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKArmPole.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2978,7 +2978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3215036222060942105}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKArmPole.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3009,7 +3009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2487132065011232623}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKFrontLegPole.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3040,7 +3040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4884493101378764983}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3070,7 +3070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4584492600220911099}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKGripTarget.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3100,7 +3100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 390825781466848819}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crown, Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3131,7 +3131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4674167581977479895}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKGripTarget.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3162,7 +3162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6760256725407827052}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger2.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3193,7 +3193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6197851756083801763}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BackShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3224,7 +3224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 947496675926087762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: thumb.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3255,7 +3255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8628794766418738899}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKHelperParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3297,7 +3297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9210201799969091887}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: backThigh.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3329,7 +3329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310035293376351546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: backThigh.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3361,7 +3361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2783861055350526055}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Butt
   m_TagString: BeetleQueenButt
   m_Icon: {fileID: 0}
@@ -3391,7 +3391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6828129168362766357}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IKArmTarget.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3422,7 +3422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3084260643856663371}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3454,7 +3454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8719515279281348930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CameraPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3484,7 +3484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 141536573283183234}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger2.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3515,7 +3515,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5029639623392755258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox (1) 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3545,7 +3545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1034899799315669149}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: finger3.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3575,7 +3575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8699923499936674340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mdlBeetleQueen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3610,7 +3610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3638818082220905503}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ROOT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3642,7 +3642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6985361646575028560}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox (1) 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3672,7 +3672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3572680090884379888}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3702,7 +3702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 323008007110031765}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crown, Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}

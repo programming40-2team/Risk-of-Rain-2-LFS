@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Stage1 : BaseScene
 {
-   
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         Managers.Resource.LoadAllAsync<Object>("Asynchronous_Load", (key, count, totalCount) =>
         {
@@ -19,8 +17,8 @@ public class Stage1 : BaseScene
             }
         });
         SceneType = Define.Scene.Stage1;
-
     }
+  
     void StartLoaded()
     {
         Init();

@@ -76,7 +76,7 @@ public class ItemContainer : MonoBehaviour
 
                     GameObject _ItemEffect=Managers.Resource.Instantiate("ItemOutEffect");
                     _ItemEffect.transform.position = gameObject.transform.position;
-                    _ItemEffect.GetComponent<ItemOutEffect>()._targetPosition = _item.SetRandomPositionSphere();
+                    _ItemEffect.GetComponent<ItemOutEffect>()._targetPosition = _item.SetRandomPositionSphere(1,2,1);
 
                     if (TryGetComponent(out Animator _animoator))
                     {

@@ -32,10 +32,10 @@ public class BeetleQueenControl : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(Debug_co());
+        StartCoroutine(Attack_co());
     }
 
-    private IEnumerator Debug_co()
+    private IEnumerator Attack_co()
     {
         while(!_beetleQueen.IsDeath)
         {

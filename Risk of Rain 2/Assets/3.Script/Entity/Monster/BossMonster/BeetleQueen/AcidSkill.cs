@@ -76,7 +76,7 @@ public class AcidSkill : MonoBehaviour
                     DeleteAcidBile();
                 }
             }
-            else
+            else if (collObj.CompareTag("Ground"))
             {
                 Debug.Log("AcidBall이 AcidPool로 변하는 사운드는 여기 (오브젝트와 부딪혀 폭발하는? 사운드)");
                 _acidShotRigidbody.velocity = Vector3.zero;

@@ -95,7 +95,7 @@ public class Ward : MonoBehaviour
                     DeleteWard();
                 }
             }
-            else
+            else if (col.gameObject.CompareTag("Ground"))
             {
                 Debug.Log("BeetleQueen의 Ward가 벽이나 바닥에 닿는 소리는 여기");
                 // TODO :  터져서 사라지는 효과 코루틴으로 넣기

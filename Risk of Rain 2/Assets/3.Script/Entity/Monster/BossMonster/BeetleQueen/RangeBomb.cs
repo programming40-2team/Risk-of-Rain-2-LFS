@@ -7,7 +7,7 @@ public class RangeBomb : MonoBehaviour
     private BeetleQueen _beetleQueen;
     private GameObject _player;
     private bool _isAddForce = false;
-    private float _force = 600f;
+    private float _force = 1000f;
     private float _damage = 0;
     private void OnEnable()
     {

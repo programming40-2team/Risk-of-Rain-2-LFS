@@ -58,7 +58,7 @@ public class BeetleQueen : Entity
         Debug.Log("DamageAscent : " + DamageAscent);
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
-
+        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);  
 
     }
 
@@ -72,10 +72,11 @@ public class BeetleQueen : Entity
 
 
             //Hp Slider 데미지 입을 떄 마다 갱신되도록 연동
-            Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
+          
         }
 
         base.OnDamage(damage);
+        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
     }
 
     public override void Die()
@@ -101,7 +102,7 @@ public class BeetleQueen : Entity
         HealthRegenAscent = data.RegenAscent;
 
         //첫 생성 시 보스 Hp 조절을 위한 알림
-        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
+       
     }
 
     /// <summary>

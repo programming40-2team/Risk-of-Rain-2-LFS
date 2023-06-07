@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2064050224658511661}
   - component: {fileID: 2064050224658511660}
   - component: {fileID: 54856796357637936}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Item1008Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5523439502161594312}
   - component: {fileID: 5523439502176801808}
   - component: {fileID: 5523439502175313216}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: WillOTheWisp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4861,7 +4861,7 @@ GameObject:
   - component: {fileID: 5523439502161590132}
   - component: {fileID: 5523439502176801368}
   - component: {fileID: 5523439502175365700}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Embers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9627,7 +9627,7 @@ GameObject:
   - component: {fileID: 5523439502161602826}
   - component: {fileID: 5523439502176775746}
   - component: {fileID: 5523439502175340402}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: VerticalRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14429,7 +14429,7 @@ GameObject:
   - component: {fileID: 5523439502161482006}
   - component: {fileID: 5523439502176700344}
   - component: {fileID: 5523439502176730432}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ConeRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19231,7 +19231,7 @@ GameObject:
   - component: {fileID: 5523439502161504260}
   - component: {fileID: 5523439502176781976}
   - component: {fileID: 5523439502175325518}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: CenterExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23925,7 +23925,7 @@ GameObject:
   - component: {fileID: 5523439502161600168}
   - component: {fileID: 5523439502176756848}
   - component: {fileID: 5523439502176724832}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: FireSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28655,7 +28655,7 @@ GameObject:
   - component: {fileID: 5523439502161576966}
   - component: {fileID: 5523439502176793300}
   - component: {fileID: 5523439502175261708}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}

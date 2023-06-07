@@ -102,6 +102,31 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
+  - m_GUID: 1e277098b9bf06e418e92faa742909db
+    m_Address: DamageUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 0873df62fc6b81844ac5c5a6ee950dd2
+    m_Address: TurretBullet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 27e4f66bf3a37784fbef2157ceafbe19
+    m_Address: InvenMonsterButton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: a5978fe9e6b38294da3ee92d693bf835
+    m_Address: ItemContainer007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2604e24ba60b12b4ea910a9c5cb33775
+    m_Address: ItemOutEffect
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

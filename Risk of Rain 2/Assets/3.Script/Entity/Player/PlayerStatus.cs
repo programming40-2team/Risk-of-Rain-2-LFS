@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
+using System.Collections;
 /// <summary>
 /// 플레이어 스테이터스 클래스, 기본 변수는 Entity에 있고 플레이어만 가지는 변수는 여기서 선언
 /// </summary>
@@ -117,19 +117,6 @@ public class PlayerStatus : Entity
         }
         return result;
     }
-
-
-    //private void CheckLevel()
-    //{
-    //    if (CurrentExp >= Exp)
-    //    {
-    //        Level++;
-    //        _currentExp = 0f;
-    //        Exp *= 1.55f;
-    //        LevelUp();
-
-    //    }
-    //}
     public void IncreaseExp(float exp)
     {
         CurrentExp += exp;
@@ -147,5 +134,11 @@ public class PlayerStatus : Entity
     {
         _playerAnimator.SetTrigger("Die");
         _playerInput.enabled = false;
+        StartCoroutine(nameof(ShowResult_co));
+    }
+    private IEnumerator ShowResult_co()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Managers.Game.IsClear = false;
     }
 }

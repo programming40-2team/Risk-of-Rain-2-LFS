@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1812557740801381220}
   - component: {fileID: 7216631606433103730}
   - component: {fileID: 5981853251354026957}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: mdlCapacitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2395192375860514546}
   - component: {fileID: -2245296712503456219}
   - component: {fileID: 3660603283641051045}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Item1007Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3313531223081415589}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.0136, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0.15, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 1812557740801381220}

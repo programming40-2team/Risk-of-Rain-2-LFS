@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6297216314653684462}
   - component: {fileID: 5095439794023277668}
   - component: {fileID: 6085863713615936417}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: DroneBladeMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2518092670494621110}
   - component: {fileID: 3006679820444165901}
   - component: {fileID: 8747562448761128165}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Item1023Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6758961325157432210}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: mdlDrone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 278356199661884771}
   - component: {fileID: 4243959260118129902}
   - component: {fileID: 2828887960066015715}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Drone2Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1852304513282945567}
   - component: {fileID: 5237208164852067252}
   - component: {fileID: 4961515556212178324}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Item1014Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 896269430089748862}
   - component: {fileID: 1277705427903236723}
   - component: {fileID: 8673635789541547924}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: mdlDagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

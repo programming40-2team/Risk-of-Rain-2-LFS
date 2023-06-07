@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InfoItemPannelContents : MonoBehaviour
@@ -16,13 +17,16 @@ public class InfoItemPannelContents : MonoBehaviour
             Managers.Resource.Destroy(transforom.gameObject);
         }
 
-        foreach (var key in Managers.ItemInventory.Items.Keys)
-        {
-            GameItemImage ItemImage = Managers.UI.ShowGameUI<GameItemImage>();
-            ItemImage.transform.SetParent(gameObject.transform);
-            ItemImage.Itemcode = key;
-            ItemImage.SetItemGameUI(key);
-        }
+     
+            foreach (var key in Managers.ItemInventory.Items.Values.Where(s => s.Count >= 1))
+            {
+                ResultItemImage ItemImage = Managers.UI.ShowGameUI<ResultItemImage>();
+                ItemImage.transform.SetParent(gameObject.transform);
+                ItemImage._myitem = key;
+
+            }
+
+        
 
     }
 

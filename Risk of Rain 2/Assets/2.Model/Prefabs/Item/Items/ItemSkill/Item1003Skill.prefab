@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 933466693578490090}
   - component: {fileID: 558314066701441623}
   - component: {fileID: -7713120327797323622}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Item1003Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 8222650553435027676}
   - component: {fileID: 3307888944024358262}
   - component: {fileID: 912896316791926142}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: CategorySymbol (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

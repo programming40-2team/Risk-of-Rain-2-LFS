@@ -124,12 +124,14 @@ public class Lemurian : Entity
         StartCoroutine(Destroy_co());
 
         Debug.Log("레무리안 죽는 사운드 넣을거면 여기");
-        _myHpBar.gameObject.SetActive(false);
+
     }
 
     private IEnumerator Destroy_co()
     {
-        yield return new WaitForSeconds(5f);
+        _myHpBar.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        Managers.Resource.Destroy(gameObject);
         // 풀에 반환 시키기
     }
 

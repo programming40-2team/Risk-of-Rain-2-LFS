@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8427109751157139791}
   - component: {fileID: 8427109751157139788}
   - component: {fileID: 5153849143653454878}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Item1025Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,7 +16,7 @@ public class BulletProjectile : Projectile
     private void OnTriggerEnter(Collider other)
     {
         float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
-        if (other.TryGetComponent(out _entity))
+        if (other.gameObject.transform.parent.root.TryGetComponent(out _entity))
         {
             _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
 

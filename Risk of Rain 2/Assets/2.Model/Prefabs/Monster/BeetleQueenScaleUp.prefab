@@ -1755,6 +1755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   _beetleQueenData: {fileID: 11400000, guid: 623fe4d3c8f8d6e438fb2ac0618948fe, type: 2}
+  _material: {fileID: 2100000, guid: a79ff029b82e36a44b0f3358d752470d, type: 2}
   AcidBallPool: {fileID: 0}
   WardPool: {fileID: 0}
   BombRange: {fileID: 3617766115184211546, guid: 6a2ec645e2d91e844a919753d696fd4f, type: 3}

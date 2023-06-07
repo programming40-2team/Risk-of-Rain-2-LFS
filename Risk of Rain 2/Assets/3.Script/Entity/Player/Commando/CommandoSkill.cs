@@ -111,6 +111,7 @@ public class CommandoSkill : MonoBehaviour
         {   
             _aimY = _aimHit.point.y - _centerMuzzle.transform.position.y - _centerAimY;
             _playerAnimator.SetFloat("Aim", _aimY / _centerAimY);
+            Debug.DrawRay(_cameraTransform.position, _aimHit.point - _cameraTransform.position);
         }
     }
 
@@ -195,7 +196,7 @@ public class CommandoSkill : MonoBehaviour
             SoundManager.instance.PlaySE("CommandoM1_2");
             _rightMuzzleEffect.SetActive(true);
         }
-        bullet.transform.rotation = Quaternion.LookRotation(bulletDirection, Vector3.up);
+        bullet.transform.rotation = Quaternion.LookRotation(bulletDirection.normalized, Vector3.up);
         bullet.GetComponent<Projectile>().ShootForward();
         _hitEffectPool.GetObject().transform.position = _aimHit.point;
         _isRight = !_isRight;

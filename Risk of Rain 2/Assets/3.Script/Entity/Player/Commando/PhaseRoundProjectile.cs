@@ -22,7 +22,7 @@ public class PhaseRoundProjectile : Projectile
     
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out _entity))
+        if (other.TryGetComponent(out _entity))
         {
             float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
             _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);

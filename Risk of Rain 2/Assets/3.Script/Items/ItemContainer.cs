@@ -74,9 +74,9 @@ public class ItemContainer : MonoBehaviour
                     //아이템 생성 => 아이템은 아이템 박스로 직접 얻는 것이 아니라 필드에 떨어진 아이템을 줍는 형식
                     GameObject _item = Managers.Resource.Instantiate($"Fielditem{_containItemCode}");
 
-                    GameObject _ItemEffect=Managers.Resource.Instantiate("ItemOutEffect");
+                    GameObject _ItemEffect = Managers.Resource.Instantiate("ItemOutEffect");
                     _ItemEffect.transform.position = gameObject.transform.position;
-                    _ItemEffect.GetComponent<ItemOutEffect>()._targetPosition = _item.SetRandomPositionSphere(1,2,1);
+                    _ItemEffect.GetComponent<ItemOutEffect>()._targetPosition = _item.SetRandomPositionSphere(3, 8, 2, gameObject.transform);
 
                     if (TryGetComponent(out Animator _animoator))
                     {

@@ -64,6 +64,9 @@ public class Projectile : MonoBehaviour
             case Define.EDamageType.Item:
                 _damageUI.SetColor(Color.blue);
                 break;
+            case Define.EDamageType.Heal:
+                _damageUI.SetColor(Color.green);
+                break;
         }
     }
 }

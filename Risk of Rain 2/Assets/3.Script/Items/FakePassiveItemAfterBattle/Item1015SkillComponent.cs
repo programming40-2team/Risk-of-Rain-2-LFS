@@ -9,29 +9,58 @@ public class Item1015SkillComponent : ItemPrimitiive
     private bool IsExcute = false;
     private float prevMoveSpeed;
     private Vector3 prevTransformScale;
-    //적 죽은 위치에 생성해야 하는데 적 위치를 어떻게 받아올 것인가??
-    //세분화를 해야할 것인가?.. 생각할게 만구만
 
+    private float _remainTime=10.0f;
+    private float _realTime = 0f;
     public override void Init()
     {
         base.Init();
-        damage = _playerStatus.Damage
-  * 3.5f * (Managers.ItemInventory.Items[1015].Count);
-        prevTransformScale = gameObject.transform.localScale;
+
 
     }
-    public void SetSize(int Count)
+    public void ReCall(int Count)
     {
+        _realTime = 0.0f;
         gameObject.transform.localScale = new Vector3(
         prevTransformScale.x * (1 + 0.1f * Count),
         prevTransformScale.y,
         prevTransformScale.z * (1 + 0.1f * Count));
 
     }
-    private void Start()
+    private void Awake()
     {
         Init();
     }
+    private void OnDisable()
+    {
+        StopCoroutine(nameof(RemainTime_co));
+    }
+    private void OnEnable()
+    {
+        StartCoroutine(nameof(RemainTime_co));
+        _realTime = 0f;
+        damage = _playerStatus.Damage
+* 3.5f * (Managers.ItemInventory.Items[1015].Count);
+        prevTransformScale = gameObject.transform.localScale;
+
+    }
+    private IEnumerator RemainTime_co()
+    {
+        while (true)
+        {
+            _realTime += Time.deltaTime;
+
+            if (_realTime > _remainTime)
+            {
+                Managers.Resource.Destroy(gameObject);
+            }
+            yield return null;
+        }
+
+    }
+
+
+
     //장판딜 
     private void OnTriggerStay(Collider other)
     {
@@ -81,6 +110,7 @@ public class Item1015SkillComponent : ItemPrimitiive
     {
         IsExcute = true;
         coll.GetComponent<Entity>().OnDamage(damage);
+        ShowDamageUI(coll.gameObject, damage, Define.EDamageType.Item);
         yield return new WaitForSeconds(damageCoolTime);
         IsExcute = false;
     }

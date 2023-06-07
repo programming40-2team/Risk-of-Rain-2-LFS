@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Itemprice: 0
-  ContainItemCode: 0
+  _containItemCode: 0
   itemmodeltrans: {fileID: 8990756610189336384}
 --- !u!135 &5160338130856059214
 SphereCollider:

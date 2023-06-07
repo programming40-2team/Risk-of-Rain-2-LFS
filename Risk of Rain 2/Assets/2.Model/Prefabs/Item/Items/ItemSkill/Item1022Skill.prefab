@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5531470034410144756}
   - component: {fileID: 5531470034410144760}
   - component: {fileID: -722438412066070105}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Item1022Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

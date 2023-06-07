@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1812557740801381220}
   - component: {fileID: 7216631606433103730}
   - component: {fileID: 5981853251354026957}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: mdlCapacitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2395192375860514546}
   - component: {fileID: -2245296712503456219}
   - component: {fileID: 3660603283641051045}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Item1007Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,8 +126,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.023480073
+  m_Center: {x: -0.0065199407, y: 0.000000017881394, z: 0}
 --- !u!54 &-2245296712503456219
 Rigidbody:
   m_ObjectHideFlags: 0

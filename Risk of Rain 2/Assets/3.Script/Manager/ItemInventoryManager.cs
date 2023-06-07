@@ -185,10 +185,6 @@ public class ItemInventoryManager
                 }
                 break;
         }
-
-        Debug.Log("실험용 추후  Passive 제외 제거 해야함");
-        Managers.ItemApply.ExcuteAfterSkills(GameObject.FindGameObjectWithTag("Monster").transform);
-        Managers.ItemApply.ExcuteInSkills();
         Managers.ItemApply.ApplyPassiveSkill(itemcode);
         Managers.Event.AddItem?.Invoke(itemcode);
         return true;

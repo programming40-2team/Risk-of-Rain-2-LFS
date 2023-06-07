@@ -113,7 +113,7 @@
     public enum LayerMask
     {
         Enviroment=6,
-
+        Skill=10
     }
 
     public enum EDamageType
@@ -121,6 +121,7 @@
         Nomal,
         Cirtical,
         Item,
+        Heal,
     }
 
 }

@@ -83,24 +83,17 @@ public class PrimitiveActiveItem : ItemPrimitiive
     }
     private IEnumerator Item1020_co()
     {
-        bool item1007Spawned = false;
-        if (!item1007Spawned)
+        bool item1020Spawned = false;
+        if (!item1020Spawned)
         {
-            item1007Spawned = true;
-            for (int i = 0; i < 12; i++)
+            item1020Spawned = true;
+            for (int i = 0; i < 15; i++)
             {
-                GameObject item1007 = Managers.Resource.Instantiate("Item1007Skill");
-                item1007.transform.position = Player.transform.position;
-
-                item1007.SetRandomPositionSphere(2, 5, 5);
-                Debug.Log("위치 2개의 직선 을 이어주는 연기 필요");
-                
-                Debug.Log("연동방법   함수 (item1007.transform.position ,item1007.SetRandomPositionSphere(1, 1, 5) 위의 item1007.SEtRandomPositionSphere 지워야함");
-                item1007.GetOrAddComponent<Item1007SkillComponent>();
-
+                GameObject item1020 = Managers.Resource.Instantiate("Item1020Skill");
+                item1020.GetOrAddComponent<Item1020SkillComponent>();
+                yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(3.0f);
-            item1007Spawned = false;
+            item1020Spawned = false;
         }
 
     }
@@ -114,8 +107,7 @@ public class PrimitiveActiveItem : ItemPrimitiive
         Tele1.GetOrAddComponent<Item1025Skill>().SetTeleCode(1);
         Tele2.GetOrAddComponent<Item1025Skill>().SetTeleCode(2);
 
-        Tele1.SetRandomPositionSphere(2, 4, 0,Player.transform);
-        Tele2.SetRandomPositionSphere(200, 400, 0,Player.transform);
+
 
     }
 }

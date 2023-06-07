@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Itemprice: 0
-  ContainItemCode: 0
+  _containItemCode: 0
+  itemmodeltrans: {fileID: 0}
 --- !u!54 &270460612
 Rigidbody:
   m_ObjectHideFlags: 0

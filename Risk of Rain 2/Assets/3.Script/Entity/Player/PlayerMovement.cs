@@ -44,6 +44,23 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
+    public int JumpCount
+    {
+        get { return _jumpCount; }
+        set
+        {
+            int prevjumpcount = _jumpCount;
+            _jumpCount = value;
+
+            if (prevjumpcount != _jumpCount)
+            {
+                Managers.ItemApply.ApplyPassiveSkill(1016);
+            }
+
+        }
+    }
+
+
 
 
     private void Awake()
@@ -124,10 +141,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckGround()
     {
-        if (Physics.Raycast(transform.position + new Vector3(0, _yOffset, 0), Vector3.down, out _, _groundCheckDistance) && _isJumping)
+        if (Physics.Raycast(transform.position + new Vector3(0, _yOffset, 0), Vector3.down, out _, _groundCheckDistance,
+            (-1) - (1 << (int)Define.LayerMask.Skill)) && _isJumping)
         {
             _playerAnimator.SetBool("Jump", false);
-            _jumpCount = _playerStatus.MaxJumpCount;
+            JumpCount = _playerStatus.MaxJumpCount;
             IsJumping = false;
         }
     }

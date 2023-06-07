@@ -75,21 +75,8 @@ public class GameManager
             Managers.Event.GameStateChange?.Invoke();
         }
     }
+    public float PlayingTime { get; set; } = 0;
 
-    public Define.WhenItemActivates PlayerState
-    {
-        get
-        {
-            return _playerState;
-        }
-        set
-        {
-            _playerState = value;
-
-        }
-    }
-
-    public float PlayingTIme { get; set; } = 0;
-
+    public float ProgressBoss { get; set; } = 0f;
 
 }

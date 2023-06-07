@@ -27,6 +27,7 @@ public class GameStartUI : UI_Scene, IListener
         ShiftSkillReactPannel,
         RSkillReactPannel,
         LoadPassiveSkill,
+        MainSurvivors,
     }
     enum ETexts
     {
@@ -166,7 +167,7 @@ public class GameStartUI : UI_Scene, IListener
         }
         //디폴트 이미지 효과 Easy
         // DifficultySelect(EDifficulty.Easy);
-
+        ShowCharacters(-1);
     }
 
     private void InitText()
@@ -278,6 +279,7 @@ public class GameStartUI : UI_Scene, IListener
     private void ReturnToMain()
     {
         Debug.Log("다시 게임 시작 누를 수 있는 메인 화면으로 돌아감 BGM 변경 시 여기!");
+        FindObjectOfType<MainUI>().TurnOnandOffLog();
         Managers.Resource.Destroy(gameObject);
 
     }
@@ -379,16 +381,6 @@ public class GameStartUI : UI_Scene, IListener
 
     }
 
-
-    private void SkillScriptButtonEvent()
-    {
-
-    }
-    private void LoadButtonEvent()
-    {
-
-    }
-
     private void DesCribeChange(int charcode)
     {
 
@@ -410,7 +402,25 @@ public class GameStartUI : UI_Scene, IListener
 
 
     }
+    private void ShowCharacters(int charactercode)
+    {
+        for(int i=0;i<Get<GameObject>((int)EGameObjects.MainSurvivors).transform.childCount;i++)
+        {
+            Get<GameObject>((int)EGameObjects.MainSurvivors).transform.GetChild(i).gameObject.SetActive(false);
+        }
+        switch (charactercode)
+        {
+            case 1:
+                Get<GameObject>((int)EGameObjects.MainSurvivors).transform.GetChild(0).gameObject.SetActive(true);
+                break;
+            case 7:
+                Get<GameObject>((int)EGameObjects.MainSurvivors).transform.GetChild(1).gameObject.SetActive(true);
+                break;
+            default:
+                break;
+        }
 
+    }
     public void OnEvent(Define.EVENT_TYPE Event_Type, Component Sender, object Param = null)
     {
         switch (Event_Type)
@@ -423,6 +433,7 @@ public class GameStartUI : UI_Scene, IListener
                     characterCode = CharBtn.Charactercode;
                     DesCribeChange(characterCode);
                     ChangeSkillImage(characterCode);
+                    ShowCharacters(characterCode);
                 }
                 break;
         }

@@ -13,4 +13,5 @@ public abstract class NewItemPrimitive
         Player = GameObject.FindGameObjectWithTag("Player");
         _playerStatus = Player.GetComponent<PlayerStatus>();
     }
+   
 }

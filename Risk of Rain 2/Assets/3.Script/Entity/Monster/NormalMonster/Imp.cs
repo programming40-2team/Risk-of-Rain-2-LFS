@@ -10,19 +10,13 @@ public class Imp : Entity
     private NavMeshAgent _impAgent;
     private Animator _impAnimator;
 
-    private Transform _targetTransform;
-    private readonly float _rotateSpeed = 2f;
+    private GameObject _target;
 
     private float _attackCooltime = 1.0f;
     private bool isAttack = false;
-    MonsterHpBar _myHpBar;
+    private MonsterHpBar _myHpBar;
 
     private bool isBlank = false;
-
-
-    [SerializeField]
-    Animation anissmation;
-
 
     //타격 범위도 COliider로 설정해서 몸통 주변 때리면 총알 먹힘
 
@@ -38,9 +32,9 @@ public class Imp : Entity
         TryGetComponent(out _impAgent);
         TryGetComponent(out _impAnimator);
         _myHpBar = GetComponentInChildren<MonsterHpBar>();
-
-        _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _myHpBar.gameObject.SetActive(false);
+        _target = GameObject.FindGameObjectWithTag("Player");
+       
     }
     protected override void OnEnable()
     {
@@ -89,7 +83,7 @@ public class Imp : Entity
         Debug.Log("Blink  Start Effect ");
         yield return new WaitForSeconds(currentClipLength);
         SetOff();
-        gameObject.SetRandomPositionSphere(3, 8, 0, _targetTransform);
+        gameObject.SetRandomPositionSphere(3, 8, 0, _target.transform);
         yield return new WaitForSeconds(1.0f);
         SetOn();
         _impAnimator.SetTrigger("BlinkEnd");
@@ -99,7 +93,7 @@ public class Imp : Entity
 
     private void Move()
     {
-        _impAgent.SetDestination(_targetTransform.position);
+        _impAgent.SetDestination(_target.transform.position);
 
         if (_impAgent.remainingDistance <= _impAgent.stoppingDistance)
         {

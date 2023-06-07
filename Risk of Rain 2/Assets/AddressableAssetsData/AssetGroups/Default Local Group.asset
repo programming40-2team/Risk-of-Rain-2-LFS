@@ -47,7 +47,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
-  - m_GUID: badc36f3767b836439256939bf904524
+  - m_GUID: 9a746bd3225646642a72ea89049fd593
     m_Address: 10005Model
     m_ReadOnly: 0
     m_SerializedLabels:
@@ -104,6 +104,26 @@ MonoBehaviour:
     - Asynchronous_Load
   - m_GUID: a5978fe9e6b38294da3ee92d693bf835
     m_Address: ItemContainer007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2604e24ba60b12b4ea910a9c5cb33775
+    m_Address: ItemOutEffect
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: ed35365e892354941b838f56bc71f490
+    m_Address: Exp
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 5a32814434d287b45883d93bec12b704
+    m_Address: Gold
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Asynchronous_Load
+  - m_GUID: 2142995ceb192df47829a9a0058c7c80
+    m_Address: Item1020Skill
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load

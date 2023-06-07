@@ -23,6 +23,11 @@ public class StartShip : MonoBehaviour
         if (isStart == false && Input.GetKeyDown(KeyCode.E))
         {
             _doorOpen.Play();
+
+            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
+
+
+
             //Instantiate(_PlayerPrefab, _spawnPoint.position, _spawnPoint.rotation);
             isStart = true;
         }

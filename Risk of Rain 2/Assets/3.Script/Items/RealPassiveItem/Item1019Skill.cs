@@ -6,10 +6,10 @@ public class Item1019Skill : NewItemPrimitive, IPassiveItem
     public int Itemid => 1019;
     private bool isactive=false;
 
+    GameObject go = null;
     public void ApplyPassiveEffect()
     {
 
-        GameObject go = null;
         if (!isactive)
         {
             isactive= true;

@@ -100,7 +100,7 @@ public class DetailInLogBook : UI_Popup
                 GetText((int)ETexts.TItileTitleText).text = $"{Managers.Data.MonData[SpecialCode].name}";
                 GetText((int)ETexts.TitlieContentsText).text = "몬스터";
                 GetText((int)ETexts.ScriptTitleText).text = $"설명 : ";
-                GetText((int)ETexts.ScriptContentsText).text = $" 체력 : {Managers.Data.MonData[SpecialCode].maxhealth} \n공격 : {Managers.Data.MonData[SpecialCode].attack}\n 속도 : {Managers.Data.MonData[SpecialCode].speed}\n 방어 : {Managers.Data.MonData[SpecialCode].armor}" +
+                GetText((int)ETexts.ScriptContentsText).text = $" 체력 : {Managers.Data.MonData[SpecialCode].maxhealth} \n공격 : {Managers.Data.MonData[SpecialCode].attack}\n 방어 : {Managers.Data.MonData[SpecialCode].armor}" +
                     $"";
                 GetText((int)ETexts.FindCountText).text = $"플레이어 처치 : {0}";
                 GetText((int)ETexts.FindMaxCountTitleText).text = $"처치 당한 횟수 : {0}";

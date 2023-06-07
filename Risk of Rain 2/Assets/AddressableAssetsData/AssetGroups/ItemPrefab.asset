@@ -22,11 +22,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
-  - m_GUID: bcba5492477714a46a645441c20fd897
-    m_Address: ItemContainer005
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
   - m_GUID: a252c659544485b4a8c59b244d7cebab
     m_Address: ItemContainer004
     m_ReadOnly: 0

@@ -137,6 +137,4 @@ public class PlayerStatus : Entity
         _playerAnimator.SetTrigger("Die");
         _playerInput.enabled = false;
     }
-
-
 }

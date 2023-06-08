@@ -8,6 +8,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] List<GameObject> _monsterPrefab;
     [Header("랜덤스폰 위치")]
     [SerializeField] Transform[] _spawnPoint;
+    private bool _EnemySpawned = false;
 
     private void Start()
     {
@@ -24,15 +25,16 @@ public class EnemySpawn : MonoBehaviour
         Transform randomSpawnPoint = _spawnPoint[random];
      
         int _monsterRandomCount = Random.Range(1,5);
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&&!_EnemySpawned)
         {
+            _EnemySpawned = true;
             Debug.Log("스폰 구역 입장");
             for(int i = 0; i < _monsterRandomCount; i++)
             {
                 int _monsterRandomObject = Random.Range(0, _monsterPrefab.Count);
               GameObject _enemy= Managers.Resource.Instantiate($"{_monsterPrefab[_monsterRandomObject].name}"
                     , randomSpawnPoint.position);
-                _enemy.SetRandomPositionSphere(3, 5, 2, randomSpawnPoint);
+                 _enemy.SetRandomPositionSphere(1, 3, 4, randomSpawnPoint);
             }
          
         }

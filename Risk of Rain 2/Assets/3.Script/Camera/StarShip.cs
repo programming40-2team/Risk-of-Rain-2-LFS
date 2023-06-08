@@ -14,6 +14,7 @@ public class StarShip : MonoBehaviour
     [SerializeField] private GameObject _playerCamera;
     [SerializeField] private VisualEffect _starShipEffect;
     [SerializeField] private GameObject _groundEffect;
+    public bool _isGround;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class StarShip : MonoBehaviour
         }
         _virtualCamera.GetComponent<CameraShake>().ShakeCamera(5, 0.7f);
         StartCoroutine(SlowSmoke_co());
+        _isGround = true;
     }
 
     private IEnumerator SlowSmoke_co()

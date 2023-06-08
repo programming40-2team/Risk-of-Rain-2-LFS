@@ -14300,7 +14300,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423871551}
-  m_LocalRotation: {x: -0.19011621, y: 0.69334453, z: 0.66632944, w: 0.19782412}
+  m_LocalRotation: {x: -0.19011644, y: 0.69334453, z: 0.66632926, w: 0.19782439}
   m_LocalPosition: {x: 18.700027, y: -67.3, z: 14.499992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -16379,6 +16379,7 @@ MonoBehaviour:
   _playerCamera: {fileID: 369608003}
   _starShipEffect: {fileID: 391178772}
   _groundEffect: {fileID: 119514, guid: 5d0c6afdcfb9c8440840b5b6f53792a5, type: 3}
+  _isGround: 0
 --- !u!136 &1657303486
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16748,7 +16749,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684338887}
-  m_LocalRotation: {x: -0.19011621, y: 0.69334453, z: 0.66632944, w: 0.19782412}
+  m_LocalRotation: {x: -0.19011644, y: 0.69334453, z: 0.66632926, w: 0.19782439}
   m_LocalPosition: {x: 18.700027, y: -67.3, z: 14.499992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -18608,6 +18609,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 1992011267}
   _player: {fileID: 1478301541}
   _playerCamera: {fileID: 369608003}
+  _starShip: {fileID: 1657303485}
 --- !u!111 &1886202109
 Animation:
   m_ObjectHideFlags: 0

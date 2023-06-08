@@ -15,6 +15,7 @@ public class StartShip : MonoBehaviour
     private Animation _doorOpen;
     private bool isStart = false;
 
+    [SerializeField] private StarShip _starShip;
     void Awake()
     {
         _doorOpen = GetComponent<Animation>();
@@ -26,7 +27,7 @@ public class StartShip : MonoBehaviour
 
     void Update()
     {
-        if (isStart == false && Input.GetKeyDown(KeyCode.E))
+        if (isStart == false && Input.GetKeyDown(KeyCode.E) && _starShip._isGround)
         {
             _doorOpen.Play();
             _player.transform.position = _spawnPoint.transform.position;

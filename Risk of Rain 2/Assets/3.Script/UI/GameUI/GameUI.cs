@@ -111,6 +111,7 @@ public class GameUI : UI_Game, IListener
         Managers.Event.GameStateChange -= GameGoalEvent;
         Managers.Event.AddItem -= ItemGainPannelEvent;
         Managers.Event.EquipItemChange -= ItemGainPannelEvent;
+        Managers.Event.BossProgress -= BossEvent;
     }
     public override void Init()
     {
@@ -141,6 +142,8 @@ public class GameUI : UI_Game, IListener
         Managers.Event.AddItem += ItemGainPannelEvent;
         Managers.Event.EquipItemChange -= ItemGainPannelEvent;
         Managers.Event.EquipItemChange += ItemGainPannelEvent;
+        Managers.Event.BossProgress -= BossEvent;
+        Managers.Event.BossProgress += BossEvent;
 
         Managers.Event.AddListener(Define.EVENT_TYPE.PlayerHpChange, this);
         Managers.Event.AddListener(Define.EVENT_TYPE.BossHpChange, this);
@@ -341,7 +344,7 @@ public class GameUI : UI_Game, IListener
     //
     private void EventOfPlayerHp(float currHp, float MaxHp)
     {
-        Get<Slider>((int)Sliders.PlayerHpSlider).value = currHp / MaxHp;
+        Get<Slider>((int)Sliders.PlayerHpSlider).value =(int)currHp / MaxHp;
         GetText((int)Texts.PlayerHpText).text = $"{currHp}/{MaxHp}";
 
     }
@@ -384,25 +387,41 @@ public class GameUI : UI_Game, IListener
         switch (Managers.Game.GameState)
         {
             case Define.EGameState.NonTelePort:
-                Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(true);
+                Get<GameObject>((int)GameObjects.NoneTelePort).SetActive(true);
                 GetText((int)Texts.ObjectContents1).text = "<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 찾아서 가동하십시오";
                 GetText((int)Texts.ObjectContents2).text = "";
                 break;
             case Define.EGameState.ActiveTelePort:
                 GetText((int)Texts.ObjectContents2).text = "<b>보스를 처치하십시오!</b>";
-                GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss/50f:00})";
+                GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss:00}%)";
                 Get<GameObject>((int)GameObjects.BossPannel).SetActive(true);
+                Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(true);
                 break;
             case Define.EGameState.CompeleteTelePort:
                 GetText((int)Texts.ObjectContents1).text = "텔리포트로 들어가십시오";
-                GetText((int)Texts.ObjectContents2).text = "";
+                Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(false);
                 Get<GameObject>((int)GameObjects.BossPannel).SetActive(false);
-                GetImage((int)Images.TeleCheckTrue2).enabled = true;
                 break;
         }
 
     }
-   
+
+    private void BossEvent()
+    {
+        GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss:00}%)";
+        if (Managers.Game.ProgressBoss > 100)
+        {
+            GetImage((int)Images.TeleCheckTrue1).enabled = true;
+        }
+
+    }
+
+
+
+
+
+
+
     private void InteractionInTextChangeEvent(Component _Sender)
     {
         Get<GameObject>((int)GameObjects.InteractionPannel).SetActive(true);

@@ -35,6 +35,7 @@ public class GameManager
         set
         {
             _isclear = value;
+            UnityEngine.Cursor.visible = true;
             Managers.UI.ShowGameUI<GameResultUI>();
 
         }
@@ -77,6 +78,6 @@ public class GameManager
     }
     public float PlayingTime { get; set; } = 0;
 
-    public float ProgressBoss { get; set; } = 0f;
+    public float ProgressBoss { get; set; } = 0;
 
 }

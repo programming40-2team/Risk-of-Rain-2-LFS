@@ -69,9 +69,9 @@ public class ResourceManager
     public Sprite LoadSprte(string key)
     {
         // Texture2D texture = Load<Texture2D>(key);
-        // Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-        
-        return Resources.Load<Sprite>(key);
+        //Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+        return Load<Sprite>("Prefabs/"+key);
     }
     public GameObject Instantiate2(string key, Transform parent = null)
     {

@@ -34,6 +34,7 @@ public class CharacterSelectButton : UI_Scene, IListener
         Bind<GameObject>(typeof(EGameObjects));
 
 
+        // GetImage((int)EImages.CharacterImage).sprite =
         GetImage((int)EImages.CharacterImage).sprite = Managers.Resource.LoadSprte(Managers.Data.CharacterDataDict[Charactercode].iconkey);
         gameObject.GetComponent<Button>().enabled = false;
         if (Charactercode.Equals(7))

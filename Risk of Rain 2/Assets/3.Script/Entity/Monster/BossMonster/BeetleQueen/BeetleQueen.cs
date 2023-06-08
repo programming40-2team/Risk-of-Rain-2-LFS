@@ -18,6 +18,8 @@ public class BeetleQueen : Entity
 
     public bool IsRun = false;
 
+    private MeshCollider _meshCollider;
+
     [Header("Transforms")]
     [SerializeField] private Transform _beetleQueenMouthTransform;
     [SerializeField] private Transform _beetleQueenButtTransform;
@@ -43,6 +45,7 @@ public class BeetleQueen : Entity
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
         AcidBallPool = GameObject.Find("AcidBallPool").GetComponent<ObjectPool>();
         WardPool = GameObject.Find("WardPool").GetComponent<ObjectPool>();
+        _meshCollider= FindObjectOfType<MeshCollider>();
     }
 
     protected override void OnEnable()
@@ -73,7 +76,6 @@ public class BeetleQueen : Entity
 
 
             //Hp Slider 데미지 입을 떄 마다 갱신되도록 연동
-(??)            
         }
 
         base.OnDamage(damage);
@@ -84,7 +86,7 @@ public class BeetleQueen : Entity
     {
         base.Die();
         BeetleQueenAnimator.SetTrigger("Die");
-
+        _meshCollider.enabled = false;
         // 보스 Destroy
 
         //보스 종료 시 텔레포트 이벤트 완료!

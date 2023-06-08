@@ -1933,7 +1933,7 @@ GameObject:
   - component: {fileID: 5975948110676703318}
   - component: {fileID: 292445841597194796}
   m_Layer: 0
-  m_Name: Lemurian_LogBook
+  m_Name: 10005Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

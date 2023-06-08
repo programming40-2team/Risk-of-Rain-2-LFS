@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 610447756245988242}
   m_Layer: 0
-  m_Name: GeepBody (merge)
+  m_Name: 10002Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

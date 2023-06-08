@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Item1022Skill : ItemPrimitiive
 {
-    private float movespeed = 8f;
+   
     private bool IsCooltime = false;
-    private float force = 5.0f;
+    [SerializeField]
+    private float movespeed = 6f;
+    [SerializeField]
+    private float _blackholeforce = 10.0f;
 
     private void OnTriggerStay(Collider other)
     {
@@ -14,8 +17,10 @@ public class Item1022Skill : ItemPrimitiive
         {
             if(other.TryGetComponent(out Entity entity))
             {
-               
+                if (!IsCooltime)
+                {
                     StartCoroutine(nameof(Item1022_co), entity);
+                }
                 
             }
        
@@ -42,12 +47,14 @@ public class Item1022Skill : ItemPrimitiive
         //Vector3 movedir = gameObject.transform.position - go.transform.position;
         if(go.TryGetComponent(out Rigidbody rigid))
         {
-            rigid.AddForce((gameObject.transform.position-rigid.transform.position).normalized* force);
-        }
-        go.OnDamage(10f);
-        ShowDamageUI(go.gameObject, 10, Define.EDamageType.Item);
+            if(go.transform)
 
-        yield return new WaitForSeconds(0.1f);
+            rigid.AddForce((gameObject.transform.position-rigid.transform.position).normalized* _blackholeforce);
+        }
+        go.OnDamage(2f);
+        ShowDamageUI(go.gameObject, 2, Define.EDamageType.Item);
+
+        yield return new WaitForSeconds(0.3f);
         IsCooltime = false;
     }
     private void OnTriggerExit(Collider other)

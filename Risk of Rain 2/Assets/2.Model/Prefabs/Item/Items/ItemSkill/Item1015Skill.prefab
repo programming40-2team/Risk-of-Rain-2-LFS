@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1964594979999178809}
   - component: {fileID: 1964594980017409853}
   - component: {fileID: 1964594980016775193}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Clouds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4755,7 +4755,7 @@ GameObject:
   - component: {fileID: 1964594979999104319}
   - component: {fileID: 1964594980017445591}
   - component: {fileID: 1964594980016788329}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: AuraGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9508,7 +9508,7 @@ GameObject:
   - component: {fileID: 1964594979999134607}
   - component: {fileID: 1964594980017501471}
   - component: {fileID: 1964594980016775213}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: SpinningParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14279,7 +14279,7 @@ GameObject:
   - component: {fileID: 1964594979999121613}
   - component: {fileID: 1964594980017461365}
   - component: {fileID: 1964594980017518277}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: FrostRelic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19009,7 +19009,7 @@ GameObject:
   - component: {fileID: 7313464260218919098}
   - component: {fileID: 7313464260218919099}
   - component: {fileID: 7191316177999611790}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Item1015Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

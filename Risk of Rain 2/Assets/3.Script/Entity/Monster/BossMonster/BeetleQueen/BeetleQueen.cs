@@ -5,8 +5,6 @@ public class BeetleQueen : Entity
 {
     // TODO : 난이도에 따라 MaxHealth 증가시키기
     [SerializeField] private MonsterData _beetleQueenData;
-    [SerializeField] Material _material;
-    [SerializeField] MeshCollider _meshCollider;
 
     private GameObject _player;
 
@@ -45,7 +43,6 @@ public class BeetleQueen : Entity
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
         AcidBallPool = GameObject.Find("AcidBallPool").GetComponent<ObjectPool>();
         WardPool = GameObject.Find("WardPool").GetComponent<ObjectPool>();
-        _meshCollider = FindObjectOfType<MeshCollider>();
     }
 
     protected override void OnEnable()
@@ -61,6 +58,7 @@ public class BeetleQueen : Entity
         Debug.Log("DamageAscent : " + DamageAscent);
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
+        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);  
 
         _meshCollider.enabled = true;
     }
@@ -72,27 +70,21 @@ public class BeetleQueen : Entity
             //hitEffect.transform.SetPositionAndRotation(hitposition, Quaternion.LookRotation(hitnormal));
             //hitEffect.Play();
             //_beetleQueenAudio.PlayOneShot(hitSound);
-            StopCoroutine(HitEffect_co());
-            StartCoroutine(HitEffect_co());
+
+
             //Hp Slider 데미지 입을 떄 마다 갱신되도록 연동
-            
+(??)            
         }
+
         base.OnDamage(damage);
         Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
-    }
-
-    private IEnumerator HitEffect_co()
-    {
-        _material.SetFloat("_EmissionPower", 1);
-        yield return new WaitForSeconds(0.1f);
-        _material.SetFloat("_EmissionPower", 0);
     }
 
     public override void Die()
     {
         base.Die();
         BeetleQueenAnimator.SetTrigger("Die");
-        _meshCollider.enabled = false;
+
         // 보스 Destroy
 
         //보스 종료 시 텔레포트 이벤트 완료!
@@ -111,7 +103,7 @@ public class BeetleQueen : Entity
         HealthRegenAscent = data.RegenAscent;
 
         //첫 생성 시 보스 Hp 조절을 위한 알림
-        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
+       
     }
 
     /// <summary>

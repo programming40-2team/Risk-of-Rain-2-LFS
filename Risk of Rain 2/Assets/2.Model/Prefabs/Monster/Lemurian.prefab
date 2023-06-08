@@ -1786,6 +1786,7 @@ GameObject:
   - component: {fileID: 5261982580258101093}
   - component: {fileID: 1640371945}
   - component: {fileID: 1640371946}
+  - component: {fileID: 5902904283282180968}
   m_Layer: 0
   m_Name: Lemurian
   m_TagString: Monster
@@ -1898,6 +1899,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.03, z: 0.02}
   m_Center: {x: 0, y: 0.01, z: 0}
+--- !u!114 &5902904283282180968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261982580258101095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c0bcf5049cd9c438164ef4adf74fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0
 --- !u!1 &5346886633937632096
 GameObject:
   m_ObjectHideFlags: 0

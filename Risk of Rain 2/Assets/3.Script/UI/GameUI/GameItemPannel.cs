@@ -7,7 +7,6 @@ public class GameItemPannel : MonoBehaviour
     {
         Init();
     }
-    //먹을 떄 마다 삭제 재생성 or 현재 아이템 개수에 따라 부모 자식 위치 스왑
     public void Init()
     {
 

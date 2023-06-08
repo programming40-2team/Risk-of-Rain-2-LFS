@@ -15,6 +15,7 @@ public class StartShip : MonoBehaviour
     void Awake()
     {
         _doorOpen = GetComponent<Animation>();
+        Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
     }
 
 
@@ -24,9 +25,8 @@ public class StartShip : MonoBehaviour
         {
             _doorOpen.Play();
 
-            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
 
-
+            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionOut, this);
 
             //Instantiate(_PlayerPrefab, _spawnPoint.position, _spawnPoint.rotation);
             isStart = true;

@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Monster
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: Monster
   m_Data:
     m_SerializedData: []
-  m_GUID: be15a8d2c5eeed5409b1da1136e9a629
+  m_GUID: 2e9a320c76a1acc43b57eee9294eb388
   m_SerializeEntries:
-  - m_GUID: 4259e64a72916d948bda9d0d863167e9
-    m_Address: GameResultUI
+  - m_GUID: 8a300287307110147b2a213d4eba2aa7
+    m_Address: Golem
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
-  - m_GUID: 00335baa19d9d034b91453b92a13446a
-    m_Address: ResultItemImage
+  - m_GUID: c0f079374f2c3fb43b2a603e4b4cdf0c
+    m_Address: Lemurian
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
-  - m_GUID: 70179661a285486489714ff6bfb8481b
-    m_Address: Item1007Effect
+  - m_GUID: 44f2388303a424f44b41315080085729
+    m_Address: Imp
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
@@ -36,5 +36,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: e7cedefbd4e6c2745b28986680e235c5, type: 2}
-    - {fileID: 11400000, guid: fdae242bde6fd4f42aaf4c3f1a73dcc9, type: 2}
+    - {fileID: 11400000, guid: dd29bbde40676154699cbe99a16dd2c1, type: 2}
+    - {fileID: 11400000, guid: b38a8f3095103444bb78abb8b0db289f, type: 2}

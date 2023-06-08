@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,6 +32,8 @@ public class Golem : Entity
     private readonly float _seismicSlamCooldown = 3f;
     private float _seismicSlamCooldownRemain = 0f;
 
+    private MonsterHpBar _myHpBar;
+
     private void Awake()
     {
         TryGetComponent(out _golemAgent);
@@ -40,6 +41,9 @@ public class Golem : Entity
 
         _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _golemAnimator.speed = 0.0f;
+
+        _myHpBar = GetComponentInChildren<MonsterHpBar>();
+        _myHpBar.gameObject.SetActive(false);
 
     }
 
@@ -68,6 +72,7 @@ public class Golem : Entity
     {
         if(_isSpawn)
         {
+            _myHpBar.gameObject.SetActive(true);
             base.OnDamage(damage);
         }
     }
@@ -231,5 +236,7 @@ public class Golem : Entity
         StopAllCoroutines();
         InitEffect();
         _golemAgent.ResetPath();
+        _myHpBar.gameObject.SetActive(false);
+        Managers.Resource.Destroy(gameObject);
     }
 }

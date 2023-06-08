@@ -7,10 +7,10 @@ public class Exp : MonoBehaviour
     // Update is called once per frame
     [SerializeField] private float _moveSpeed = 5.0f;
     GameObject _Player;
-    private float _Worth = 5.0f;
+    private float _Worth = 25.0f;
     private void OnEnable()
     {
-        _Worth = 10+ Random.Range(3,10)* (1 + (int)Managers.Game.Difficulty);
+        _Worth = 20+ Random.Range(30,50)* 10*(1 + (int)Managers.Game.Difficulty);
     }
     private void Awake()
     {

@@ -203,16 +203,6 @@ public class Imp : Entity
         {
             StartCoroutine(nameof(Die_co));
         }
-
-        //Collider[] colls = GetComponents<Collider>();
-        //foreach (Collider col in colls)
-        //{
-        //    col.enabled = false;
-        //}
-
-        //_navMeshAgent.isStopped = true;
-        //_navMeshAgent.enabled = false;
-
         Debug.Log("레무리안 죽는 사운드 넣을거면 여기");
     }
 

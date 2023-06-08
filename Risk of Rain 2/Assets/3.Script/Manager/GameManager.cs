@@ -35,7 +35,7 @@ public class GameManager
         set
         {
             _isclear = value;
-            Managers.UI.ShowPopupUI<GameResultUI>();
+            Managers.UI.ShowGameUI<GameResultUI>();
 
         }
     }

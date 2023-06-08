@@ -15,6 +15,57 @@ public class ResourceManager
 
         return null;
     }
+    public T Load2<T>(string path) where T : Object
+    {
+        if (typeof(T) == typeof(GameObject))
+        {
+            string name = path;
+            int index = name.LastIndexOf('/');
+            if (index >= 0)
+                name = name.Substring(index + 1);
+
+            GameObject go = Managers.Pool.GetOriginal(name);
+            if (go != null)
+                return go as T;
+        }
+
+        return Resources.Load<T>(path);
+    }
+    public GameObject Instantiate2(string path, Vector3 position, Transform parent = null)
+    {
+        GameObject original = Load2<GameObject>($"Prefabs/{path}");
+        if (original == null)
+        {
+            Debug.Log($"Failed to load prefab : {path}");
+            return null;
+        }
+
+        if (original.GetComponent<Poolable>() != null)
+            return Managers.Pool.Pop(original, parent).gameObject;
+
+        GameObject go = Object.Instantiate(original, position, Quaternion.identity, parent);
+        go.name = original.name;
+        return go;
+    }
+    public GameObject Instantiate2(string key, Transform parent = null)
+    {
+        GameObject original = Load2<GameObject>($"Prefabs/{key}");
+        if (original == null)
+        {
+            Debug.Log($"Failed to load prefab : {key}");
+            return null;
+        }
+
+        if (original.GetComponent<Poolable>() != null)
+            return Managers.Pool.Pop(original, parent).gameObject;
+
+        GameObject go = Object.Instantiate(original, parent);
+        go.name = original.name;
+        return go;
+    }
+
+
+
     public Sprite LoadSprte(string key)
     {
         Texture2D texture = Load<Texture2D>(key);

@@ -16,22 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 2e9a320c76a1acc43b57eee9294eb388
-  m_SerializeEntries:
-  - m_GUID: 8a300287307110147b2a213d4eba2aa7
-    m_Address: Golem
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: c0f079374f2c3fb43b2a603e4b4cdf0c
-    m_Address: Lemurian
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 44f2388303a424f44b41315080085729
-    m_Address: Imp
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 24d93946cda479140ac5194249e6021e, type: 2}
   m_SchemaSet:

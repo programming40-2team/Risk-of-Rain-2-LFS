@@ -30,6 +30,7 @@ public class MainMenu : BaseScene
         Managers.ItemApply.Init();
         Managers.UI.ShowSceneUI<MainUI>();
         Managers.UI.ShowSceneUI<MouseInteraction>();
+        Managers.Resource.Instantiate2("item1002");
     }
 
 

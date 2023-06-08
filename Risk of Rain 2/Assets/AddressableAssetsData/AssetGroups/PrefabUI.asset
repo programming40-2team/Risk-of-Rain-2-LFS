@@ -37,11 +37,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
-  - m_GUID: 24a1093ebf4e91a449b240454c62476e
-    m_Address: RelicExtendPopupUI
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
   - m_GUID: e1b78b35b04332f4888648effa47dc9c
     m_Address: ItemButton
     m_ReadOnly: 0
@@ -54,11 +49,6 @@ MonoBehaviour:
     - Asynchronous_Load
   - m_GUID: b93326d379cec8f4882baaab1c49cb8d
     m_Address: InvenCharacterButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 29e9148cf59a2b547bedf28478a6f028
-    m_Address: DetailInLogBook
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
@@ -77,38 +67,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load
-  - m_GUID: b13598ed3767b6047ae7d32b4086248d
-    m_Address: GameItemImage
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
   - m_GUID: de0a59128ea37194da339b3839359f8a
     m_Address: InteractionWithItemContainer
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 07e04cec400f64b4ba122240c4ad545d
-    m_Address: ItemContainerPriceUI
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 2b30ededbeed87d49b0790d9550af2f4
-    m_Address: GameUI
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 911ccbe50d8e6d740b348fc792eb7d47
-    m_Address: MonsterHpBar
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 1e277098b9bf06e418e92faa742909db
-    m_Address: DamageUI
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 0873df62fc6b81844ac5c5a6ee950dd2
-    m_Address: TurretBullet
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load

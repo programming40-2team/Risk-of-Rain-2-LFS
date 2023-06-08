@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 1761012180495814276}
   - component: {fileID: 1385859175848252421}
   m_Layer: 0
-  m_Name: BisonBody
+  m_Name: 10001Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,38 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 428a024f42d293f46aa4f6af6341b21c
   m_SerializeEntries:
-  - m_GUID: 8f0c34744e20e5047bf277be4ffda176
-    m_Address: itemContainer001
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 548954a353e58e04da26648df45bf276
-    m_Address: itemContainer002
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: c6d06aa19af80254e99e4264caf94a9c
-    m_Address: itemContainer003
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 53ca4af5b44c7d142976d290f86a384d
-    m_Address: itemContainer004
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: 174e50db0837f2b499f3865337b1a07d
-    m_Address: itemContainer005
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
   - m_GUID: 094e786998f9ad24985b436fb6fa1da1
     m_Address: item1001
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Asynchronous_Load
-  - m_GUID: f7b1f1a3c3c07614582c4bb7d6177f5a
-    m_Address: item1002
     m_ReadOnly: 0
     m_SerializedLabels:
     - Asynchronous_Load

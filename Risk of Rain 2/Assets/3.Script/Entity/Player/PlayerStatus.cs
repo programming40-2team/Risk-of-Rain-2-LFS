@@ -130,6 +130,7 @@ public class PlayerStatus : Entity
 
     //    }
     //}
+
     public void IncreaseExp(float exp)
     {
         CurrentExp += exp;

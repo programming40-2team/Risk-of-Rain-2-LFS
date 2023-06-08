@@ -75,10 +75,10 @@ public class BeetleQueen : Entity
             StopCoroutine(HitEffect_co());
             StartCoroutine(HitEffect_co());
             //Hp Slider 데미지 입을 떄 마다 갱신되도록 연동
-            Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
+            
         }
-
         base.OnDamage(damage);
+        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
     }
 
     private IEnumerator HitEffect_co()

@@ -45,7 +45,10 @@ public class ObjectPool : MonoBehaviour
     /// </summary>
     public void EnqueueObject(GameObject obj)
     {
-        poolingQueue.Enqueue(obj);
+        if (!poolingQueue.Contains(obj))
+        {
+            poolingQueue.Enqueue(obj);
+        }
     }
 }
 

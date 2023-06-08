@@ -53,8 +53,8 @@ public class Lemurian : Entity
         }
 
 
-        //_myHpBar = GetComponentInChildren<MonsterHpBar>();
-        //_myHpBar.gameObject.SetActive(false);
+        _myHpBar = GetComponentInChildren<MonsterHpBar>();
+        _myHpBar.gameObject.SetActive(false);
     }
 
     protected override void OnEnable()

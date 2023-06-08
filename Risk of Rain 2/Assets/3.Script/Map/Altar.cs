@@ -12,6 +12,8 @@ public class Altar : MonoBehaviour
     [SerializeField] Transform _spawnPoint;
     [SerializeField] ParticleSystem _bossRazer;
 
+    [SerializeField] Animation _halfSphere;
+
     private void Awake()
     {
         _renderer = this.GetComponent<Renderer>();
@@ -58,7 +60,7 @@ public class Altar : MonoBehaviour
 
                     Instantiate(_bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);  //제단에서 e키를 누르면 보스가 소환될 지점
                     BossRazer();
-
+                    _halfSphere.Play();
                     //보스가 생성되면 게임의 현재 상태를 ActiveTelePort로 바꾸어 관련 UI들 갱신!
                     Managers.Game.GameState = Define.EGameState.ActiveTelePort;
                 }

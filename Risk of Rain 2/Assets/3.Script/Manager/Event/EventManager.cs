@@ -14,6 +14,8 @@ public class EventManager
     public Action<int> GoldChange;
     public Action<int> EquipItemChange;
 
+    public Action BossProgress;
+
     public Action ExcuteActiveItem;
 
     public Action GameStateChange;

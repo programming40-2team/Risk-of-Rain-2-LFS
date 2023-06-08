@@ -16,19 +16,39 @@ public class BulletProjectile : Projectile
     private void OnTriggerEnter(Collider other)
     {
         float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
-        if (other.gameObject.transform.parent.root.TryGetComponent(out _entity))
+        if(other.gameObject.transform.parent != null)
         {
-            _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
-
-            if (criticalCoefficient==2)
+            if (other.gameObject.transform.parent.root.TryGetComponent(out _entity))
             {
-                PrintDamage(other.gameObject, Define.EDamageType.Cirtical);
-            }
-            else
-            {
-                PrintDamage(other.gameObject);
-            }
+                _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
 
+                if (criticalCoefficient == 2)
+                {
+                    PrintDamage(other.gameObject, Define.EDamageType.Cirtical);
+                }
+                else
+                {
+                    PrintDamage(other.gameObject);
+                }
+
+            }
+        }
+        else
+        {
+            if (other.TryGetComponent(out _entity))
+            {
+                _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
+
+                if (criticalCoefficient == 2)
+                {
+                    PrintDamage(other.gameObject, Define.EDamageType.Cirtical);
+                }
+                else
+                {
+                    PrintDamage(other.gameObject);
+                }
+
+            }
         }
         _projectileObjectPool.ReturnObject(gameObject);
     }

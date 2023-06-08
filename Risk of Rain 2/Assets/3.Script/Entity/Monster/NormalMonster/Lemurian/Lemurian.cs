@@ -12,7 +12,7 @@ public class Lemurian : Entity
     [Header("추적대상 레이어")]
     public LayerMask TargetLayer;
     private Entity _targetEntity;
-    private NavMeshAgent _navMeshAgent;
+    public NavMeshAgent Nav;
 
     public ObjectPool FireWardPool;
 
@@ -39,7 +39,7 @@ public class Lemurian : Entity
     }
     private void Awake()
     {
-        TryGetComponent(out _navMeshAgent);
+        TryGetComponent(out Nav);
         TryGetComponent(out _lemurianAnimator);
         _player = GameObject.FindGameObjectWithTag("Player");
         _lemurianMouthTransform = GameObject.FindGameObjectWithTag("LemurianMouth").transform;
@@ -53,8 +53,8 @@ public class Lemurian : Entity
         }
 
 
-        _myHpBar = GetComponentInChildren<MonsterHpBar>();
-        _myHpBar.gameObject.SetActive(false);
+        //_myHpBar = GetComponentInChildren<MonsterHpBar>();
+        //_myHpBar.gameObject.SetActive(false);
     }
 
     protected override void OnEnable()
@@ -91,7 +91,7 @@ public class Lemurian : Entity
         DamageAscent = data.DamageAscent;
         HealthRegen = data.HealthRegen;
         HealthRegenAscent = data.RegenAscent;
-        _navMeshAgent.speed = data.MoveSpeed;
+        Nav.speed = data.MoveSpeed;
     }
 
     public override void OnDamage(float damage)
@@ -118,8 +118,8 @@ public class Lemurian : Entity
             col.enabled = false;
         }
 
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.enabled = false;
+        Nav.isStopped = true;
+        Nav.enabled = false;
 
         StartCoroutine(Destroy_co());
 
@@ -165,8 +165,8 @@ public class Lemurian : Entity
             if (_hasTarget)
             {
                 Debug.Log("타겟이 있습니다.");
-                _navMeshAgent.isStopped = false;
-                _navMeshAgent.SetDestination(_targetEntity.transform.position);
+                Nav.isStopped = false;
+                Nav.SetDestination(_targetEntity.transform.position);
                 if(Vector3.Distance(transform.position, _targetEntity.transform.position) <= 10f)
                 {
                     if(!_isSkillRun[1])
@@ -189,7 +189,7 @@ public class Lemurian : Entity
             else
             {
                 Debug.Log("타겟이 없습니다.");
-                _navMeshAgent.isStopped = true;
+                Nav.isStopped = true;
 
                 Collider[] colls = Physics.OverlapSphere(transform.position, 30f, TargetLayer);
 

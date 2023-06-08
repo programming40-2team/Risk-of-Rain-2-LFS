@@ -22,18 +22,38 @@ public class PhaseRoundProjectile : Projectile
     
     private void OnTriggerEnter(Collider other)
     {
-       if(other.gameObject.transform.parent.root.TryGetComponent(out _entity))
+        if (other.gameObject.transform.parent != null)
         {
-            float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
-            _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
-            _damageCoefficient += _damageAscent;
-            if (criticalCoefficient == 2)
+            if (other.gameObject.transform.parent.root.TryGetComponent(out _entity))
             {
-                PrintDamage(other.gameObject, Define.EDamageType.Cirtical);
+                float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
+                _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
+                _damageCoefficient += _damageAscent;
+                if (criticalCoefficient == 2)
+                {
+                    PrintDamage(other.gameObject, Define.EDamageType.Cirtical);
+                }
+                else
+                {
+                    PrintDamage(other.gameObject);
+                }
             }
-            else
+        }
+        else
+        {
+            if (other.TryGetComponent(out _entity))
             {
-                PrintDamage(other.gameObject);
+                float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
+                _entity.OnDamage(_damage * _damageCoefficient * criticalCoefficient);
+                _damageCoefficient += _damageAscent;
+                if (criticalCoefficient == 2)
+                {
+                    PrintDamage(other.gameObject, Define.EDamageType.Cirtical);
+                }
+                else
+                {
+                    PrintDamage(other.gameObject);
+                }
             }
         }
     }

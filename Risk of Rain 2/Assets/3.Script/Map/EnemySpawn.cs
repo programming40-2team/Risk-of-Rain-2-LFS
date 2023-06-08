@@ -34,7 +34,7 @@ public class EnemySpawn : MonoBehaviour
                 int _monsterRandomObject = Random.Range(0, _monsterPrefab.Count);
               GameObject _enemy= Managers.Resource.Instantiate($"{_monsterPrefab[_monsterRandomObject].name}"
                     , randomSpawnPoint.position);
-                 _enemy.SetRandomPositionSphere(1, 3, 4, randomSpawnPoint);
+                 _enemy.SetRandomPositionSphere(2, 7, 2, other.transform);
             }
          
         }

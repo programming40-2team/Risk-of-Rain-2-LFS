@@ -54,7 +54,7 @@ public class Lemurian : Entity
 
 
         _myHpBar = GetComponentInChildren<MonsterHpBar>();
-        _myHpBar.gameObject.SetActive(false);
+        //_myHpBar.gameObject.SetActive(false);
     }
 
     protected override void OnEnable()
@@ -70,6 +70,13 @@ public class Lemurian : Entity
         Debug.Log("DamageAscent : " + DamageAscent);
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
+        Nav.enabled = true;
+        StartCoroutine(UpdateTargetPosition_co());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private void Start()
@@ -111,6 +118,7 @@ public class Lemurian : Entity
     {
         base.Die();
         _lemurianAnimator.SetTrigger("Die");
+        StopAllCoroutines();
 
         Collider[] colls = GetComponents<Collider>();
         foreach (Collider col in colls)
@@ -118,6 +126,7 @@ public class Lemurian : Entity
             col.enabled = false;
         }
 
+        Nav.ResetPath();
         Nav.isStopped = true;
         Nav.enabled = false;
 
@@ -160,6 +169,7 @@ public class Lemurian : Entity
 
     private IEnumerator UpdateTargetPosition_co()
     {
+        yield return new WaitForSeconds(0.5f);
         while (!IsDeath)
         {
             if (_hasTarget)

@@ -36,7 +36,12 @@ public class DamageUI : UI_Base
         currcolor = GetText((int)Texts.DamageText).color;
         GetText((int)Texts.DamageText).text = $"{_damage}";
 
+        if (!gameObject.transform.parent.gameObject.activeSelf)
+        {
+            return;
+        }
         StartCoroutine(nameof(Damage_Effect_co));
+        
     }
 
     private void Update()
@@ -68,5 +73,6 @@ public class DamageUI : UI_Base
     private void OnDisable()
     {
         StopCoroutine(nameof(Damage_Effect_co));
+
     }
 }

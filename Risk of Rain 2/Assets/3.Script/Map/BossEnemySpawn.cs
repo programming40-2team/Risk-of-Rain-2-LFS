@@ -62,7 +62,8 @@ public class BossEnemySpawn : MonoBehaviour
             GameObject randomMonsterPrefab = _monsterPrefab[randomMonster];
             Transform randomPoint = _spawnPoint[randomSpawnPoint];
 
-            Instantiate(randomMonsterPrefab, randomPoint.position, randomPoint.rotation);
+            GameObject _enemy = Managers.Resource.Instantiate($"{_monsterPrefab[randomMonster].name}"
+                   , _spawnPoint[randomSpawnPoint]);
             yield return new WaitForSeconds(_spawnTime);
         }
         

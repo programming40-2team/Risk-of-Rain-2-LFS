@@ -35,7 +35,7 @@ public class BossEnemySpawn : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&&Managers.Game.GameState==Define.EGameState.ActiveTelePort)
         {
             Managers.Game.ProgressBoss += Time.deltaTime;
             Managers.Event.BossProgress?.Invoke();

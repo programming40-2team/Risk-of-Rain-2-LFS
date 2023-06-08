@@ -393,7 +393,7 @@ public class GameUI : UI_Game, IListener
                 break;
             case Define.EGameState.ActiveTelePort:
                 GetText((int)Texts.ObjectContents2).text = "<b>보스를 처치하십시오!</b>";
-                GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss/50f:00}%)";
+                GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss:00}%)";
                 Get<GameObject>((int)GameObjects.BossPannel).SetActive(true);
                 Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(true);
                 break;
@@ -408,7 +408,7 @@ public class GameUI : UI_Game, IListener
 
     private void BossEvent()
     {
-        GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss}%)";
+        GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss:00}%)";
         if (Managers.Game.ProgressBoss > 100)
         {
             GetImage((int)Images.TeleCheckTrue1).enabled = true;

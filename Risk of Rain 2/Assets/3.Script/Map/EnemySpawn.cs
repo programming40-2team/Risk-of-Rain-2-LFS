@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class EnemySpawn : MonoBehaviour
     {
         _monsterPrefab.Clear();
         _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Imp"));
-       // _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Lemurian"));
+        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Lemurian"));
         _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Golem"));
 
     }
@@ -32,9 +33,15 @@ public class EnemySpawn : MonoBehaviour
             for(int i = 0; i < _monsterRandomCount; i++)
             {
                 int _monsterRandomObject = Random.Range(0, _monsterPrefab.Count);
-              GameObject _enemy= Managers.Resource.Instantiate($"{_monsterPrefab[_monsterRandomObject].name}"
-                    , randomSpawnPoint.position);
-                 _enemy.SetRandomPositionSphere(2, 7, 2, other.transform);
+                if(Physics.Raycast(randomSpawnPoint.position, Vector3.down, out RaycastHit hit, Mathf.Infinity))
+                {
+                    GameObject _enemy= Managers.Resource.Instantiate($"{_monsterPrefab[_monsterRandomObject].name}");
+                    _enemy.GetComponent<NavMeshAgent>().Warp(hit.point);
+
+                }
+
+
+                 //_enemy.SetRandomPositionSphere(2, 7, 2, other.transform);
             }
          
         }

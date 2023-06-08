@@ -104,7 +104,6 @@ public class ItemApplyManager
             skill.ApplyPassiveEffect();
         }
     }
-
 }
 
 public class PassiveItemFactory

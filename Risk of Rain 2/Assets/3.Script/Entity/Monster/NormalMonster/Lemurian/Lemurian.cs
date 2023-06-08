@@ -8,7 +8,7 @@ public class Lemurian : Entity
     [SerializeField] public MonsterData _lemurianData;
     private Animator _lemurianAnimator;
     private GameObject _player;
-    
+
     [Header("추적대상 레이어")]
     public LayerMask TargetLayer;
     private Entity _targetEntity;
@@ -127,7 +127,7 @@ public class Lemurian : Entity
         }
 
         Nav.ResetPath();
-        Nav.isStopped = true;
+        //Nav.isStopped = true;
         Nav.enabled = false;
 
         StartCoroutine(Destroy_co());
@@ -160,7 +160,7 @@ public class Lemurian : Entity
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
         float damage = Damage * 2;
-        if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 1f)
+        if (Nav.remainingDistance <= 5f)
         {
             _player.GetComponent<Entity>().OnDamage(damage); // 200%
             Debug.Log("플레이어가 레무리안의 Bite에 맞음 가한 damage : " + damage);
@@ -175,16 +175,27 @@ public class Lemurian : Entity
             if (_hasTarget)
             {
                 Debug.Log("타겟이 있습니다.");
-                Nav.isStopped = false;
-                Nav.SetDestination(_targetEntity.transform.position);
-                if(Vector3.Distance(transform.position, _targetEntity.transform.position) <= 10f)
+                //Nav.isStopped = false;
+
+                try
                 {
-                    if(!_isSkillRun[1])
+                    Nav.SetDestination(_targetEntity.transform.position);
+                }
+
+                catch
+                {
+                    _player = GameObject.FindGameObjectWithTag("Player");
+                }
+
+
+                if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 10f)
+                {
+                    if (!_isSkillRun[1])
                     {
                         UseSkill(1);
                     }
                 }
-                else if(Vector3.Distance(transform.position, _targetEntity.transform.position) <= 50f)
+                else if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 50f)
                 {
                     if (!_isSkillRun[0])
                     {
@@ -199,7 +210,7 @@ public class Lemurian : Entity
             else
             {
                 Debug.Log("타겟이 없습니다.");
-                Nav.isStopped = true;
+                //Nav.isStopped = true;
 
                 Collider[] colls = Physics.OverlapSphere(transform.position, 30f, TargetLayer);
 

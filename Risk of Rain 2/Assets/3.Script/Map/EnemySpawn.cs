@@ -12,9 +12,9 @@ public class EnemySpawn : MonoBehaviour
     private void Start()
     {
         _monsterPrefab.Clear();
-        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Imp"));
-        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Lemurian"));
-        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Golem"));
+        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Imp"));
+        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Lemurian"));
+        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Golem"));
 
     }
 

@@ -8,11 +8,11 @@ public class Lemurian : Entity
     [SerializeField] public MonsterData _lemurianData;
     private Animator _lemurianAnimator;
     private GameObject _player;
-
+    
     [Header("추적대상 레이어")]
     public LayerMask TargetLayer;
     private Entity _targetEntity;
-    private NavMeshAgent _navMeshAgent;
+    public NavMeshAgent Nav;
 
     public ObjectPool FireWardPool;
 
@@ -22,6 +22,9 @@ public class Lemurian : Entity
     private float[] _skillCoolDownArr = new float[2];
     private bool[] _isSkillRun = new bool[2];
 
+
+    //HpBar 
+    private MonsterHpBar _myHpBar;
     private bool _hasTarget
     {
         get
@@ -36,12 +39,11 @@ public class Lemurian : Entity
     }
     private void Awake()
     {
-        TryGetComponent(out _navMeshAgent);
+        TryGetComponent(out Nav);
         TryGetComponent(out _lemurianAnimator);
         _player = GameObject.FindGameObjectWithTag("Player");
         _lemurianMouthTransform = GameObject.FindGameObjectWithTag("LemurianMouth").transform;
         FireWardPool = GameObject.Find("FireWardPool").GetComponent<ObjectPool>();
-
         _skillCoolDownArr[0] = 2f;
         _skillCoolDownArr[1] = 1f;
 
@@ -49,6 +51,10 @@ public class Lemurian : Entity
         {
             _isSkillRun[i] = false;
         }
+
+
+        _myHpBar = GetComponentInChildren<MonsterHpBar>();
+        //_myHpBar.gameObject.SetActive(false);
     }
 
     protected override void OnEnable()
@@ -64,8 +70,13 @@ public class Lemurian : Entity
         Debug.Log("DamageAscent : " + DamageAscent);
         Debug.Log("HealthRegen : " + HealthRegen);
         Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
-        _navMeshAgent.enabled = true;
+        Nav.enabled = true;
         StartCoroutine(UpdateTargetPosition_co());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private void Start()
@@ -87,7 +98,7 @@ public class Lemurian : Entity
         DamageAscent = data.DamageAscent;
         HealthRegen = data.HealthRegen;
         HealthRegenAscent = data.RegenAscent;
-        _navMeshAgent.speed = data.MoveSpeed;
+        Nav.speed = data.MoveSpeed;
     }
 
     public override void OnDamage(float damage)
@@ -97,7 +108,7 @@ public class Lemurian : Entity
             //.Play();
             //.PlayOneShot(hitSound);
             _lemurianAnimator.SetTrigger("Hit");
-
+            _myHpBar.gameObject.SetActive(true);
         }
 
         base.OnDamage(damage);
@@ -107,6 +118,7 @@ public class Lemurian : Entity
     {
         base.Die();
         _lemurianAnimator.SetTrigger("Die");
+        StopAllCoroutines();
 
         Collider[] colls = GetComponents<Collider>();
         foreach (Collider col in colls)
@@ -114,11 +126,22 @@ public class Lemurian : Entity
             col.enabled = false;
         }
 
-        _navMeshAgent.ResetPath();
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.enabled = false;
+        Nav.ResetPath();
+        Nav.isStopped = true;
+        Nav.enabled = false;
+
+        StartCoroutine(Destroy_co());
 
         Debug.Log("레무리안 죽는 사운드 넣을거면 여기");
+
+    }
+
+    private IEnumerator Destroy_co()
+    {
+        _myHpBar.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        Managers.Resource.Destroy(gameObject);
+        // 풀에 반환 시키기
     }
 
     /// <summary>
@@ -136,29 +159,32 @@ public class Lemurian : Entity
     /// </summary>
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
-        if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 2f)
+        float damage = Damage * 2;
+        if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 1f)
         {
-            _player.GetComponent<Entity>().OnDamage(Damage * 2); // 200%
+            _player.GetComponent<Entity>().OnDamage(damage); // 200%
+            Debug.Log("플레이어가 레무리안의 Bite에 맞음 가한 damage : " + damage);
         }
     }
 
     private IEnumerator UpdateTargetPosition_co()
     {
+        yield return new WaitForSeconds(0.5f);
         while (!IsDeath)
         {
             if (_hasTarget)
             {
                 Debug.Log("타겟이 있습니다.");
-                _navMeshAgent.isStopped = false;
-                _navMeshAgent.SetDestination(_targetEntity.transform.position);
-                if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 10f)
+                Nav.isStopped = false;
+                Nav.SetDestination(_targetEntity.transform.position);
+                if(Vector3.Distance(transform.position, _targetEntity.transform.position) <= 10f)
                 {
-                    if (!_isSkillRun[1])
+                    if(!_isSkillRun[1])
                     {
                         UseSkill(1);
                     }
                 }
-                else if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 50f)
+                else if(Vector3.Distance(transform.position, _targetEntity.transform.position) <= 50f)
                 {
                     if (!_isSkillRun[0])
                     {
@@ -173,7 +199,7 @@ public class Lemurian : Entity
             else
             {
                 Debug.Log("타겟이 없습니다.");
-                _navMeshAgent.isStopped = true;
+                Nav.isStopped = true;
 
                 Collider[] colls = Physics.OverlapSphere(transform.position, 30f, TargetLayer);
 
@@ -215,6 +241,7 @@ public class Lemurian : Entity
                 break;
         }
         yield return new WaitForSeconds(_skillCoolDownArr[skillIndex]); // 쿨타임만큼 기다리기
-        _isSkillRun[skillIndex] = false; // 스킬 쿨타임 다 돌았 
+        _isSkillRun[skillIndex] = false; // 스킬 쿨타임 다 돌았음
+
     }
 }

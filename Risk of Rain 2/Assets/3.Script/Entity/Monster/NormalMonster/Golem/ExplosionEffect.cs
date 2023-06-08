@@ -6,7 +6,7 @@ using UnityEngine;
 public class ExplosionEffect : MonoBehaviour
 {
     [SerializeField] private Golem _golem;
-    private readonly float _explosionCoefficents = 1.3f;
+    private readonly float _explosionCoefficents = 0.6f;
 
     private void OnTriggerEnter(Collider other)
     {

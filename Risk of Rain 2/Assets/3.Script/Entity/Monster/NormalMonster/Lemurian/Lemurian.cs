@@ -74,7 +74,7 @@ public class Lemurian : Entity
 
     private void Start()
     {
-        StartCoroutine(UpdateTargetPosition_co());
+        //StartCoroutine(UpdateTargetPosition_co());
     }
 
     private void Update()

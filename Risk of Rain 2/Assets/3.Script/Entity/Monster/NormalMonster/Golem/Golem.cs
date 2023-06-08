@@ -74,7 +74,7 @@ public class Golem : Entity
     {
         if (_isSpawn)
         {
-            _myHpBar.gameObject.SetActive(true);
+           _myHpBar.gameObject.SetActive(true);
             base.OnDamage(damage);
         }
     }

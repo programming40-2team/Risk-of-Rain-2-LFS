@@ -6,7 +6,7 @@ using UnityEngine;
 public class ClapEffect : MonoBehaviour
 {
     [SerializeField] private Golem _golem;
-    private readonly float _clapCoefficents = 3f;
+    private readonly float _clapCoefficents = 1.2f;
 
     private void OnTriggerEnter(Collider other)
     {

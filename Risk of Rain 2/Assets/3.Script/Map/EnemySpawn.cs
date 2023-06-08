@@ -9,6 +9,9 @@ public class EnemySpawn : MonoBehaviour
     [Header("랜덤스폰 위치")]
     [SerializeField] Transform[] _spawnPoint;
 
+
+    private float _spawnCooldown = 10f;
+    private float _spawnCooldownRemain = 0f;
     private void Start()
     {
         _monsterPrefab.Clear();
@@ -18,14 +21,20 @@ public class EnemySpawn : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        CheckCooldown(ref _spawnCooldownRemain);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         int random = Random.Range(0, _spawnPoint.Length);
         Transform randomSpawnPoint = _spawnPoint[random];
      
-        int _monsterRandomCount = Random.Range(1,5);
+        int _monsterRandomCount = Random.Range(1,3);
         if (other.CompareTag("Player"))
         {
+            _spawnCooldownRemain = _spawnCooldown;
             Debug.Log("스폰 구역 입장");
             for(int i = 0; i < _monsterRandomCount; i++)
             {
@@ -37,4 +46,17 @@ public class EnemySpawn : MonoBehaviour
          
         }
     }
+
+    private void CheckCooldown(ref float skillCooldownRemain)
+    {
+        if (skillCooldownRemain > 0)
+        {
+            skillCooldownRemain -= Time.deltaTime;
+        }
+        else
+        {
+            skillCooldownRemain = 0f;
+        }
+    }
+
 }

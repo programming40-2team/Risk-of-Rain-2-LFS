@@ -38,11 +38,13 @@ public class Golem : Entity
         TryGetComponent(out _golemAgent);
         TryGetComponent(out _golemAnimator);
 
-        _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
         _golemAnimator.speed = 0.0f;
 
         _myHpBar = GetComponentInChildren<MonsterHpBar>();
         _myHpBar.gameObject.SetActive(false);
+        _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
 
     }
 
@@ -54,11 +56,12 @@ public class Golem : Entity
         OnDeath -= ToDeath;
         OnDeath += ToDeath;
         StartCoroutine(CheckNearPlayer_co());
+        _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
     {
-        if(_isSpawn && !IsDeath)
+        if (_isSpawn && !IsDeath)
         {
             Aiming();
             Move();
@@ -69,7 +72,7 @@ public class Golem : Entity
 
     public override void OnDamage(float damage)
     {
-        if(_isSpawn)
+        if (_isSpawn)
         {
             _myHpBar.gameObject.SetActive(true);
             base.OnDamage(damage);

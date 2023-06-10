@@ -16,9 +16,17 @@ public class Item1014SkillComponent : ItemPrimitiive
     private void FindEnemy()
     {
         myTargetEnemy =  GameObject.FindGameObjectWithTag("Monster");
-        enemyEntity = myTargetEnemy.GetComponent<Entity>();
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().velocity = movespeed * (myTargetEnemy.transform.position - gameObject.transform.position).normalized;
+        if(myTargetEnemy==null)
+        {
+            Managers.Resource.Destroy(gameObject);
+        }
+        else
+        {
+            enemyEntity = myTargetEnemy.GetComponent<Entity>();
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = movespeed * (myTargetEnemy.transform.position - gameObject.transform.position).normalized;
+        }
+    
     }
 
 

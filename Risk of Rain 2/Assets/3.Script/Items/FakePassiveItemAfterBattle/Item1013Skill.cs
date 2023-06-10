@@ -13,7 +13,7 @@ public class Item1013Skill : NewItemPrimitive,IAfterBattleItem
             return;
         }
 
-        GameObject.FindObjectOfType<CommandoSkill>().SkillQColldown -= 4 + 2* Managers.ItemInventory.Items[Itemid].Count;
+        GameObject.FindObjectOfType<CommandoSkill>().skillQCoolDownRemain -= 4 + 2* Managers.ItemInventory.Items[Itemid].Count;
     }
 
 

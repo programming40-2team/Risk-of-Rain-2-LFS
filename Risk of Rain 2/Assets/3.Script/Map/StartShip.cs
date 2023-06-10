@@ -19,12 +19,15 @@ public class StartShip : MonoBehaviour
     void Awake()
     {
         _doorOpen = GetComponent<Animation>();
-        Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
+
         _player.SetActive(true);
         _playerCamera.SetActive(false);
     }
 
-
+    private void Start()
+    {
+        Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
+    }
     void Update()
     {
         if (isStart == false && Input.GetKeyDown(KeyCode.E) && _starShip._isGround)

@@ -10,5 +10,9 @@ public class Item1007Effect : MonoBehaviour
     void Update()
     {
         gameObject.transform.position = _target.transform.position;
+        if (_target == null)
+        {
+            Managers.Resource.Destroy(gameObject);
+        }
     }
 }

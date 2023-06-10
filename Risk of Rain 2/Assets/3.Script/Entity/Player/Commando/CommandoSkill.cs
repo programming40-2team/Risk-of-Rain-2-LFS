@@ -69,10 +69,19 @@ public class CommandoSkill : MonoBehaviour
     // Active Item (Q Skill)
     public float SkillQColldown { get; set; } = 0f;
     private float _skillQCoolDownRemain = 0f;
-    public float GetSkillQCooldownRemain()
+    public float skillQCoolDownRemain
     {
-        return _skillQCoolDownRemain;
+        get { return _skillQCoolDownRemain; }
+        set
+        {
+            _skillQCoolDownRemain = value;
+        }
     }
+
+    //public float GetSkillQCooldownRemain()
+    //{
+    //    return _skillQCoolDownRemain;
+    //}
 
 
     private void Awake()

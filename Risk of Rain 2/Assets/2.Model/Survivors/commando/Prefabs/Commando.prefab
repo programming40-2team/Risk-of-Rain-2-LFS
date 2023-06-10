@@ -3107,6 +3107,7 @@ GameObject:
   - component: {fileID: 5335581663378322927}
   - component: {fileID: 5335581663378322913}
   - component: {fileID: 5335581663378322914}
+  - component: {fileID: 1478301542}
   m_Layer: 7
   m_Name: Commando
   m_TagString: Player
@@ -3234,6 +3235,18 @@ MonoBehaviour:
   _centerMuzzle: {fileID: 1940033933091885456}
   _leftMuzzleEffect: {fileID: 5101068272689687714}
   _rightMuzzleEffect: {fileID: 5101068272958169617}
+--- !u!114 &1478301542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5335581663378322924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b83a13eca74db449cd57e8607335ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5540418668504921817
 GameObject:
   m_ObjectHideFlags: 0

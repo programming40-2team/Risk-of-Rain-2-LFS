@@ -106,6 +106,7 @@
     {
         NonTelePort,
         ActiveTelePort,
+        KillBoss,
         CompeleteTelePort,
 
 

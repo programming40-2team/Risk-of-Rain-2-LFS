@@ -36,7 +36,7 @@ public class BossEnemySpawn : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.CompareTag("Player")&&Managers.Game.GameState==Define.EGameState.ActiveTelePort)
+        if (other.CompareTag("Player")&&(Managers.Game.GameState==Define.EGameState.KillBoss||Managers.Game.GameState==Define.EGameState.ActiveTelePort))
         {
             Managers.Game.ProgressBoss += Time.deltaTime;
             Managers.Event.BossProgress?.Invoke();
@@ -63,8 +63,9 @@ public class BossEnemySpawn : MonoBehaviour
             GameObject randomMonsterPrefab = _monsterPrefab[randomMonster];
             Transform randomPoint = _spawnPoint[randomSpawnPoint];
 
-            if (Physics.Raycast(randomPoint.position, Vector3.down, out RaycastHit hit, Mathf.Infinity))
+            if (Physics.Raycast(randomPoint.position, Vector3.down, out RaycastHit hit, Mathf.Infinity,1<<(int)Define.LayerMask.Enviroment))
             {
+
                 GameObject _enemy = Managers.Resource.Instantiate($"{_monsterPrefab[randomMonster].name}");
                 _enemy.GetComponent<NavMeshAgent>().Warp(hit.point);
 

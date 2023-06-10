@@ -78,6 +78,18 @@ public class GameManager
     }
     public float PlayingTime { get; set; } = 0;
 
-    public float ProgressBoss { get; set; } = 0;
+    private float _ProgressBoss = 0f;
+    public float ProgressBoss
+    {
+        get { return _ProgressBoss; }
+        set
+        {
+            _ProgressBoss = value;
+            if (_ProgressBoss >= 100f && GameState==Define.EGameState.KillBoss)
+            {
+                GameState = Define.EGameState.CompeleteTelePort;
+            }
+        }
+    }
 
 }

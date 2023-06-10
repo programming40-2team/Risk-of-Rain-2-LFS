@@ -8,7 +8,7 @@ public class ItemOutEffect : MonoBehaviour
     private void Update()
     {
         transform.position = Vector3.Slerp(transform.position, _targetPosition, 0.01f);
-        if ((transform.position - _targetPosition).sqrMagnitude < 0.15f)
+        if ((transform.position - _targetPosition).sqrMagnitude < 1f)
         {
             Managers.Resource.Destroy(gameObject);
         }

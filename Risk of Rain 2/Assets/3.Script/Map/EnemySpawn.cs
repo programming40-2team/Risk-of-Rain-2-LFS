@@ -33,7 +33,7 @@ public class EnemySpawn : MonoBehaviour
             for(int i = 0; i < _monsterRandomCount; i++)
             {
                 int _monsterRandomObject = Random.Range(0, _monsterPrefab.Count);
-                if(Physics.Raycast(randomSpawnPoint.position, Vector3.down, out RaycastHit hit, Mathf.Infinity))
+                if(Physics.Raycast(randomSpawnPoint.position, Vector3.down, out RaycastHit hit, Mathf.Infinity,(int)Define.LayerMask.Enviroment))
                 {
                     GameObject _enemy= Managers.Resource.Instantiate($"{_monsterPrefab[_monsterRandomObject].name}");
                     _enemy.GetComponent<NavMeshAgent>().Warp(hit.point);

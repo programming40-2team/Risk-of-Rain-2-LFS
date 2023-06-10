@@ -90,7 +90,7 @@ public class BeetleQueen : Entity
         // 보스 Destroy
 
         //보스 종료 시 텔레포트 이벤트 완료!
-        Managers.Game.GameState = Define.EGameState.CompeleteTelePort;
+        Managers.Game.GameState = Define.EGameState.KillBoss;
     }
 
     private void SetUp(MonsterData data)

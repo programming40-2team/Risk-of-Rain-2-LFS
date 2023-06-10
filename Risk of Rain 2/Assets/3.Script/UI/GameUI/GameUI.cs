@@ -42,6 +42,8 @@ public class GameUI : UI_Game, IListener
 
         ItemInformationImage,
 
+        TeleCheckFalse1,
+        TeleCheckFalse2,
         TeleCheckTrue1,
         TeleCheckTrue2,
 
@@ -320,7 +322,7 @@ public class GameUI : UI_Game, IListener
 
             GetText((int)Texts.SkillRCoolTime).text = $"{characterSkill.GetSuppressiveFireCooldownRemain():0.0}";
         }
-        Get<Slider>((int)Sliders.SkillQ).value = characterSkill.GetSkillQCooldownRemain() / characterSkill.SuppressiveFireCooldown;
+        Get<Slider>((int)Sliders.SkillQ).value = characterSkill.skillQCoolDownRemain/ characterSkill.SuppressiveFireCooldown;
         if (Get<Slider>((int)Sliders.SkillQ).value.Equals(0))
         {
             GetImage((int)Images.SkillQFillImage).color = FullChargeSkillFillImageColor;
@@ -331,7 +333,7 @@ public class GameUI : UI_Game, IListener
         {
             GetImage((int)Images.SkillQFillImage).color = PrevSkillFillImageColor;
 
-            GetText((int)Texts.SkillQCoolTime).text = $"{characterSkill.GetSkillQCooldownRemain():0.0}";
+            GetText((int)Texts.SkillQCoolTime).text = $"{characterSkill.skillQCoolDownRemain:0.0}";
         }
 
 
@@ -344,8 +346,8 @@ public class GameUI : UI_Game, IListener
     //
     private void EventOfPlayerHp(float currHp, float MaxHp)
     {
-        Get<Slider>((int)Sliders.PlayerHpSlider).value =(int)currHp / MaxHp;
-        GetText((int)Texts.PlayerHpText).text = $"{currHp}/{MaxHp}";
+        Get<Slider>((int)Sliders.PlayerHpSlider).value =currHp / MaxHp;
+        GetText((int)Texts.PlayerHpText).text = $"{(int)currHp}/{MaxHp}";
 
     }
     private void EventOfPlayerExp(float currentExp, float MaxExp, int level)
@@ -396,6 +398,14 @@ public class GameUI : UI_Game, IListener
                 GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss:00}%)";
                 Get<GameObject>((int)GameObjects.BossPannel).SetActive(true);
                 Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(true);
+                break;
+            case Define.EGameState.KillBoss:
+                Get<GameObject>((int)GameObjects.ActiveTelePort).SetActive(true);
+                GetText((int)Texts.ObjectContents1).text = $"<b><color=#FF0000>텔레포터<u>(_)</u></color></b>를 충전 하십시오.({Managers.Game.ProgressBoss:00}%)";
+                GetText((int)Texts.ObjectContents2).text = "<b>보스를 처치하십시오!</b>";
+                GetImage((int)Images.TeleCheckTrue2).enabled = true;
+                GetImage((int)Images.TeleCheckFalse2).enabled = false;
+                Get<GameObject>((int)GameObjects.BossPannel).SetActive(false);
                 break;
             case Define.EGameState.CompeleteTelePort:
                 GetText((int)Texts.ObjectContents1).text = "텔리포트로 들어가십시오";

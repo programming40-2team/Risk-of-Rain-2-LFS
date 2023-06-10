@@ -67,14 +67,13 @@ public class Item1007SkillComponent : ItemPrimitiive
     IEnumerator LerpTransform_co()
     {
         float timeElapsed = 0;
-        float angle = Random.Range(0f, Mathf.PI * 2f);
+  
 
         while (timeElapsed < lerpTime)
         {
             float percent = timeElapsed / lerpTime;
-            transform.position = Vector3.Lerp(transform.position, Objectposition, percent * percent * percent * percent * percent);
-            angle += Time.deltaTime;
-            transform.position = new Vector3(transform.position.x + 0.2f * Mathf.Cos(angle), transform.position.y, transform.position.z + 0.2f * Mathf.Sin(angle));
+            transform.position = Vector3.Lerp(transform.position, Objectposition, percent);
+            transform.position = new Vector3(transform.position.x , transform.position.y, transform.position.z);
             timeElapsed += Time.deltaTime;
             yield return null;
         }

@@ -14,7 +14,7 @@ public class Item1007Skill : NewItemPrimitive, IInBattleItem
             return;
         }
         base.Init();
-        if (Util.Probability(100))
+        if (Util.Probability(35))
         {
             GameObject item1007 = Managers.Resource.Instantiate("Item1007Skill");
             item1007.SetRandomPositionSphere(5, 5, 5, Player.transform);

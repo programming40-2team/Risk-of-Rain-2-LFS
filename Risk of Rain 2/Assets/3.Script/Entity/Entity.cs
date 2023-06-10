@@ -117,7 +117,8 @@ public class Entity : MonoBehaviour
             Managers.ItemApply.ExcuteAfterSkills(gameObject.transform);
 
             Managers.Game.KillCount++;
-            Managers.Game.Gold += UnityEngine.Random.Range(15, 25 + 10 * (int)Managers.Game.Difficulty);
+            Managers.Game.Gold +=100+ UnityEngine.Random.Range(15, 25 + 10 * (int)Managers.Game.Difficulty);
+            Debug.Log("골드 잠시 치트모드로 올려둠");
 
             int _randomvalue= UnityEngine.Random.Range(1, 3);
             for (int i = 0; i < _randomvalue; i++)

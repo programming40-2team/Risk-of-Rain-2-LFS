@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossEnemySpawn : MonoBehaviour
 {
@@ -62,8 +63,12 @@ public class BossEnemySpawn : MonoBehaviour
             GameObject randomMonsterPrefab = _monsterPrefab[randomMonster];
             Transform randomPoint = _spawnPoint[randomSpawnPoint];
 
-            GameObject _enemy = Managers.Resource.Instantiate($"{_monsterPrefab[randomMonster].name}"
-                   , _spawnPoint[randomSpawnPoint]);
+            if (Physics.Raycast(randomPoint.position, Vector3.down, out RaycastHit hit, Mathf.Infinity))
+            {
+                GameObject _enemy = Managers.Resource.Instantiate($"{_monsterPrefab[randomMonster].name}");
+                _enemy.GetComponent<NavMeshAgent>().Warp(hit.point);
+
+            }
             yield return new WaitForSeconds(_spawnTime);
         }
         

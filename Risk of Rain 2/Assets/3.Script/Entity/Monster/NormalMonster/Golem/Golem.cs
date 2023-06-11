@@ -20,7 +20,7 @@ public class Golem : Entity
     private RaycastHit _aimHit;
     private Quaternion _aimRotation;
     private readonly WaitForSeconds _laserChargeTime = new WaitForSeconds(3f);
-    private readonly float _aimSpeed = 2f;
+    private readonly float _aimSpeed = 1.3f;
     private readonly float _laserAttackCooldown = 5f;
     private float _laserAttackCooldownRemain = 0f;
     private Coroutine _warningLaserCoroutine = null;
@@ -180,6 +180,13 @@ public class Golem : Entity
         Vector3 explosionPos = _aimHit.point;
         if (_warningLaserCoroutine != null)
         {
+            for(int i = 0; i<5;  i++) 
+            {
+                _golemLaser.enabled = false;
+                yield return new WaitForSeconds(0.1f);
+                _golemLaser.enabled = true;
+                yield return new WaitForSeconds(0.1f);
+            }
             StopCoroutine(_warningLaserCoroutine);
             _warningLaserCoroutine = null;
         }
@@ -201,6 +208,7 @@ public class Golem : Entity
         }
 
     }
+    
 
     private IEnumerator SeismicSlam_co()
     {

@@ -595,6 +595,8 @@ GameObject:
   - component: {fileID: 2861376852108592565}
   - component: {fileID: 22887845763330431}
   - component: {fileID: 1968543833940168875}
+  - component: {fileID: 6914759075724550788}
+  - component: {fileID: 4718175346648611653}
   m_Layer: 0
   m_Name: _HalfSphere
   m_TagString: Untagged
@@ -681,6 +683,36 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!135 &6914759075724550788
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968543833940168874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9854692
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4718175346648611653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968543833940168874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 0
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 5092641227d027f4f9986cf6d47569df, type: 2}
 --- !u!1 &7026735247756362318
 GameObject:
   m_ObjectHideFlags: 0
@@ -6035,7 +6067,7 @@ MonoBehaviour:
   _renderer: {fileID: 0}
   materialList:
   - {fileID: 2100000, guid: 393ae00dca0039a40b65b56d80f60062, type: 2}
-  _bossPrefab: {fileID: 1145294595452209251, guid: 638fb7c632493ea4abc4a8ce468ef351, type: 3}
+  _bossPrefab: {fileID: 2715680452440606212, guid: 5277dc83ff61103448fa7e20838254a4, type: 3}
   _spawnPoint: {fileID: 7026735247756362319}
   _bossRazer: {fileID: 7026735248729659172}
   _halfSphere: {fileID: 1968543833940168875}

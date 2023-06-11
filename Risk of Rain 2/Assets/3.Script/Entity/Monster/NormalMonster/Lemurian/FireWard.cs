@@ -6,13 +6,17 @@ public class FireWard : MonoBehaviour
 {
     private Lemurian _lemurian;
     [SerializeField] private GameObject _lemurianObject;
+    private Rigidbody _fireWardRigidbody;
     private float _shootingSpeed = 45f;
     private float _damage = 0;
 
+    private void Awake()
+    {
+        TryGetComponent(out _fireWardRigidbody);
+    }
     private void OnEnable()
     {
         _lemurian = FindObjectOfType<Lemurian>();
-        StartCoroutine(Shoot_co());
     }
 
     private void Start()
@@ -23,16 +27,9 @@ public class FireWard : MonoBehaviour
         }
     }
 
-    IEnumerator Shoot_co()
+    public void  Shoot()
     {
-        float time = 0;
-        while (time < 5f)
-        {
-            transform.position += transform.forward * _shootingSpeed * Time.deltaTime;
-            time += Time.deltaTime;
-            yield return null;
-        }
-        DeleteFireWard();
+        _fireWardRigidbody.velocity = transform.forward * _shootingSpeed;
     }
 
     private void DeleteFireWard()

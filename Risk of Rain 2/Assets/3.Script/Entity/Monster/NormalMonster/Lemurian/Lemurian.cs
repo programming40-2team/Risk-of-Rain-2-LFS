@@ -151,7 +151,8 @@ public class Lemurian : Entity
     {
         Quaternion rot = Quaternion.LookRotation(_player.transform.position - _lemurianMouthTransform.position);
         GameObject obj = FireWardPool.GetObject();
-        obj.transform.SetPositionAndRotation(_lemurianMouthTransform.position, Quaternion.Euler(0, 0, 0) * rot);
+        obj.transform.SetPositionAndRotation(_lemurianMouthTransform.position, rot);
+        obj.GetComponent<FireWard>().Shoot();
     }
 
     /// <summary>
@@ -160,10 +161,13 @@ public class Lemurian : Entity
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
         float damage = Damage * 2;
-        if (Nav.remainingDistance <= 5f)
+        if ( !IsDeath && Nav.enabled )
         {
-            _player.GetComponent<Entity>().OnDamage(damage); // 200%
-            Debug.Log("플레이어가 레무리안의 Bite에 맞음 가한 damage : " + damage);
+            if(Nav.remainingDistance <= 5f)
+            {
+                _player.GetComponent<Entity>().OnDamage(damage); // 200%
+                Debug.Log("플레이어가 레무리안의 Bite에 맞음 가한 damage : " + damage);
+            }
         }
     }
 

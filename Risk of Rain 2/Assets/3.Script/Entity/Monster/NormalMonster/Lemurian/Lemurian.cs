@@ -151,10 +151,13 @@ public class Lemurian : Entity
     {
         if(!IsDeath)
         {
-            Quaternion rot = Quaternion.LookRotation(_player.transform.position - _lemurianMouthTransform.position);
-            GameObject obj = FireWardPool.GetObject();
-            obj.transform.SetPositionAndRotation(_lemurianMouthTransform.position, rot);
-            obj.GetComponent<FireWard>().Shoot();
+            if(_lemurianMouthTransform != null && _player != null)
+            {
+                Quaternion rot = Quaternion.LookRotation(_player.transform.position - _lemurianMouthTransform.position);
+                GameObject obj = FireWardPool.GetObject();
+                obj.transform.SetPositionAndRotation(_lemurianMouthTransform.position, rot);
+                obj.GetComponent<FireWard>().Shoot();
+            }
         }
     }
 

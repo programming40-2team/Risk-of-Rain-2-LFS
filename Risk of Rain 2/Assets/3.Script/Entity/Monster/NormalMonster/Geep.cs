@@ -33,11 +33,6 @@ public class Geep : Entity
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            OnDamage(10f);
-            Debug.Log(Health);
-        }
         // //Todo 거리 네비메쉬로 수정 navmeshAgent.reamainingDistance
         if (!IsDeath)
         {
@@ -46,7 +41,7 @@ public class Geep : Entity
             {
                 _isFindTarget = true;
                 // 적과 대상 사이의 거리 계산
-                if (_navMeshAgent.remainingDistance <= 10f) // 플레이어가 공격 범위 내에 있는지 확인
+                if (_navMeshAgent.remainingDistance <= 5f) // 플레이어가 공격 범위 내에 있는지 확인
                 {
                     //Debug.Log("접근");
                     if (!_isAttack)

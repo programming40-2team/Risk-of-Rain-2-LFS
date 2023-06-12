@@ -39,56 +39,49 @@ public class Bison : Entity
 
     private void Update()
     {
-        //Todo 거리 네비메쉬로 수정 navmeshAgent.reamainingDistance
-        if (_navMeshAgent.remainingDistance <= 150f)
+        if (!IsDeath)
         {
-            _isFindTarget = true;
-            // 적과 대상 사이의 거리 계산
-            if (_navMeshAgent.remainingDistance <= 5f) // 플레이어가 공격 범위 내에 있는지 확인
+            //Todo 거리 네비메쉬로 수정 navmeshAgent.reamainingDistance
+            if (_navMeshAgent.remainingDistance <= 150f)
             {
-                Debug.Log("접근");
-                if (!_isAttack)
+                _isFindTarget = true;
+                // 적과 대상 사이의 거리 계산
+                if (_navMeshAgent.remainingDistance <= 5f) // 플레이어가 공격 범위 내에 있는지 확인
                 {
-                    StartCoroutine(Attack_co());
+                    //Debug.Log("접근");
+                    if (!_isAttack)
+                    {
+                        StartCoroutine(Attack_co());
+                    }
+                    transform.LookAt(_playertag);
                 }
-                transform.LookAt(_playertag);
-            }
-            else if (_navMeshAgent.remainingDistance <= 150f) // 플레이어가 인식 범위 내에 있는지 확인
-            {
-                _animator.SetBool("isATK", false);
-                _animator.SetBool("isRun", true);
-            }
-            else if (_navMeshAgent.remainingDistance <= 30f) // 플레이어가 인식 범위 내에 있는지 확인
-            {
-                _navMeshAgent.speed = 0;
-                _animator.SetBool("isCharge", true);
-                new WaitForSeconds(2f);
-                _navMeshAgent.speed = 100f;
-                _animator.SetBool("isRush", true);
-                _navMeshAgent.SetDestination(_player.transform.position * -1);
-                LookAtTarget();
+                else if (_navMeshAgent.remainingDistance <= 150f) // 플레이어가 인식 범위 내에 있는지 확인
+                {
+                    _animator.SetBool("isATK", false);
+                    _animator.SetBool("isRun", true);
+                }
+                else
+                {
+                    _animator.SetBool("isATK", false);
+                    _animator.SetBool("isRun", true);
+                }
             }
             else
             {
-                _animator.SetBool("isATK", false);
-                _animator.SetBool("isRun", true);
+                _isFindTarget = false;
+                _navMeshAgent.ResetPath();
             }
-        }
-        else
-        {
-            _isFindTarget = false;
-            _navMeshAgent.ResetPath();
-        }
-        _navMeshAgent.SetDestination(_BisonMouthTransform.position);
+            _navMeshAgent.SetDestination(_BisonMouthTransform.position);
 
-        if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
-        {
-            _animator.SetBool("isRun", false);
-            LookAtTarget();
-        }
-        else
-        {
-
+          // if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+          // {
+          //     _animator.SetBool("isRun", false);
+          //     LookAtTarget();
+          // }
+          // else
+          // {
+          //
+          // }
         }
     }
 

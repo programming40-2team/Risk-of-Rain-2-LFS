@@ -28,6 +28,15 @@ public class StartShip : MonoBehaviour
     }
     void Update()
     {
+        if (!isStart)
+        {
+            Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
+        }
+
+
+
+
+
         if (isStart == false && Input.GetKeyDown(KeyCode.E) && _starShip._isGround)
         {
             _doorOpen.Play();

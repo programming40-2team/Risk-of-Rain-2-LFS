@@ -16,12 +16,11 @@ public class Item1025Skill : ItemPrimitiive
         if (_teleCode == 1)
         {
             gameObject.SetRandomPositionSphere(0, 1, 5, Player.transform);
+
         }
         else
         {
-            Vector3 targetPos = gameObject.SetRandomPositionSphere(300, 500, 10, Player.transform);
-            _targetDir = (targetPos - Player.transform.position).normalized;
-            _rigid.velocity = 500 * _targetDir;
+            gameObject.SetRandomPositionSphere(50, 100, 5, Player.transform);
         }
 
     }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireWard : MonoBehaviour
@@ -27,7 +25,7 @@ public class FireWard : MonoBehaviour
         }
     }
 
-    public void  Shoot()
+    public void Shoot()
     {
         _fireWardRigidbody.velocity = transform.forward * _shootingSpeed;
     }
@@ -39,11 +37,11 @@ public class FireWard : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject != _lemurianObject)
+        if (col.gameObject != _lemurianObject)
         {
-            if(col.gameObject.TryGetComponent(out Entity en))
+            if (col.gameObject.TryGetComponent(out Entity en))
             {
-                if(en.CompareTag("Player"))
+                if (en.CompareTag("Player"))
                 {
                     Debug.Log("플레이어가 레무리안의 FireWard에 맞음 가한 damage : " + _damage);
                     Debug.Log("플레이어 Hit Sound는 여기");

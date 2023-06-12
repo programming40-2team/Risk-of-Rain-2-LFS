@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Exp : MonoBehaviour
@@ -10,12 +8,12 @@ public class Exp : MonoBehaviour
     private float _Worth = 25.0f;
     private void OnEnable()
     {
-        _Worth = 20+ Random.Range(30,50)* 10*(1 + (int)Managers.Game.Difficulty);
+        _Worth = 20 + Random.Range(30, 50) * 10 * (1 + (int)Managers.Game.Difficulty);
     }
     private void Awake()
     {
         _Player = GameObject.FindGameObjectWithTag("Player");
-       
+
     }
     void Update()
     {

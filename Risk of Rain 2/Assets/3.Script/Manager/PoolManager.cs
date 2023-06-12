@@ -32,7 +32,7 @@ public class PoolManager
         {
             if (poolable == null)
                 return;
-            if(poolable.gameObject.TryGetComponent(out Canvas canvas))
+            if (poolable.gameObject.TryGetComponent(out Canvas canvas))
             {
                 poolable.transform.SetParent(Root);
             }
@@ -40,7 +40,7 @@ public class PoolManager
             {
                 poolable.transform.parent = Root;
             }
-            
+
             poolable.gameObject.SetActive(false);
             poolable.IsUsing = false;
 
@@ -69,11 +69,11 @@ public class PoolManager
                 {
                     poolable.transform.parent = Managers.Scene.CurrentScene.transform;
                 }
-               
-            }
-                
 
-            if(poolable.gameObject.TryGetComponent(out Canvas canvas))
+            }
+
+
+            if (poolable.gameObject.TryGetComponent(out Canvas canvas))
             {
                 poolable.transform.SetParent(parent);
             }
@@ -82,7 +82,7 @@ public class PoolManager
                 poolable.transform.parent = parent;
             }
 
-           
+
             poolable.IsUsing = true;
 
             return poolable;

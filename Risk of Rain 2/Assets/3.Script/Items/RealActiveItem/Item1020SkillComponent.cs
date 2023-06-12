@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item1020SkillComponent : ItemPrimitiive
@@ -14,14 +13,14 @@ public class Item1020SkillComponent : ItemPrimitiive
 
     private float lerpTime = 5f;
     float currentLerpTime;
-    [SerializeField] 
+    [SerializeField]
     private GameObject _particleObject;
     private MeshRenderer _myMeshRender;
 
     private void Awake()
     {
         Init();
-        _myMeshRender=GetComponentInChildren<MeshRenderer>();
+        _myMeshRender = GetComponentInChildren<MeshRenderer>();
     }
     public override void Init()
     {
@@ -36,7 +35,7 @@ public class Item1020SkillComponent : ItemPrimitiive
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         _myMeshRender.gameObject.SetActive(true);
         myTargetEnemy = GameObject.FindGameObjectWithTag("Monster");
-        if(myTargetEnemy!= null )
+        if (myTargetEnemy != null)
         {
             gameObject.SetRandomPositionSphere(10, 14, 7, myTargetEnemy.transform);
         }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Gold : MonoBehaviour
@@ -22,6 +21,6 @@ public class Gold : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         Managers.Resource.Destroy(gameObject);
     }
-  
+
 
 }

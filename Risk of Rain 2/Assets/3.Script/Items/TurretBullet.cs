@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretBullet : MonoBehaviour
@@ -24,7 +22,7 @@ public class TurretBullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Entity entity)&&!other.CompareTag("Player"))
+        if (other.TryGetComponent(out Entity entity) && !other.CompareTag("Player"))
         {
             other.GetComponent<Entity>().OnDamage(15);
             DamageUI _damageUI = Managers.UI.MakeWorldSpaceUI<DamageUI>();

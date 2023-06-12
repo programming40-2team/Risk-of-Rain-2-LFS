@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Diagnostics;
 
 public class Imp : Entity
 {
@@ -34,7 +32,7 @@ public class Imp : Entity
         _myHpBar = GetComponentInChildren<MonsterHpBar>();
         _myHpBar.gameObject.SetActive(false);
         _target = GameObject.FindGameObjectWithTag("Player");
-       
+
     }
     protected override void OnEnable()
     {
@@ -97,7 +95,7 @@ public class Imp : Entity
 
         if (_impAgent.remainingDistance <= _impAgent.stoppingDistance)
         {
-           
+
             _impAnimator.SetBool("Run", false);
             _impAgent.isStopped = true;
         }
@@ -111,9 +109,9 @@ public class Imp : Entity
     {
         if (other.CompareTag("Player"))
         {
-            if(other.TryGetComponent(out Entity entity))
+            if (other.TryGetComponent(out Entity entity))
             {
-               
+
                 if (!isAttack)
                 {
                     if (Util.Probability(30))
@@ -165,7 +163,7 @@ public class Imp : Entity
         Debug.Log("Imp SKill Effect");
         if (GameObject.FindGameObjectWithTag("Player").TryGetComponent(out Entity entity))
         {
-            entity.OnDamage(2*Damage);
+            entity.OnDamage(2 * Damage);
         }
     }
 
@@ -208,10 +206,10 @@ public class Imp : Entity
 
     private void SetOff()
     {
-        if(TryGetComponent(out CapsuleCollider capsule))
+        if (TryGetComponent(out CapsuleCollider capsule))
         {
             capsule.enabled = false;
-           
+
         }
         transform.GetChild(0).gameObject.SetActive(false);
         _myHpBar.gameObject.SetActive(false);

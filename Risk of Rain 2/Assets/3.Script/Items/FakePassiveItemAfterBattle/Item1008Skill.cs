@@ -16,10 +16,10 @@ public class Item1008Skill : NewItemPrimitive, IAfterBattleItem
         base.Init();
         GameObject item1008 = Managers.Resource.Instantiate("Item1008Skill");
         //콜라이더 있는 경우 위치 조정
-        if(TargetTransform.TryGetComponent(out Collider coll))
+        if (TargetTransform.TryGetComponent(out Collider coll))
         {
-            item1008.transform.position =new Vector3( TargetTransform.position.x,TargetTransform.position.y -coll.bounds.size.y+3f   ,TargetTransform.position.z);
-                
+            item1008.transform.position = new Vector3(TargetTransform.position.x, TargetTransform.position.y - coll.bounds.size.y + 3f, TargetTransform.position.z);
+
         }
         else
         {

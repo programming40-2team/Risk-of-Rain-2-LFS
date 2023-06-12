@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item1007SkillComponent : ItemPrimitiive
@@ -21,7 +20,7 @@ public class Item1007SkillComponent : ItemPrimitiive
     public override void Init()
     {
         base.Init();
-      
+
     }
     private void OnEnable()
     {
@@ -49,15 +48,15 @@ public class Item1007SkillComponent : ItemPrimitiive
     private void OnTriggerEnter(Collider other)
     {
 
-            if (other.TryGetComponent(out Entity entity) && !other.CompareTag("Player"))
+        if (other.TryGetComponent(out Entity entity) && !other.CompareTag("Player"))
         {
             transform.position = other.transform.position;
 
             entity.OnDamage(damage);
-                ShowDamageUI(entity.gameObject, damage, Define.EDamageType.Item);
-                Managers.Resource.Destroy(gameObject);
-            }
-        else 
+            ShowDamageUI(entity.gameObject, damage, Define.EDamageType.Item);
+            Managers.Resource.Destroy(gameObject);
+        }
+        else
         {
             Managers.Resource.Destroy(gameObject);
         }
@@ -67,13 +66,13 @@ public class Item1007SkillComponent : ItemPrimitiive
     IEnumerator LerpTransform_co()
     {
         float timeElapsed = 0;
-  
+
 
         while (timeElapsed < lerpTime)
         {
             float percent = timeElapsed / lerpTime;
             transform.position = Vector3.Lerp(transform.position, Objectposition, percent);
-            transform.position = new Vector3(transform.position.x , transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             timeElapsed += Time.deltaTime;
             yield return null;
         }

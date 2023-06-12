@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +13,7 @@ public class MonsterHpBar : UI_Base
 
     private void Awake()
     {
-        Init();   
+        Init();
     }
     public override void Init()
     {
@@ -26,7 +24,7 @@ public class MonsterHpBar : UI_Base
 
     private void OnEnable()
     {
-       if(gameObject.transform.root.TryGetComponent(out Entity entity))
+        if (gameObject.transform.root.TryGetComponent(out Entity entity))
         {
             _myentity = entity;
         }
@@ -34,13 +32,13 @@ public class MonsterHpBar : UI_Base
         {
             Debug.Log($"{gameObject.transform.root} 에서 Entity를 가져올 수 없음");
         }
-    
+
     }
 
     void Update()
     {
         Transform parent = transform.parent;
-        transform.position=parent.position+Vector3.up*(parent.GetComponent<Collider>().bounds.size.y+ _yoffset);
+        transform.position = parent.position + Vector3.up * (parent.GetComponent<Collider>().bounds.size.y + _yoffset);
         Get<Slider>((int)Sliders.HpBar).value = _myentity.Health / _myentity.MaxHealth;
         //부모의 체력을 끌고와서 업데이트 해주면됨
     }

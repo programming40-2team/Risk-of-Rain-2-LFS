@@ -5,7 +5,7 @@ public class GameManager
     private Define.EGameState _gameState = Define.EGameState.NonTelePort;
     private int _gold = 0;
     private bool _isclear = false;
-    private Define.WhenItemActivates _playerState=Define.WhenItemActivates.Always;
+    private Define.WhenItemActivates _playerState = Define.WhenItemActivates.Always;
 
 
     #region 마지막 통계를 위함
@@ -85,7 +85,7 @@ public class GameManager
         set
         {
             _ProgressBoss = value;
-            if (_ProgressBoss >= 100f && GameState==Define.EGameState.KillBoss)
+            if (_ProgressBoss >= 100f && GameState == Define.EGameState.KillBoss)
             {
                 GameState = Define.EGameState.CompeleteTelePort;
             }

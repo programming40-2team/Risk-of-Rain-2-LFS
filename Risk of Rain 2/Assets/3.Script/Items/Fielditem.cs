@@ -10,7 +10,7 @@ public class Fielditem : MonoBehaviour
         {
             Debug.Log("æ∆¿Ã≈€ »πµÊ º“∏Æ ø©±‚¥Ÿ!");
 
-            if(!Managers.ItemInventory.AddItem(FieldItemCode, gameObject.transform))
+            if (!Managers.ItemInventory.AddItem(FieldItemCode, gameObject.transform))
             {
                 GameObject item = Managers.Resource.Instantiate($"Fielditem{Managers.ItemInventory.TempItemCode}");
                 item.SetRandomPositionSphere();

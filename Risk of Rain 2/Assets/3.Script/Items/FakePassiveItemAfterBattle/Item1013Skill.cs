@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Item1013Skill : NewItemPrimitive,IAfterBattleItem
+public class Item1013Skill : NewItemPrimitive, IAfterBattleItem
 {
     public int Itemid => 1013;
 
@@ -13,7 +11,7 @@ public class Item1013Skill : NewItemPrimitive,IAfterBattleItem
             return;
         }
 
-        GameObject.FindObjectOfType<CommandoSkill>().skillQCoolDownRemain -= 4 + 2* Managers.ItemInventory.Items[Itemid].Count;
+        GameObject.FindObjectOfType<CommandoSkill>().skillQCoolDownRemain -= 4 + 2 * Managers.ItemInventory.Items[Itemid].Count;
     }
 
 

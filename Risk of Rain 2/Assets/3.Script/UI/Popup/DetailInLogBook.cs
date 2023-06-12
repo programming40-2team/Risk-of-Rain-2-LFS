@@ -94,7 +94,7 @@ public class DetailInLogBook : UI_Popup
                 GetText((int)ETexts.InformationTitleText).text = "정보";
                 GetText((int)ETexts.InformationContentsText).text = $"{Managers.Data.ItemDataDict[SpecialCode].explanation}\n" +
                     $"발견 가능 지역 : {Managers.Data.EnvDataDict[Random.Range(100, 107)].enviromentname}\n";
-        
+
                 break;
             case Define.ECurrentClickType.Monster:
                 GetText((int)ETexts.TItileTitleText).text = $"{Managers.Data.MonData[SpecialCode].name}";

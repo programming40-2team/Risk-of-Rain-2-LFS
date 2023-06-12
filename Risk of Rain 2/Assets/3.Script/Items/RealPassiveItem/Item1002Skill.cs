@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Item1002Skill : NewItemPrimitive, IPassiveItem
 {
     public int Itemid { get => 1002; }

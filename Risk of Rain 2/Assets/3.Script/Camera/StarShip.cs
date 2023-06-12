@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Cinemachine;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.VFX;
-using UnityEditor;
 
 public class StarShip : MonoBehaviour
 {

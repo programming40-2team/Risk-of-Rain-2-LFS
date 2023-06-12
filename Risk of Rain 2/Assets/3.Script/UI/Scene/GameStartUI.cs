@@ -287,7 +287,7 @@ public class GameStartUI : UI_Scene, IListener
     {
         Managers.Scene.LoadScene(Define.Scene.Stage1);
         Debug.Log("게임 스타트 소리!");
-        
+
     }
     private void DetaillCharacterScriptChange(ECharacterDetail ShowMenu)
     {
@@ -404,7 +404,7 @@ public class GameStartUI : UI_Scene, IListener
     }
     private void ShowCharacters(int charactercode)
     {
-        for(int i=0;i<Get<GameObject>((int)EGameObjects.MainSurvivors).transform.childCount;i++)
+        for (int i = 0; i < Get<GameObject>((int)EGameObjects.MainSurvivors).transform.childCount; i++)
         {
             Get<GameObject>((int)EGameObjects.MainSurvivors).transform.GetChild(i).gameObject.SetActive(false);
         }

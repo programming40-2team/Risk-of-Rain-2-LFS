@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PrimitiveActiveItem : ItemPrimitiive
@@ -38,7 +37,7 @@ public class PrimitiveActiveItem : ItemPrimitiive
                 StartCoroutine(nameof(Item1020_co));
                 break;
             case 1021:
-                _playerStatus.OnHeal(_playerStatus.MaxHealth*0.5f);
+                _playerStatus.OnHeal(_playerStatus.MaxHealth * 0.5f);
                 break;
             case 1022:
                 GameObject Item1022 = Managers.Resource.Instantiate("Item1022Skill");
@@ -61,13 +60,13 @@ public class PrimitiveActiveItem : ItemPrimitiive
 
     private IEnumerator Item2023_co()
     {
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             GameObject item1023 = Managers.Resource.Instantiate("Item1023Skill");
             item1023.SetRandomPositionSphere(Random.Range(2, 5), Random.Range(2, 6), Random.Range(2, 5), Player.transform);
             yield return new WaitForSeconds(0.5f);
         }
-      
+
     }
     private void OnDisable()
     {
@@ -99,10 +98,10 @@ public class PrimitiveActiveItem : ItemPrimitiive
     }
     private void Item1025SKilll()
     {
-      
 
-       GameObject Tele1 = Managers.Resource.Instantiate("Item1025Skill");
-       GameObject Tele2 = Managers.Resource.Instantiate("Item1025Skill");
+
+        GameObject Tele1 = Managers.Resource.Instantiate("Item1025Skill");
+        GameObject Tele2 = Managers.Resource.Instantiate("Item1025Skill");
 
         Tele1.GetOrAddComponent<Item1025Skill>().SetTeleCode(1);
         Tele2.GetOrAddComponent<Item1025Skill>().SetTeleCode(2);

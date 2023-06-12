@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemTest : MonoBehaviour
 {
     public InputField ItemKeyInput;
-    private int Itemcode ;
+    private int Itemcode;
 
     private void Start()
     {

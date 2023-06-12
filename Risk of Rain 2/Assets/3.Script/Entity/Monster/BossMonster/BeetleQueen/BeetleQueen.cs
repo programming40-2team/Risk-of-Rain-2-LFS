@@ -19,6 +19,7 @@ public class BeetleQueen : Entity
     public bool IsRun = false;
 
     private MeshCollider _meshCollider;
+    [SerializeField] private Material _material;
 
     [Header("Transforms")]
     [SerializeField] private Transform _beetleQueenMouthTransform;
@@ -45,7 +46,7 @@ public class BeetleQueen : Entity
         _beetleQueenButtTransform = GameObject.FindGameObjectWithTag("BeetleQueenButt").transform;
         AcidBallPool = GameObject.Find("AcidBallPool").GetComponent<ObjectPool>();
         WardPool = GameObject.Find("WardPool").GetComponent<ObjectPool>();
-        _meshCollider= FindObjectOfType<MeshCollider>();
+        _meshCollider = FindObjectOfType<MeshCollider>();
     }
 
     protected override void OnEnable()
@@ -63,7 +64,7 @@ public class BeetleQueen : Entity
         //Debug.Log("HealthRegen : " + HealthRegen);
         //Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
         Debug.Log(string.Format("{0}= {1} X {2}", MaxHealth, MaxHealthAscent, _difficulty));
-        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);  
+        Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);
 
         _meshCollider.enabled = true;
     }
@@ -76,7 +77,8 @@ public class BeetleQueen : Entity
             //hitEffect.Play();
             //_beetleQueenAudio.PlayOneShot(hitSound);
 
-
+            StopCoroutine(HitEffect_co());
+            StartCoroutine(HitEffect_co());
             //Hp Slider 데미지 입을 떄 마다 갱신되도록 연동
         }
 
@@ -108,7 +110,7 @@ public class BeetleQueen : Entity
 
         Debug.Log(string.Format("비틀퀸 체력증가량 : {0}", MaxHealthAscent));
         //첫 생성 시 보스 Hp 조절을 위한 알림
-       
+
     }
 
     /// <summary>
@@ -171,5 +173,11 @@ public class BeetleQueen : Entity
             obj.transform.position = _beetleQueenButtTransform.position;
             yield return wfs;
         }
+    }
+    private IEnumerator HitEffect_co()
+    {
+        _material.SetFloat("_EmissionPower", 1);
+        yield return new WaitForSeconds(0.1f);
+        _material.SetFloat("_EmissionPower", 0);
     }
 }

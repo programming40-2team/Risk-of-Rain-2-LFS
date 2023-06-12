@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BeetleQueenCollider : MonoBehaviour
@@ -26,7 +24,7 @@ public class BeetleQueenCollider : MonoBehaviour
             UpdateCollider();
         }
     }
-    
+
     public void UpdateCollider()
     {
         Mesh colliderMesh = new Mesh();
@@ -34,5 +32,5 @@ public class BeetleQueenCollider : MonoBehaviour
         _collider.sharedMesh = null;
         _collider.sharedMesh = colliderMesh;
     }
-    
+
 }

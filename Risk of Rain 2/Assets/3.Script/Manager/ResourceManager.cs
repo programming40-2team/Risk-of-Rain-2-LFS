@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -7,7 +6,7 @@ public class ResourceManager
 {
     Dictionary<string, UnityEngine.Object> _resources = new Dictionary<string, UnityEngine.Object>();
 
-   
+
     public T Load<T>(string path) where T : Object
     {
         if (typeof(T) == typeof(GameObject))
@@ -70,7 +69,7 @@ public class ResourceManager
         // Texture2D texture = Load<Texture2D>(key);
         //Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
-        return Load<Sprite>("Prefabs/"+key);
+        return Load<Sprite>("Prefabs/" + key);
     }
     public GameObject Instantiate2(string key, Transform parent = null)
     {
@@ -88,7 +87,7 @@ public class ResourceManager
         go.name = original.name;
         return go;
     }
-    public GameObject Instantiate2(string key, Vector3 position,Transform parent=null)
+    public GameObject Instantiate2(string key, Vector3 position, Transform parent = null)
     {
         GameObject original = Load2<GameObject>($"{key}");
         if (original == null)
@@ -133,5 +132,5 @@ public class ResourceManager
 
         Object.Destroy(go, time);
     }
-    
+
 }

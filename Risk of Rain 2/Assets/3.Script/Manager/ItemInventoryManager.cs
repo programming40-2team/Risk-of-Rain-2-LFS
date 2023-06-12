@@ -10,7 +10,7 @@ public class ItemInventoryManager
     public Dictionary<int, Item> Items { get; } = new Dictionary<int, Item>();
     public Dictionary<int, Item.ActiveItem> ActiveItem { get; } = new Dictionary<int, Item.ActiveItem>();
     public Dictionary<int, Item.PassiveItem> PassiveItem { get; } = new Dictionary<int, Item.PassiveItem>();
-    public Dictionary<Define.WhenItemActivates, Dictionary<int,Item>> WhenActivePassiveItem { get; } = new Dictionary<Define.WhenItemActivates, Dictionary<int,Item>>();
+    public Dictionary<Define.WhenItemActivates, Dictionary<int, Item>> WhenActivePassiveItem { get; } = new Dictionary<Define.WhenItemActivates, Dictionary<int, Item>>();
     public Dictionary<Define.ItemType, Item> MyActiveItem { get; } = new Dictionary<Define.ItemType, Item>();
 
     public int TempItemCode { get; private set; } = -1;
@@ -29,8 +29,8 @@ public class ItemInventoryManager
                     return;
                 }
                 Item item = Item.MakeItem(itemdata);
-                ActiveItem.Add(itemdata.itemcode,(Item.ActiveItem)item);
-                Items.Add(itemdata.itemcode,item);
+                ActiveItem.Add(itemdata.itemcode, (Item.ActiveItem)item);
+                Items.Add(itemdata.itemcode, item);
                 // (Item.ActiveItem)Item.MakeItem(itemdata));
             }
             else
@@ -43,7 +43,7 @@ public class ItemInventoryManager
                 PassiveItem.Add(itemdata.itemcode, (Item.PassiveItem)item);
                 Items.Add(itemdata.itemcode, item);
             }
-           // Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
+            // Items.Add(itemdata.itemcode, Item.MakeItem(itemdata));
         }
 
     }
@@ -64,11 +64,11 @@ public class ItemInventoryManager
     {
         if (Items[itemcode].ItemType.Equals(Define.ItemType.Passive))
         {
-          return  AddPassive(itemcode, count);
+            return AddPassive(itemcode, count);
         }
         else
         {
-           return AddActive(itemcode, trans, count);
+            return AddActive(itemcode, trans, count);
         }
     }
 
@@ -92,9 +92,9 @@ public class ItemInventoryManager
             return true;
         }
 
-      
 
-  
+
+
     }
     private bool AddPassive(int itemcode, int count = 1)
     {
@@ -115,7 +115,7 @@ public class ItemInventoryManager
             Add(item, count);
         }
 
-       // PassiveItem[itemcode].Count += count;
+        // PassiveItem[itemcode].Count += count;
         switch (PassiveItem[itemcode].WhenItemActive)
         {
             case Define.WhenItemActivates.Always:
@@ -169,7 +169,7 @@ public class ItemInventoryManager
                 }
                 Managers.ItemApply.AddInBattleSkill(itemcode);
                 break;
-                 case Define.WhenItemActivates.NotBattle:
+            case Define.WhenItemActivates.NotBattle:
                 if (!WhenActivePassiveItem.ContainsKey(Define.WhenItemActivates.NotBattle))
                 {
                     WhenActivePassiveItem.Add(Define.WhenItemActivates.NotBattle, new Dictionary<int, Item>());

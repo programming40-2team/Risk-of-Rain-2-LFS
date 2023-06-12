@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -16,7 +14,7 @@ public class BulletProjectile : Projectile
     private void OnTriggerEnter(Collider other)
     {
         float criticalCoefficient = _playerStatus.GetCriticalChanceResult();
-        if(other.gameObject.transform.parent != null)
+        if (other.gameObject.transform.parent != null)
         {
             if (other.gameObject.transform.parent.root.TryGetComponent(out _entity))
             {

@@ -113,8 +113,8 @@
     }
     public enum LayerMask
     {
-        Enviroment=6,
-        Skill=10
+        Enviroment = 6,
+        Skill = 10
     }
 
     public enum EDamageType

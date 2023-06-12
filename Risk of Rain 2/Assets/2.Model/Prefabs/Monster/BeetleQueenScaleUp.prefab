@@ -1760,6 +1760,7 @@ MonoBehaviour:
   BombRange: {fileID: 3617766115184211546, guid: 6a2ec645e2d91e844a919753d696fd4f, type: 3}
   BeetleQueenAnimator: {fileID: 0}
   IsRun: 0
+  _material: {fileID: 2100000, guid: a79ff029b82e36a44b0f3358d752470d, type: 2}
   _beetleQueenMouthTransform: {fileID: 0}
   _beetleQueenButtTransform: {fileID: 0}
 --- !u!114 &2715680452440606213

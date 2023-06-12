@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Stage1 : BaseScene
 {
     private void Awake()
@@ -8,8 +6,8 @@ public class Stage1 : BaseScene
         SceneType = Define.Scene.Stage1;
         Managers.UI.ShowGameUI<GameUI>();
     }
-  
-  
+
+
     protected override void Init()
     {
         base.Init();

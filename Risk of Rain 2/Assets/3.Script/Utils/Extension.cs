@@ -14,7 +14,7 @@ public static class Extension
         UI_Base.BindEvent(go, action, type);
     }
 
-    public static Vector3 SetRandomPositionSphere(this GameObject go,float mindisatnce=3f,float maxdistacne=8f,float additionalHeighy=5f,Transform TargetTransform=null)
+    public static Vector3 SetRandomPositionSphere(this GameObject go, float mindisatnce = 3f, float maxdistacne = 8f, float additionalHeighy = 5f, Transform TargetTransform = null)
     {
 
         float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
@@ -22,7 +22,7 @@ public static class Extension
         // 랜덤한 거리를 생성
         float distance = UnityEngine.Random.Range(mindisatnce, maxdistacne);
 
-    
+
 
         float _additionalHeight = additionalHeighy;
 
@@ -36,13 +36,13 @@ public static class Extension
             {
                 colliderSize = collider.bounds.size;
             }
-           
+
             // 삼각함수를 사용하여 위치 계산
             float xPos = TargetTransform.position.x + Mathf.Cos(angle) * distance;
             float zPos = TargetTransform.position.z + Mathf.Sin(angle) * distance;
             Vector3 CirclePos = new Vector3(xPos, TargetTransform.position.y, zPos);
-            newPosition =  CirclePos + Vector3.up * (colliderSize.y * 0.5f + _additionalHeight);
-            go.transform.position=newPosition;
+            newPosition = CirclePos + Vector3.up * (colliderSize.y * 0.5f + _additionalHeight);
+            go.transform.position = newPosition;
             return newPosition;
         }
         else
@@ -59,9 +59,9 @@ public static class Extension
             go.transform.position = newPosition;
             return newPosition;
         }
-    
-      
-        
+
+
+
     }
 
 

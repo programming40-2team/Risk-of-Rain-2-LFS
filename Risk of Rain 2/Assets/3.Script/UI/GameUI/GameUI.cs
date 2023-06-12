@@ -1,8 +1,8 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections;
 
 public class GameUI : UI_Game, IListener
 {
@@ -277,7 +277,7 @@ public class GameUI : UI_Game, IListener
     }
     private void DifficultyImageChagngeEvent(int _)
     {
-        GetImage((int)Images.StageImage).sprite = Managers.Resource.LoadSprte($"Difficultyicon{Mathf.Min((int)Managers.Game.Difficulty + 1,7)}");
+        GetImage((int)Images.StageImage).sprite = Managers.Resource.LoadSprte($"Difficultyicon{Mathf.Min((int)Managers.Game.Difficulty + 1, 7)}");
         Debug.Log("만약 난이도 에 따라서 시작 Sprite를 다르게 하고 싶으면 여기에 추가적인설정");
 
     }
@@ -322,7 +322,7 @@ public class GameUI : UI_Game, IListener
 
             GetText((int)Texts.SkillRCoolTime).text = $"{characterSkill.GetSuppressiveFireCooldownRemain():0.0}";
         }
-        Get<Slider>((int)Sliders.SkillQ).value = characterSkill.skillQCoolDownRemain/ characterSkill.SuppressiveFireCooldown;
+        Get<Slider>((int)Sliders.SkillQ).value = characterSkill.skillQCoolDownRemain / characterSkill.SuppressiveFireCooldown;
         if (Get<Slider>((int)Sliders.SkillQ).value.Equals(0))
         {
             GetImage((int)Images.SkillQFillImage).color = FullChargeSkillFillImageColor;
@@ -346,7 +346,7 @@ public class GameUI : UI_Game, IListener
     //
     private void EventOfPlayerHp(float currHp, float MaxHp)
     {
-        Get<Slider>((int)Sliders.PlayerHpSlider).value =currHp / MaxHp;
+        Get<Slider>((int)Sliders.PlayerHpSlider).value = currHp / MaxHp;
         GetText((int)Texts.PlayerHpText).text = $"{(int)currHp}/{MaxHp}";
 
     }
@@ -470,7 +470,7 @@ public class GameUI : UI_Game, IListener
             GetText((int)Texts.InteractionKeyText).text = "E";
             GetText((int)Texts.InteractionContentsText).text = $"양자터널 이동!";
         }
-        else if( _Sender.TryGetComponent(out StartShip startship))
+        else if (_Sender.TryGetComponent(out StartShip startship))
         {
             GetText((int)Texts.InteractionKeyText).text = "E";
             GetText((int)Texts.InteractionContentsText).text = $"탈출정 탈출...";
@@ -562,4 +562,3 @@ public class GameUI : UI_Game, IListener
 }
 
 
-    

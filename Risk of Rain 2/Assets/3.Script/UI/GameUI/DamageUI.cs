@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 public class DamageUI : UI_Base
 {
     private float moveSpeed;
@@ -23,7 +22,7 @@ public class DamageUI : UI_Base
         Bind<TextMeshProUGUI>(typeof(Texts));
         moveSpeed = 2.0f;
         alphaSpeed = 2.0f;
-        defaultcolor= GetText((int)Texts.DamageText).color;
+        defaultcolor = GetText((int)Texts.DamageText).color;
     }
     public override void Init()
     {
@@ -41,7 +40,7 @@ public class DamageUI : UI_Base
             return;
         }
         StartCoroutine(nameof(Damage_Effect_co));
-        
+
     }
 
     private void Update()

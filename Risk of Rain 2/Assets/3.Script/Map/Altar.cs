@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,7 +38,7 @@ public class Altar : MonoBehaviour
             _renderer.materials = materialList.ToArray();
         }
     }
-    private void OnTriggerStay(Collider other) 
+    private void OnTriggerStay(Collider other)
     {
         Transform bossSpawnPoint = _spawnPoint;
 
@@ -65,7 +64,7 @@ public class Altar : MonoBehaviour
                     Managers.Game.GameState = Define.EGameState.ActiveTelePort;
                 }
             }
-            else if (Managers.Game.GameState == Define.EGameState.CompeleteTelePort&&!Managers.Game.IsClear)
+            else if (Managers.Game.GameState == Define.EGameState.CompeleteTelePort && !Managers.Game.IsClear)
             {
                 Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
                 if (Input.GetKeyDown(KeyCode.E))

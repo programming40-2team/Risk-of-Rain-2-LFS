@@ -61,7 +61,7 @@ public class AcidSkill : MonoBehaviour
         yield return new WaitForSeconds(15f);
         DeleteAcidBile();
     }
- 
+
     private void OnParticleCollision(GameObject collObj)
     {
         if (collObj.GetComponent<Collider>() != _meshCollider)

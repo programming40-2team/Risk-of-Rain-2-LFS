@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,12 +20,12 @@ public class ResultItemImage : UI_Game
     // Start is called before the first frame update
     void Start()
     {
-        Init();   
+        Init();
     }
     public void SetItemGameUI(Item _Item)
     {
         if (_Item == null) return;
-        else 
+        else
         {
             gameObject.SetActive(true);
             GetText((int)ETexts.ItemCount).text = $"x{_myitem.Count}";

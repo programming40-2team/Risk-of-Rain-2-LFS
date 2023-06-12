@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
     {
         _projectileObjectPool = GameObject.Find(_projectilePoolName).GetComponent<ObjectPool>();
     }
-    protected void PrintDamage(GameObject TargetObject,Define.EDamageType DamageType=Define.EDamageType.Nomal)
+    protected void PrintDamage(GameObject TargetObject, Define.EDamageType DamageType = Define.EDamageType.Nomal)
     {
         DamageUI _damageUI = Managers.UI.MakeWorldSpaceUI<DamageUI>();
         _damageUI.transform.SetParent(TargetObject.transform);

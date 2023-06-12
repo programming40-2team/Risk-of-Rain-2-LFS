@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item1023Skill : PrimitiveActiveItem
@@ -23,7 +22,7 @@ public class Item1023Skill : PrimitiveActiveItem
         base.Init();
 
         playerTransform = Player.transform;
-   
+
     }
 
     private void Update()
@@ -58,13 +57,13 @@ public class Item1023Skill : PrimitiveActiveItem
         {
             for (int i = 0; i < 5; i++)
             {
-               GameObject go= Managers.Resource.Instantiate("TurretBullet");
+                GameObject go = Managers.Resource.Instantiate("TurretBullet");
                 go.transform.position = gameObject.transform.position;
                 yield return new WaitForSeconds(1f);
             }
             yield return new WaitForSeconds(2f);
         }
-     
+
 
     }
 }

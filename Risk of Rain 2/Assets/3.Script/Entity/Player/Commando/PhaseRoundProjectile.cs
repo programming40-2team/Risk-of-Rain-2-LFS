@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PhaseRoundProjectile : Projectile
@@ -19,7 +18,7 @@ public class PhaseRoundProjectile : Projectile
         base.OnEnable();
         StartCoroutine(EndPhaseRound_co());
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.transform.parent != null)

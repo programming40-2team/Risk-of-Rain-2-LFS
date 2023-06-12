@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //서리유물
@@ -14,7 +12,7 @@ public class Item1015Skill : NewItemPrimitive, IAfterBattleItem
             return;
         }
 
-        if (GameObject.FindObjectOfType<Item1015SkillComponent>()==null)
+        if (GameObject.FindObjectOfType<Item1015SkillComponent>() == null)
         {
 
             _item1015 = Managers.Resource.Instantiate("Item1015Skill");
@@ -27,5 +25,5 @@ public class Item1015Skill : NewItemPrimitive, IAfterBattleItem
         }
     }
 
- 
+
 }

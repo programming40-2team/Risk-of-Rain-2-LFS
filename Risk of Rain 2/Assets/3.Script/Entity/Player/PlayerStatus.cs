@@ -1,6 +1,5 @@
-using UnityEngine;
 using System.Collections;
-using static Cinemachine.DocumentationSortingAttribute;
+using UnityEngine;
 /// <summary>
 /// 플레이어 스테이터스 클래스, 기본 변수는 Entity에 있고 플레이어만 가지는 변수는 여기서 선언
 /// </summary>
@@ -25,7 +24,7 @@ public class PlayerStatus : Entity
         set
         {
             _currentExp = value;
-            if(_currentExp> Exp)
+            if (_currentExp > Exp)
             {
                 LevelUp();
                 Level++;

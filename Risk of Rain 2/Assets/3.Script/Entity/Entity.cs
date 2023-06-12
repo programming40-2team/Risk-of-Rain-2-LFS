@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 플레이어와 몬스터가 공유할 클래스,

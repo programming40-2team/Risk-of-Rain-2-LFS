@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item1014SkillComponent : ItemPrimitiive
@@ -15,8 +13,8 @@ public class Item1014SkillComponent : ItemPrimitiive
 
     private void FindEnemy()
     {
-        myTargetEnemy =  GameObject.FindGameObjectWithTag("Monster");
-        if(myTargetEnemy==null)
+        myTargetEnemy = GameObject.FindGameObjectWithTag("Monster");
+        if (myTargetEnemy == null)
         {
             Managers.Resource.Destroy(gameObject);
         }
@@ -26,7 +24,7 @@ public class Item1014SkillComponent : ItemPrimitiive
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().velocity = movespeed * (myTargetEnemy.transform.position - gameObject.transform.position).normalized;
         }
-    
+
     }
 
 
@@ -41,7 +39,7 @@ public class Item1014SkillComponent : ItemPrimitiive
     {
 
         Init();
-        FindEnemy();    
+        FindEnemy();
     }
 
 
@@ -54,7 +52,7 @@ public class Item1014SkillComponent : ItemPrimitiive
             ShowDamageUI(myTargetEnemy.gameObject, damage, Define.EDamageType.Item);
             Managers.Resource.Destroy(gameObject);
         }
-        else if(((myTargetEnemy.transform.position - gameObject.transform.position).sqrMagnitude > 100f))
+        else if (((myTargetEnemy.transform.position - gameObject.transform.position).sqrMagnitude > 100f))
         {
             FindEnemy();
         }

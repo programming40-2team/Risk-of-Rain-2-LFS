@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,6 +22,7 @@ public class Lemurian : Entity
     private float[] _skillCoolDownArr = new float[2];
     private bool[] _isSkillRun = new bool[2];
 
+    private Animation _death;
 
     //HpBar 
     private MonsterHpBar _myHpBar;
@@ -54,7 +54,7 @@ public class Lemurian : Entity
             _isSkillRun[i] = false;
         }
 
-
+        TryGetComponent(out _death);
         _myHpBar = GetComponentInChildren<MonsterHpBar>();
         //_myHpBar.gameObject.SetActive(false);
     }
@@ -88,7 +88,10 @@ public class Lemurian : Entity
 
     private void Update()
     {
-        _lemurianAnimator.SetBool("IsRun", _hasTarget);
+        if (!IsDeath)
+        {
+            _lemurianAnimator.SetBool("IsRun", _hasTarget);
+        }
     }
     private void SetUp(MonsterData data)
     {
@@ -107,9 +110,14 @@ public class Lemurian : Entity
     {
         if (!IsDeath)
         {
+            Debug.Log(string.Format("레무리안 데미지 입음 : {0}", IsDeath));
+
             //.Play();
             //.PlayOneShot(hitSound);
-            _lemurianAnimator.SetTrigger("Hit");
+            if (!_lemurianAnimator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+            {
+                _lemurianAnimator.SetTrigger("Hit");
+            }
             _myHpBar.gameObject.SetActive(true);
         }
 
@@ -119,19 +127,21 @@ public class Lemurian : Entity
     public override void Die()
     {
         base.Die();
-        _lemurianAnimator.SetTrigger("Die");
         StopAllCoroutines();
+        if (_lemurianAnimator.IsInTransition(0) == false)
+        {
+            _lemurianAnimator.SetTrigger("Die");
+        }
+        _death.Play();
 
-        _lemurianRigidbody.isKinematic = false;
         Collider[] colls = GetComponents<Collider>();
         foreach (Collider col in colls)
         {
             col.enabled = false;
         }
-
-        Nav.ResetPath();
+        //Nav.ResetPath();
         //Nav.isStopped = true;
-        Nav.enabled = false;
+        //Nav.enabled = false;
 
         StartCoroutine(Destroy_co());
 
@@ -152,9 +162,9 @@ public class Lemurian : Entity
     /// </summary>
     public void FireWardSkill()
     {
-        if(!IsDeath)
+        if (!IsDeath)
         {
-            if(_lemurianMouthTransform != null && _player != null)
+            if (_lemurianMouthTransform != null && _player != null)
             {
                 Quaternion rot = Quaternion.LookRotation(_player.transform.position - _lemurianMouthTransform.position);
                 GameObject obj = FireWardPool.GetObject();
@@ -170,9 +180,9 @@ public class Lemurian : Entity
     public void BiteSkill() // 이펙트가 있는지 없는지 모르겠음
     {
         float damage = Damage * 2;
-        if ( !IsDeath && Nav.enabled )
+        if (!IsDeath && Nav.enabled)
         {
-            if(Nav.remainingDistance <= 1.5f)
+            if (Nav.remainingDistance <= 1.5f)
             {
                 _player.GetComponent<Entity>().OnDamage(damage); // 200%
                 Debug.Log("플레이어가 레무리안의 Bite에 맞음 가한 damage : " + damage);

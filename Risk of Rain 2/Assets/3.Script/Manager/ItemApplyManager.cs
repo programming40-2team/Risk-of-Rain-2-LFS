@@ -2,24 +2,24 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemApplyManager 
+public class ItemApplyManager
 {
-    private Dictionary<int,IPassiveItem> passiveItems;
+    private Dictionary<int, IPassiveItem> passiveItems;
     private Dictionary<int, IInBattleItem> inBattleItems;
     private Dictionary<int, IAfterBattleItem> afterBattleItems;
     PassiveItemFactory itemFactory;
     public void Init()
     {
-        passiveItems = new Dictionary<int,IPassiveItem>();
+        passiveItems = new Dictionary<int, IPassiveItem>();
         inBattleItems = new Dictionary<int, IInBattleItem>();
-        afterBattleItems=new Dictionary<int, IAfterBattleItem>();
+        afterBattleItems = new Dictionary<int, IAfterBattleItem>();
 
         itemFactory = new PassiveItemFactory();
         //foreach (var key in Managers.ItemInventory.PassiveItem.Keys )
         //{
         //    if (Managers.ItemInventory.PassiveItem[key].WhenItemActive.Equals(Define.WhenItemActivates.Always))
         //    {
-               
+
         //        AddPassiveSkill(passiveItem);
         //    }
         //    else if (Managers.ItemInventory.PassiveItem[key].WhenItemActive.Equals(Define.WhenItemActivates.InBattle)) 
@@ -69,7 +69,7 @@ public class ItemApplyManager
         IPassiveItem passiveItem = itemFactory.CreatePassiveItem(itemcode);
         passiveItems.Add(passiveItem.Itemid, passiveItem);
     }
-    
+
 
 
     //적이 죽으면 적 위치를 넣어서 모두 사용
@@ -99,7 +99,7 @@ public class ItemApplyManager
     }
     public void ApplyPassiveSkill(int itemcode)
     {
-       if( passiveItems.TryGetValue(itemcode, out var skill))
+        if (passiveItems.TryGetValue(itemcode, out var skill))
         {
             skill.ApplyPassiveEffect();
         }

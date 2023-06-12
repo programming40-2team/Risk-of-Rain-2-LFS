@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -74,7 +73,7 @@ public class gip : Entity
         else
         {
             _isFindTarget = false;
-            if(_navMeshAgent.enabled)
+            if (_navMeshAgent.enabled)
             {
                 _navMeshAgent.ResetPath();
             }

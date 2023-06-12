@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item1015SkillComponent : ItemPrimitiive
@@ -10,7 +9,7 @@ public class Item1015SkillComponent : ItemPrimitiive
     private float prevMoveSpeed;
     private Vector3 prevTransformScale;
 
-    private float _remainTime=10.0f;
+    private float _remainTime = 10.0f;
     private float _realTime = 0f;
     public override void Init()
     {

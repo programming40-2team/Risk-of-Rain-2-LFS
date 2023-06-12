@@ -75,7 +75,7 @@ public class Golem : Entity
     {
         if (_isSpawn)
         {
-           _myHpBar.gameObject.SetActive(true);
+            _myHpBar.gameObject.SetActive(true);
             base.OnDamage(damage);
         }
     }
@@ -182,7 +182,7 @@ public class Golem : Entity
         Vector3 explosionPos = _aimHit.point;
         if (_warningLaserCoroutine != null)
         {
-            for(int i = 0; i<5;  i++) 
+            for (int i = 0; i < 5; i++)
             {
                 _golemLaser.enabled = false;
                 yield return new WaitForSeconds(0.1f);
@@ -210,7 +210,7 @@ public class Golem : Entity
         }
 
     }
-    
+
 
     private IEnumerator SeismicSlam_co()
     {

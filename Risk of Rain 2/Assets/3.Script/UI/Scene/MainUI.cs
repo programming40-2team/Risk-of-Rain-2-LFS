@@ -63,7 +63,7 @@ public class MainUI : UI_Scene
         GetButton((int)Buttons.DicitonaryButton).gameObject
             .BindEvent((PointerEventData data) => ShowLogBook());
         GetImage((int)Images.BackGround).gameObject.SetActive(false);
-   
+
 
 
 
@@ -78,14 +78,14 @@ public class MainUI : UI_Scene
     }
     private void SetPlayerName()
     {
-        if (Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text != string.Empty && Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text.Length<5)
-            {
+        if (Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text != string.Empty && Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text.Length < 5)
+        {
 
-                _username = Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text;
-                GetText((int)Texts.UserProfileText).text = $"프로필 :{_username}";
+            _username = Get<GameObject>((int)GameObjects.NameInputField).GetComponent<TMP_InputField>().text;
+            GetText((int)Texts.UserProfileText).text = $"프로필 :{_username}";
             Get<GameObject>((int)GameObjects.PlayerNamePannel).gameObject.SetActive(false);
 
-            }
+        }
     }
     private void Start()
     {

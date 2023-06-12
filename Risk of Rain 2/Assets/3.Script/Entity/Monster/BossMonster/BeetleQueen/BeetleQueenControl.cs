@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Reflection;
 
 public class BeetleQueenControl : MonoBehaviour
 {
@@ -37,14 +35,14 @@ public class BeetleQueenControl : MonoBehaviour
 
     private IEnumerator Attack_co()
     {
-        while(!_beetleQueen.IsDeath)
+        while (!_beetleQueen.IsDeath)
         {
-            if(_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !IsAniRun)
+            if (_beetleQueenAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !IsAniRun)
             {
                 IsAniRun = true;
-                if(IsPlayerInFieldOfView() && !IsPlayerBehindBoss())
+                if (IsPlayerInFieldOfView() && !IsPlayerBehindBoss())
                 {
-                    if(!_isSkillRun[0])
+                    if (!_isSkillRun[0])
                     {
                         UseSkill(0);
                         Debug.Log("0번 스킬 사용 / 플레이어 시야 안에 있음");
@@ -68,7 +66,7 @@ public class BeetleQueenControl : MonoBehaviour
                         Debug.Log("아무것도 안 하기 / 플레이어 시야 안에 있음");
                     }
                 }
-                else if(!IsPlayerInFieldOfView() && !IsPlayerBehindBoss())
+                else if (!IsPlayerInFieldOfView() && !IsPlayerBehindBoss())
                 {
                     if (!_isSkillRun[2])
                     {
@@ -80,11 +78,11 @@ public class BeetleQueenControl : MonoBehaviour
                         float angle = CalculateAngle();
                         if (angle < 0)
                         {
-                        _beetleQueenAnimator.SetTrigger("Left90");
+                            _beetleQueenAnimator.SetTrigger("Left90");
                         }
                         else
                         {
-                        _beetleQueenAnimator.SetTrigger("Right90");
+                            _beetleQueenAnimator.SetTrigger("Right90");
                         }
                     }
                 }
@@ -127,7 +125,7 @@ public class BeetleQueenControl : MonoBehaviour
         float dot = Vector3.Dot(vBase, vAnother);
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
         Vector3 cross = Vector3.Cross(vBase, vAnother);
-        if(cross.y < 0)
+        if (cross.y < 0)
         {
             angle = -angle;
         }

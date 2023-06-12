@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class MainMenu : BaseScene
 {
     void Start()
@@ -37,7 +35,7 @@ public class MainMenu : BaseScene
         Managers.ItemApply.Init();
         Managers.UI.ShowSceneUI<MainUI>();
         Managers.UI.ShowSceneUI<MouseInteraction>();
-      
+
     }
 
 
@@ -49,6 +47,6 @@ public class MainMenu : BaseScene
     }
     public override void Clear()
     {
-        
+
     }
 }

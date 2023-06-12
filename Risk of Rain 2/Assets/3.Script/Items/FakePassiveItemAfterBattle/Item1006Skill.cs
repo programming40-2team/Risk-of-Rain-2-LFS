@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Item1006Skill :NewItemPrimitive,IAfterBattleItem
+public class Item1006Skill : NewItemPrimitive, IAfterBattleItem
 {
     public int Itemid => 1006;
 

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class Item1007Skill : NewItemPrimitive, IInBattleItem
 {
@@ -23,6 +20,6 @@ public class Item1007Skill : NewItemPrimitive, IInBattleItem
             item1007.GetOrAddComponent<Item1007SkillComponent>();
 
         }
-  
+
     }
 }

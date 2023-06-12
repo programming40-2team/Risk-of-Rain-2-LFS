@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item1016Component : ItemPrimitiive
@@ -32,11 +31,11 @@ public class Item1016Component : ItemPrimitiive
 
     public void SetDamage(int Count)
     {
-        _damage = _playerStatus.Damage* 5.5f * Count;
+        _damage = _playerStatus.Damage * 5.5f * Count;
     }
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("Player")&&other.TryGetComponent(out Entity entity)) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
+        if (!other.CompareTag("Player") && other.TryGetComponent(out Entity entity)) //지금은 테그로 비교하고 있으나, 컴포넌트를 가진 객체를 불러와야 함 
         {
             if (!_isTakeDamageable)
             {
@@ -53,7 +52,7 @@ public class Item1016Component : ItemPrimitiive
         _isTakeDamageable = true;
 
         ShowDamageUI(entity.gameObject, _damage, Define.EDamageType.Item);
-            entity.OnDamage(_damage);
+        entity.OnDamage(_damage);
 
         yield return new WaitForSeconds(damageCoolTime);
         _isTakeDamageable = false;

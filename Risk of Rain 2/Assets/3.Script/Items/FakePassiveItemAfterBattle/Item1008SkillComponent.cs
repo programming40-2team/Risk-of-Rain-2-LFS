@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item1008SkillComponent : ItemPrimitiive
@@ -19,7 +18,7 @@ public class Item1008SkillComponent : ItemPrimitiive
     public override void Init()
     {
         base.Init();
-       
+
     }
     private void OnEnable()
     {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,7 +13,7 @@ public class SoundManager : MonoBehaviour
 
     static public SoundManager instance;    //사운드 매니저를 불러오기 위해 변수 선언
 
-    private void Awake()    
+    private void Awake()
     {
         //사운드 매니저는 하나만 있는 것이 편리하기에 싱글톤으로 사용.
         if (instance == null)
@@ -35,7 +33,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSourceBgm;
 
     public string[] playSoundName;
-    
+
     [Header("사운드 등록")]
     public Sound[] effectSound;     //AudioCilp
     public Sound[] bgmSound;
@@ -49,7 +47,7 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = 0; i < bgmSound.Length; i++)
         {
-            if(_name == bgmSound[i].name)
+            if (_name == bgmSound[i].name)
             {
                 audioSourceBgm.clip = bgmSound[i].clip;
                 audioSourceBgm.Play();
@@ -62,11 +60,11 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = 0; i < effectSound.Length; i++)    //이팩트사운드의 배열에 해당된 음악 검색
         {
-            if(_name == effectSound[i].name)    //돌린 for문에서 이름이 일치하는 오디오 소스 찾고 재생시키기
+            if (_name == effectSound[i].name)    //돌린 for문에서 이름이 일치하는 오디오 소스 찾고 재생시키기
             {
                 for (int j = 0; j < audioSourcesEffects.Length; j++)    //재생중인 흐름이 끊기지 않게, 오디오소스이팩트에 할당된 오디오 클립을 검색하고 재생중이지 않는걸 찾는다.
                 {
-                    if(!audioSourcesEffects[j].isPlaying)   //오디오소스이펙트 배열에서 재생중이지 않은 노래를 찾는 조건문
+                    if (!audioSourcesEffects[j].isPlaying)   //오디오소스이펙트 배열에서 재생중이지 않은 노래를 찾는 조건문
                     {
                         playSoundName[j] = effectSound[i].name;
                         audioSourcesEffects[j].clip = effectSound[i].clip;  // j번째 클립이 effectSound[i]가 되고 재생되게 된다.
@@ -99,7 +97,7 @@ public class SoundManager : MonoBehaviour
                 return;
             }
         }
-        Debug.Log("재생중인"+ _name + "사운드가 없습니다");
+        Debug.Log("재생중인" + _name + "사운드가 없습니다");
     }
 
 

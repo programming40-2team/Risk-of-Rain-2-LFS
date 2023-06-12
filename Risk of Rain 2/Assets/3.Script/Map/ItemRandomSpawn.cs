@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemRandomSpawn : MonoBehaviour
@@ -15,7 +13,7 @@ public class ItemRandomSpawn : MonoBehaviour
 
         for (int i = 0; i < spawnPointNum; i++)
         {
-          GameObject go= Managers.Resource.Instantiate(_spawnPrefab[i].name, _spawnPoint[i].position, _spawnPoint[i]);
+            GameObject go = Managers.Resource.Instantiate(_spawnPrefab[i].name, _spawnPoint[i].position, _spawnPoint[i]);
             go.transform.parent = _spawnPoint[i];
         }
     }

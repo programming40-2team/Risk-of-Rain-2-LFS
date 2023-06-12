@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item1022Skill : ItemPrimitiive
 {
-   
+
     private bool IsCooltime = false;
     [SerializeField]
     private float movespeed = 6f;
@@ -15,26 +14,26 @@ public class Item1022Skill : ItemPrimitiive
     {
         if (!other.CompareTag("Player"))
         {
-            if(other.TryGetComponent(out Entity entity))
+            if (other.TryGetComponent(out Entity entity))
             {
                 if (!IsCooltime)
                 {
                     StartCoroutine(nameof(Item1022_co), entity);
                 }
-                
+
             }
-       
+
         }
     }
     private void Start()
     {
         base.Init();
-        Vector3 spawnpos = new Vector3(Player.transform.forward.x + Player.transform.up.x*0.3f + gameObject.transform.position.x,
-     Player.transform.forward.y + Player.transform.up.y*0.3f + gameObject.transform.position.y,
-     Player.transform.forward.z + Player.transform.up.z*0.3f + gameObject.transform.position.z);
-        gameObject.transform.position =Player.transform.position+2*Player.transform.forward;
-        GetComponent<Rigidbody>().velocity = (Player.transform.forward+0.4f*Player.transform.up).normalized* movespeed;
-    
+        Vector3 spawnpos = new Vector3(Player.transform.forward.x + Player.transform.up.x * 0.3f + gameObject.transform.position.x,
+     Player.transform.forward.y + Player.transform.up.y * 0.3f + gameObject.transform.position.y,
+     Player.transform.forward.z + Player.transform.up.z * 0.3f + gameObject.transform.position.z);
+        gameObject.transform.position = Player.transform.position + 2 * Player.transform.forward;
+        GetComponent<Rigidbody>().velocity = (Player.transform.forward + 0.4f * Player.transform.up).normalized * movespeed;
+
         Managers.Resource.Destroy(gameObject, 10.0f);
     }
 
@@ -45,11 +44,11 @@ public class Item1022Skill : ItemPrimitiive
         IsCooltime = true;
 
         //Vector3 movedir = gameObject.transform.position - go.transform.position;
-        if(go.TryGetComponent(out Rigidbody rigid))
+        if (go.TryGetComponent(out Rigidbody rigid))
         {
-            if(go.transform)
+            if (go.transform)
 
-            rigid.AddForce((gameObject.transform.position-rigid.transform.position).normalized* _blackholeforce);
+                rigid.AddForce((gameObject.transform.position - rigid.transform.position).normalized * _blackholeforce);
         }
         go.OnDamage(2f);
         ShowDamageUI(go.gameObject, 2, Define.EDamageType.Item);
@@ -60,7 +59,7 @@ public class Item1022Skill : ItemPrimitiive
     private void OnTriggerExit(Collider other)
     {
         StopCoroutine(nameof(Item1022_co));
-        if(other.TryGetComponent(out Rigidbody rigidbody))
+        if (other.TryGetComponent(out Rigidbody rigidbody))
         {
             rigidbody.velocity = Vector3.zero;
         }

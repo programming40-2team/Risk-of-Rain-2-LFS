@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ward : MonoBehaviour
@@ -87,7 +86,7 @@ public class Ward : MonoBehaviour
         {
             if (col.gameObject.TryGetComponent(out Entity en))
             {
-                if(en.CompareTag("Player"))
+                if (en.CompareTag("Player"))
                 {
                     Debug.Log("플레이어가 비틀퀸의 Ward에 맞음 가한 damage : " + _damage);
                     Debug.Log("플레이어 Hit Sound는 여기");

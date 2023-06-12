@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static RelicExtendPopupUI;
 
 public class InvenMonsterButton : UI_Scene
 {
@@ -32,7 +31,7 @@ public class InvenMonsterButton : UI_Scene
         gameObject.BindEvent((PointerEventData data) => MoncterButtonPointerEnter(), Define.UIEvent.PointerEnter);
         gameObject.BindEvent((PointerEventData data) => MonsterButtonPointerExit(), Define.UIEvent.PointerExit);
         gameObject.BindEvent((PointerEventData data) => MonsterButtonClcik());
- 
+
         SetImage();
     }
     private void SetImage()

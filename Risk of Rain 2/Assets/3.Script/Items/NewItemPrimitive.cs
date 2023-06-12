@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class NewItemPrimitive 
+public abstract class NewItemPrimitive
 {
     protected GameObject Player;
     protected GameObject Target;
@@ -13,5 +11,5 @@ public abstract class NewItemPrimitive
         Player = GameObject.FindGameObjectWithTag("Player");
         _playerStatus = Player.GetComponent<PlayerStatus>();
     }
-   
+
 }

@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Item1017Skill : NewItemPrimitive, IInBattleItem
 {
     public int Itemid => 1017;

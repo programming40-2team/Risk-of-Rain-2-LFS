@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -114,7 +113,7 @@ public class Geep : Entity
         _animator.SetBool("isAttack", true);
         _animator.SetBool("isRun", false);
         yield return new WaitForSeconds(2.2f);
-       // Debug.Log(Time.time); // time after wait
+        // Debug.Log(Time.time); // time after wait
         _animator.SetBool("isAttack", false);
         _animator.SetBool("isRun", true);
         _isAttack = false;
@@ -130,7 +129,7 @@ public class Geep : Entity
         _enemy.GetComponent<NavMeshAgent>().Warp(spawnPos);
 
         Managers.Resource.Destroy(gameObject);
-        
+
         //죽었을 때
         //serializefield로 gip 하나 넣고 아래 Instantiate 두 번 써서 두마리뽑고. 자기 Destroy
         // Instantiate(소환할 대상, 소환 위치, 소환 방향)// 소환

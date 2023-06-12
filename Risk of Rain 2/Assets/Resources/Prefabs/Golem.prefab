@@ -16068,6 +16068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   _golemData: {fileID: 11400000, guid: 4bcf7e0bf56307f4ca3b69d618d6884c, type: 2}
+  _golemEye: {fileID: 3846899453813915815}
   _golemAimOrigin: {fileID: 6642855455523814335}
   _golemLaser: {fileID: 53310989489886978}
   _chargeEffect: {fileID: 3590672840840527244}

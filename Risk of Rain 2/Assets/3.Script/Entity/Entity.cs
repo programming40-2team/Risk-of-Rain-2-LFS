@@ -93,12 +93,13 @@ public class Entity : MonoBehaviour
         if (!gameObject.CompareTag("Player"))
         {
             Managers.ItemApply.ExcuteInSkills();
-            Managers.Game.PlayerAttackedDamage += damage;
+            Managers.Game.MonsterDamaged += damage;
 
         }
         else
         {
-            Managers.Game.MonsterDamaged += damage;
+            Managers.Game.PlayerAttackedDamage += damage;
+         
         }
 
         if (Health <= 0 && !IsDeath)
@@ -136,7 +137,7 @@ public class Entity : MonoBehaviour
         IsDeath = true;
     }
 
-    private IEnumerator RegenerateHealth_co()
+    protected IEnumerator RegenerateHealth_co()
     {
         while (true)
         {

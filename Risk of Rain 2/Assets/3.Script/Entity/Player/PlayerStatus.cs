@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using static Cinemachine.DocumentationSortingAttribute;
 /// <summary>
 /// 플레이어 스테이터스 클래스, 기본 변수는 Entity에 있고 플레이어만 가지는 변수는 여기서 선언
 /// </summary>
@@ -26,6 +27,7 @@ public class PlayerStatus : Entity
             _currentExp = value;
             if(_currentExp> Exp)
             {
+                LevelUp();
                 Level++;
                 _currentExp = Exp - _currentExp;
                 Exp *= 1.55f;
@@ -47,7 +49,8 @@ public class PlayerStatus : Entity
     protected override void OnEnable()
     {
         InitStatus();
-        base.OnEnable();
+        StartCoroutine(RegenerateHealth_co());
+        //base.OnEnable();
         Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
         OnDeath -= ToDeath;
         OnDeath += ToDeath;
@@ -125,9 +128,11 @@ public class PlayerStatus : Entity
 
     private void LevelUp()
     {
+        Debug.Log(string.Format("증가량 {0}", MaxHealthAscent));
         MaxHealth += MaxHealthAscent;
         HealthRegen += HealthRegenAscent;
         Damage += DamageAscent;
+        Debug.Log(string.Format("레벨업 , 최대체력 : {0}", MaxHealth));
     }
 
     private void ToDeath()

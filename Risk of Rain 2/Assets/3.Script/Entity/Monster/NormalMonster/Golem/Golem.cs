@@ -12,6 +12,7 @@ public class Golem : Entity
     private readonly float _rotateSpeed = 2f;
     private bool _isSpawn = false;
 
+    [SerializeField] GameObject _golemEye;
     // 레이저 공격 스킬 관련
     [SerializeField] GameObject _golemAimOrigin;
     [SerializeField] LineRenderer _golemLaser;
@@ -93,6 +94,7 @@ public class Golem : Entity
 
     private void InitEffect()
     {
+        _golemEye.SetActive(true);
         _golemLaser.positionCount = 2;
         _golemLaser.enabled = false;
         _chargeEffect.SetActive(false);
@@ -190,10 +192,10 @@ public class Golem : Entity
             StopCoroutine(_warningLaserCoroutine);
             _warningLaserCoroutine = null;
         }
-        _golemLaser.enabled = false;
         _chargeEffect.SetActive(false);
         _explosionEffect.transform.position = explosionPos;
         _explosionEffect.SetActive(true);
+        _golemLaser.enabled = false;
     }
 
     private IEnumerator WarningLaser_co()
@@ -247,6 +249,10 @@ public class Golem : Entity
         InitEffect();
         _golemAgent.ResetPath();
         _myHpBar.gameObject.SetActive(false);
+        _golemEye.SetActive(false);
+    }
+    private void DestroyGolem()
+    {
         Managers.Resource.Destroy(gameObject);
     }
 }

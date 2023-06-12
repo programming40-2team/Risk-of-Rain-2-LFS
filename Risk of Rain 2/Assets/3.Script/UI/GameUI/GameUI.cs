@@ -358,7 +358,7 @@ public class GameUI : UI_Game, IListener
     private void EventOfBossHp(float currentHp, float MaxHp)
     {
         Get<Slider>((int)Sliders.BossHpSlider).value = currentHp / MaxHp;
-        GetText((int)Texts.BossHpText).text = $"{currentHp}/{MaxHp}";
+        GetText((int)Texts.BossHpText).text = $"{(int)currentHp:00}/{MaxHp}";
     }
     private void GoldChangeEvent(int gold)
     {

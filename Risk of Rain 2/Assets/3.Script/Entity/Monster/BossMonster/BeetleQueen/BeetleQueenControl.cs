@@ -20,9 +20,9 @@ public class BeetleQueenControl : MonoBehaviour
         TryGetComponent(out _beetleQueenAnimator);
         _player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        _skillCoolDownArr[0] = 10f;
-        _skillCoolDownArr[1] = 15f;
-        _skillCoolDownArr[2] = 20f;
+        _skillCoolDownArr[0] = 5f;
+        _skillCoolDownArr[1] = 10f;
+        _skillCoolDownArr[2] = 15f;
 
         for (int i = 0; i < _isSkillRun.Length; i++)
         {

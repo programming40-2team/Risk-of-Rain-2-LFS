@@ -16,7 +16,6 @@ public class InfoItemPannelContents : MonoBehaviour
         {
             Managers.Resource.Destroy(transforom.gameObject);
         }
-
      
             foreach (var key in Managers.ItemInventory.Items.Values.Where(s => s.Count >= 1))
             {

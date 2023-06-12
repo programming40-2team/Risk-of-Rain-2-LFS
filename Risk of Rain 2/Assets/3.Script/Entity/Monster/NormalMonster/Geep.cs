@@ -1,116 +1,143 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Geep : MonoBehaviour
+public class Geep : Entity
 {
-    Transform targets;
-    Animator animator;
-    public Transform Player;
-    public float speed;
-    public int Maxhealth = 100;
-    public int Curhealth;
+    [SerializeField] private MonsterData _DataGeep;
+    [SerializeField] private GameObject _gip;
+    [SerializeField] private GameObject _attackColider;
+    private Vector3 _destination;
+    private Vector3 _previousPosition;
 
-    float enemyMoveSpeed = 10f;
-    float smoothTime = 0.2f; // 보간 시간
+    private Animator _animator;
+    private Rigidbody _GeepRigidbody;
+    private NavMeshAgent _navMeshAgent; //Nav Mesh Agent
+    private GameObject _player;
 
-    private Rigidbody _enemyRigidbody;
-    private Vector3 previousPosition; // 이전 위치 저장 변수
-    private Vector3 currentVelocity; // SmoothDamp에 사용할 속도 변수
+    private bool _isAttack;
+    private bool _isFindTarget;
+
+    private void Awake()
+    {
+        this._animator = this.GetComponent<Animator>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        TryGetComponent(out _GeepRigidbody);
+        TryGetComponent(out _animator);
+    }
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        StartCoroutine(UpdateTargetCoroutine());
-        TryGetComponent(out _enemyRigidbody);
+        _previousPosition = transform.position;
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    private IEnumerator UpdateTargetCoroutine()
-    {
-        while (true)
-        {
-            UpdateTarget();
-            yield return new WaitForSeconds(0.25f);
-        }
-    }
-
-    private void UpdateTarget()
-    {
-        Collider[] Cols = Physics.OverlapSphere(transform.position, 10f);
-        Debug.Log(Physics.OverlapSphere(transform.position, 10f, 1 << 8));
-        if (Cols.Length > 0)
-        {
-            float distance = Mathf.Infinity;
-            for (int i = 0; i < Cols.Length; i++)
-            {
-                if (Cols[i].tag == "Player")
-                {
-                    Debug.Log("Target found");
-                    float newDistance = Vector3.Distance(transform.position, Cols[i].transform.position);
-                    if (newDistance < distance)
-                    {
-                        distance = newDistance;
-                        targets = Cols[i].gameObject.transform;
-                    }
-                }
-            }
-        }
-        Collider[] Colss = Physics.OverlapSphere(transform.position, 3f);
-    }
-
     private void Update()
     {
-
-        if (targets != null)
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            targets.position = new Vector3(targets.position.x, transform.position.y, targets.position.z);
-            Vector3 dir = targets.position - transform.position;
+            OnDamage(10f);
+            Debug.Log(Health);
+        }
+        // //Todo 거리 네비메쉬로 수정 navmeshAgent.reamainingDistance
+        if (!IsDeath)
+        {
 
-            // 적과 대상 사이의 거리 계산
-            float distanceToTarget = Vector3.Distance(transform.position, targets.position);
+            if (_navMeshAgent.remainingDistance <= 150f)
+            {
+                _isFindTarget = true;
+                // 적과 대상 사이의 거리 계산
+                if (_navMeshAgent.remainingDistance <= 10f) // 플레이어가 공격 범위 내에 있는지 확인
+                {
+                    //Debug.Log("접근");
+                    if (!_isAttack)
+                    {
+                        StartCoroutine(Attack_co());
+                    }
+                }
+                else if (_navMeshAgent.remainingDistance <= 150f) // 플레이어가 인식 범위 내에 있는지 확인
+                {
+                    _animator.SetBool("isAttack", false);
+                    _animator.SetBool("isRun", true);
+                }
+                else
+                {
+                    _animator.SetBool("isAttack", false);
+                    _animator.SetBool("isRun", true);
+                }
 
-            if (distanceToTarget <= 2f) // 플레이어가 공격 범위 내에 있는지 확인
-            {
-                animator.SetBool("Run", false);
-                animator.SetBool("Attack", true);
-            }
-            else if (distanceToTarget <= 10f) // 플레이어가 인식 범위 내에 있는지 확인
-            {
-                animator.SetBool("Run", true);
-                animator.SetBool("Attack", false);
+                _navMeshAgent.SetDestination(_player.transform.position);
+
             }
             else
             {
-                animator.SetBool("Run", false);
-                animator.SetBool("Attack", false);
+                _isFindTarget = false;
+                _navMeshAgent.ResetPath();
             }
-
-
-            animator.SetBool("Run", true);
-
-            // SmoothDamp를 사용한 위치 보간
-            Vector3 targetPosition = previousPosition + dir.normalized * enemyMoveSpeed * Time.deltaTime;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
-
-            _enemyRigidbody.MovePosition(transform.position);
-
-            // 보간된 회전
-            Quaternion targetRotation = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime);
-
-            // 위치 보간을 위해 이전 위치 업데이트
-            previousPosition = transform.position;
-
-
-
         }
+
     }
 
-    private void OnTriggerStay(Collider other)
+    protected override void OnEnable()
     {
-        if (other.tag == "Player")
+        SetUp(_DataGeep);
+        base.OnEnable();
+
+        OnDeath -= ToDeath;
+        OnDeath += ToDeath;
+
+        _attackColider.SetActive(false);
+    }
+
+    private void SetUp(MonsterData data)
+    {
+        MaxHealth = data.MaxHealth;
+        Damage = data.Damage;
+        MoveSpeed = data.MoveSpeed;
+        Armor = data.Amor;
+        MaxHealthAscent = data.MaxHealthAscent;
+        DamageAscent = data.DamageAscent;
+        HealthRegen = data.HealthRegen;
+        HealthRegenAscent = data.RegenAscent;
+    }
+
+
+    IEnumerator Attack_co()
+    {
+        _isAttack = true;
+        if (_navMeshAgent == null)
         {
-            targets.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
-            transform.LookAt(targets.position);
+            //Debug.Log("??");
         }
+        Debug.Log("코루틴");
+
+        _animator.SetBool("isAttack", true);
+        _animator.SetBool("isRun", false);
+        yield return new WaitForSeconds(2.2f);
+       // Debug.Log(Time.time); // time after wait
+        _animator.SetBool("isAttack", false);
+        _animator.SetBool("isRun", true);
+        _isAttack = false;
+
+    }
+
+    private void ToDeath()
+    {
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);  //니가 정하삼
+        GameObject _enemy = Managers.Resource.Instantiate($"{_gip.name}");
+        _enemy.GetComponent<NavMeshAgent>().Warp(spawnPos);
+        _enemy = Managers.Resource.Instantiate($"{_gip.name}");
+        _enemy.GetComponent<NavMeshAgent>().Warp(spawnPos);
+
+        Managers.Resource.Destroy(gameObject);
+        
+        //죽었을 때
+        //serializefield로 gip 하나 넣고 아래 Instantiate 두 번 써서 두마리뽑고. 자기 Destroy
+        // Instantiate(소환할 대상, 소환 위치, 소환 방향)// 소환
+        //죽었을 때, 두마리 뽑고 본체 사라지면 될 삘
+    }
+    private void OnAttackColider()
+    {
+        _attackColider.SetActive(true);
     }
 }

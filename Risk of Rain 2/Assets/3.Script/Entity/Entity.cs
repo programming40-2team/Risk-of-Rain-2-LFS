@@ -62,7 +62,7 @@ public class Entity : MonoBehaviour
     {
         IsDeath = false;
         // MaxHealth = data.health;
-        
+
         MaxHealth += MaxHealthAscent * _difficulty;
         Health = MaxHealth;
         Damage += DamageAscent * _difficulty;
@@ -101,7 +101,7 @@ public class Entity : MonoBehaviour
         else
         {
             Managers.Game.PlayerAttackedDamage += damage;
-         
+
         }
 
         if (Health <= 0 && !IsDeath)
@@ -120,15 +120,15 @@ public class Entity : MonoBehaviour
             Managers.ItemApply.ExcuteAfterSkills(gameObject.transform);
 
             Managers.Game.KillCount++;
-            Managers.Game.Gold +=100+ UnityEngine.Random.Range(15, 25 + 10 * (int)Managers.Game.Difficulty);
+            Managers.Game.Gold += 100 + UnityEngine.Random.Range(15, 25 + 10 * (int)Managers.Game.Difficulty);
             Debug.Log("골드 잠시 치트모드로 올려둠");
 
-            int _randomvalue= UnityEngine.Random.Range(1, 3);
+            int _randomvalue = UnityEngine.Random.Range(1, 3);
             for (int i = 0; i < _randomvalue; i++)
             {
                 Managers.Resource.Instantiate("Gold").SetRandomPositionSphere(3, 3, 3, gameObject.transform);
-                Managers.Resource.Instantiate("Exp").SetRandomPositionSphere(2,5,2, gameObject.transform);
-               
+                Managers.Resource.Instantiate("Exp").SetRandomPositionSphere(2, 5, 2, gameObject.transform);
+
             }
 
         }

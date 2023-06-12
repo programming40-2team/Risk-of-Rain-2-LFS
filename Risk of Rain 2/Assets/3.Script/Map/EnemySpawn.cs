@@ -17,7 +17,7 @@ public class EnemySpawn : MonoBehaviour
         _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Imp"));
         _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Lemurian"));
         _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Golem"));
-
+        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Geep"));
     }
 
     private void OnTriggerEnter(Collider other)

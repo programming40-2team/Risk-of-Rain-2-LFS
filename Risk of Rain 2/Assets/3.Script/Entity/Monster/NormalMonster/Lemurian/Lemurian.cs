@@ -7,6 +7,7 @@ public class Lemurian : Entity
 {
     [SerializeField] public MonsterData _lemurianData;
     private Animator _lemurianAnimator;
+    private Rigidbody _lemurianRigidbody;
     private GameObject _player;
 
     [Header("추적대상 레이어")]
@@ -41,6 +42,7 @@ public class Lemurian : Entity
     {
         TryGetComponent(out Nav);
         TryGetComponent(out _lemurianAnimator);
+        TryGetComponent(out _lemurianRigidbody);
         _player = GameObject.FindGameObjectWithTag("Player");
         _lemurianMouthTransform = GameObject.FindGameObjectWithTag("LemurianMouth").transform;
         FireWardPool = GameObject.Find("FireWardPool").GetComponent<ObjectPool>();
@@ -120,6 +122,7 @@ public class Lemurian : Entity
         _lemurianAnimator.SetTrigger("Die");
         StopAllCoroutines();
 
+        _lemurianRigidbody.isKinematic = false;
         Collider[] colls = GetComponents<Collider>();
         foreach (Collider col in colls)
         {
@@ -139,7 +142,7 @@ public class Lemurian : Entity
     private IEnumerator Destroy_co()
     {
         _myHpBar.gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         Managers.Resource.Destroy(gameObject);
         // 풀에 반환 시키기
     }
@@ -169,7 +172,7 @@ public class Lemurian : Entity
         float damage = Damage * 2;
         if ( !IsDeath && Nav.enabled )
         {
-            if(Nav.remainingDistance <= 5f)
+            if(Nav.remainingDistance <= 1.5f)
             {
                 _player.GetComponent<Entity>().OnDamage(damage); // 200%
                 Debug.Log("플레이어가 레무리안의 Bite에 맞음 가한 damage : " + damage);
@@ -198,7 +201,7 @@ public class Lemurian : Entity
                 }
 
 
-                if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 10f)
+                if (Vector3.Distance(transform.position, _targetEntity.transform.position) <= 3f)
                 {
                     if (!_isSkillRun[1])
                     {

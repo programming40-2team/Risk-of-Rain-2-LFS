@@ -57,11 +57,12 @@ public class Entity : MonoBehaviour
     public float HealthRegenAscent { get; protected set; }// 레벨당 체력 회복량
     private WaitForSeconds _healthRegenDelay = new WaitForSeconds(1f);
 
-    private int _difficulty = 0;
+    protected static int _difficulty = 0;
     protected virtual void OnEnable()
     {
         IsDeath = false;
         // MaxHealth = data.health;
+        
         MaxHealth += MaxHealthAscent * _difficulty;
         Health = MaxHealth;
         Damage += DamageAscent * _difficulty;
@@ -77,6 +78,7 @@ public class Entity : MonoBehaviour
 
     private void SetDifficulty(int difficulty)
     {
+        Debug.Log(string.Format("난이도 설정 {0}", difficulty));
         _difficulty = difficulty;
     }
 

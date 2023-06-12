@@ -17,6 +17,7 @@ public class ResultItemImage : UI_Game
         base.Init();
         Bind<TextMeshProUGUI>(typeof(ETexts));
         SetItemGameUI(_myitem);
+        GetComponent<Canvas>().sortingOrder = 9999;
     }
     // Start is called before the first frame update
     void Start()

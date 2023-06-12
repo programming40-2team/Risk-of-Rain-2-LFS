@@ -52,15 +52,17 @@ public class BeetleQueen : Entity
     {
         SetUp(_beetleQueenData);
         base.OnEnable();
-        Debug.Log("Health : " + Health);
-        Debug.Log("IsDeath : " + IsDeath);
-        Debug.Log("Damage : " + Damage);
-        Debug.Log("MoveSpeed : " + MoveSpeed);
-        Debug.Log("Armor : " + Armor);
-        Debug.Log("MaxHealthAscent : " + MaxHealthAscent);
-        Debug.Log("DamageAscent : " + DamageAscent);
-        Debug.Log("HealthRegen : " + HealthRegen);
-        Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
+        //Debug.Log("비틀퀸");
+        //Debug.Log("Health : " + Health);
+        //Debug.Log("IsDeath : " + IsDeath);
+        //Debug.Log("Damage : " + Damage);
+        //Debug.Log("MoveSpeed : " + MoveSpeed);
+        //Debug.Log("Armor : " + Armor);
+        //Debug.Log("MaxHealthAscent : " + MaxHealthAscent);
+        //Debug.Log("DamageAscent : " + DamageAscent);
+        //Debug.Log("HealthRegen : " + HealthRegen);
+        //Debug.Log("HealthRegenAscent : " + HealthRegenAscent);
+        Debug.Log(string.Format("{0}= {1} X {2}", MaxHealth, MaxHealthAscent, _difficulty));
         Managers.Event.PostNotification(Define.EVENT_TYPE.BossHpChange, this);  
 
         _meshCollider.enabled = true;
@@ -104,6 +106,7 @@ public class BeetleQueen : Entity
         HealthRegen = data.HealthRegen;
         HealthRegenAscent = data.RegenAscent;
 
+        Debug.Log(string.Format("비틀퀸 체력증가량 : {0}", MaxHealthAscent));
         //첫 생성 시 보스 Hp 조절을 위한 알림
        
     }

@@ -65,7 +65,7 @@ public class Altar : MonoBehaviour
                     Managers.Game.GameState = Define.EGameState.ActiveTelePort;
                 }
             }
-            else if (Managers.Game.GameState == Define.EGameState.CompeleteTelePort)
+            else if (Managers.Game.GameState == Define.EGameState.CompeleteTelePort&&!Managers.Game.IsClear)
             {
                 Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerInteractionIn, this);
                 if (Input.GetKeyDown(KeyCode.E))

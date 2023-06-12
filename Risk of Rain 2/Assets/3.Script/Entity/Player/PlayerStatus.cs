@@ -50,7 +50,7 @@ public class PlayerStatus : Entity
     {
         InitStatus();
         StartCoroutine(RegenerateHealth_co());
-        //base.OnEnable();
+        Health = MaxHealth;
         Managers.Event.PostNotification(Define.EVENT_TYPE.PlayerHpChange, this);
         OnDeath -= ToDeath;
         OnDeath += ToDeath;
@@ -60,6 +60,7 @@ public class PlayerStatus : Entity
     {
         Name = _survivorsData.Name;
         MaxHealth = _survivorsData.MaxHealth;
+        MaxHealthAscent = _survivorsData.HealthAscent;
         Damage = _survivorsData.Damage;
         DamageAscent = _survivorsData.DamageAscent;
         HealthRegen = _survivorsData.HealthRegen;
@@ -128,11 +129,9 @@ public class PlayerStatus : Entity
 
     private void LevelUp()
     {
-        Debug.Log(string.Format("증가량 {0}", MaxHealthAscent));
         MaxHealth += MaxHealthAscent;
         HealthRegen += HealthRegenAscent;
         Damage += DamageAscent;
-        Debug.Log(string.Format("레벨업 , 최대체력 : {0}", MaxHealth));
     }
 
     private void ToDeath()

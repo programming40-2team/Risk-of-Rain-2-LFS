@@ -18,9 +18,10 @@ public class BossEnemySpawn : MonoBehaviour
     {
         _monsterPrefab.Clear();
         _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Imp"));
-        // _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Lemurian"));
+         _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Lemurian"));
         _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Golem"));
-        _spawnTime = 12f;
+        _monsterPrefab.Add(Managers.Resource.Load<GameObject>("Prefabs/Geep"));
+        _spawnTime = 15f;
     }
     private void OnTriggerEnter(Collider other)
     {

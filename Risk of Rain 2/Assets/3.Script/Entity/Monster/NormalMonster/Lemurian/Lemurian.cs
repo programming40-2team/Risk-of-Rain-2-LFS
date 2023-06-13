@@ -22,7 +22,6 @@ public class Lemurian : Entity
     private float[] _skillCoolDownArr = new float[2];
     private bool[] _isSkillRun = new bool[2];
 
-    private Animation _death;
 
     //HpBar 
     private MonsterHpBar _myHpBar;
@@ -54,7 +53,6 @@ public class Lemurian : Entity
             _isSkillRun[i] = false;
         }
 
-        TryGetComponent(out _death);
         _myHpBar = GetComponentInChildren<MonsterHpBar>();
         //_myHpBar.gameObject.SetActive(false);
     }
@@ -132,7 +130,6 @@ public class Lemurian : Entity
         {
             _lemurianAnimator.SetTrigger("Die");
         }
-        _death.Play();
 
         Collider[] colls = GetComponents<Collider>();
         foreach (Collider col in colls)
@@ -184,6 +181,7 @@ public class Lemurian : Entity
         {
             if (Nav.remainingDistance <= 1.5f)
             {
+
                 _player.GetComponent<Entity>().OnDamage(damage); // 200%
                 Debug.Log("플레이어가 레무리안의 Bite에 맞음 가한 damage : " + damage);
             }

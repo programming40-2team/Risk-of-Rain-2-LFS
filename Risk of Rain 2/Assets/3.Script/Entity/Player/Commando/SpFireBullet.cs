@@ -7,7 +7,7 @@ public class SpFireBullet : Projectile
     {
         _projectilePoolName = "SpFirePool";
         _projectileSpeed = 50f;
-        _damageCoefficient = 1f;
+        _damageCoefficient = 2f;
 
         _spFireEffectPool = GameObject.Find("SpFireHitEffect").GetComponent<ObjectPool>();
         base.InitializeProjectile();

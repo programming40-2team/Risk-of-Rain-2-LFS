@@ -138,7 +138,6 @@ public class Bison : Entity
         _animator.SetBool("isRun", false);
         yield return new WaitForSeconds(2.05f);
         LookAtTarget();
-        Debug.Log(Time.time); // time after wait
         _animator.SetBool("isATK", false);
         _animator.SetBool("isRun", true);
         _isAttack = false;

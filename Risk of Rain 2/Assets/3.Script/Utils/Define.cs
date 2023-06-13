@@ -58,6 +58,7 @@
         StartBattle,
         EndBattle,
 
+        CameraShake
 
     }
     public enum WhenItemActivates

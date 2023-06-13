@@ -3825,7 +3825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6307788010862198269, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}
       propertyPath: m_Name
-      value: CM vcam1
+      value: PlayerCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6307788010862198269, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}
       propertyPath: m_IsActive
@@ -3841,7 +3841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6307788012427274638, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}
       propertyPath: m_FrequencyGain
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcdb5b11de68ab9418603398a3ec3c78, type: 3}

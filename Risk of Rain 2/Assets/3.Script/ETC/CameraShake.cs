@@ -1,12 +1,13 @@
 using Cinemachine;
 using UnityEngine;
 
-public class CameraShake : MonoBehaviour
+public class CameraShake : MonoBehaviour, IListener
 {
     private CinemachineVirtualCamera _virtualCamera;
     private CinemachineBasicMultiChannelPerlin _cinemachineBasicMultiChannelPerlin;
 
     private float _shakeTimer;
+
 
     private void Awake()
     {
@@ -14,9 +15,19 @@ public class CameraShake : MonoBehaviour
         _cinemachineBasicMultiChannelPerlin = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
+    private void Start()
+    {
+        Managers.Event.AddListener(Define.EVENT_TYPE.CameraShake, this);
+    }
+
     private void Update()
     {
         CheckTimer();
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            ShakeCamera(10f, 5f);
+
+        }
     }
 
     /// <summary>
@@ -41,6 +52,15 @@ public class CameraShake : MonoBehaviour
             {
                 _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
             }
+        }
+    }
+
+    public void OnEvent(Define.EVENT_TYPE Event_Type, Component Sender, object Param = null)
+    {
+        if(Event_Type == Define.EVENT_TYPE.CameraShake)
+        {
+            Debug.Log("sldkhslfskdhflasfhsd;fsjdhkfs");
+            ShakeCamera(10f, 5f);
         }
     }
 }
